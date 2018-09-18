@@ -1,0 +1,1 @@
+# ngx-jsonapi-material
