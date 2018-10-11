@@ -1,0 +1,5 @@
+* text=auto
+docs/* linguist-documentation
+CHANGELOG.md export-ignore
+package-lock.json -diff
+yarn.lock -diff
