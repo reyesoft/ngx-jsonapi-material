@@ -21,20 +21,6 @@ You can test library on this online example 👌 <http://ngx-jsonapi-material.re
 
 Data is obtained from [Json Api Playground](http://jsonapiplayground.reyesoft.com/) server.
 
-## Supported features
-
--   Cache (on memory): TTL for collections and resources. Before a HTTP request objects are setted with cached data.
--   Cache on localstorage
--   Pagination
--   Sorting
--   [Include param support](http://jsonapi.org/format/#fetching-includes) (also, when you save)
--   Equal requests, return a same ResourceObject on memory
--   Default values for a new resource (hydrator).
-
-## Migration
-
--   [Migration v1 to v2 update guide](https://github.com/reyesoft/ngx-jsonapi-material/blob/initial-commit-v2/docs/migration.md)
-
 ## Usage
 
 Just [install](#installation), [configure](#dependecies-and-customization) and learn with [examples](#examples).
@@ -44,7 +30,7 @@ First of all, it's advisable to read [Jsonapi specification](http://jsonapi.org/
 ### Installation
 
 ```bash
-yarn add ngx-jsonapi-material@2.0.0-rc.4 --save
+yarn add ngx-jsonapi-material --save
 # or npm if you wish...
 ```
 
@@ -56,13 +42,11 @@ yarn add ngx-jsonapi-material@2.0.0-rc.4 --save
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { NgxJsonapiModule } from 'ngx-jsonapi';
+import { NgxJsonapiMaterialModule } from 'ngx-jsonapi-material';
 
 @NgModule({
     imports: [
-        NgxJsonapiModule.forRoot({
-            url: '//jsonapiplayground.reyesoft.com/v2/'
-        })
+        NgxJsonapiMaterialModule
     ]
 })
 export class AppModule {}
@@ -71,174 +55,6 @@ export class AppModule {}
 ## Examples
 
 Like you know, the better way is with examples. Lets go! 🚀
-
-### Defining a resource
-
-`authors.service.ts`
-
-```typescript
-import { Injectable } from '@angular/core';
-import { Autoregister, Service, Resource, DocumentCollection, DocumentResource } from 'ngx-jsonapi';
-import { Book } from '../books/books.service';
-import { Photo } from '../photos/photos.service';
-
-export class Author extends Resource {
-    public attributes = {
-        name: 'default name',
-        date_of_birth: ''
-    };
-
-    public relationships = {
-        books: new DocumentCollection<Book>(),
-        photo: new DocumentResource<Photo>()
-    };
-}
-
-@Injectable()
-@Autoregister()
-export class AuthorsService extends Service<Author> {
-    public resource = Author;
-    public type = 'authors';
-}
-```
-
-### Get a collection of resources
-
-#### Controller
-
-```typescript
-import { Component } from '@angular/core';
-import { DocumentCollection } from 'ngx-jsonapi';
-import { AuthorsService, Author } from './../authors.service';
-
-@Component({
-    selector: 'demo-authors',
-    templateUrl: './authors.component.html'
-})
-export class AuthorsComponent {
-    public authors: DocumentCollection<Author>;
-
-    public constructor(private authorsService: AuthorsService) {
-        authorsService
-            .all({
-                // include: ['books', 'photos'],
-            })
-            .subscribe(authors => (this.authors = authors));
-    }
-}
-```
-
-#### View for this controller
-
-```html
-<p *ngFor="let author of authors.data; trackBy: authors.trackBy">
-  id: {{ author.id }} <br />
-  name: {{ author.attributes.name }} <br />
-  birth date: {{ author.attributes.date_of_birth | date }}
-</p>
-```
-
-#### Collection sort
-
-Ex: `name` is a authors attribute, and makes a query like `/authors?sort=name,job_title`
-
-```typescript
-let authors = authorsService.all({
-    sort: ['name', 'job_title']
-});
-```
-
-#### Collection filtering
-
-Filter resources with `attribute: value` values. Filters are used as 'exact match' (only resources with attribute value same as value are returned). `value` can also be an array, then only objects with same `attribute` value as one of `values` array elements are returned.
-
-```typescript
-authorsService.all({
-    remotefilter: { country: 'Argentina' }
-});
-```
-
-### Get a single resource
-
-From this point, you only see important code for this library. For a full example, clone and see demo directory.
-
-```typescript
-authorsService.get('some_author_id');
-```
-
-#### More options? Include resources when you fetch data (or save!)
-
-```typescript
-authorsService.get('some_author_id', { include: ['books', 'photos'] });
-```
-
-TIP: these parameters work with `all()` and `save()` methods too.
-
-### Add a new resource
-
-```typescript
-let author = this.authorsService.new();
-author.attributes.name = 'Pablo Reyes';
-author.attributes.date_of_birth = '2030-12-10';
-author.save();
-```
-
-#### Need you more control and options?
-
-```typescript
-let author = this.authorsService.new();
-author.attributes.name = 'Pablo Reyes';
-author.attributes.date_of_birth = '2030-12-10';
-
-// some_book is an another resource like author
-let some_book = booksService.get(1);
-author.addRelationship(some_book);
-
-// some_publisher is a polymorphic resource named company on this case
-let some_publisher = publishersService.get(1);
-author.addRelationship(some_publisher, 'company');
-
-// wow, now we need detach a relationship
-author.removeRelationship('books', 'book_id');
-
-// this library can send include information to server, for atomicity
-author.save({ include: ['book'] });
-
-// mmmm, if I need get related resources? For example, books related with author 1
-let relatedbooks = booksService.all({ beforepath: 'authors/1' });
-
-// you need get a cached object? you can force ttl on get
-let author$ = authorsService.get(
-    'some_author_id',
-    { ttl: 60 } // ttl on seconds (default: 0)
-);
-```
-
-### Update a resource
-
-```typescript
-authorsService.get('some_author_id').suscribe(author => {
-    this.author.attributes.name += 'New Name';
-    this.author.save(success => {
-        console.log('author saved!');
-    });
-});
-```
-
-### Pagination
-
-```typescript
-authorsService.all({
-  // get page 2 of authors collection, with a limit per page of 50
-  page: { number: 2 ;  size: 50 }
-});
-```
-
-#### Collection page
-
--   number: number of the current page
--   size: size of resources per page ([it's sended to server by url](http://jsonapi.org/format/#fetching-pagination))
--   information returned from server (check if is avaible) **total_resources: total of avaible resources on server** resources_per_page: total of resources returned per page requested
 
 ## Local Demo App
 
