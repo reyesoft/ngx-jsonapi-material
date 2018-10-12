@@ -18,10 +18,11 @@
             "showCircularDependencies": false,
             "polyfills": "demo/polyfills.ts",
             "assets": [
+              "demo",
               "demo/assets",
               "demo/favicon.ico"
             ],
-            "styles": [],
+            "styles": ["demo/main.scss"],
             "scripts": []
           },
           "configurations": {
@@ -105,7 +106,7 @@
       "flat": true,
       "spec": false,
       "prefix": "bc",
-      "styleext": "css"
+      "styleext": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "bc"
