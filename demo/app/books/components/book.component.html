@@ -21,6 +21,13 @@
                 URI: <a href="{{ photo.attributes.uri }}">{{ photo.attributes.uri }}</a>
             </li>
         </ul>
+
+        <jam-select
+            [collection]="authors"
+            [toRelate]="book.relationships.author.data"
+            displayAttribute="name"
+            [removeRelationships]="true"
+        ></jam-select>
     </mat-card-content>
     <mat-card-actions align="start">
         <a mat-button color="accent" routerLink="/books">Volver</a>

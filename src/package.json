@@ -1,0 +1,59 @@
+{
+    "name": "ngx-jsonapi-material",
+    "version": "0.0.1",
+    "description": "JSON API Material library for Angular",
+    "module": "ngx-jsonapi-material/@ngx-jsonapi-material/ngx-jsonapi-material.es5.js",
+    "es2015": "ngx-jsonapi-material/@ngx-jsonapi-material/ngx-jsonapi-material.js",
+    "main": "ngx-jsonapi-material/bundles/ngx-jsonapi-material.umd.js",
+    "typings": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/reyesoft/ngx-jsonapi-material"
+    },
+    "bugs": {
+        "url": "https://github.com/reyesoft/ngx-jsonapi-material/issues"
+    },
+    "keywords": [
+        "jsonapi",
+        "angular"
+    ],
+    "authors": [
+        "Pablo Gabriel Reyes",
+        "Maximiliano Gabriel Saavedra"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/reyesoft/ngx-jsonapi-material#readme",
+    "dependencies": {
+        "localforage": "^1.5.2",
+        "localforage-getitems": "^1.4.2"
+    },
+    "peerDependencies": {
+        "@angular/core": "^6.0.0"
+    },
+    "jest": {
+        "setupTestFrameworkScriptFile": "../setup-jest.ts",
+        "globals": {
+            "ts-jest": {
+                "tsConfigFile": "./tsconfig.spec.json"
+            },
+            "__TRANSFORM_HTML__": true
+        },
+        "transform": {
+            "^.+\\.(ts|js|html)$": "../node_modules/jest-preset-angular/preprocessor.js"
+        },
+        "testMatch": [
+            "<rootDir>/**/*.spec.ts"
+        ],
+        "moduleFileExtensions": [
+            "ts",
+            "js",
+            "html",
+            "json"
+        ],
+        "mapCoverage": true,
+        "coveragePathIgnorePatterns": [
+            "**/node_modules/**",
+            "**/demo/**"
+        ]
+    }
+}

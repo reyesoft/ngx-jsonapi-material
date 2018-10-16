@@ -7,9 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material.module';
 import { BookEditComponent } from './components/book-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { JamSelectModule } from 'src/public_api';
 
 @NgModule({
-    imports: [CommonModule, SharedModule, BooksRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
+    imports: [CommonModule, JamSelectModule, SharedModule, BooksRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
     entryComponents: [BookEditComponent],
     declarations: [BookComponent, BookEditComponent, BooksComponent]
 })

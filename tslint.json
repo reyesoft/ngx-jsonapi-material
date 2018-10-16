@@ -26,7 +26,7 @@
         "rxjs-no-unsafe-takeuntil": true,
         "rxjs-throw-error": true,
 
-        "directive-selector": [true, "attribute", ["demo"], "camelCase"],
-        "component-selector": [true, "element", ["demo"], "kebab-case"]
+        "directive-selector": [true, "attribute", ["demo", "jam"], "camelCase"],
+        "component-selector": [true, "element", ["demo", "jam"], "kebab-case"]
     }
 }

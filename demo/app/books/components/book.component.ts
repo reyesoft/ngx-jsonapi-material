@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Resource } from 'ngx-jsonapi';
-import { AuthorsService } from '../../authors/authors.service';
+import { Resource, DocumentCollection } from 'ngx-jsonapi';
+import { AuthorsService, Author } from '../../authors/authors.service';
 import { BooksService, Book } from './../books.service';
 import { PhotosService } from '../../photos/photos.service';
 
@@ -11,6 +11,8 @@ import { PhotosService } from '../../photos/photos.service';
 })
 export class BookComponent {
     public book: Book;
+
+    public authors: DocumentCollection<Author>;
 
     public constructor(
         protected authorsService: AuthorsService,
@@ -26,6 +28,11 @@ export class BookComponent {
                 },
                 error => console.log('error books controll', error)
             );
+        });
+
+        authorsService.all().subscribe(authors => {
+            this.authors = authors;
+            console.log('authors', authors);
         });
     }
 
