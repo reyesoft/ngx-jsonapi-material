@@ -32,9 +32,11 @@
             </td>
         </tr>
     </table>
-    <demo-collection-paginator [collection]="books"></demo-collection-paginator>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div [style.padding.px]="'10'"><button mat-button (click)="openDialog()" color="accent">
+            <mat-icon>add</mat-icon>
+            Add new book
+        </button></div>
+        <demo-collection-paginator [collection]="books"></demo-collection-paginator>
+    </div>
 </div>
-
-<button mat-fab (click)="openDialog()" matTooltip="Add book">
-    <mat-icon>add</mat-icon>
-</button>
