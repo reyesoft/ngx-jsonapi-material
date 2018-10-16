@@ -1,0 +1,15 @@
+main {
+    position: relative;
+    top: 100px;
+}
+
+mat-toolbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+:host /deep/ a.mat-button {
+    text-decoration: none;
+}

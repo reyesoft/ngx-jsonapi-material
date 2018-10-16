@@ -22,10 +22,19 @@
             <td>{{ book.attributes.date_published | date }}</td>
             <td>{{ book.relationships.author.data.attributes.name }} #{{ book.relationships.author.data.id }}</td>
             <td><span *ngFor="let photo of book.relationships.photos.data">{{ photo.id }}, </span></td>
-            <td><a mat-icon-button matTooltip="Delete" ng-click="delete(book)" title="not supported by demo server">
-                <mat-icon>delete</mat-icon>
-            </a></td>
+            <td>
+                <button mat-icon-button matTooltip="Edit book" (click)="openDialog(book)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <a mat-icon-button matTooltip="Delete" ng-click="delete(book)" title="not supported by demo server">
+                    <mat-icon>delete</mat-icon>
+                </a>
+            </td>
         </tr>
     </table>
     <demo-collection-paginator [collection]="books"></demo-collection-paginator>
 </div>
+
+<button mat-fab (click)="openDialog()" matTooltip="Add book">
+    <mat-icon>add</mat-icon>
+</button>

@@ -4,8 +4,8 @@ import { Author } from '../authors/authors.service';
 import { Photo } from '../photos/photos.service';
 
 export class Book extends Resource {
-    public attributes = {
-        date_published: '',
+    public attributes: { date_published: Date; [key: string]: any } = {
+        date_published: new Date(),
         title: '',
         created_at: '',
         updated_at: ''
