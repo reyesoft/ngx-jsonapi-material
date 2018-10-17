@@ -1,0 +1,28 @@
+<h1 matDialogTitle>{{ title }}</h1>
+
+<form (submit)="accept($event)">
+    <mat-dialog-content>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="16px">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput type="text" placeholder="A Song of Ice and Fire, Ready player one, etc..."
+                    [(ngModel)]="book.attributes.title"
+                    name="title">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Date Published</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Add date"
+                    [(ngModel)]="book.attributes.date_published"
+                    name="date_published">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button type="button" matDialogClose><strong>CANCEL</strong></button>
+        <button mat-button type="submit" color="primary"><strong>SAVE</strong></button>
+    </mat-dialog-actions>
+</form>

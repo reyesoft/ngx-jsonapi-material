@@ -1,0 +1,42 @@
+<h3>Books</h3>
+<demo-collection-info [collection]="books"></demo-collection-info>
+
+<div class="mat-elevation-z2">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Date Published</th>
+                <th>Author</th>
+                <th>Photos</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <!-- Use authors example. @deprected since version 2.0.0 -->
+        <tr *ngFor="let book of books.data">
+            <td>{{ book.id }}</td>
+            <td>
+                <a mat-button color="primary" [routerLink]="['/books', book.id]">{{ book.attributes.title }}</a>
+            </td>
+            <td>{{ book.attributes.date_published | date }}</td>
+            <td>{{ book.relationships.author.data.attributes.name }} #{{ book.relationships.author.data.id }}</td>
+            <td><span *ngFor="let photo of book.relationships.photos.data">{{ photo.id }}, </span></td>
+            <td>
+                <button mat-icon-button matTooltip="Edit book" (click)="openDialog(book)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <a mat-icon-button matTooltip="Delete" ng-click="delete(book)" title="not supported by demo server">
+                    <mat-icon>delete</mat-icon>
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div [style.padding.px]="'10'"><button mat-button (click)="openDialog()" color="accent">
+            <mat-icon>add</mat-icon>
+            Add new book
+        </button></div>
+        <demo-collection-paginator [collection]="books"></demo-collection-paginator>
+    </div>
+</div>

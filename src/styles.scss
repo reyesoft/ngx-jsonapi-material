@@ -1,0 +1,22 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+    font-family: 'Roboto';
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding-left: 16px;
+}
+
+table tr {
+    border-bottom: 1px solid #e0e0e0;
+    max-height: 48px;
+    height: 48px;
+}

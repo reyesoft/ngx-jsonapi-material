@@ -1,0 +1,15 @@
+<nav aria-label="Pagination" [style.padding.px]="'10'" fxLayout="row" fxLayoutAlign="end center">
+    <button mat-icon-button
+        [ngClass]="collection.page.number < 2 ? 'disabled' : ''"
+        [routerLink]="['./']"
+        [queryParams]="{ page: collection.page.number - 1 }">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-icon-button>{{ collection.page.number }}</button>
+    <button mat-icon-button
+        [ngClass]="!collection.hasMorePages() ? 'disabled' : ''"
+        [routerLink]="['./']"
+        [queryParams]="{ page: (collection.page.number + 1) }">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</nav>
