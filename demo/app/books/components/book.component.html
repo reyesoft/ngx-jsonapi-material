@@ -1,24 +1,28 @@
-<h3>Book</h3>
-<h3>Book #{{ book.id }}</h3>
-<ul>
-    <li>Title: <strong>{{ book.attributes.title }}</strong></li>
-    <li>Date Published: <strong>{{ book.attributes.date_published | date }}</strong></li>
-</ul>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><strong>{{ book.attributes.title }}</strong></mat-card-title>
+        <mat-card-subtitle>Book #{{ book.id }} | Date Published: <strong>{{ book.attributes.date_published | date }}</strong></mat-card-subtitle>
+    </mat-card-header>
+    <div fxLayoutGap="16px">
+        <img mat-card-md-image *ngFor="let photo of book.relationships.photos.data"
+        [src]="photo.attributes.uri">
+    </div>
+    <mat-card-content>
+        <h4>Author (one)</h4>
+        <p><small>This a relationship with <i>hasMany:false</i></small></p>
+        <ul>
+            <li>Name: <strong>{{ getAuthorName(book) }}</strong></li>
+        </ul>
 
-<h4>Author (one)</h4>
-<p><small>This a relationship with <i>hasMany:false</i></small></p>
-<ul>
-    <li>Name: <strong>{{ getAuthorName(book) }}</strong></li>
-</ul>
-
-<h4>Photos (many)</h4>
-<p><small>This a relationship with <i>hasMany:true</i></small></p>
-<ul *ngIf="book.relationships.photos.builded">
-    <li *ngFor="let photo of book.relationships.photos.data">
-        URI: <a href="{{ photo.attributes.uri }}">{{ photo.attributes.uri }}</a>
-    </li>
-</ul>
-
-<p>
-    <a routerLink="/books">Volver</a>
-</p>
+        <h4>Photos (many)</h4>
+        <p><small>This a relationship with <i>hasMany:true</i></small></p>
+        <ul *ngIf="book.relationships.photos.builded">
+            <li *ngFor="let photo of book.relationships.photos.data">
+                URI: <a href="{{ photo.attributes.uri }}">{{ photo.attributes.uri }}</a>
+            </li>
+        </ul>
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <a mat-button color="accent" routerLink="/books">Volver</a>
+    </mat-card-actions>
+</mat-card>

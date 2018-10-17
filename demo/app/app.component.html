@@ -1,18 +1,12 @@
+<mat-toolbar color="primary" class="mat-elevation-z1">
+    ngx-jsonapi-material example
+</mat-toolbar>
 <main>
-    <h1>
-        ngx-jsonapi-material example
-        <small class="bg-primary" *ngIf="loading">{{ loading }} <img src="http://s.ytimg.com/yt/img/loader-vflff1Mjj.gif" /></small>
-    </h1>
+    <small class="bg-primary" *ngIf="loading">{{ loading }} <img src="http://s.ytimg.com/yt/img/loader-vflff1Mjj.gif" /></small>
 
     <nav>
-        <ul class="nav nav-pills pull-xs-right">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/authors">Authors</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/books">Books</a>
-            </li>
-        </ul>
+        <a mat-button color="accent" routerLink="/authors">Authors</a>
+        <a mat-button color="primary" routerLink="/books">Books</a>
     </nav>
 
     <content>

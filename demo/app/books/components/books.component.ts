@@ -4,6 +4,8 @@ import { BooksService, Book } from './../books.service';
 import { AuthorsService } from './../../authors/authors.service';
 import { PhotosService } from '../../photos/photos.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { BookEditComponent } from './book-edit.component';
 
 @Component({
     selector: 'demo-books',
@@ -14,6 +16,7 @@ export class BooksComponent {
 
     public constructor(
         private route: ActivatedRoute,
+        private matDialog: MatDialog,
         protected authorsService: AuthorsService,
         protected booksService: BooksService,
         protected photosService: PhotosService
@@ -52,6 +55,12 @@ export class BooksComponent {
             error => console.info('error books controller', error)
         );
         books$.toPromise().then(success => console.log('books loaded PROMISE'));
+    }
+
+    public openDialog(book?: Book): void {
+        this.matDialog.open(BookEditComponent, {
+            data: book || null
+        });
     }
 
     public delete(book: Resource) {

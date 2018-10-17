@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DocumentCollection } from 'ngx-jsonapi';
 import { AuthorsService, Author } from './../authors.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'demo-authors',
@@ -10,7 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthorsComponent {
     public authors: DocumentCollection<Author>;
 
-    public constructor(private route: ActivatedRoute, private authorsService: AuthorsService) {
+    public constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private authorsService: AuthorsService
+    ) {
         route.queryParams.subscribe(({ page }) => {
             authorsService
                 .all({
@@ -27,5 +31,10 @@ export class AuthorsComponent {
                     error => console.error('Could not load authors :(', error)
                 );
         });
+    }
+
+    public goTo(event): void {
+        console.log('page?', event.pageIndex);
+        this.router.navigate(['.'], { queryParams: { page: event.pageIndex }, relativeTo: this.route });
     }
 }

@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { NgxJsonapiModule } from 'ngx-jsonapi';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AuthorsService } from './authors/authors.service';
 import { BooksService } from './books/books.service';
 import { PhotosService } from './photos/photos.service';
 import { SharedModule } from './shared/shared.module';
+import { MaterialModule } from './material.module';
 
 const appRoutes: Routes = [
     {
@@ -30,10 +32,12 @@ const appRoutes: Routes = [
 @NgModule({
     providers: [AuthorsService, BooksService, PhotosService],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         HttpClientModule,
         SharedModule,
         RouterModule.forRoot(appRoutes, { useHash: true }),
+        MaterialModule,
         NgxJsonapiModule.forRoot({
             url: environment.jsonapi_url
         })

@@ -16,7 +16,7 @@ export class AuthorComponent {
     public constructor(
         protected authorsService: AuthorsService,
         protected photosService: PhotosService,
-        booksService: BooksService,
+        protected booksService: BooksService,
         private route: ActivatedRoute
     ) {
         route.params.subscribe(({ id }) => {
