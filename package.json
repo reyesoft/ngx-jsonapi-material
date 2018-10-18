@@ -1,7 +1,8 @@
 {
     "name": "ngx-jsonapi-material-app",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "scripts": {
+        "build_lib": "ng build --prod ngx-jsonapi-material",
         "build": "ts-node ./build/index.ts",
         "postbuild": "rimraf **/dist/**/*.ngsummary.json",
         "deploy:builds": "ts-node ./build/deploy-build.ts",
