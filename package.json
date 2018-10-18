@@ -4,8 +4,8 @@
     "scripts": {
         "build_lib": "ng build --prod ngx-jsonapi-material",
         "npm_pack": "cd dist/ngx-jsonapi-material && npm pack",
-        "copy-license": "copy .\\LICENSE .\\dist\\ng-example-library",
-        "copy-readme": "copy .\\README.md .\\dist\\ng-example-library",
+        "copy-license": "copy .\\LICENSE .\\dist\\ngx-jsonapi-material",
+        "copy-readme": "copy .\\README.md .\\dist\\ngx-jsonapi-material",
         "copy-files": "npm run copy-license && npm run copy-readme",
         "package": "npm run build_lib && npm run npm_pack",
         "build": "ts-node ./build/index.ts",
