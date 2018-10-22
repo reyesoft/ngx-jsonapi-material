@@ -1,0 +1,19 @@
+{
+    "name": "ngx-jsonapi-material",
+    "version": "0.0.1",
+    "authors": [
+        "Reyesoft"
+    ],
+    "license": "MIT",
+    "peerDependencies": {
+        "@angular/common": "^6.0.3",
+        "@angular/core": "^6.0.3",
+        "@angular/cdk": "^6.4.7",
+        "@angular/flex-layout": "6.0.0-beta.16",
+        "@angular/material": "^6.4.7",
+        "ngx-jsonapi": "^2.0.0-rc.10",
+        "localforage": "^1.5.2",
+        "localforage-getitems": "^1.4.2",
+        "rxjs": "6.2.2"
+    }
+}
