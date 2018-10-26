@@ -8,6 +8,7 @@ import { MaterialModule } from '../../../projects/ngx-jsonapi-material/src/lib/m
 import { BookEditComponent } from './components/book-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JamSelectModule } from 'ngx-jsonapi-material';
+import { JamFloatingFiltersModule } from 'projects/ngx-jsonapi-material/src/public_api';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { JamSelectModule } from 'ngx-jsonapi-material';
         SharedModule,
         BooksRoutingModule,
         JamSelectModule,
+        JamFloatingFiltersModule,
         MaterialModule,
         ReactiveFormsModule,
         FormsModule

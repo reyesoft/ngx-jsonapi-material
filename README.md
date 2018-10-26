@@ -52,9 +52,22 @@ import { NgxJsonapiMaterialModule } from 'ngx-jsonapi-material';
 export class AppModule {}
 ```
 
-## Examples
+## Directives
 
-Like you know, the better way is with examples. Lets go! 🚀
+### JamFloatingFilters
+__Selector:__ jam-floating-filters
+
+#### Simple floating filters
+
+```
+<jam-floating-filter [hasAdvancedFilters]="false">
+    <ng-container class="jam-filter-header">
+        your code...
+    </ng-container>
+</jam-floating-filter>
+```
+
+[more info](https://github.com/reyesoft/ngx-jsonapi-material/wiki/Floating-filters)
 
 ## Local Demo App
 
