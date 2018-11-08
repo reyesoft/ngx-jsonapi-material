@@ -6332,6 +6332,12 @@ ngx-jsonapi@^2.0.0-rc.10:
     localforage "^1.5.2"
     localforage-getitems "^1.4.2"
 
+ngx-uploader@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-uploader/-/ngx-uploader-6.0.1.tgz#b167395cec9070f436565d52e12814e7bc10a9e2"
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

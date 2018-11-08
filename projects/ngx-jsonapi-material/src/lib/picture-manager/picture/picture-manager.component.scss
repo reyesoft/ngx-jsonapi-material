@@ -1,0 +1,119 @@
+$overlay: rgba(0%, 0%, 0%, 0.376);
+$bg_drag_and_drop: rgba(0, 0, 0, 0.05);
+$white: #ffffff;
+
+@mixin setPositionValues($top, $right, $bottom, $left) {
+    top: $top;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+}
+
+@mixin blur($value) {
+    -webkit-filter: blur($value);
+    -moz-filter: blur($value);
+    -ms-filter: blur($value);
+    -o-filter: blur($value);
+    filter: blur($value);
+}
+
+@mixin setSizes($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin dragAndDropStyles {
+    background-color: $bg_drag_and_drop;
+    position: relative;
+    width: 180px;
+    height: 180px;
+    top: 0;
+    left: 0;
+    z-index: 333;
+    background-image: url('/assets/images/drag_and_drop.png');
+}
+
+%default-size {
+    @include setSizes(auto, auto);
+}
+
+//  Activa la forma cuadrada en el contenedor de la imagen.
+.square {
+    border-radius: 2%;
+    overflow: hidden;
+}
+
+//  Activa la forma redonda en el contenedor de la imagen.
+.round {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.round-drag-and-drop-styles {
+    @include dragAndDropStyles;
+    border-radius: 50%;
+}
+
+.square-drag-and-drop-styles {
+    @include dragAndDropStyles;
+}
+
+app-upload #picture-manager * {
+    @extend %default-size;
+}
+
+app-upload #picture-manager * > mat-icon {
+    @extend %default-size;
+    color: $white;
+    font-size: 4.5rem;
+}
+
+app-upload #picture-manager.mouseover:hover {
+    background-color: transparent;
+}
+
+app-upload #picture-manager.mouseover div > .mouseover-child {
+    display: none;
+    -webkit-transition: 0.3s display;
+    transition: 0.3s display;
+}
+
+app-upload #picture-manager.mouseover:hover div > .mouseover-child {
+    display: inherit;
+}
+
+app-upload #picture-manager.mouseover:hover div > .mouseover-child .blur {
+    @include setPositionValues(0, 0, 0, 0);
+    @include blur(10px);
+    @include setSizes(190px, 210px);
+    position: absolute;
+    z-index: 1;
+    margin: -10px 0 0 -5px;
+}
+
+app-upload #picture-manager div mat-divider {
+    width: 60%;
+    position: relative;
+    border-color: $white;
+}
+
+app-upload #picture-manager div {
+    @include setSizes(18rem, 18rem);
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+app-upload #picture-manager.mouseover div > .mouseover-child .menu {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+}
+
+app-upload #picture-manager div > div.overlay {
+    @include setPositionValues(0, 0, 0, 0);
+    @include setSizes(100%, 100%);
+    position: absolute;
+    z-index: 1;
+    background-color: $overlay;
+}
