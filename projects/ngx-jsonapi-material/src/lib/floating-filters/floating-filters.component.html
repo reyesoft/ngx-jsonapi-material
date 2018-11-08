@@ -1,0 +1,26 @@
+<mat-expansion-panel
+    [disabled]="!hasAdvancedFilters"
+    [hideToggle]="true"
+    (opened)="toggleStateExpansionPanel(false)"
+    (closed)="toggleStateExpansionPanel(true)"
+    class="width-100 none-shadows" [expanded]="open_expansion_panel" [style.background]="'transparent'">
+    <mat-expansion-panel-header jamAvoidDisabledStyle [style.padding-right]="'0'">
+        <mat-panel-description fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" (click)="$event.stopPropagation()">
+                <button *ngIf="hasAdvancedFilters" mat-button color="primary"
+                    (click)="toggleStateExpansionPanel(open_expansion_panel)">
+                    <mat-icon [innerHtml]="!open_expansion_panel ? 'filter_list' : 'close'"></mat-icon>
+                    FILTROS
+                </button>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" (keydown)="$event.stopPropagation()" (click)="$event.stopPropagation()">
+                <ng-content select="ng-container.jam-filter-header"></ng-content>
+            </div>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="16px grid">
+        <ng-content select="ng-container.jam-filter-content"></ng-content>
+    </div>
+</mat-expansion-panel>

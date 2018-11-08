@@ -1,0 +1,19 @@
+<mat-form-field fxFlex>
+    <mat-select
+        [(ngModel)]="toRelate"
+        (ngModelChange)="updateRelationships()"
+        [disabled]="disabled || false"
+        [placeholder]="placeholder || 'Seleccione una opción'"
+        [multiple]="multiple || false"
+        >
+        <mat-option *ngIf="removeRelationships">Sin seleccionar</mat-option>
+        <ng-container *ngFor="let resource of adaptiveArray">
+            <mat-option [value]="resource" *ngIf="parentId && resource.id !== parentId">
+                {{ resource.attributes[displayAttribute] }}
+            </mat-option>
+            <mat-option [value]="resource" *ngIf="!parentId">
+                {{ resource.attributes[displayAttribute] }}
+            </mat-option>
+        </ng-container>
+    </mat-select>
+</mat-form-field>

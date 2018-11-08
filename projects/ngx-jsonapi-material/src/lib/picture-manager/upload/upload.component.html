@@ -1,0 +1,22 @@
+<div>
+    <div fxLayout="column" fxLayoutAlign="center center" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+        <label class="upload-button margin-0"
+            style="display: inline-block;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                color: #5754a3;"
+            >
+            <input style="display: none" type="file" class="layout-margin" ngFileSelect
+                [uploadInput]="uploadInput"
+                [options]="options"
+                (change)="previewImage($event)"
+                (uploadOutput)="onUploadOutput($event)"
+                multiple>
+            <ng-content></ng-content>
+        </label>
+    </div>
+</div>
+<div *ngFor="let f of files; let i = index;">
+    <mat-spinner *ngIf="f.progress.data < 100"></mat-spinner>
+</div>

@@ -1,0 +1,62 @@
+<mat-card style="width: 350px">
+    <mat-card-header>
+        <mat-card-title>Author #{{ author.id }}, with books and photos</mat-card-title>
+        <mat-card-subtitle><strong>{{ author.attributes.name }}</strong></mat-card-subtitle>
+    </mat-card-header>
+
+    <img mat-card-md-image *ngFor="let photo of author.relationships.photos.data"
+        [src]="photo.attributes.uri" height="150"
+        title="Book id #{{ photo.id }}"
+    />
+
+    <mat-card-content fxLayout="row wrap" fxLayoutGap="16px">
+        <div>Date of birth: <strong>{{ author.attributes.date_of_birth | date }}</strong></div>
+        <div>Date of dead: <strong>{{ author.attributes.date_of_death | date }}</strong></div>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+        <a mat-button color="accent" routerLink="/authors">Volver</a>
+
+        <div>
+            <button mat-icon-button (click)="updateAuthor()" matTooltip="Update author">
+                <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button [matMenuTriggerFor]="menuRef" matTooltip="More">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menuRef="matMenu">
+                <button mat-menu-item (click)="newAuthor()">
+                    <mat-icon>person_add</mat-icon>
+                    New author
+                </button>
+                <button mat-menu-item (click)="removeRelationship()">
+                    <mat-icon class="mat-18">delete</mat-icon>
+                    Remove relationship
+                </button>
+            </mat-menu>
+        </div>
+    </mat-card-actions>
+</mat-card>
+
+<h4>Books</h4>
+
+<table class="mat-elevation-z2" *ngIf="author.relationships.books.builded">
+    <thead>
+        <tr style="padding: 16px">
+            <th>ID</th>
+            <th>Title</th>
+            <th>Date Published</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let book of author.relationships.books.data" style="padding: 16px">
+        <td>{{ book.id }}</td>
+        <td>
+            <a mat-button color="primary" [routerLink]="['/books', book.id]">{{ book.attributes.title }}</a>
+        </td>
+        <td>{{ book.attributes.date_published | date }}</td>
+    </tr>
+</table>
+
+<p>
+    <a mat-button color="accent" routerLink="/authors">Volver</a>
+</p>
