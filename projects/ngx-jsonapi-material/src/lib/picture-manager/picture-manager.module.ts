@@ -9,21 +9,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxUploaderModule } from 'ngx-uploader';
-import { MatProgressSpinnerModule, MatDividerModule, MatIconModule } from '@angular/material';
+import { MatProgressSpinnerModule, MatDividerModule, MatIconModule, MatTooltipModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UploadComponent } from './upload/upload.component';
 import { PictureManagerComponent } from './picture/picture-manager.component';
+import { GalleryManagerComponent } from './gallery/gallery-manager.component';
 
 @NgModule({
     imports: [
         MatProgressSpinnerModule,
+        MatTooltipModule,
+        MatButtonModule,
         MatDividerModule,
         MatIconModule,
         NgxUploaderModule,
         FlexLayoutModule,
         CommonModule
     ],
-    declarations: [UploadComponent, PictureManagerComponent],
-    exports: [PictureManagerComponent]
+    declarations: [UploadComponent, PictureManagerComponent, GalleryManagerComponent],
+    exports: [PictureManagerComponent, GalleryManagerComponent]
 })
 export class JamPictureManagerModule {}
