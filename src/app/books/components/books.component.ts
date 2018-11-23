@@ -13,6 +13,7 @@ import { BookEditComponent } from './book-edit.component';
 })
 export class BooksComponent {
     public books: DocumentCollection<Book>;
+    public filter_text: string = '';
 
     public constructor(
         private route: ActivatedRoute,

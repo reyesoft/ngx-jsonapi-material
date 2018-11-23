@@ -13,3 +13,7 @@ export * from './lib/picture-manager/picture/picture-manager.component';
 export * from './lib/picture-manager/gallery/gallery-manager.component';
 export * from './lib/picture-manager/picture/image-change-interface';
 export * from './lib/picture-manager/picture-manager.module';
+
+export * from './lib/search-input/search-input.component';
+export * from './lib/search-input/search-text.pipe';
+export * from './lib/search-input/search-input.module';

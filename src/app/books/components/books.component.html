@@ -1,6 +1,12 @@
 <h3>Books</h3>
 <demo-collection-info [collection]="books"></demo-collection-info>
 
+<div [style.height]="'48px'" fxLayout="row" fxLayoutAlign="end center">
+    <jam-search-input
+        [(text)]="filter_text"
+    ></jam-search-input>
+</div>
+
 <div class="mat-elevation-z2">
     <table>
         <thead>
@@ -14,7 +20,7 @@
             </tr>
         </thead>
         <!-- Use authors example. @deprected since version 2.0.0 -->
-        <tr *ngFor="let book of books.data">
+        <tr *ngFor="let book of books.data | filter: filter_text">
             <td>{{ book.id }}</td>
             <td>
                 <a mat-button color="primary" [routerLink]="['/books', book.id]">{{ book.attributes.title }}</a>
