@@ -16,7 +16,7 @@ import { debounceTime, map } from 'rxjs/operators';
 })
 export class SearchInputComponent implements OnInit {
     @Input() public text: string;
-    @Output() public textChange: EventEmitter<any> = new EventEmitter();
+    @Output() public textChange: EventEmitter<string> = new EventEmitter();
 
     public searchCtrl: FormControl = new FormControl();
 
