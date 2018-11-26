@@ -1,0 +1,19 @@
+<button *ngIf="icon !== 'none'"
+    [disableRipple]="true"
+    type="button"
+    mat-icon-button
+    [ngClass]="classed ? classed : 'mat-icon-button'"
+    (click)="showConfirm()"
+    [ngStyle]="styled"
+    [matTooltip]="tooltip || 'Eliminar'"
+    >
+    <mat-icon
+        [ngStyle]="styleIcon ? styleIcon : ''"
+        mat-menu-align-target
+        >
+        {{ icon ? icon : 'delete' }}
+    </mat-icon>
+</button>
+<button mat-button color="primary" *ngIf="icon === 'none'">
+    <span *ngIf="text" [innerHtml]="text"></span>
+</button>
