@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../../../projects/ngx-jsonapi-material/src/lib/material.module';
 import { BookEditComponent } from './components/book-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { JamSelectModule, JamSearchInputModule, JamFloatingFiltersModule } from 'ngx-jsonapi-material';
+import { JamSelectModule, JamSearchInputModule, JamFloatingFiltersModule, JamTopWarningModule, JamDeleteConfirmationModule } from 'ngx-jsonapi-material';
 
 @NgModule({
     imports: [
@@ -17,6 +17,8 @@ import { JamSelectModule, JamSearchInputModule, JamFloatingFiltersModule } from 
         JamSelectModule,
         JamFloatingFiltersModule,
         JamSearchInputModule,
+        JamDeleteConfirmationModule,
+        JamTopWarningModule,
         MaterialModule,
         ReactiveFormsModule,
         FormsModule

@@ -20,3 +20,8 @@ export * from './lib/search-input/search-input.module';
 
 export * from './lib/delete-confirmation/delete-confirmation.component';
 export * from './lib/delete-confirmation/delete-confirmation.module';
+
+export * from './lib/top-warning/top-warning.component';
+export * from './lib/top-warning/top-warning.service';
+export * from './lib/top-warning/single-warning/single-warning.component';
+export * from './lib/top-warning/top-warning.module';

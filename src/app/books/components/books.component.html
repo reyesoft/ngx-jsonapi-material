@@ -1,11 +1,15 @@
+<jam-single-warning message="Recuerda no subir libros protegidos con copyright"></jam-single-warning>
+
 <h3>Books</h3>
 <demo-collection-info [collection]="books"></demo-collection-info>
 
-<div [style.height]="'48px'" fxLayout="row" fxLayoutAlign="end center">
-    <jam-search-input
-        [(text)]="filter_text"
-    ></jam-search-input>
-</div>
+<jam-floating-filters [hasAdvancedFilters]="false">
+    <ng-container class="jam-filter-header">
+        <jam-search-input
+            [(text)]="filter_text"
+        ></jam-search-input>
+    </ng-container>
+</jam-floating-filters>
 
 <div class="mat-elevation-z2">
     <table>
@@ -32,9 +36,8 @@
                 <button mat-icon-button matTooltip="Edit book" (click)="openDialog(book)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <a mat-icon-button matTooltip="Delete" ng-click="delete(book)" title="not supported by demo server">
-                    <mat-icon>delete</mat-icon>
-                </a>
+
+                <jam-delete-confirmation (deleteFc)="delete(book)"></jam-delete-confirmation>
             </td>
         </tr>
     </table>
