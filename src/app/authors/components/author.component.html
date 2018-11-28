@@ -1,3 +1,13 @@
+<jam-chips-autocomplete style="width: 100%"
+    attributeDisplay="title"
+    relationAlias="books"
+    placeholder="Agregue un libro"
+    [attributesDisplay]="['title', 'date_published', 'isbn']"
+    [resource]="author"
+    [relationTo]="author.relationships.books"
+    [service]="booksService"
+></jam-chips-autocomplete>
+
 <mat-card style="width: 350px">
     <mat-card-header>
         <mat-card-title>Author #{{ author.id }}, with books and photos</mat-card-title>

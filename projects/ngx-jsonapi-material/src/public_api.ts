@@ -13,3 +13,6 @@ export * from './lib/picture-manager/picture/picture-manager.component';
 export * from './lib/picture-manager/gallery/gallery-manager.component';
 export * from './lib/picture-manager/picture/image-change-interface';
 export * from './lib/picture-manager/picture-manager.module';
+
+export * from './lib/chips-autocomplete/chips-autocomplete.component';
+export * from './lib/chips-autocomplete/chips-autocomplete.module';
