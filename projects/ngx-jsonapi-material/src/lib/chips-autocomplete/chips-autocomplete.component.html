@@ -1,7 +1,8 @@
-<mat-form-field [style.width.%]="'100'" appearence="outline">
+<mat-form-field [style.width.%]="'100'" [appearance]="appearance">
+    <mat-label *ngIf="matLabel">{{ matLabel }}</mat-label>
     <mat-chip-list #chipList>
         <mat-chip
-            *ngFor="let resource_resource of resource.relationships[relationAlias].data"
+            *ngFor="let resource_resource of collection_relationships.data; trackBy: collection_relationships.trackBy"
             [selectable]="selectable"
             [removable]="removable"
             (removed)="removeResource(resource_resource)">
@@ -9,7 +10,7 @@
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
         <input
-            [placeholder]="placeholder"
+            [placeholder]="placeholder || ''"
             #resourceInput
             [formControl]="formControl"
             [matAutocomplete]="auto"

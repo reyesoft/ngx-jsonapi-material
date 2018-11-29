@@ -14,25 +14,33 @@ export function batchAll<T extends Service<R>, R extends Resource>(service: T, p
         }
 
         params.page.number++;
-        console.log('calling page ', params.page.number);
 
         return batchAll(service, params).pipe(startWith(collection));
     }));
 }
 
 export const filterOrRequest = <T extends Resource>(params: {
+    attribute_to_search: string;
     resourcesArray: Array<T>;
     getAllFc: ((filter: string) => Observable<DocumentCollection<T>>);
     last_filter_value: string;
     collection: DocumentCollection<T>;
+    page_size: number;
 }): UnaryFunction<Observable<string>, Observable<Array<T>>> =>
     pipe(
         startWith(''),
         debounceTime(400),
         filter(filterValue => typeof filterValue === 'string'),
         switchMap((filterValue: string) => {
-            if (filterValue.includes(params.last_filter_value) && params.collection.data.length < this.resourcePerPage) {
-                return of(params.resourcesArray.filter((resource: T) => resource.attributes.name.toLowerCase().indexOf(filterValue) >= 0));
+            if (filterValue.includes(params.last_filter_value) && params.collection.data.length < params.page_size) {
+                return of(
+                    params.resourcesArray
+                        .filter(
+                            (resource: T) => resource.attributes[params.attribute_to_search]
+                                .toLowerCase()
+                                .indexOf(filterValue) >= 0
+                        )
+                );
             }
 
             return params
