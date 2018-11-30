@@ -16,3 +16,6 @@ export * from './lib/picture-manager/picture-manager.module';
 
 export * from './lib/chips-autocomplete/chips-autocomplete.component';
 export * from './lib/chips-autocomplete/chips-autocomplete.module';
+
+export * from './lib/delete-confirmation/delete-confirmation.component';
+export * from './lib/delete-confirmation/delete-confirmation.module';
