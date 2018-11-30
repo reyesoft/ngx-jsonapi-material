@@ -6,7 +6,7 @@ export * from './lib/select/select.component';
 export * from './lib/select/select.module';
 
 export * from './lib/submit/submit.component';
-export * from './lib/submit/select.module';
+export * from './lib/submit/submit.module';
 
 export * from './lib/floating-filters/floating-filters.component';
 export * from './lib/floating-filters/avoid-disabled-style.directive';
