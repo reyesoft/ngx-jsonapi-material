@@ -17,3 +17,6 @@ export * from './lib/picture-manager/picture-manager.module';
 export * from './lib/search-input/search-input.component';
 export * from './lib/search-input/search-text.pipe';
 export * from './lib/search-input/search-input.module';
+
+export * from './lib/delete-confirmation/delete-confirmation.component';
+export * from './lib/delete-confirmation/delete-confirmation.module';
