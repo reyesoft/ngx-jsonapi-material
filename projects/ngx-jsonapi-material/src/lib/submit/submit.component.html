@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutAlign="end center">
+    <button type="button" mat-button color="accent" *ngIf="!noCancel" (click)="changeState()" class="accent pull-right" rs-esc-key>Cancelar</button>
+    <button class="primary raised pull-right" [style.min-height.px]="'36'" type="submit" aria-label="Guardar"
+        mat-raised-button
+        color="primary"
+        (click)="save(resource)"
+        [disabled]="(resource ? resource.is_saving : false) || disabled">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <span *ngIf="resource ? !resource.is_saving : true" class="elements-up">{{ (submitLabel ? submitLabel : 'Guardar') | uppercase }}</span>
+            <mat-progress-spinner class="elements-up default"
+                *ngIf="resource && resource.is_saving"
+                mode="indeterminate"
+                value="value"
+                diameter="20"
+                aria-label="Cargando Espere">
+            </mat-progress-spinner>
+        </div>
+    </button>
+</div>
