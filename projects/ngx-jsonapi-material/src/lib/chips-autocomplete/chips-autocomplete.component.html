@@ -1,0 +1,35 @@
+<mat-form-field [style.width.%]="'100'" [appearance]="appearance">
+    <mat-label *ngIf="matLabel">{{ matLabel }}</mat-label>
+    <mat-chip-list #chipList>
+        <mat-chip
+            *ngFor="let resource_resource of collection_relationships.data; trackBy: collection_relationships.trackBy"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="removeResource(resource_resource)">
+            {{ resource_resource.attributes[attributesDisplay[0]] }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+            [placeholder]="placeholder || ''"
+            #resourceInput
+            [formControl]="formControl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputAddOnBlur]="addOnBlur">
+    </mat-chip-list>
+
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="addResource($event.option.value)">
+        <ng-container *ngFor="let resource of filteredCollection | async; trackBy: trackById">
+            <mat-option *ngIf="!resource.attributes.__selected" [value]="resource">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="layout-margin">person</mat-icon>
+                    <strong>{{ resource.attributes[attributesDisplay[0]] }}</strong>
+                    &nbsp;
+                    <small fxLayout="row" fxLayoutAlign="start center" *ngFor="let attribute_name of attributesDisplay; let attr_id = index">
+                        <span *ngIf="attr_id >= 1">| {{ resource.attributes[attribute_name] }}</span>
+                    </small>
+                </div>
+            </mat-option>
+        </ng-container>
+    </mat-autocomplete>
+</mat-form-field>
