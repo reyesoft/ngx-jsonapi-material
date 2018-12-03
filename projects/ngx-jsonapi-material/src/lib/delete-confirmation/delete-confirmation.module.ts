@@ -15,14 +15,15 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 
 @NgModule({
     imports: [
+        MatTooltipModule,
         MatDialogModule,
         MatButtonModule,
-        MatTooltipModule,
         MatIconModule,
         FlexLayoutModule,
         CommonModule
     ],
     declarations: [DeleteConfirmationComponent, ConfirmationDialogComponent],
+    entryComponents: [ConfirmationDialogComponent],
     exports: [DeleteConfirmationComponent, ConfirmationDialogComponent]
 })
 export class JamDeleteConfirmationModule {}

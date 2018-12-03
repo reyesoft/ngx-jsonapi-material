@@ -6,7 +6,6 @@ import { PhotosService } from '../../photos/photos.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { BookEditComponent } from './book-edit.component';
-
 @Component({
     selector: 'demo-books',
     templateUrl: './books.component.html'
@@ -64,7 +63,8 @@ export class BooksComponent {
         });
     }
 
-    public delete(book: Resource) {
+    public delete(book: Book) {
         this.booksService.delete(book.id);
+        this.getAll(new Date(book.attributes.date_published));
     }
 }
