@@ -22,3 +22,6 @@ export * from './lib/chips-autocomplete/chips-autocomplete.module';
 
 export * from './lib/delete-confirmation/delete-confirmation.component';
 export * from './lib/delete-confirmation/delete-confirmation.module';
+
+export * from './lib/range-datepicker/range-datepicker.component';
+export * from './lib/range-datepicker/range-datepicker.module';
