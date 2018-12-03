@@ -7945,6 +7945,13 @@ sass-loader@^7.0.1:
     pify "^3.0.0"
     semver "^5.5.0"
 
+saturn-datepicker@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/saturn-datepicker/-/saturn-datepicker-6.0.1.tgz#9f4b0426191497fd5014fb8fc84040bec7f298e3"
+  integrity sha512-BIudkp6jcWQv6JeNXd1OCkFEfT3seFXtUr5njkWfViYHmwyOFS/iEQ0tAsm9LKlbXasXGG9xtevtxc9Q0bxVKQ==
+  dependencies:
+    tslib "^1.9.0"
+
 saucelabs@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/saucelabs/-/saucelabs-1.5.0.tgz#9405a73c360d449b232839919a86c396d379fd9d"

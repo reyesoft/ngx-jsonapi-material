@@ -22,7 +22,10 @@
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
-        <button mat-button type="button" matDialogClose><strong>CANCEL</strong></button>
-        <button mat-button type="submit" color="primary"><strong>SAVE</strong></button>
+        <jam-submit
+            (cancelFc)="cancel()"
+            (saveFc)="accept()"
+            [resource]="book"
+        ></jam-submit>
     </mat-dialog-actions>
 </form>

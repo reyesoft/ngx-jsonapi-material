@@ -5,6 +5,9 @@
 export * from './lib/select/select.component';
 export * from './lib/select/select.module';
 
+export * from './lib/submit/submit.component';
+export * from './lib/submit/submit.module';
+
 export * from './lib/floating-filters/floating-filters.component';
 export * from './lib/floating-filters/avoid-disabled-style.directive';
 export * from './lib/floating-filters/floating-filters.module';
@@ -20,3 +23,9 @@ export * from './lib/search-input/search-input.module';
 
 export * from './lib/delete-confirmation/delete-confirmation.component';
 export * from './lib/delete-confirmation/delete-confirmation.module';
+
+export * from './lib/chips-autocomplete/chips-autocomplete.component';
+export * from './lib/chips-autocomplete/chips-autocomplete.module';
+
+export * from './lib/range-datepicker/range-datepicker.component';
+export * from './lib/range-datepicker/range-datepicker.module';

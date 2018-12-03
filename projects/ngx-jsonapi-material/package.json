@@ -13,6 +13,7 @@
         "@angular/material": "^6.4.7",
         "ngx-jsonapi": "^2.0.0-rc.10",
         "ngx-uploader": "6.0.1",
+        "saturn-datepicker": "6.0.1",
         "localforage": "^1.5.2",
         "localforage-getitems": "^1.4.2",
         "rxjs": "6.2.2"
