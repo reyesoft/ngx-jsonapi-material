@@ -8,7 +8,6 @@ import { MaterialModule } from '../../../projects/ngx-jsonapi-material/src/lib/m
 import { BookEditComponent } from './components/book-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JamSelectModule, JamSubmitModule, JamSearchInputModule, JamFloatingFiltersModule, JamTopWarningModule, JamDeleteConfirmationModule } from 'ngx-jsonapi-material';
-import { JamSelectModule, JamSubmitModule, JamFloatingFiltersModule } from 'ngx-jsonapi-material';
 
 @NgModule({
     imports: [
