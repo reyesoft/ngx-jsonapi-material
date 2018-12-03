@@ -1,0 +1,29 @@
+<mat-form-field [matTooltip]="label">
+    <mat-select [placeholder]="label">
+        <mat-option (click)="applyCustomRange($event, resultPicker); $event.stopPropagation()" fxLayout="row" fxLayoutAlign="space-between center">
+            <sat-datepicker-toggle matPrefix [for]="resultPicker"></sat-datepicker-toggle>
+            <input matInput
+                placeholder="Rango personalizado"
+                #resultPickerModel="ngModel"
+                [satDatepicker]="resultPicker"
+                [(ngModel)]="date"
+                (dateInput)="onDateInput($event)"
+                (dateChange)="onDateChange($event)">
+            <sat-datepicker
+                [disabled]="false"
+                #resultPicker [rangeMode]="true">
+            </sat-datepicker>
+
+            <div matSuffix fxFlex="10">
+                <button mat-icon-button matTooltip="Limpiar filtro" (click)="clearRange($event)">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </div>
+        </mat-option>
+
+        <mat-option (click)="applyToday()">Hoy</mat-option>
+        <mat-option (click)="applyLastWeek()">Última semana</mat-option>
+        <mat-option (click)="applyCurrentMonth()">Este mes</mat-option>
+        <mat-option (click)="applylastMonth()">El mes pasado</mat-option>
+    </mat-select>
+</mat-form-field>
