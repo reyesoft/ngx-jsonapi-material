@@ -3,7 +3,8 @@
     [hideToggle]="true"
     (opened)="toggleStateExpansionPanel(false)"
     (closed)="toggleStateExpansionPanel(true)"
-    class="width-100 none-shadows" [expanded]="open_expansion_panel" [style.background]="'transparent'">
+    [style.box-shadow]="'none'"
+    class="width-100" [expanded]="open_expansion_panel" [style.background]="'transparent'">
     <mat-expansion-panel-header jamAvoidDisabledStyle [style.padding-right]="'0'">
         <mat-panel-description fxLayout="row" fxLayoutAlign="space-between center">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" (click)="$event.stopPropagation()">

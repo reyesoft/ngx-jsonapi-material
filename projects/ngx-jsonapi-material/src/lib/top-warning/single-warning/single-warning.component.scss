@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+.layout-padding {
+    padding: 16px;
+}
+
+.yellow-bg-400 {
+    background: mat-color($mat-yellow, 400);
+    color: mat-color($mat-grey, 900);
+}
