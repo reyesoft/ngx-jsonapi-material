@@ -1,5 +1,15 @@
+<jam-single-warning message="Remember not to upload copyrighted books"></jam-single-warning>
+
 <h3>Books</h3>
 <demo-collection-info [collection]="books"></demo-collection-info>
+
+<jam-floating-filters [hasAdvancedFilters]="false">
+    <ng-container class="jam-filter-header">
+        <jam-search-input
+            [(text)]="filter_text"
+        ></jam-search-input>
+    </ng-container>
+</jam-floating-filters>
 
 <div class="mat-elevation-z2">
     <table>
@@ -14,7 +24,7 @@
             </tr>
         </thead>
         <!-- Use authors example. @deprected since version 2.0.0 -->
-        <tr *ngFor="let book of books.data">
+        <tr *ngFor="let book of books.data | filter: filter_text">
             <td>{{ book.id }}</td>
             <td>
                 <a mat-button color="primary" [routerLink]="['/books', book.id]">{{ book.attributes.title }}</a>

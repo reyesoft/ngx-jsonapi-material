@@ -1,0 +1,33 @@
+@import '~@angular/material/theming';
+
+.yellow-bg-400 {
+    background: mat-color($mat-yellow, 400);
+}
+
+.overlay {
+    z-index: 999;
+}
+
+.text-center {
+    text-align: center;
+}
+
+mat-expansion-panel-header {
+    height: 15px !important;
+}
+
+:host /deep/ .mat-expansion-panel-body {
+    padding-bottom: 0;
+}
+
+mat-divider {
+    border-color: mat-color($mat-yellow, 700) !important;
+}
+
+mat-icon {
+    color: mat-color($mat-grey, 600);
+}
+
+.action-button {
+    height: 24px;
+}

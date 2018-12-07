@@ -15,6 +15,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 
 @NgModule({
     imports: [
+        MatTooltipModule,
         MatDialogModule,
         MatButtonModule,
         MatTooltipModule,

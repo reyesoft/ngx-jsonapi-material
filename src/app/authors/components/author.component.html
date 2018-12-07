@@ -10,6 +10,16 @@
     />
 
     <mat-card-content fxLayout="row wrap" fxLayoutGap="16px">
+        <jam-chips-autocomplete style="width: 100%"
+            matLabel="Search and add a book"
+            appearance="outline"
+            relationAlias="books"
+            placeholder="A Game of Thrones, A Clash of Kings, A Storm of Swords, A Feast for Crows, A Dance with Dragons"
+            [attributesDisplay]="['title', 'date_published', 'isbn']"
+            [resource]="author"
+            [service]="booksService"
+        ></jam-chips-autocomplete>
+
         <div>Date of birth: <strong>{{ author.attributes.date_of_birth | date }}</strong></div>
         <div>Date of dead: <strong>{{ author.attributes.date_of_death | date }}</strong></div>
     </mat-card-content>
