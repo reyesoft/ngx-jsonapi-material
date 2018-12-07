@@ -26,9 +26,10 @@
                 <button mat-icon-button matTooltip="Edit book" (click)="openDialog(book)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <a mat-icon-button matTooltip="Delete" ng-click="delete(book)" title="not supported by demo server">
-                    <mat-icon>delete</mat-icon>
-                </a>
+
+                <jam-delete-confirmation
+                    (delete)="delete(book)"
+                ></jam-delete-confirmation>
             </td>
         </tr>
     </table>

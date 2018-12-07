@@ -8,7 +8,7 @@
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatIconModule, MatButtonModule, MatDialogModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatDialogModule, MatTooltipModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DeleteConfirmationComponent } from './delete-confirmation.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
@@ -17,11 +17,13 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     imports: [
         MatDialogModule,
         MatButtonModule,
+        MatTooltipModule,
         MatIconModule,
         FlexLayoutModule,
         CommonModule
     ],
     declarations: [DeleteConfirmationComponent, ConfirmationDialogComponent],
+    entryComponents: [ConfirmationDialogComponent],
     exports: [DeleteConfirmationComponent, ConfirmationDialogComponent]
 })
 export class JamDeleteConfirmationModule {}
