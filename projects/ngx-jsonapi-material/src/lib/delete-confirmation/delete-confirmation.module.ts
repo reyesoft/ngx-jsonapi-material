@@ -18,7 +18,6 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
         MatTooltipModule,
         MatDialogModule,
         MatButtonModule,
-        MatTooltipModule,
         MatIconModule,
         FlexLayoutModule,
         CommonModule
