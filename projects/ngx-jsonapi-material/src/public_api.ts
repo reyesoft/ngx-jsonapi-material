@@ -34,3 +34,8 @@ export * from './lib/top-warning/top-warning.module';
 
 export * from './lib/range-datepicker/range-datepicker.component';
 export * from './lib/range-datepicker/range-datepicker.module';
+
+export * from './lib/menu/button';
+export * from './lib/menu/dropdown-menu/dropdown-menu.component';
+export * from './lib/menu/menu.component';
+export * from './lib/menu/menu.module';

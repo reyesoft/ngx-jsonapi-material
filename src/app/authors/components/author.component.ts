@@ -4,6 +4,8 @@ import { Resource } from 'ngx-jsonapi';
 import { PhotosService } from '../../photos/photos.service';
 import { AuthorsService, Author } from '../authors.service';
 import { BooksService } from '../../books/books.service';
+import { Option, Button } from 'ngx-jsonapi-material';
+import { menu_options_model } from './author-button.model';
 
 @Component({
     selector: 'demo-author',
@@ -12,6 +14,8 @@ import { BooksService } from '../../books/books.service';
 export class AuthorComponent {
     public author: Author;
     public relatedbooks: Array<Resource>;
+
+    public menu_options: Array<Option> = menu_options_model;
 
     public constructor(
         protected authorsService: AuthorsService,
@@ -65,5 +69,9 @@ export class AuthorComponent {
         this.author.removeRelationship('photos', '1');
         this.author.save();
         console.log('removeRelationship save with photos include', this.author.toObject());
+    }
+
+    public selectedOption(option: string): void {
+        this[option]();
     }
 }

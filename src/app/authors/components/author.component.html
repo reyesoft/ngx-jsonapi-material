@@ -26,24 +26,15 @@
     <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
         <a mat-button color="accent" routerLink="/authors">Volver</a>
 
-        <div>
+        <div fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button (click)="updateAuthor()" matTooltip="Update author">
                 <mat-icon>edit</mat-icon>
             </button>
 
-            <button mat-icon-button [matMenuTriggerFor]="menuRef" matTooltip="More">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menuRef="matMenu">
-                <button mat-menu-item (click)="newAuthor()">
-                    <mat-icon>person_add</mat-icon>
-                    New author
-                </button>
-                <button mat-menu-item (click)="removeRelationship()">
-                    <mat-icon class="mat-18">delete</mat-icon>
-                    Remove relationship
-                </button>
-            </mat-menu>
+            <jam-menu
+                [options]="menu_options"
+                (selected)="selectedOption($event)"
+            ></jam-menu>
         </div>
     </mat-card-actions>
 </mat-card>
