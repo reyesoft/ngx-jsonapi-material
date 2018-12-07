@@ -4,7 +4,7 @@ import { Resource } from 'ngx-jsonapi';
 import { PhotosService } from '../../photos/photos.service';
 import { AuthorsService, Author } from '../authors.service';
 import { BooksService } from '../../books/books.service';
-import { Option, Button } from 'ngx-jsonapi-material';
+import { Option } from 'ngx-jsonapi-material';
 import { menu_options_model } from './author-button.model';
 
 @Component({
