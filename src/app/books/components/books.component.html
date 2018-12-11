@@ -3,6 +3,10 @@
 <h3>Books</h3>
 <demo-collection-info [collection]="books"></demo-collection-info>
 
+<jam-floating-button tooltip="Add book"
+    (click)="openDialog()"
+></jam-floating-button>
+
 <jam-floating-filters [hasAdvancedFilters]="false">
     <ng-container class="jam-filter-header">
         <jam-search-input
@@ -43,11 +47,7 @@
             </td>
         </tr>
     </table>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-        <div [style.padding.px]="'10'"><button mat-button (click)="openDialog()" color="accent">
-            <mat-icon>add</mat-icon>
-            Add new book
-        </button></div>
+    <div fxLayout="row" fxLayoutAlign="end center">
         <demo-collection-paginator [collection]="books"></demo-collection-paginator>
     </div>
 </div>

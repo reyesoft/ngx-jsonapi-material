@@ -9,8 +9,10 @@
                     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
                         <mat-icon>add_a_photo</mat-icon>
                         <mat-divider *ngIf="showDeleteOption"></mat-divider>
-                        <!-- @TODO Descomentar cuando se migre rs-delete-confirmation -->
-                        <!-- <rs-delete-confirmation *ngIf="showDeleteOption" [styled]="{ color: 'white' }" (deleteFc)="delete()"></rs-delete-confirmation> -->
+                        <jam-delete-confirmation *ngIf="showDeleteOption"
+                            [styled]="{ color: 'white' }"
+                            (delete)="delete()"
+                        ></jam-delete-confirmation>
                     </div>
                 </div>
             </div>
