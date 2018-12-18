@@ -23,9 +23,9 @@
 
     <mat-dialog-actions align="end">
         <jam-submit
-            (cancelFc)="cancel()"
-            (saveFc)="accept()"
-            [resource]="book"
+            (cancel)="cancel()"
+            (accept)="accept()"
+            [loaded]="book.is_saving"
         ></jam-submit>
     </mat-dialog-actions>
 </form>

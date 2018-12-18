@@ -3,12 +3,12 @@
     <button class="primary raised pull-right" [style.min-height.px]="'36'" type="submit" aria-label="Guardar"
         mat-raised-button
         color="primary"
-        (click)="save(resource)"
-        [disabled]="(resource ? resource.is_saving : false) || disabled">
+        (click)="submit()"
+        [disabled]="loaded || disabled">
         <div fxLayout="row" fxLayoutAlign="center center">
-            <span *ngIf="resource ? !resource.is_saving : true" class="elements-up">{{ (submitLabel ? submitLabel : 'Guardar') | uppercase }}</span>
+            <span *ngIf="!loaded" class="elements-up">{{ (submitLabel ? submitLabel : 'Guardar') | uppercase }}</span>
             <mat-progress-spinner class="elements-up default"
-                *ngIf="resource && resource.is_saving"
+                *ngIf="loaded"
                 mode="indeterminate"
                 value="value"
                 diameter="20"

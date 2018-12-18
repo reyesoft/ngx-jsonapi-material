@@ -39,3 +39,7 @@ export * from './lib/menu/button';
 export * from './lib/menu/dropdown-menu/dropdown-menu.component';
 export * from './lib/menu/menu.component';
 export * from './lib/menu/menu.module';
+
+export * from './lib/floating-button/floating-button.component';
+export * from './lib/floating-button/floating-button.module';
+

@@ -1,0 +1,10 @@
+<a
+    mat-fab href
+    *ngIf="show || true"
+    [matTooltip]="tooltip"
+    matTooltipPosition="before"
+    [target]="target || '_self'"
+    [routerLink]="rsRouterLink"
+    [queryParams]="rsQueryParams">
+    <mat-icon style="color: white">{{ iconName ? iconName : 'add' }}</mat-icon>
+</a>

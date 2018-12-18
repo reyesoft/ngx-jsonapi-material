@@ -23,7 +23,7 @@ export class DeleteConfirmationComponent {
     @Input() public styled: {};
     @Input() public styleIcon: string;
     @Input() public accept: string;
-    @Output() public deleteFc: EventEmitter<any> = new EventEmitter();
+    @Output() public delete: EventEmitter<any> = new EventEmitter();
 
     public constructor(
         public dialog: MatDialog
@@ -41,7 +41,7 @@ export class DeleteConfirmationComponent {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.deleteFc.emit();
+                this.delete.emit();
             }
         });
     }
