@@ -1,0 +1,16 @@
+<mat-nav-list>
+    <ng-container *ngFor="let option of data.options; let position = index">
+        <h3 class="mat-hint" *ngIf="option.section"><span [innerHtml]="option.section"></span></h3>
+
+        <mat-list-item *ngFor="let button of option.buttons"
+            [ngClass]="button.attributes.class"
+            (click)="selected(button.id)">
+            <mat-icon *ngIf="button.attributes.icon" class="mat-hint"
+                [innerHtml]="button.attributes.icon"
+            ></mat-icon>
+            <span mat-line [innerHtml]="button.attributes.label"></span>
+        </mat-list-item>
+
+        <mat-divider *ngIf="(position + 1) < data.options.length"></mat-divider>
+    </ng-container>
+</mat-nav-list>
