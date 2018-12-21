@@ -60,16 +60,7 @@ export class ChipsAutocompleteComponent implements OnInit {
         }
 
         return this.service
-            .all()
-            .pipe(
-                tap(collection => {
-                    for (let resource of this.collection_relationships.data) {
-                        if (collection.find(resource.id)) {
-                            resource.attributes.__selected = true;
-                        }
-                    }
-                })
-            );
+            .all();
     }
 
     public filterCollection(search_text: string | Resource): Array<Resource> {
@@ -83,7 +74,6 @@ export class ChipsAutocompleteComponent implements OnInit {
     }
 
     public addResource(resource: Resource): void {
-        resource.attributes.__selected = true;
         this.resource.addRelationship(resource, this.relationAlias);
         this.resourceInput.nativeElement.value = '';
         this.formControl.setValue(null);
@@ -94,7 +84,6 @@ export class ChipsAutocompleteComponent implements OnInit {
     }
 
     public removeResource(resource: Resource): void {
-        resource.attributes.__selected = false;
         this.resource.removeRelationship(this.relationAlias, resource.id);
     }
 }
