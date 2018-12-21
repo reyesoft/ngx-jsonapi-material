@@ -48,7 +48,7 @@ export class ChipsAutocompleteComponent implements OnInit {
                 getAllFc: this.getAll.bind(this),
                 last_filter_value: this.collectionArrayLastFilterValue,
                 collection: this.collection,
-                page_size: 100
+                page_size: 99
             })
         );
     }
@@ -57,10 +57,16 @@ export class ChipsAutocompleteComponent implements OnInit {
         if (search_text) {
             this.attributesDisplay[0] = search_text;
             this.remoteFilter = { ...this.remoteFilter, ...[this.attributesDisplay[0]]};
-        }
 
-        return this.service
-            .all();
+            return this.service
+                .all({
+                    remotefilter: this.remoteFilter,
+                    page: { number: 1, size: 100 }
+                });
+        } else {
+            return this.service
+                .all({ page: { number: 1, size: 100 } });
+        }
     }
 
     public filterCollection(search_text: string | Resource): Array<Resource> {
