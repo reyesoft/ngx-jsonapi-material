@@ -6,6 +6,7 @@ import { AuthorsService, Author } from '../authors.service';
 import { BooksService } from '../../books/books.service';
 import { Option } from 'ngx-jsonapi-material';
 import { menu_options_model } from './author-button.model';
+import { IPage } from 'ngx-jsonapi/interfaces/page';
 
 @Component({
     selector: 'demo-author',
@@ -14,6 +15,10 @@ import { menu_options_model } from './author-button.model';
 export class AuthorComponent {
     public author: Author;
     public relatedbooks: Array<Resource>;
+    public page: IPage = {
+        number: 1,
+        size: 5
+    }
 
     public menu_options: Array<Option> = menu_options_model;
 

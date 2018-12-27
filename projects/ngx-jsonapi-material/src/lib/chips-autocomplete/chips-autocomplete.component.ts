@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { filterOrRequest } from '../batch';
 import { trackById } from '../trackById';
+import { IPage } from 'ngx-jsonapi/interfaces/page';
 
 @Component({
     selector: 'jam-chips-autocomplete',
@@ -20,6 +21,10 @@ export class ChipsAutocompleteComponent implements OnInit {
     @Input() public attributesDisplay: Array<string>;
     @Input() public appearance: 'standard' | 'outline' | 'legacy' | 'fill';
     @Input() public matLabel: string;
+    @Input() public page: IPage = {
+        number: 1,
+        size: 50
+    };
 
     public trackById = trackById;
     public filteredCollection: Observable<Array<Resource>>;
@@ -48,7 +53,7 @@ export class ChipsAutocompleteComponent implements OnInit {
                 getAllFc: this.getAll.bind(this),
                 last_filter_value: this.collectionArrayLastFilterValue,
                 collection: this.collection,
-                page_size: 99
+                page_size: this.page.size
             })
         );
     }
@@ -61,11 +66,11 @@ export class ChipsAutocompleteComponent implements OnInit {
             return this.service
                 .all({
                     remotefilter: this.remoteFilter,
-                    page: { number: 1, size: 100 }
+                    page: { number: 1, size: this.page.size }
                 });
         } else {
             return this.service
-                .all({ page: { number: 1, size: 100 } });
+                .all({ page: { number: 1, size: this.page.size } });
         }
     }
 
