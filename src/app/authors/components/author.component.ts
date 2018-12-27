@@ -17,7 +17,7 @@ export class AuthorComponent {
     public relatedbooks: Array<Resource>;
     public page: IPage = {
         number: 1,
-        size: 5
+        size: 20
     }
 
     public menu_options: Array<Option> = menu_options_model;
