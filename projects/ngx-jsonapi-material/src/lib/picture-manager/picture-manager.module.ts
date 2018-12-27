@@ -14,9 +14,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { UploadComponent } from './upload/upload.component';
 import { PictureManagerComponent } from './picture/picture-manager.component';
 import { GalleryManagerComponent } from './gallery/gallery-manager.component';
+import { JamDeleteConfirmationModule } from '../delete-confirmation/delete-confirmation.module';
 
 @NgModule({
     imports: [
+        JamDeleteConfirmationModule,
         MatProgressSpinnerModule,
         MatTooltipModule,
         MatButtonModule,

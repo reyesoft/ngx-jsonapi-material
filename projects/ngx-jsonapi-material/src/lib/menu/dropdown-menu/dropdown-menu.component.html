@@ -1,0 +1,22 @@
+<button mat-icon-button class="mat-icon-button mat-button" matTooltip="Más"
+    fxLayout="row" fxLayoutAlign="center center"
+    [matMenuTriggerFor]="menuRef">
+    <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #menuRef="matMenu">
+    <ng-container *ngFor="let option of options; let position = index">
+        <h3 class="mat-hint" *ngIf="option.section"><span [innerHtml]="option.section"></span></h3>
+
+        <button mat-menu-item *ngFor="let button of option.buttons"
+            [ngClass]="button.attributes.class"
+            (click)="selected.emit(button.id)">
+            <mat-icon *ngIf="button.attributes.icon"
+                [innerHtml]="button.attributes.icon"
+            ></mat-icon>
+            <span [innerHtml]="button.attributes.label"></span>
+        </button>
+
+        <mat-divider *ngIf="(position + 1) < options.length"></mat-divider>
+    </ng-container>
+</mat-menu>

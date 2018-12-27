@@ -1,0 +1,12 @@
+<jam-dropdown-menu
+    [options]="options"
+    (selected)="selectedOption($event)"
+></jam-dropdown-menu>
+
+<div class="jam-bottom-sheet">
+    <button mat-icon-button class="mat-button mat-icon-button" matTooltip="Más"
+        fxLayout="row" fxLayoutAlign="center center"
+        (click)="open()">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+</div>

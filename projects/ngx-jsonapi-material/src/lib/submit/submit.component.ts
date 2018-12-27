@@ -19,15 +19,15 @@ export class SubmitComponent {
     @Input() public cancelParamsState: object;
     @Input() public submitLabel: string;
     @Input() public cancelState: string;
-    @Input() public resource: Resource;
-    @Output() public saveFc: EventEmitter<any> = new EventEmitter();
-    @Output() public cancelFc: EventEmitter<any> = new EventEmitter();
+    @Input() public loaded: boolean = false;
+    @Output() public accept: EventEmitter<any> = new EventEmitter();
+    @Output() public cancel: EventEmitter<any> = new EventEmitter();
 
     public constructor(public router: Router, public activatedRoute: ActivatedRoute) {}
 
-    public changeState() {
-        if (this.cancelFc) {
-            this.cancelFc.emit();
+    public changeState(): void {
+        if (this.cancel) {
+            this.cancel.emit();
         }
         if (this.cancelState) {
             if (this.cancelState.slice(0, 2) === '..') {
@@ -37,7 +37,8 @@ export class SubmitComponent {
             }
         }
     }
-    public save(payload: Resource): any {
-        this.saveFc.emit(payload);
+
+    public submit(): void {
+        this.accept.emit();
     }
 }
