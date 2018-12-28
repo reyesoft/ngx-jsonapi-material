@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { filterOrRequest } from '../batch';
 import { trackById } from '../trackById';
+import { IPage } from 'ngx-jsonapi/interfaces/page';
 
 @Component({
     selector: 'jam-chips-autocomplete',
@@ -20,6 +21,10 @@ export class ChipsAutocompleteComponent implements OnInit {
     @Input() public attributesDisplay: Array<string>;
     @Input() public appearance: 'standard' | 'outline' | 'legacy' | 'fill';
     @Input() public matLabel: string;
+    @Input() public page: IPage = {
+        number: 1,
+        size: 50
+    };
 
     public trackById = trackById;
     public filteredCollection: Observable<Array<Resource>>;
@@ -48,7 +53,7 @@ export class ChipsAutocompleteComponent implements OnInit {
                 getAllFc: this.getAll.bind(this),
                 last_filter_value: this.collectionArrayLastFilterValue,
                 collection: this.collection,
-                page_size: 100
+                page_size: this.page.size
             })
         );
     }
@@ -57,19 +62,16 @@ export class ChipsAutocompleteComponent implements OnInit {
         if (search_text) {
             this.attributesDisplay[0] = search_text;
             this.remoteFilter = { ...this.remoteFilter, ...[this.attributesDisplay[0]]};
-        }
 
-        return this.service
-            .all()
-            .pipe(
-                tap(collection => {
-                    for (let resource of this.collection_relationships.data) {
-                        if (collection.find(resource.id)) {
-                            resource.attributes.__selected = true;
-                        }
-                    }
-                })
-            );
+            return this.service
+                .all({
+                    remotefilter: this.remoteFilter,
+                    page: { number: 1, size: this.page.size }
+                });
+        } else {
+            return this.service
+                .all({ page: { number: 1, size: this.page.size } });
+        }
     }
 
     public filterCollection(search_text: string | Resource): Array<Resource> {
@@ -83,7 +85,6 @@ export class ChipsAutocompleteComponent implements OnInit {
     }
 
     public addResource(resource: Resource): void {
-        resource.attributes.__selected = true;
         this.resource.addRelationship(resource, this.relationAlias);
         this.resourceInput.nativeElement.value = '';
         this.formControl.setValue(null);
@@ -94,7 +95,6 @@ export class ChipsAutocompleteComponent implements OnInit {
     }
 
     public removeResource(resource: Resource): void {
-        resource.attributes.__selected = false;
         this.resource.removeRelationship(this.relationAlias, resource.id);
     }
 }

@@ -18,6 +18,7 @@
             [attributesDisplay]="['title', 'date_published', 'isbn']"
             [resource]="author"
             [service]="booksService"
+            [page]="page"
         ></jam-chips-autocomplete>
 
         <div>Date of birth: <strong>{{ author.attributes.date_of_birth | date }}</strong></div>
