@@ -18,10 +18,7 @@ export class SelectComponent implements OnInit {
 
     @Output() public toRelateChange = new EventEmitter<Resource>();
     public adaptiveArray: Array<Resource> = [];
-
-    public constructor() {
-        // code...
-    }
+    public clear_relationships = {}
 
     public ngOnInit() {
         if (this.limit) {
@@ -29,10 +26,10 @@ export class SelectComponent implements OnInit {
         } else {
             this.adaptiveArray = this.collection.data;
         }
-        this.toRelate = this.collection[this.toRelate.id];
+        this.toRelate = this.collection.find(this.toRelate.id);
     }
 
-    public updateRelationships() {
-        this.toRelateChange.emit(this.toRelate);
+    public updateRelationships(resource: Resource) {
+        this.toRelateChange.emit(resource);
     }
 }
