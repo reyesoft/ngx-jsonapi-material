@@ -24,7 +24,7 @@
 
         <jam-select
             [collection]="authors"
-            [toRelate]="book.relationships.author.data"
+            [(toRelate)]="book.relationships.author.data"
             displayAttribute="name"
             [removeRelationships]="true"
         ></jam-select>

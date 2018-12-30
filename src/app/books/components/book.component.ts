@@ -30,9 +30,8 @@ export class BookComponent {
             );
         });
 
-        authorsService.all().subscribe(authors => {
+        authorsService.all({ page: { number: 0, size: 100 }, sort: ['name'] }).subscribe(authors => {
             this.authors = authors;
-            console.log('authors', authors);
         });
     }
 
