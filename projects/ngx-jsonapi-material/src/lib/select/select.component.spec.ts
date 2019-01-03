@@ -72,6 +72,54 @@ describe('NgxJsonapiMaterialComponent', () => {
         expect(toRelateChange_spy).toHaveBeenCalledTimes(1);
         expect(toRelateChange_spy).toHaveBeenCalledWith(resource);
     });
+    it('when no option is selected, placeholder should be shown in mat-select', async () => {
+        component.placeholder = undefined;
+        fixture.detectChanges();
+        await fixture.whenStable().then(async () => {
+            let mat_select = fixture.debugElement.query(By.css('mat-select'));
+            let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
+            expect(mat_select_text).toBe('Seleccione una opción');
+            component.placeholder = 'Otra cosa';
+            fixture.detectChanges();
+            await fixture.whenStable().then(async () => {
+                let mat_select = fixture.debugElement.query(By.css('mat-select'));
+                let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
+                expect(mat_select_text).toBe('Otra cosa');
+            });
+        });
+    });
+    it ('when a option is selected, mat-select should display the resource attribute passed as displayAttribute', async () => {
+        component.collection = new DocumentCollection();
+        let resource = new Resource();
+        resource.id = '1';
+        resource.attributes = { data: 'first' };
+        component.collection.data.push(resource);
+        component.displayAttribute = 'data';
+        component.removeRelationships = false;
+        component.placeholder = undefined;
+        component.toRelate = new Resource();
+        component.toRelate.id = '1';
+        component.ngOnInit();
+        fixture.detectChanges();
+        await fixture.whenStable().then(async () => {
+            let mat_select = fixture.debugElement.query(By.css('mat-select'));
+            let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
+            expect(mat_select_text).toBe('Seleccione una opción');
+            mat_select.nativeElement.click();
+            fixture.detectChanges();
+            await fixture.whenStable().then(async () => {
+                let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
+                mat_options[0].nativeElement.click();
+                fixture.detectChanges();
+                await fixture.whenStable().then(async () => {
+                    let updated_mat_select = fixture.debugElement.query(By.css('mat-select'));
+                    // Need to query for spn twice because the update is inserted
+                    let updated_mat_select_text = updated_mat_select.query(By.css('span')).query(By.css('span')).nativeElement.innerHTML;
+                    expect(updated_mat_select_text).toBe('first');
+                });
+            });
+        });
+    });
     it('updateRelationships should be called each time a new option is selected', async () => {
         await fixture.whenStable().then(async () => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
@@ -85,7 +133,7 @@ describe('NgxJsonapiMaterialComponent', () => {
         component.removeRelationships = true;
         fixture.detectChanges();
         await fixture.whenStable().then(async () => {
-            let mat_select = fixture.debugElement.query(By.css('.mat-select'));
+            let mat_select = fixture.debugElement.query(By.css('mat-select'));
             mat_select.nativeElement.click();
             fixture.detectChanges();
             await fixture.whenStable().then(async () => {
@@ -97,7 +145,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                     }
                 });
                 expect(none_option).toEqual({});
-            }
+            });
         });
     });
     it('if  -- Ninguna -- option is selected, update relationships should be called with clear_relationships value', async () => {
@@ -105,7 +153,7 @@ describe('NgxJsonapiMaterialComponent', () => {
         component.removeRelationships = true;
         fixture.detectChanges();
         await fixture.whenStable().then(async () => {
-            let mat_select = fixture.debugElement.query(By.css('.mat-select'));
+            let mat_select = fixture.debugElement.query(By.css('mat-select'));
             mat_select.nativeElement.click();
             fixture.detectChanges();
             await fixture.whenStable().then(async () => {
@@ -120,7 +168,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                 await fixture.whenStable().then(async () => {
                     expect(updateRelationships_spy).toHaveBeenCalledWith({});
                 });
-            }
+            });
         });
     });
     it('when a option is selected, update relationships should be called with the corresponding option value', async () => {
@@ -136,7 +184,7 @@ describe('NgxJsonapiMaterialComponent', () => {
         component.ngOnInit();
         fixture.detectChanges();
         await fixture.whenStable().then(async () => {
-            let mat_select = fixture.debugElement.query(By.css('.mat-select'));
+            let mat_select = fixture.debugElement.query(By.css('mat-select'));
             mat_select.nativeElement.click();
             fixture.detectChanges();
             await fixture.whenStable().then(async () => {
@@ -147,7 +195,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                 await fixture.whenStable().then(async () => {
                     expect(updateRelationships_spy).toHaveBeenCalledWith(resource);
                 });
-            }
+            });
         });
     });
 });
