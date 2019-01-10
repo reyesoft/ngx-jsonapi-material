@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreateAuthorComponent } from 'src/app/authors/components/create-author/create-author.component';
 import { ActivatedRoute } from '@angular/router';
 import { Resource } from 'ngx-jsonapi';
 import { PhotosService } from '../../photos/photos.service';
@@ -7,6 +8,7 @@ import { BooksService } from '../../books/books.service';
 import { Option } from 'ngx-jsonapi-material';
 import { menu_options_model } from './author-button.model';
 import { IPage } from 'ngx-jsonapi/interfaces/page';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'demo-author',
@@ -26,6 +28,7 @@ export class AuthorComponent {
         protected authorsService: AuthorsService,
         protected photosService: PhotosService,
         protected booksService: BooksService,
+        protected matDialog: MatDialog,
         private route: ActivatedRoute
     ) {
         route.params.subscribe(({ id }) => {
@@ -43,19 +46,25 @@ export class AuthorComponent {
     */
     public newAuthor() {
         let author = this.authorsService.new();
-        author.attributes.name = prompt('New author name:', 'John Doe');
-        if (!author.attributes.name) {
-            return;
-        }
-        author.attributes.date_of_birth = '2030-12-10';
-        console.log('author data for save', author.toObject());
-        author
-            .save
-            /* { include: ['book'] } */
-            ()
-            .subscribe(success => {
-                console.log('author saved', author.toObject());
-            });
+        let create_author_dialog = this.matDialog.open(CreateAuthorComponent);
+        create_author_dialog.afterClosed().subscribe(response => {
+            if (response) {
+                console.log('author saved', author.toObject())
+            }
+        });
+        // author.attributes.name = prompt('New author name:', 'John Doe');
+        // if (!author.attributes.name) {
+        //     return;
+        // }
+        // author.attributes.date_of_birth = '2030-12-10';
+        // console.log('author data for save', author.toObject());
+        // author
+        //     .save
+        //     /* { include: ['book'] } */
+        //     ()
+        //     .subscribe(success => {
+        //         console.log('author saved', author.toObject());
+        //     });
     }
 
     /*

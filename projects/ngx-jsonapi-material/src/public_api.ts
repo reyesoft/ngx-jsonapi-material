@@ -17,8 +17,8 @@ export * from './lib/picture-manager/gallery/gallery-manager.component';
 export * from './lib/picture-manager/picture/image-change-interface';
 export * from './lib/picture-manager/picture-manager.module';
 
-export * from './lib/breadcrumbs/breadcrumbs.component';
-export * from './lib/breadcrumbs/breadcrumbs.module';
+// export * from './lib/breadcrumbs/breadcrumbs.component';
+// export * from './lib/breadcrumbs/breadcrumbs.module';
 
 export * from './lib/search-input/search-input.component';
 export * from './lib/search-input/search-text.pipe';
@@ -45,3 +45,7 @@ export * from './lib/menu/menu.module';
 
 export * from './lib/floating-button/floating-button.component';
 export * from './lib/floating-button/floating-button.module';
+
+export * from './lib/dynamic-forms/dynamic-inputs';
+export * from './lib/dynamic-forms/formly-form-flex.component';
+export * from './lib/dynamic-forms/dynamic-forms.module';
