@@ -85,7 +85,7 @@ export class AuthorComponent {
         console.log('removeRelationship save with photos include', this.author.toObject());
     }
 
-    public selectedOption(option: string): void {
-        this[option]();
+    public selectedOption(option: any): void {
+        this[option.key]();
     }
 }
