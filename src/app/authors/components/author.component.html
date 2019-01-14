@@ -34,6 +34,7 @@
 
             <jam-menu
                 [options]="menu_options"
+                [disabledButtons]="['removeRelationship']"
                 (selected)="selectedOption($event)"
             ></jam-menu>
         </div>

@@ -6,17 +6,20 @@
 
 <mat-menu #menuRef="matMenu">
     <ng-container *ngFor="let option of options; let position = index">
-        <h3 class="mat-hint" *ngIf="option.section"><span [innerHtml]="option.section"></span></h3>
+        <h3 class="mat-hint" *ngIf="!option.hidden && option.section"><span [innerHtml]="option.section"></span></h3>
 
-        <button mat-menu-item *ngFor="let button of option.buttons"
-            [ngClass]="button.attributes.class"
-            (click)="selected.emit(button.id)">
-            <mat-icon *ngIf="button.attributes.icon"
-                [innerHtml]="button.attributes.icon"
-            ></mat-icon>
-            <span [innerHtml]="button.attributes.label"></span>
-        </button>
+        <ng-container *ngFor="let button of option.buttons">
+            <button mat-menu-item *ngIf="!button.attributes.hidden"
+                [disabled]="button.attributes.disabled"
+                [ngClass]="button.attributes.class"
+                (click)="selected.emit(button.id)">
+                <mat-icon *ngIf="button.attributes.icon"
+                    [innerHtml]="button.attributes.icon"
+                ></mat-icon>
+                <span [innerHtml]="button.attributes.label"></span>
+            </button>
+        </ng-container>
 
-        <mat-divider *ngIf="(position + 1) < options.length"></mat-divider>
+        <mat-divider *ngIf="!option.hidden && (position + 1) < options.length"></mat-divider>
     </ng-container>
 </mat-menu>
