@@ -3,7 +3,7 @@ import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { MatBottomSheet } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import { Destroyer } from '../destroyer';
-import { Option } from './button';
+import { Option, Button } from './button';
 
 @Component({
     selector: 'jam-menu',
@@ -61,11 +61,32 @@ export class MenuComponent implements OnDestroy, OnChanges {
     private updateButtonAttributes(attribute: string, value: any, button_ids: Array<string>) {
         for (let button_id of button_ids) {
             for (let option of this.options) {
-                option.buttons
-                    .find((button): boolean => {
-                        if (button.id !== button_id) return;
-                        button.attributes[attribute] = value;
-                    })
+                let button = this.searchButton(button_id, option);
+                if (!button) continue;
+                button.attributes[attribute] = value;
+            }
+        }
+
+        this.hiddenSection();
+    }
+
+    private searchButton(button_id: string, option: Option): Button {
+        return option.buttons.find((button: Button) => {
+            return button.id === button_id;
+        });
+    }
+
+    private hiddenSection(): void {
+        for (let option of this.options) {
+            let count = 0;
+            for (let button of option.buttons) {
+                if (button.attributes.hidden) {
+                    count++
+                }
+
+                if (option.buttons.length === count) {
+                    option.hidden = true;
+                }
             }
         }
     }

@@ -12,6 +12,10 @@ jam-dropdown-menu {
     display: none;
 }
 
+.disabled {
+    opacity: .5;
+}
+
 @media only screen and (max-width: 599px) {
     jam-dropdown-menu {
         display: none;
