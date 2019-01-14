@@ -34,7 +34,7 @@
 
             <jam-menu
                 [options]="menu_options"
-                [hiddenSections]="['newAuthor']"
+                [disabledButtons]="['removeRelationship']"
                 (selected)="selectedOption($event)"
             ></jam-menu>
         </div>

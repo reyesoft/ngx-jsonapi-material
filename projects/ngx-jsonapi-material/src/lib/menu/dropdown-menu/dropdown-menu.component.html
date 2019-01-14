@@ -9,7 +9,7 @@
         <h3 class="mat-hint" *ngIf="option.section"><span [innerHtml]="option.section"></span></h3>
 
         <ng-container *ngFor="let button of option.buttons">
-            <button mat-menu-item *ngIf="button.attributes.hidden"
+            <button mat-menu-item *ngIf="!button.attributes.hidden"
                 [disabled]="button.attributes.disabled"
                 [ngClass]="button.attributes.class"
                 (click)="selected.emit(button.id)">

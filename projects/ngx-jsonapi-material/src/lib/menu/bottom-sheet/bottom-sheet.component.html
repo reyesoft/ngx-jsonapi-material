@@ -3,7 +3,7 @@
         <h3 class="mat-hint" *ngIf="option.section"><span [innerHtml]="option.section"></span></h3>
 
         <ng-container *ngFor="let button of option.buttons">
-            <mat-list-item *ngIf="button.attributes.hidden"
+            <mat-list-item *ngIf="!button.attributes.hidden"
                 [ngClass]="button.attributes.class + (button.attributes.disabled ? 'mat-hint' : null)"
                 (click)="button.attributes.disabled ? $event.stopPropagation() : selected(button.id)">
                 <mat-icon *ngIf="button.attributes.icon" class="mat-hint"

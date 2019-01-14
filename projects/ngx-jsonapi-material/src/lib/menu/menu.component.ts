@@ -1,18 +1,16 @@
-import { Component, Input, Output, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy, OnChanges } from '@angular/core';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { MatBottomSheet } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import { Destroyer } from '../destroyer';
 import { Option } from './button';
-import { DocumentCollection, Resource } from 'ngx-jsonapi';
-import { Button } from 'ngx-jsonapi-material/public_api';
 
 @Component({
     selector: 'jam-menu',
     styleUrls: ['./menu.component.scss'],
     templateUrl: './menu.component.html'
 })
-export class MenuComponent implements OnDestroy, OnInit {
+export class MenuComponent implements OnDestroy, OnChanges {
     @Input() public options: Array<Option>;
     @Input() public disabledButtons: Array<string>;
     @Input() public hiddenButtons: Array<string>;
@@ -26,18 +24,14 @@ export class MenuComponent implements OnDestroy, OnInit {
         private matBottomSheet : MatBottomSheet
     ) { }
 
-    public ngOnInit() {
-        if (this.disabledButtons && this.disabledButtons.length > 0) {
+    public ngOnChanges(changes) {
+        if (changes.disabledButtons) {
             this.updateButtonAttributes('disabled', true, this.disabledButtons);
         }
 
-        if (this.hiddenButtons && this.hiddenButtons.length > 0) {
+        if (changes.hiddenButtons) {
             this.updateButtonAttributes('hidden', true, this.hiddenButtons);
         }
-
-        // if (this.hiddenSections.length > 0) {
-
-        // }
     }
 
     public ngOnDestroy(): void {
