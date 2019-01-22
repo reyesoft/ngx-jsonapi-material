@@ -5,7 +5,7 @@
  * distributed without the express permission of Reyesoft
  */
 
-import { Component, Input, AfterViewInit, ElementRef, Directive, HostBinding, Host, Self, ViewContainerRef, Renderer2, ViewRef, TemplateRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef, Directive, HostBinding, Host, Self, ViewContainerRef, Output, EventEmitter, Renderer2, ViewRef, TemplateRef } from '@angular/core';
 
 /**
  * Este component trabaja con 2 ng-content.
@@ -19,7 +19,13 @@ import { Component, Input, AfterViewInit, ElementRef, Directive, HostBinding, Ho
 })
 export class FloatingFiltersComponent {
     @Input() public hasAdvancedFilters: boolean = true;
+    @Output() public resetFilters: EventEmitter<void> = new EventEmitter();
+    public show_reset_button: boolean = false;
     public open_expansion_panel = false;
+
+    public ngOnInit() {
+        this.show_reset_button = this.resetFilters.observers.length > 0;
+    }
 
     public toggleStateExpansionPanel(state: boolean): void {
         this.open_expansion_panel = !state;
