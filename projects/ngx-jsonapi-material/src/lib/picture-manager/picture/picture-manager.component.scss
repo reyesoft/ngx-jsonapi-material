@@ -58,31 +58,31 @@ $white: #ffffff;
     @include dragAndDropStyles;
 }
 
-app-upload #picture-manager * {
+jam-upload #picture-manager * {
     @extend %default-size;
 }
 
-app-upload #picture-manager * > mat-icon {
+jam-upload #picture-manager * > mat-icon {
     @extend %default-size;
     color: $white;
     font-size: 4.5rem;
 }
 
-app-upload #picture-manager.mouseover:hover {
+jam-upload #picture-manager.mouseover:hover {
     background-color: transparent;
 }
 
-app-upload #picture-manager.mouseover div > .mouseover-child {
+jam-upload #picture-manager.mouseover div > .mouseover-child {
     display: none;
     -webkit-transition: 0.3s display;
     transition: 0.3s display;
 }
 
-app-upload #picture-manager.mouseover:hover div > .mouseover-child {
+jam-upload #picture-manager.mouseover:hover div > .mouseover-child {
     display: inherit;
 }
 
-app-upload #picture-manager.mouseover:hover div > .mouseover-child .blur {
+jam-upload #picture-manager.mouseover:hover div > .mouseover-child .blur {
     @include setPositionValues(0, 0, 0, 0);
     @include blur(10px);
     @include setSizes(190px, 210px);
@@ -91,26 +91,26 @@ app-upload #picture-manager.mouseover:hover div > .mouseover-child .blur {
     margin: -10px 0 0 -5px;
 }
 
-app-upload #picture-manager div mat-divider {
+jam-upload #picture-manager div mat-divider {
     width: 60%;
     position: relative;
     border-color: $white;
 }
 
-app-upload #picture-manager div {
+jam-upload #picture-manager div {
     @include setSizes(18rem, 18rem);
     position: relative;
     background-size: cover;
     background-position: center;
 }
 
-app-upload #picture-manager.mouseover div > .mouseover-child .menu {
+jam-upload #picture-manager.mouseover div > .mouseover-child .menu {
     z-index: 3;
     position: absolute;
     top: 0;
 }
 
-app-upload #picture-manager div > div.overlay {
+jam-upload #picture-manager div > div.overlay {
     @include setPositionValues(0, 0, 0, 0);
     @include setSizes(100%, 100%);
     position: absolute;

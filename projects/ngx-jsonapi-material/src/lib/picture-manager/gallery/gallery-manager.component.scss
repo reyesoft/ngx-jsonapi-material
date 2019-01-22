@@ -3,11 +3,11 @@
     height: $height;
 }
 
-app-upload#gallery-manager {
+jam-upload #gallery-manager {
     @include setSizes(auto, 100%);
 }
 
-app-upload#gallery-manager mat-icon {
+jam-upload #gallery-manager mat-icon {
     @include setSizes(auto, auto);
     font-size: 15rem;
 }
