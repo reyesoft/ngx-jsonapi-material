@@ -1,4 +1,4 @@
-<button *ngIf="icon !== 'none'"
+<button *ngIf="type === 'icon'"
     [disableRipple]="true"
     type="button"
     mat-icon-button
@@ -14,6 +14,16 @@
         {{ icon ? icon : 'delete' }}
     </mat-icon>
 </button>
-<button mat-button color="primary" *ngIf="icon === 'none'">
+<button
+    *ngIf="type === 'button'"
+    [ngClass]="classed ? classed : 'mat-button'"
+    color="primary"
+    >
+    <mat-icon
+        [ngStyle]="styleIcon ? styleIcon : ''"
+        mat-menu-align-target
+        >
+        {{ icon ? icon : 'delete' }}
+    </mat-icon>
     <span *ngIf="text" [innerHtml]="text"></span>
 </button>
