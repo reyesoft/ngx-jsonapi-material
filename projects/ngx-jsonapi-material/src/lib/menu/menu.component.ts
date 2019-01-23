@@ -1,37 +1,30 @@
 import { Component, Input, Output, EventEmitter, OnDestroy, OnChanges } from '@angular/core';
+import { Menu } from './menu-elements/menu';
+import { Section } from './menu-elements/section';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { MatBottomSheet } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import { Destroyer } from '../destroyer';
-import { Option, Button } from './button';
+import { Button } from './menu-elements/button';
 
 @Component({
     selector: 'jam-menu',
     styleUrls: ['./menu.component.scss'],
     templateUrl: './menu.component.html'
 })
-export class MenuComponent implements OnDestroy, OnChanges {
-    @Input() public options: Array<Option>;
-    @Input() public disabledButtons: Array<string>;
-    @Input() public hiddenButtons: Array<string>;
-    @Input() public hiddenSections: Array<string>;
-    @Input() public data: Array<any>;
+export class MenuComponent implements OnDestroy {
+    @Input() public menu: Menu;
+    @Input() public source_data: Array<any>;
     @Output() public selected = new EventEmitter<{ key: string, data?: Array<any> }>();
 
     public destroyer = new Destroyer();
 
     public constructor(
         private matBottomSheet : MatBottomSheet
-    ) { }
+    ) {}
 
-    public ngOnChanges(changes) {
-        if (changes.disabledButtons) {
-            this.updateButtonAttributes('disabled', true, this.disabledButtons);
-        }
-
-        if (changes.hiddenButtons) {
-            this.updateButtonAttributes('hidden', true, this.hiddenButtons);
-        }
+    public ngOnInit() {
+        this.menu.removeEmptySections();
     }
 
     public ngOnDestroy(): void {
@@ -40,54 +33,21 @@ export class MenuComponent implements OnDestroy, OnChanges {
 
     public open() {
         this.matBottomSheet.open(BottomSheetComponent, {
-            data: { options: this.options }
+            data: { sections: this.menu.data }
         })
         .afterDismissed()
         .pipe(
             this.destroyer.pipe(),
             filter(response => ![null, undefined, ''].includes(response))
         )
-        .subscribe(response => this.selected.emit(this.getEmit(response)));
+        .subscribe(response => this.selected.emit(this.formatEmission(response)));
     }
 
     public selectedOption(selected: string): void {
-        this.selected.emit(this.getEmit(selected));
+        this.selected.emit(this.formatEmission(selected));
     }
 
-    private getEmit(response: string) {
-        return { key: response, data: this.data || null };
-    }
-
-    private updateButtonAttributes(attribute: string, value: any, button_ids: Array<string>) {
-        for (let button_id of button_ids) {
-            for (let option of this.options) {
-                let button = this.searchButton(button_id, option);
-                if (!button) continue;
-                button.attributes[attribute] = value;
-            }
-        }
-
-        this.hiddenSection();
-    }
-
-    private searchButton(button_id: string, option: Option): Button {
-        return option.buttons.find((button: Button) => {
-            return button.id === button_id;
-        });
-    }
-
-    private hiddenSection(): void {
-        for (let option of this.options) {
-            let count = 0;
-            for (let button of option.buttons) {
-                if (button.attributes.hidden) {
-                    count++
-                }
-
-                if (option.buttons.length === count) {
-                    option.hidden = true;
-                }
-            }
-        }
+    private formatEmission(response: string) {
+        return { key: response, data: this.source_data || null };
     }
 }
