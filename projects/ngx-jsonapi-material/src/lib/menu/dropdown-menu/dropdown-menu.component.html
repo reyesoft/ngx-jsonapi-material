@@ -1,25 +1,38 @@
-<button mat-icon-button class="mat-icon-button mat-button" matTooltip="Más"
-    fxLayout="row" fxLayoutAlign="center center"
-    [matMenuTriggerFor]="menuRef">
+<button
+    mat-icon-button
+    class="mat-icon-button mat-button"
+    matTooltip="Más"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    [matMenuTriggerFor]="menuRef"
+    >
     <mat-icon>more_vert</mat-icon>
 </button>
 
 <mat-menu #menuRef="matMenu">
-    <ng-container *ngFor="let option of options; let position = index">
-        <h3 class="mat-hint" *ngIf="!option.hidden && option.section"><span [innerHtml]="option.section"></span></h3>
+    <ng-container *ngFor="let section of sections; let position = index">
+        <h3 class="mat-hint" *ngIf="!section.hidden && section.id">
+            <span [innerHtml]="section.id"></span>
+        </h3>
 
-        <ng-container *ngFor="let button of option.buttons">
-            <button mat-menu-item *ngIf="!button.attributes.hidden"
+        <ng-container *ngFor="let button of section.data">
+            <button
+                mat-menu-item
+                *ngIf="!button.attributes.hidden"
                 [disabled]="button.attributes.disabled"
                 [ngClass]="button.attributes.class"
-                (click)="selected.emit(button.id)">
-                <mat-icon *ngIf="button.attributes.icon"
+                (click)="selected.emit(button.id)"
+                >
+                <mat-icon
+                    *ngIf="button.attributes.icon || button.attributes.svg_icon"
                     [innerHtml]="button.attributes.icon"
-                ></mat-icon>
+                    [svgIcon]="button.attributes.svg_con"
+                    >
+                </mat-icon>
                 <span [innerHtml]="button.attributes.label"></span>
             </button>
         </ng-container>
 
-        <mat-divider *ngIf="!option.hidden && (position + 1) < options.length"></mat-divider>
+        <mat-divider *ngIf="!section.hidden && (position + 1) < sections.length"></mat-divider>
     </ng-container>
 </mat-menu>

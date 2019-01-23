@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Option } from '../button';
+import { Section } from '../menu-elements/section';
 
 @Component({
     selector: 'jam-dropdown-menu',
@@ -7,6 +7,6 @@ import { Option } from '../button';
     templateUrl: './dropdown-menu.component.html'
 })
 export class DropdownMenuComponent {
-    @Input() public options: Array<Option>;
+    @Input() public sections: Array<Section>;
     @Output() public selected = new EventEmitter<string>();
 }
