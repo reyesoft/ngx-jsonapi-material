@@ -14,6 +14,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     templateUrl: './delete-confirmation.component.html'
 })
 export class DeleteConfirmationComponent {
+    @Input() public type: 'icon' | 'button' = 'icon';
     @Input() public icon: string;
     @Input() public tooltip: string;
     @Input() public msg: string;
