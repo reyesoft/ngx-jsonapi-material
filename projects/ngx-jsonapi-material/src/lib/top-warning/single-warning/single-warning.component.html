@@ -1,4 +1,4 @@
 <div class="layout-padding yellow-bg-400 width-100">
     <span>{{ message }}</span>
-    <a [href]="link" *ngIf="link">Más informacion</a>
+    <a [href]="link" *ngIf="link">{{ linkText || 'Más información' }}</a>
 </div>
