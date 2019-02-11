@@ -16,6 +16,7 @@ import { JamTabsDirective } from './tabs.directive';
         MatTabsModule,
         CommonModule
     ],
-    providers: [JamTabsDirective]
+    declarations: [JamTabsDirective],
+    exports: [JamTabsDirective]
 })
 export class JamTabsModule {}
