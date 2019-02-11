@@ -3,7 +3,7 @@ import { Params, Router, ActivatedRoute } from '@angular/router';
 import { MatTabGroup } from '@angular/material/tabs';
 
 @Directive({
-  selector: '[appTabs]'
+  selector: '[jamTabs]'
 })
 export class JamTabsDirective implements AfterViewInit {
 
