@@ -5,7 +5,7 @@ import { AuthorsComponent } from './components/authors.component';
 import { AuthorsRoutingModule } from './authors-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material.module';
-import { JamChipsAutocompleteModule, JamMenuModule, JamSubmitModule, JamDynamicFormsModule } from 'ngx-jsonapi-material';
+import { JamChipsAutocompleteModule, JamMenuModule, JamSubmitModule, JamDynamicFormsModule, JamFloatingInputModule } from 'ngx-jsonapi-material';
 import { CreateAuthorComponent } from './components/create-author/create-author.component';
 
 @NgModule({
@@ -17,6 +17,7 @@ import { CreateAuthorComponent } from './components/create-author/create-author.
         JamDynamicFormsModule,
         JamSubmitModule,
         JamMenuModule,
+        JamFloatingInputModule,
         JamChipsAutocompleteModule
     ],
     entryComponents: [CreateAuthorComponent],
