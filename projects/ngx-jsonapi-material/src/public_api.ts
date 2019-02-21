@@ -51,3 +51,6 @@ export * from './lib/floating-button/floating-button.module';
 export * from './lib/dynamic-forms/dynamic-inputs';
 export * from './lib/dynamic-forms/formly-form-flex.component';
 export * from './lib/dynamic-forms/dynamic-forms.module';
+
+export * from './lib/tabs/tabs.directive';
+export * from './lib/tabs/tabs.module';
