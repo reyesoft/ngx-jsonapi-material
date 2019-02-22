@@ -2,7 +2,7 @@ export class MenuElement {
     public attributes: {[key: string]: any} = {};
 
     protected _id: string;
-    public get id(): string { return this._id }
+    public get id(): string { return this._id; }
 
     public constructor(id?: string) {
         this._id = id;
@@ -54,7 +54,7 @@ export class MenuElementsCollection <T extends MenuElement | MenuElementsCollect
     public hidden: boolean;
 
     protected _id: string;
-    public get id(): string { return this._id }
+    public get id(): string { return this._id; }
 
     public constructor(id?: string) {
         this._id = id;
@@ -83,6 +83,7 @@ export class MenuElementsCollection <T extends MenuElement | MenuElementsCollect
 
                 return false;
             }
+
             return element.id === id;
         });
     }

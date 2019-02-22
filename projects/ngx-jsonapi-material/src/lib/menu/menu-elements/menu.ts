@@ -9,7 +9,7 @@ export class Menu extends MenuElementsCollection<Section> {
     public removeEmptySections() {
         for (let section of this.data) {
             if (section.hasShownElements()) {
-                return true
+                return true;
             }
         }
 

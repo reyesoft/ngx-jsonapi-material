@@ -7,7 +7,7 @@ export class Button extends MenuElement {
         class: '',
         disabled: false,
         hidden: false
-    }
+    };
 
     public setAttributes(
         attribute: 'label' | 'icon' | 'class' | 'hidden' | 'disabled' | 'svg_icon' | 'icon_font', // TODO: improve typing

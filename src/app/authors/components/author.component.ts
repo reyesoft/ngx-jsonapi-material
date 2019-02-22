@@ -20,14 +20,14 @@ export class AuthorComponent {
     public page: IPage = {
         number: 1,
         size: 20
-    }
+    };
 
     public menu_options: Menu = menu_options_model;
 
     public constructor(
+        public booksService: BooksService,
         protected authorsService: AuthorsService,
         protected photosService: PhotosService,
-        protected booksService: BooksService,
         protected matDialog: MatDialog,
         private route: ActivatedRoute
     ) {
@@ -49,7 +49,7 @@ export class AuthorComponent {
         let create_author_dialog = this.matDialog.open(CreateAuthorComponent);
         create_author_dialog.afterClosed().subscribe(response => {
             if (response) {
-                console.log('author saved', author.toObject())
+                console.log('author saved', author.toObject());
             }
         });
         // author.attributes.name = prompt('New author name:', 'John Doe');

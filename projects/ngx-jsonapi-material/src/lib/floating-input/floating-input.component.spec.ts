@@ -16,7 +16,6 @@ import { Observable } from 'rxjs';
 
 // tslint:disable: no-void-expression
 export class DummyComponent {}
-jest.mock('app/core/services/jsonapi/new-jsonapi-object-company');
 
 describe('FloatingInputComponent', () => {
     let component: FloatingInputComponent;
