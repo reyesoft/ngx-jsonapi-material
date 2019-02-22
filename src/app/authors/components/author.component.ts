@@ -25,9 +25,9 @@ export class AuthorComponent {
     public menu_options: Menu = menu_options_model;
 
     public constructor(
+        public booksService: BooksService,
         protected authorsService: AuthorsService,
         protected photosService: PhotosService,
-        protected booksService: BooksService,
         protected matDialog: MatDialog,
         private route: ActivatedRoute
     ) {
