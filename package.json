@@ -12,7 +12,7 @@
         "postbuild": "rimraf **/dist/**/*.ngsummary.json",
         "deploy:builds": "ts-node ./build/deploy-build.ts",
         "lint": "ng lint ngx-jsonapi-material",
-        "test": "npm run test:lib && ng build",
+        "test": "yarn test:lib",
         "test:lib": "jest --config ./jest.lib.config.js",
         "test:app": "jest --config ./jest.app.config.js",
         "clean": "git clean -xdf && yarn && yarn run bootstrap",
