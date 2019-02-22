@@ -10,19 +10,17 @@ export class AppComponent {
     public title = 'app';
     public loading = '';
 
-    public constructor(
-        private jsonapiCore: JsonapiCore
-    ) {
+    public constructor(private jsonapiCore: JsonapiCore) {
         jsonapiCore.loadingsStart = (): void => {
             this.loading = 'LOADING...';
         };
         jsonapiCore.loadingsDone = (): void => {
             this.loading = '';
         };
-        jsonapiCore.loadingsOffline = (error): void => {
+        jsonapiCore.loadingsOffline = (error: any): void => {
             this.loading = 'No connection!!!';
         };
-        jsonapiCore.loadingsError = (error): void => {
+        jsonapiCore.loadingsError = (error: any): void => {
             this.loading = 'No connection 2!!!';
         };
     }
