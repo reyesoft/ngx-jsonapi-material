@@ -57,3 +57,6 @@ export * from './lib/tabs/tabs.module';
 
 export * from './lib/expansion-panel/remember-state.directive';
 export * from './lib/expansion-panel/remember-state.module';
+
+export * from './lib/floating-input/floating-input.component';
+export * from './lib/floating-input/floating-input.module';

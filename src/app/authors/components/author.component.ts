@@ -5,7 +5,7 @@ import { Resource } from 'ngx-jsonapi';
 import { PhotosService } from '../../photos/photos.service';
 import { AuthorsService, Author } from '../authors.service';
 import { BooksService } from '../../books/books.service';
-import { Option } from 'ngx-jsonapi-material';
+import { Menu } from 'ngx-jsonapi-material';
 import { menu_options_model } from './author-button.model';
 import { IPage } from 'ngx-jsonapi/interfaces/page';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,7 +22,7 @@ export class AuthorComponent {
         size: 20
     }
 
-    public menu_options: Array<Option> = menu_options_model;
+    public menu_options: Menu = menu_options_model;
 
     public constructor(
         protected authorsService: AuthorsService,
