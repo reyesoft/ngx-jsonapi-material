@@ -45,9 +45,7 @@ import { NgModule } from '@angular/core';
 import { NgxJsonapiMaterialModule } from 'ngx-jsonapi-material';
 
 @NgModule({
-    imports: [
-        NgxJsonapiMaterialModule
-    ]
+    imports: [NgxJsonapiMaterialModule]
 })
 export class AppModule {}
 ```
@@ -55,7 +53,8 @@ export class AppModule {}
 ## Directives
 
 ### JamFloatingFilters
-__Selector:__ jam-floating-filters
+
+**Selector:** jam-floating-filters
 
 #### Simple floating filters
 
