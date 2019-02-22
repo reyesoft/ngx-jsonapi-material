@@ -1,0 +1,24 @@
+<div class="floating-input" [ngClass]="status ? 'mat-elevation-z1' : ''">
+    <mat-expansion-panel
+        hideToggle="true"
+        style="width: 200px; box-shadow: none !important; background: inherit !important; border: 0 !important;"
+        [disabled]="lock"
+        [expanded]="status"
+        (closed)="statusToggle(false)"
+        (opened)="statusToggle(true)">
+        <mat-expansion-panel-header *ngIf="!status">
+            <mat-panel-title fxLayout="row" [fxLayoutAlign]="(horPosition || 'end')">
+                <ng-content></ng-content>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field *ngIf="status">
+            <input matInput id="floatingInput" type="number" step="0.001" name="floatingNumber" aria-label="Modificar"
+                [(ngModel)]="entryValue"
+                (blur)="statusToggle(false)"
+                (ngModelChange)="bindingEntryValue(entryValue)"
+                (keydown)="keyPress($event.keyCode)"
+                (focus)="status">
+        </mat-form-field>
+    </mat-expansion-panel>
+</div>

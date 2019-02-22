@@ -10,11 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AuthorsComponent {
     public authors: DocumentCollection<Author>;
 
-    public constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private authorsService: AuthorsService
-    ) {
+    public constructor(private router: Router, private route: ActivatedRoute, private authorsService: AuthorsService) {
         route.queryParams.subscribe(({ page }) => {
             authorsService
                 .all({

@@ -17,6 +17,7 @@
 <button
     *ngIf="type === 'button'"
     [ngClass]="classed ? classed : 'mat-button'"
+    (click)="showConfirm()"
     color="primary"
     >
     <mat-icon

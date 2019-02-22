@@ -3,12 +3,22 @@
         "rxjs-tslint-rules",
         "./node_modules/reyesoft-ci/js/rules/tslint.json"
     ],
-    "rulesDirectory": ["node_modules/codelyzer"],
     "rules": {
         "prefer-for-of": false,
         "member-ordering": [false,
             { "order": "fields-first" }
         ],
+        "variable-name": [
+            true,
+            "ban-keywords",
+            "allow-leading-underscore",
+            "check-format",
+            "allow-snake-case",
+            "allow-pascal-case"
+        ],
+
+        "interface-name" : [false, "never"],
+
         "no-console": [true,
             "debug",
             "time",
@@ -25,8 +35,9 @@
         "rxjs-no-unsafe-first": true,
         "rxjs-no-unsafe-switchmap": true,
         "rxjs-no-unsafe-takeuntil": true,
-        "rxjs-throw-error": true,
+        /* "rxjs-throw-error": true, */
 
         "directive-selector": [true, "attribute", ["demo", "jam"], "camelCase"],
         "component-selector": [true, "element", ["demo", "jam"], "kebab-case"]
+    }
 }

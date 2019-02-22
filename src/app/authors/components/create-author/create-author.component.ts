@@ -9,21 +9,9 @@ import { author_form_model } from './author-form.model';
     selector: 'demo-create-author.component',
     template: `
         <h1 matDialogTitle>{{ title }}</h1>
-        <jam-formly-form-flex
-            [form]="form"
-            [fields]="fields"
-            [model]="model"
-            fxLayout="row"
-            class="width-100"
-            >
-        </jam-formly-form-flex>
+        <jam-formly-form-flex [form]="form" [fields]="fields" [model]="model" fxLayout="row" class="width-100"> </jam-formly-form-flex>
 
-        <mat-dialog-actions align="end">
-            <jam-submit
-                (cancel)="cancel()"
-                (accept)="accept()"
-            ></jam-submit>
-        </mat-dialog-actions>
+        <mat-dialog-actions align="end"> <jam-submit (cancel)="cancel()" (accept)="accept()"></jam-submit> </mat-dialog-actions>
     `
 })
 export class CreateAuthorComponent {

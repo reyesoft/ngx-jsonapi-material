@@ -18,7 +18,7 @@ export class SelectComponent implements OnInit {
 
     @Output() public toRelateChange = new EventEmitter<Resource>();
     public adaptiveArray: Array<Resource> = [];
-    public clear_relationships = {}
+    public clear_relationships = {};
 
     public ngOnInit() {
         if (this.limit) {

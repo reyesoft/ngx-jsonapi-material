@@ -14,37 +14,35 @@ import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from '../../projects/ngx-jsonapi-material/src/lib/material.module';
 
 const appRoutes: Routes = [
-  {
-      path: '',
-      redirectTo: '/authors',
-      pathMatch: 'full'
-  },
-  {
-      path: 'authors',
-      loadChildren: './authors/authors.module#AuthorsModule'
-  },
-  {
-      path: 'books',
-      loadChildren: './books/books.module#BooksModule'
-  }
+    {
+        path: '',
+        redirectTo: '/authors',
+        pathMatch: 'full'
+    },
+    {
+        path: 'authors',
+        loadChildren: './authors/authors.module#AuthorsModule'
+    },
+    {
+        path: 'books',
+        loadChildren: './books/books.module#BooksModule'
+    }
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    SharedModule,
-    RouterModule.forRoot(appRoutes, { useHash: true }),
-    MaterialModule,
-    NgxJsonapiModule.forRoot({
-        url: environment.jsonapi_url
-    })
-  ],
-  providers: [AuthorsService, BooksService, PhotosService],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        SharedModule,
+        RouterModule.forRoot(appRoutes, { useHash: true }),
+        MaterialModule,
+        NgxJsonapiModule.forRoot({
+            url: environment.jsonapi_url
+        })
+    ],
+    providers: [AuthorsService, BooksService, PhotosService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

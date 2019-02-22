@@ -6,7 +6,9 @@ export let author_form_model: Array<DynamicInput> = [
         .fxFlex(100)
         .setFocus()
         .required()
-        .set('validation', { messages: {
-            required: 'El nombre del autor es obligatorio',
-        }}),
+        .set('validation', {
+            messages: {
+                required: 'El nombre del autor es obligatorio'
+            }
+        })
 ];

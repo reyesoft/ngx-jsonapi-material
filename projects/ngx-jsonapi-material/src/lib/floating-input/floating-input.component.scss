@@ -1,0 +1,18 @@
+mat-expansion-panel {
+    width: auto;
+    box-shadow: none !important;
+    background: inherit !important;
+    border: 0 !important;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+input[type^='number'] {
+    text-align: end;
+}
+
+.floating-input {
+    max-width: 200px;
+}
