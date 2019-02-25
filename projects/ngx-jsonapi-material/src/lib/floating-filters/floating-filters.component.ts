@@ -5,7 +5,7 @@
  * distributed without the express permission of Reyesoft
  */
 
-import { Component, Input, AfterViewInit, ElementRef, Directive, HostBinding, Host, Self, ViewContainerRef, Output, EventEmitter, Renderer2, ViewRef, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 /**
  * Este component trabaja con 2 ng-content.
@@ -17,7 +17,7 @@ import { Component, Input, AfterViewInit, ElementRef, Directive, HostBinding, Ho
     selector: 'jam-floating-filters',
     templateUrl: './floating-filters.component.html'
 })
-export class FloatingFiltersComponent {
+export class FloatingFiltersComponent implements OnInit {
     @Input() public hasAdvancedFilters: boolean = true;
     @Output() public resetFilters: EventEmitter<void> = new EventEmitter();
     public show_reset_button: boolean = false;

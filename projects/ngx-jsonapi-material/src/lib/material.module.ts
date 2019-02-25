@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatTableModule, MatButtonModule, MatPaginatorModule, MatCardModule, MatIconModule,
-    MatMenuModule, MatTooltipModule, MatToolbarModule, MatDialogModule, MatFormFieldModule,
+    MatMenuModule, MatTooltipModule, MatToolbarModule, MatDialogModule, MatFormFieldModule, MatTabsModule,
     MatInputModule, MatDatepickerModule, MatNativeDateModule, MatOptionModule, MatSelectModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -22,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatCardModule,
         MatPaginatorModule,
         MatTableModule,
+        MatTabsModule,
         MatButtonModule
     ],
     exports: [
@@ -40,6 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatCardModule,
         MatPaginatorModule,
         MatTableModule,
+        MatTabsModule,
         MatButtonModule
     ],
     providers: []

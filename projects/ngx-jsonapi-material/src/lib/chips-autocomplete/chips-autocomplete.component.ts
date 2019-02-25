@@ -16,7 +16,7 @@ export class ChipsAutocompleteComponent implements OnInit {
     @Input() public placeholder: string;
     @Input() public resource: Resource;
     @Input() public remoteFilter: { [key: string]: any };
-    @Input() public service: Service<Resource>;
+    @Input() public service: Service;
     @Input() public relationAlias: string;
     @Input() public attributesDisplay: Array<string>;
     @Input() public appearance: 'standard' | 'outline' | 'legacy' | 'fill';
@@ -29,11 +29,11 @@ export class ChipsAutocompleteComponent implements OnInit {
     public trackById = trackById;
     public filteredCollection: Observable<Array<Resource>>;
     public formControl: FormControl;
-    public collection: DocumentCollection<Resource>;
+    public collection: DocumentCollection;
     public addOnBlur: boolean = true;
     public selectable: boolean = true;
     public removable: boolean = true;
-    public collection_relationships: DocumentCollection<Resource>;
+    public collection_relationships: DocumentCollection;
 
     private collectionArray: Array<Resource> = [];
     private collectionArrayLastFilterValue: string;
@@ -58,7 +58,7 @@ export class ChipsAutocompleteComponent implements OnInit {
         );
     }
 
-    public getAll(search_text: string): Observable<DocumentCollection<Resource>> {
+    public getAll(search_text: string): Observable<DocumentCollection> {
         if (search_text) {
             this.attributesDisplay[0] = search_text;
             this.remoteFilter = { ...this.remoteFilter, ...[this.attributesDisplay[0]]};
@@ -77,11 +77,9 @@ export class ChipsAutocompleteComponent implements OnInit {
     public filterCollection(search_text: string | Resource): Array<Resource> {
         const filterValue = typeof search_text === 'string' ? search_text.toLowerCase() : '';
 
-        return this.collection.data.filter((resource: Resource) => {
-            resource.attributes[this.attributesDisplay[0]]
+        return this.collection.data.filter((resource: Resource) => resource.attributes[this.attributesDisplay[0]]
                 .toLowerCase()
-                .indexOf(filterValue) >= 0
-        });
+                .indexOf(filterValue) >= 0);
     }
 
     public addResource(resource: Resource): void {

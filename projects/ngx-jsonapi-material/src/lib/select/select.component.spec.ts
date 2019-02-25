@@ -82,8 +82,8 @@ describe('NgxJsonapiMaterialComponent', () => {
             component.placeholder = 'Otra cosa';
             fixture.detectChanges();
             await fixture.whenStable().then(async () => {
-                let mat_select = fixture.debugElement.query(By.css('mat-select'));
-                let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
+                mat_select = fixture.debugElement.query(By.css('mat-select'));
+                mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
                 expect(mat_select_text).toBe('Otra cosa');
             });
         });

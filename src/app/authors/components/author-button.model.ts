@@ -1,24 +1,16 @@
-import { Button, Option } from "ngx-jsonapi-material";
+import { Button, Menu, Section } from 'ngx-jsonapi-material';
 
-export const menu_options_model: Array<Option> = [
-    {
-        section: 'Edit and add',
-        buttons: [
-            new Button('newAuthor')
-                .addButtonAttributes({
-                    label: 'New author',
-                    icon: 'person_add'
-                })
-        ]
-    },
-    {
-        section: 'Others',
-        buttons: [
-            new Button('removeRelationship')
-                .addButtonAttributes({
-                    label: 'Remove relationship',
-                    icon: 'delete'
-                })
-        ]
-    }
-]
+export const menu_options_model: Menu = new Menu().addSections([
+    new Section('Edit and add').addButtons([
+        new Button('newAuthor').addAttributes({
+            label: 'New author',
+            icon: 'person_add'
+        })
+    ]),
+    new Section('Others').addButtons([
+        new Button('removeRelationship').addAttributes({
+            label: 'Remove relationship',
+            icon: 'delete'
+        })
+    ])
+]);

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnDestroy, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy, OnChanges, OnInit } from '@angular/core';
 import { Menu } from './menu-elements/menu';
 import { Section } from './menu-elements/section';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
@@ -12,15 +12,15 @@ import { Button } from './menu-elements/button';
     styleUrls: ['./menu.component.scss'],
     templateUrl: './menu.component.html'
 })
-export class MenuComponent implements OnDestroy {
+export class MenuComponent implements OnInit, OnDestroy {
     @Input() public menu: Menu;
     @Input() public source_data: Array<any>;
-    @Output() public selected = new EventEmitter<{ key: string, data?: Array<any> }>();
+    @Output() public selected = new EventEmitter<{ key: string; data?: Array<any> }>();
 
     public destroyer = new Destroyer();
 
     public constructor(
-        private matBottomSheet : MatBottomSheet
+        private matBottomSheet: MatBottomSheet
     ) {}
 
     public ngOnInit() {
