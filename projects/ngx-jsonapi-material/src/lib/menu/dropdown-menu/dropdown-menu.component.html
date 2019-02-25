@@ -11,7 +11,9 @@
 
 <mat-menu #menuRef="matMenu">
     <ng-container *ngFor="let section of sections; let position = index">
-        <h3 class="mat-hint" *ngIf="!section.hidden && section.id">
+        <mat-divider *ngIf="section.hasShownElements() && !section.hidden && position > 0"></mat-divider>
+
+        <h3 class="mat-hint" *ngIf="section.hasShownElements() && !section.hidden && section.id">
             <span [innerHtml]="section.id"></span>
         </h3>
 
@@ -26,13 +28,11 @@
                 <mat-icon
                     *ngIf="button.attributes.icon || button.attributes.svg_icon"
                     [innerHtml]="button.attributes.icon"
-                    [svgIcon]="button.attributes.svg_con"
+                    [svgIcon]="button.attributes.svg_icon"
                     >
                 </mat-icon>
                 <span [innerHtml]="button.attributes.label"></span>
             </button>
         </ng-container>
-
-        <mat-divider *ngIf="!section.hidden && (position + 1) < sections.length"></mat-divider>
     </ng-container>
 </mat-menu>
