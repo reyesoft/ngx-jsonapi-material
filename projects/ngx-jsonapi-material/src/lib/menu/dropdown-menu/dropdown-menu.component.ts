@@ -8,5 +8,6 @@ import { Section } from '../menu-elements/section';
 })
 export class DropdownMenuComponent {
     @Input() public sections: Array<Section>;
+    @Input() public main_image: { url: string; styles: {[key: string]: string}};
     @Output() public selected = new EventEmitter<string>();
 }

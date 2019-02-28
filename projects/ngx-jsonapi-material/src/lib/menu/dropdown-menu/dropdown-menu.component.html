@@ -6,7 +6,12 @@
     fxLayoutAlign="center center"
     [matMenuTriggerFor]="menuRef"
     >
-    <mat-icon>more_vert</mat-icon>
+    <img
+        *ngIf="main_image"
+        [src]="main_image?.url"
+        [ngStyle]="main_image?.styles"
+        />
+    <mat-icon *ngIf="!main_image">more_vert</mat-icon>
 </button>
 
 <mat-menu #menuRef="matMenu">
