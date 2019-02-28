@@ -26,8 +26,12 @@
                 (click)="selected.emit(button.id)"
                 >
                 <mat-icon
-                    *ngIf="button.attributes.icon || button.attributes.svg_icon"
+                    *ngIf="button.attributes.icon"
                     [innerHtml]="button.attributes.icon"
+                    >
+                </mat-icon>
+                <mat-icon
+                    *ngIf="button.attributes.svg_icon"
                     [svgIcon]="button.attributes.svg_icon"
                     >
                 </mat-icon>
