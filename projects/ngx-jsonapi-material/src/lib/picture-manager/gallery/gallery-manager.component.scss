@@ -7,7 +7,7 @@ jam-upload #gallery-manager {
     @include setSizes(auto, 100%);
 }
 
-jam-upload #gallery-manager mat-icon {
+#base-icon {
     @include setSizes(auto, auto);
-    font-size: 15rem;
+    font-size: 8rem;
 }

@@ -2,5 +2,5 @@
     <jam-picture-manager [showDeleteOption]="showDeleteOption" [source]="picture.attributes.url" [uploadUrl]="uploadUrl"></jam-picture-manager>
 </div>
 <jam-upload id="gallery-manager" [uploadUrl]="uploadUrl" (showPreview)="showPreview($event)" *ngIf="!pictures || (pictures && pictures.length < limit)" mat-icon-button matTooltip="Subir imagen">
-    <mat-icon>add_a_photo</mat-icon>
+    <mat-icon id="base-icon">add_a_photo</mat-icon>
 </jam-upload>
