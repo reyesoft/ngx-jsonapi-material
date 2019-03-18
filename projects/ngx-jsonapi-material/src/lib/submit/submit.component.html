@@ -4,11 +4,11 @@
         mat-raised-button
         color="primary"
         (click)="submit()"
-        [disabled]="loaded || disabled">
+        [disabled]="loading || disabled">
         <div fxLayout="row" fxLayoutAlign="center center">
-            <span *ngIf="!loaded" class="elements-up">{{ (submitLabel ? submitLabel : 'Guardar') | uppercase }}</span>
+            <span *ngIf="!loading" class="elements-up">{{ (submitLabel ? submitLabel : 'Guardar') | uppercase }}</span>
             <mat-progress-spinner class="elements-up default"
-                *ngIf="loaded"
+                *ngIf="loading"
                 mode="indeterminate"
                 value="value"
                 diameter="20"
