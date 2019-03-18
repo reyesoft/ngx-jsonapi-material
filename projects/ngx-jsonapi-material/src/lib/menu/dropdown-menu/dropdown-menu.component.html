@@ -6,7 +6,12 @@
     fxLayoutAlign="center center"
     [matMenuTriggerFor]="menuRef"
     >
-    <mat-icon>more_vert</mat-icon>
+    <img
+        *ngIf="main_image"
+        [src]="main_image?.url"
+        [ngStyle]="main_image?.styles"
+        />
+    <mat-icon *ngIf="!main_image">more_vert</mat-icon>
 </button>
 
 <mat-menu #menuRef="matMenu">
@@ -26,8 +31,12 @@
                 (click)="selected.emit(button.id)"
                 >
                 <mat-icon
-                    *ngIf="button.attributes.icon || button.attributes.svg_icon"
+                    *ngIf="button.attributes.icon"
                     [innerHtml]="button.attributes.icon"
+                    >
+                </mat-icon>
+                <mat-icon
+                    *ngIf="button.attributes.svg_icon"
                     [svgIcon]="button.attributes.svg_icon"
                     >
                 </mat-icon>
