@@ -24,6 +24,9 @@ export class MenuComponent implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit() {
+        if (this.menu.main_image && !this.menu.main_image.styles) {
+            this.menu.main_image.styles = { 'border-radius': '100px', width: '40px', height: '40px' };
+        }
         this.menu.removeEmptySections();
     }
 

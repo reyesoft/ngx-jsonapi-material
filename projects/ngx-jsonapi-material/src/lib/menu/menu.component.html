@@ -1,5 +1,6 @@
 <jam-dropdown-menu
     [sections]="menu.data"
+    [main_image]="menu.main_image"
     (selected)="selectedOption($event)"
 ></jam-dropdown-menu>
 
@@ -11,6 +12,7 @@
         fxLayout="row"
         fxLayoutAlign="center center"
         (click)="open()">
-        <mat-icon>more_vert</mat-icon>
+        <img *ngIf="menu.main_image?.url" [src]="menu.main_image?.url" [ngStyle]="menu.main_image?.styles"/>
+        <mat-icon *ngIf="!menu.main_image?.url">more_vert</mat-icon>
     </button>
 </div>

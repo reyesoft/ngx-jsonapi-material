@@ -85,10 +85,10 @@ jam-upload #picture-manager.mouseover:hover div > .mouseover-child {
 jam-upload #picture-manager.mouseover:hover div > .mouseover-child .blur {
     @include setPositionValues(0, 0, 0, 0);
     @include blur(10px);
-    @include setSizes(190px, 210px);
+    @include setSizes(calc(100% + 40px), calc(100% + 40px));
     position: absolute;
     z-index: 1;
-    margin: -10px 0 0 -5px;
+    margin: -20px;
 }
 
 jam-upload #picture-manager div mat-divider {
@@ -98,7 +98,7 @@ jam-upload #picture-manager div mat-divider {
 }
 
 jam-upload #picture-manager div {
-    @include setSizes(18rem, 18rem);
+    @include setSizes(180px, 180px);
     position: relative;
     background-size: cover;
     background-position: center;
