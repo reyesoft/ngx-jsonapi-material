@@ -19,7 +19,7 @@ export class SubmitComponent {
     @Input() public cancelParamsState: object;
     @Input() public submitLabel: string;
     @Input() public cancelState: string;
-    @Input() public loaded: boolean = false;
+    @Input() public loading: boolean = false;
     @Output() public accept: EventEmitter<any> = new EventEmitter();
     @Output() public cancel: EventEmitter<any> = new EventEmitter();
 
