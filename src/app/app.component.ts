@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { JsonapiCore } from 'ngx-jsonapi';
 
 @Component({
-    selector: 'demo-root',
+    selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })

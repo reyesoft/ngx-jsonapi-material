@@ -9,18 +9,25 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule, MatFormFieldModule } from '@angular/material';
+import { MatSelectModule, MatFormFieldModule, MatIconModule, MatDividerModule } from '@angular/material';
 import { SelectComponent } from './select.component';
+import { FilterPipe } from '../search-input/search-text.pipe';
+import { JamSearchInputModule } from '../search-input/search-input.module';
+import { JamOptionFooterComponent } from './option-footer.component';
 
 @NgModule({
     imports: [
+        JamSearchInputModule,
         FormsModule,
         ReactiveFormsModule,
+        MatIconModule,
+        MatDividerModule,
         MatFormFieldModule,
         MatSelectModule,
         CommonModule
     ],
-    declarations: [SelectComponent],
-    exports: [SelectComponent]
+    providers: [FilterPipe],
+    declarations: [SelectComponent, JamOptionFooterComponent],
+    exports: [ SelectComponent, JamOptionFooterComponent]
 })
 export class JamSelectModule {}

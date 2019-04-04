@@ -3,6 +3,7 @@ import { Resource, DocumentCollection } from 'ngx-jsonapi';
 
 @Component({
     selector: 'jam-select',
+    styleUrls: ['./select.component.scss'],
     templateUrl: './select.component.html'
 })
 export class SelectComponent implements OnInit {
@@ -20,6 +21,8 @@ export class SelectComponent implements OnInit {
     public adaptiveArray: Array<Resource> = [];
     public clear_relationships = {};
 
+    public searchText: string = '';
+
     public ngOnInit() {
         if (this.limit) {
             this.adaptiveArray = this.collection.data.slice(0, Number(this.limit));
@@ -27,6 +30,10 @@ export class SelectComponent implements OnInit {
             this.adaptiveArray = this.collection.data;
         }
         this.toRelate = this.collection.find(this.toRelate.id);
+    }
+
+    public updateFilter(search_text: string): void {
+        this.searchText = search_text;
     }
 
     public updateRelationships(resource: Resource) {

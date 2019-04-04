@@ -1,0 +1,23 @@
+%sticky-container {
+    @extend .mat-option !optional;
+    position: sticky;
+    background: inherit;
+    z-index: 999 !important;
+    width: 100%;
+}
+
+.mat-option-header {
+    @extend %sticky-container;
+    padding-left: 0;
+    padding-right: 0;
+    top: 0;
+}
+
+.mat-option-footer {
+    @extend %sticky-container;
+    bottom: 0;
+}
+
+.mat-icon {
+    margin: 0 !important;
+}
