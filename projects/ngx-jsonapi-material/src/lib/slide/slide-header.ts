@@ -96,7 +96,6 @@ export const _JamSlideHeaderMixinBase: CanDisableRippleCtor & typeof JamSlideHea
  * @docs-private
  */
 @Component({
-  moduleId: module.id,
   selector: 'jam-slide-header',
   templateUrl: 'slide-header.html',
   styleUrls: ['slide-header.scss'],

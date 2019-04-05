@@ -78,7 +78,6 @@ export const _JamSlideGroupMixinBase: CanColorCtor & CanDisableRippleCtor & type
  * See: https://material.io/design/components/slides.html
  */
 @Component({
-  moduleId: module.id,
   selector: 'jam-slide-group',
   exportAs: 'jamSlideGroup',
   templateUrl: 'slide-group.html',

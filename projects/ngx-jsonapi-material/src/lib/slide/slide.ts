@@ -35,7 +35,6 @@ export const _JamSlideMixinBase: CanDisableCtor & typeof JamSlideBase =
     mixinDisabled(JamSlideBase);
 
 @Component({
-  moduleId: module.id,
   selector: 'jam-slide',
   templateUrl: 'slide.html',
   inputs: ['disabled'],
