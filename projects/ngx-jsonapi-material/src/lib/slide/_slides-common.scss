@@ -17,7 +17,7 @@ $jam-slide-animation-duration: 500ms !default;
 // Mixin styles for labels that are contained within the slide header.
 @mixin slide-element {
   height: $jam-slide-bar-height;
-  padding: 0 24px;
+  padding: 0 16px;
   cursor: pointer;
   box-sizing: border-box;
   opacity: 0.6;
