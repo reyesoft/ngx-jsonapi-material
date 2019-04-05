@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { Resource, DocumentCollection } from 'ngx-jsonapi';
 
 @Component({
@@ -11,13 +11,17 @@ export class SelectComponent implements OnInit {
     @Input() public parentId: string;
     @Input() public toRelate: Resource;
     @Input() public placeholder: string;
+    @Input() public label: string;
     @Input() public displayAttribute: string;
     @Input() public collection: DocumentCollection;
     @Input() public removeRelationships: boolean;
     @Input() public disabled: boolean;
     @Input() public limit: number;
+    @Input() public hasRefresh: boolean = false;
 
     @Output() public toRelateChange = new EventEmitter<Resource>();
+    @Output() public refresh = new EventEmitter();
+
     public adaptiveArray: Array<Resource> = [];
     public clear_relationships = {};
 

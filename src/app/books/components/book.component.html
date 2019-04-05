@@ -24,24 +24,11 @@
 
         <jam-select
             [collection]="authors"
+            [hasRefresh]="true"
             [(toRelate)]="book.relationships.author.data"
             displayAttribute="name"
             [removeRelationships]="true">
-            <!-- <mat-option class="mat-elevation-z1 mouseover"
-                (click)="addAuthor()">
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <div>
-                        <mat-icon class="mat-hint">add_circle</mat-icon>
-                        <span>Add author</span>
-                    </div>
-                    <div>
-                        <button mat-icon-button class="mat-button mouseover-child" (click)="$event.stopPropagation(); addAuthor('_blank')">
-                            <mat-icon class="mat-hint" [style.margin]="'0'">open_in_new</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </mat-option> -->
-            <jam-option-footer></jam-option-footer>
+            <jam-option-footer url="//multinexo.com" [openNewTab]="true"></jam-option-footer>
         </jam-select>
     </mat-card-content>
     <mat-card-actions align="start">

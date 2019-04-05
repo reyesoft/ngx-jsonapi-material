@@ -1,5 +1,5 @@
-<mat-form-field fxFlex appearance="outline">
-    <mat-label>Seleccione una opción</mat-label>
+<mat-form-field appearance="outline">
+    <mat-label>{{ label || 'Seleccione una opción' }}</mat-label>
     <mat-select
         [ngModel]="toRelate"
         (ngModelChange)="updateRelationships($event)"
@@ -33,4 +33,11 @@
             <ng-content></ng-content>
         </div>
     </mat-select>
+
+    <button matSuffix mat-icon-button class="mat-button" *ngIf="hasRefresh"
+        (click)="refresh.emit()">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-icon class="mat-hint">refresh</mat-icon>
+        </div>
+    </button>
 </mat-form-field>
