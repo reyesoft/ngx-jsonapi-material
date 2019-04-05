@@ -220,6 +220,7 @@
         ],
         "transformIgnorePatterns": [
             "node_modules/(?!ngx-jsonapi-material)"
+            "projects/ngx-jsonapi-material/src/lib/*.*"
         ],
         "modulePathIgnorePatterns": [
             "dist",
