@@ -20,7 +20,7 @@ export class SelectComponent implements OnInit {
     @Input() public hasRefresh: boolean = false;
 
     @Output() public toRelateChange = new EventEmitter<Resource>();
-    @Output() public refresh = new EventEmitter();
+    @Output() public refresh = new EventEmitter<any>();
 
     public adaptiveArray: Array<Resource> = [];
     public clear_relationships = {};
