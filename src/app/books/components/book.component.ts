@@ -42,9 +42,6 @@ export class BookComponent {
     }
 
     public addAuthor(target: '_self' | '_blank' = '_self') {
-        window.open(
-            '//multinexo.com',
-            target
-        );
+        window.open('//multinexo.com', target);
     }
 }
