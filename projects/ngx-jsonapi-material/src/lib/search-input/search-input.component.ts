@@ -16,6 +16,7 @@ import { debounceTime, map } from 'rxjs/operators';
 })
 export class SearchInputComponent implements OnInit {
     @Input() public text: string;
+    @Input() public opened: boolean = false;
     @Output() public textChange: EventEmitter<string> = new EventEmitter();
 
     public searchCtrl: FormControl = new FormControl();
@@ -23,6 +24,8 @@ export class SearchInputComponent implements OnInit {
     public showSearch = false;
 
     public ngOnInit() {
+        this.showSearch = this.opened || this.showSearch;
+
         this.searchCtrl.valueChanges
             .pipe(
                 map(x => x),
@@ -31,12 +34,22 @@ export class SearchInputComponent implements OnInit {
     }
 
     public showInput() {
-        this.showSearch = !this.showSearch;
-        setTimeout(() => { if (this.showSearch) document.getElementById('search-input').focus(); }, 0);
+        if (this.opened) {
+            this.showSearch = this.opened;
+        } else {
+            this.showSearch = !this.showSearch;
+            setTimeout(() => { if (this.showSearch) document.getElementById('search-input').focus(); }, 0);
+        }
+
     }
 
     public switch() {
-        this.showSearch = false;
+        if (this.opened) {
+            this.showSearch = this.opened;
+        } else {
+            this.showSearch = false;
+        }
+
         if (this.searchCtrl.value !== '') {
             this.searchCtrl.setValue('');
             this.textChange.emit(this.searchCtrl.value);

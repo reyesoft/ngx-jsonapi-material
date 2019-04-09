@@ -40,4 +40,8 @@ export class BookComponent {
 
         return data.attributes ? data.attributes.name : '';
     }
+
+    public addAuthor(target: '_self' | '_blank' = '_self') {
+        window.open('//multinexo.com', target);
+    }
 }
