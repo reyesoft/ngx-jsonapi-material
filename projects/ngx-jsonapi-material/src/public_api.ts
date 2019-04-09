@@ -70,3 +70,11 @@ export * from './lib/filters/interfaces/filter.interface';
 export * from './lib/filters/basics/filter-options.component';
 export * from './lib/filters/basics/filter-checks.component';
 export * from './lib/filters/filters.module';
+
+export * from './lib/slide/slide-module';
+export * from './lib/slide/slide-group';
+export { JamSlideHeader, ScrollDirection } from './lib/slide/slide-header';
+export { JamSlideElementWrapper } from './lib/slide/slide-element-wrapper';
+export { JamSlide } from './lib/slide/slide';
+export { JamSlideElement } from './lib/slide/slide-element';
+export * from './lib/slide/slide-animations';
