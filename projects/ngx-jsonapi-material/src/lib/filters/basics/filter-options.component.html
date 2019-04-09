@@ -1,0 +1,10 @@
+<mat-form-field color="primary" floatLabel="never">
+    <mat-select
+        [(ngModel)]="filterConfig.selected"
+        [placeholder]="filterConfig.title">
+        <mat-option *ngFor="let config of filterConfigArray"
+            [value]="config.text.key"
+            (click)="optionSelected(config, filterConfig.selected)">{{ config.text.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

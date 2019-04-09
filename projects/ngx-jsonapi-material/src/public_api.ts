@@ -62,3 +62,11 @@ export * from './lib/expansion-panel/remember-state.module';
 
 export * from './lib/floating-input/floating-input.component';
 export * from './lib/floating-input/floating-input.module';
+
+export * from './lib/filters/interfaces/filter-date-range.interface';
+export * from './lib/filters/interfaces/filter-checks.interface';
+export * from './lib/filters/interfaces/filter-option.interface';
+export * from './lib/filters/interfaces/filter.interface';
+export * from './lib/filters/basics/filter-options.component';
+export * from './lib/filters/basics/filter-checks.component';
+export * from './lib/filters/filters.module';
