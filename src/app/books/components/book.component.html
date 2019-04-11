@@ -24,10 +24,12 @@
 
         <jam-select
             [collection]="authors"
+            [hasRefresh]="true"
             [(toRelate)]="book.relationships.author.data"
             displayAttribute="name"
-            [removeRelationships]="true"
-        ></jam-select>
+            [removeRelationships]="true">
+            <jam-option-footer url="//multinexo.com" [openNewTab]="true"></jam-option-footer>
+        </jam-select>
     </mat-card-content>
     <mat-card-actions align="start">
         <a mat-button color="accent" routerLink="/books">Volver</a>

@@ -1,10 +1,23 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SelectComponent } from './select.component';
 import { Resource, DocumentCollection } from 'ngx-jsonapi';
 import { MatSelectModule } from '@angular/material/select';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+@Pipe({ name: 'filter' })
+class FilterPipeMock implements PipeTransform {
+    public static filter(items: Array<any>, term: string): Array<any> {
+        return [];
+    }
+
+    public transform(items: any, searchText: string): any {
+        if (!searchText || !items) return items;
+
+        return FilterPipeMock.filter(items, searchText);
+    }
+}
 
 describe('NgxJsonapiMaterialComponent', () => {
     let component: SelectComponent;
@@ -13,7 +26,7 @@ describe('NgxJsonapiMaterialComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
-            declarations: [ SelectComponent ],
+            declarations: [ SelectComponent, FilterPipeMock ],
             imports: [MatSelectModule, NoopAnimationsModule]
         })
         .compileComponents();

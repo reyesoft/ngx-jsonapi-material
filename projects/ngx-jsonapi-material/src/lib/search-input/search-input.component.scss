@@ -16,6 +16,10 @@ div.opened {
     outline: 0 none !important;
 }
 
+.mat-icon {
+    margin: 0 !important;
+}
+
 @media only screen and (max-width: 600px) {
     div.opened {
         position: absolute;

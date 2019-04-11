@@ -3,6 +3,7 @@
  */
 
 export * from './lib/select/select.component';
+export * from './lib/select/option-footer.component';
 export * from './lib/select/select.module';
 
 export * from './lib/submit/submit.component';
