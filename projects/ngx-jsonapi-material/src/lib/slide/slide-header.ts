@@ -169,7 +169,7 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
     this._selectedIndex = value;
 
     if (this._keyManager) {
-      this._keyManager.updateActiveItemIndex(value);
+      this._keyManager.updateActiveItem(value);
     }
   }
   private _selectedIndex: number = 0;
@@ -278,7 +278,11 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
 
     // Defer the first call in order to allow for slower browsers to lay out the elements.
     // This helps in cases where the user lands directly on a page with paginated slides.
-    typeof requestAnimationFrame !== 'undefined' ? requestAnimationFrame(realign) : realign();
+    if (typeof requestAnimationFrame !== 'undefined') {
+        requestAnimationFrame(realign);
+    } else {
+        realign();
+    }
 
     // On dir change or window resize, realign the ink bar and update the orientation of
     // the key manager if the direction has changed.
@@ -338,7 +342,11 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
       // The content observer runs outside the `NgZone` by default, which
       // means that we need to bring the callback back in ourselves.
       // @breaking-change 8.0.0 Remove null check for `_ngZone` once it's a required parameter.
-      this._ngZone ? this._ngZone.run(zoneCallback) : zoneCallback();
+      if (this._ngZone) {
+          this._ngZone.run(zoneCallback);
+      } else {
+          zoneCallback();
+      }
     }
   }
 
