@@ -14,6 +14,8 @@ import { Resource } from 'ngx-jsonapi';
     templateUrl: './submit.component.html'
 })
 export class SubmitComponent {
+    @Input() public submitAppearance: 'mat-flat-button' | 'mat-stroked-button' | 'mat-raised-button' | 'mat-button' = 'mat-raised-button';
+    @Input() public submitColor: 'primary' | 'warn' = 'primary';
     @Input() public disabled: boolean;
     @Input() public noCancel: boolean;
     @Input() public cancelParamsState: object;
