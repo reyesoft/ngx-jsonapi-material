@@ -31,7 +31,17 @@ export class JsonapiFilterBooksComponent {
         this.booksService.all().subscribe(books => {
             this.books = books;
             let count = 0;
-            for (let category of ['Arts & Music', 'Biographies', 'Business', 'Kids', 'Comics', 'Computers & Tech', 'Cooking', 'Hobbies & Crafts']) {
+            // example...
+            for (let category of [
+                'Arts & Music',
+                'Biographies',
+                'Business',
+                'Kids',
+                'Comics',
+                'Computers & Tech',
+                'Cooking',
+                'Hobbies & Crafts'
+            ]) {
                 this.filter_config_books.options[count] = {
                     text: category
                 };
