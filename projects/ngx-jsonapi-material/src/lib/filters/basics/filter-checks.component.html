@@ -1,0 +1,24 @@
+<mat-form-field color="primary" floatLabel="never">
+    <mat-select
+        multiple
+        [(ngModel)]="filterConfig.selected"
+        (focus)="filterConfigOptionsUpdate()"
+        [placeholder]="filterConfig.title">
+        <div mat-menu-item class="focus-element-4dp reset-input-default"
+            *ngIf="filter_config_options.length > 10"
+            fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10"
+            (click)="$event.stopPropagation()">
+            <mat-icon>search</mat-icon>
+            <input fxFlex class="rs-input" tabindex="1" autofocus placeholder="Buscar"
+                [(ngModel)]="searchText">
+            <div style="height: 24px; width: 24px" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon *ngIf="searchText" (click)="searchText = ''">clear</mat-icon>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-option *ngFor="let option of filter_config_options | filter: searchText"
+            [value]="option.text.key"
+            (click)="optionSelected(option, filterConfig.selected)">{{ option.text.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

@@ -7,11 +7,17 @@
     (click)="openDialog()"
 ></jam-floating-button>
 
-<jam-floating-filters [hasAdvancedFilters]="false">
+<jam-floating-filters>
     <ng-container class="jam-filter-header">
         <jam-search-input
             [(text)]="filter_text"
         ></jam-search-input>
+    </ng-container>
+
+    <ng-container class="jam-filter-content">
+        <demo-jsonapi-filter-categories
+            [remoteFilter]="remoteFilter"
+        ></demo-jsonapi-filter-categories>
     </ng-container>
 </jam-floating-filters>
 

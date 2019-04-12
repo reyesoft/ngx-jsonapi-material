@@ -16,6 +16,8 @@ import {
     JamDeleteConfirmationModule
 } from 'ngx-jsonapi-material';
 import { JamFloatingButtonModule } from 'projects/ngx-jsonapi-material/src/public_api';
+import { JamFilterModule } from 'projects/ngx-jsonapi-material/src/lib/filters/filters.module';
+import { JsonapiFilterBooksComponent } from './components/jsonapi-filter-categories/jsonapi-filter-categories.component';
 
 @NgModule({
     imports: [
@@ -23,6 +25,7 @@ import { JamFloatingButtonModule } from 'projects/ngx-jsonapi-material/src/publi
         SharedModule,
         BooksRoutingModule,
         JamSelectModule,
+        JamFilterModule,
         JamFloatingButtonModule,
         JamFloatingFiltersModule,
         JamSearchInputModule,
@@ -34,6 +37,6 @@ import { JamFloatingButtonModule } from 'projects/ngx-jsonapi-material/src/publi
         FormsModule
     ],
     entryComponents: [BookEditComponent],
-    declarations: [BookComponent, BookEditComponent, BooksComponent]
+    declarations: [BookComponent, BookEditComponent, BooksComponent, JsonapiFilterBooksComponent]
 })
 export class BooksModule {}
