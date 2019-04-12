@@ -62,3 +62,11 @@ export * from './lib/expansion-panel/remember-state.module';
 
 export * from './lib/floating-input/floating-input.component';
 export * from './lib/floating-input/floating-input.module';
+
+export * from './lib/slide/slide-module';
+export * from './lib/slide/slide-group';
+export { JamSlideHeader, ScrollDirection } from './lib/slide/slide-header';
+export { JamSlideElementWrapper } from './lib/slide/slide-element-wrapper';
+export { JamSlide } from './lib/slide/slide';
+export { JamSlideElement } from './lib/slide/slide-element';
+export * from './lib/slide/slide-animations';

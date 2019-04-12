@@ -1,0 +1,68 @@
+// @import '../core/style/variables';
+// @import '../core/style/layout-common';
+@import '~@angular/material/theming';
+@include mat-core;
+@import './slides-common';
+
+.jam-slide-group {
+    display: flex;
+    flex-direction: column;
+
+    &.jam-slide-group-inverted-header {
+        flex-direction: column-reverse;
+    }
+}
+
+// Wraps each slide label
+.jam-slide-element {
+    @include slide-element;
+    position: relative;
+}
+
+@media ($mat-xsmall) {
+    .jam-slide-element {
+        padding: 0 12px;
+    }
+}
+
+@media ($mat-small) {
+    .jam-slide-element {
+        padding: 0 12px;
+    }
+}
+
+// Note that we only want to target direct descendant slides.
+.jam-slide-group[mat-stretch-slides] > .jam-slide-header .jam-slide-element {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+// The bottom section of the view; contains the slide bodies
+.jam-slide-body-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    transition: height $jam-slide-animation-duration $ease-in-out-curve-function;
+}
+
+// Wraps each slide body
+.jam-slide-body {
+    @include mat-fill;
+    display: block;
+    overflow: hidden;
+
+    // Fix for auto content wrapping in IE11
+    flex-basis: 100%;
+
+    &.jam-slide-body-active {
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 1;
+        flex-grow: 1;
+    }
+
+    .jam-slide-group.jam-slide-group-dynamic-height &.jam-slide-body-active {
+        overflow-y: hidden;
+    }
+}

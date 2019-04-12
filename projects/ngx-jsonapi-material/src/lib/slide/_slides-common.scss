@@ -1,0 +1,88 @@
+// @import '../core/style/variables';
+// @import '../../cdk/a11y/a11y';
+@import '~@angular/material/theming';
+@include mat-core;
+
+@mixin mat-fill {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+$jam-slide-bar-height: auto !default;
+$jam-slide-animation-duration: 500ms !default;
+
+// Mixin styles for labels that are contained within the slide header.
+@mixin slide-element {
+    height: $jam-slide-bar-height;
+    padding: 0 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    opacity: 0.6;
+    min-width: 160px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+
+    &:focus {
+        outline: none;
+
+        &:not(.jam-slide-disabled) {
+            opacity: 1;
+        }
+
+        @include cdk-high-contrast {
+            outline: dotted 2px;
+        }
+    }
+
+    &.jam-slide-disabled {
+        cursor: default;
+
+        @include cdk-high-contrast {
+            opacity: 0.5;
+        }
+    }
+
+    .jam-slide-element-content {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    @include cdk-high-contrast {
+        opacity: 1;
+    }
+}
+
+// Mixin styles for the top section of the view; contains the slide labels.
+@mixin slide-header {
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+// Mixin styles for the ink bar that displays near the active slide in the header.
+@mixin ink-bar {
+    $height: 2px;
+
+    position: absolute;
+    bottom: 0;
+    height: $height;
+    transition: $jam-slide-animation-duration $ease-in-out-curve-function;
+
+    .jam-slide-group-inverted-header & {
+        bottom: auto;
+        top: 0;
+    }
+
+    @include cdk-high-contrast {
+        outline: solid $height;
+        height: 0;
+    }
+}

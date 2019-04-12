@@ -1,0 +1,47 @@
+<jam-slide-header #slideHeader
+               [selectedIndex]="selectedIndex"
+               [disableRipple]="disableRipple"
+               (indexFocused)="_focusChanged($event)"
+               (selectFocusedIndex)="selectedIndex = $event">
+  <div class="jam-slide-element" role="slide" jamSlideElementWrapper mat-ripple cdkMonitorElementFocus
+       *ngFor="let slide of _slides; let i = index"
+       [id]="_getTabLabelId(i)"
+       [attr.tabIndex]="_getTabIndex(slide, i)"
+       [attr.aria-posinset]="i + 1"
+       [attr.aria-setsize]="_slides.length"
+       [attr.aria-controls]="_getTabContentId(i)"
+       [attr.aria-selected]="selectedIndex == i"
+       [attr.aria-label]="slide.ariaLabel || null"
+       [attr.aria-labelledby]="(!slide.ariaLabel && slide.ariaLabelledby) ? slide.ariaLabelledby : null"
+       [class.jam-slide-element-active]="selectedIndex == i"
+       [disabled]="slide.disabled"
+       [matRippleDisabled]="slide.disabled || disableRipple"
+       (click)="_handleClick(slide, slideHeader, i)">
+
+
+    <div class="jam-slide-element-content">
+      <!-- If there is a element template, use it. -->
+      <ng-template [ngIf]="slide.templateLabel">
+        <ng-template [cdkPortalOutlet]="slide.templateLabel"></ng-template>
+      </ng-template>
+
+      <!-- If there is not a element template, fall back to the text label. -->
+      <ng-template [ngIf]="!slide.templateLabel">{{slide.textLabel}}</ng-template>
+    </div>
+  </div>
+</jam-slide-header>
+
+<!-- <div class="jam-slide-body-wrapper" #slideBodyWrapper>
+  <jam-slide-body role="slidepanel"
+               *ngFor="let slide of _slides; let i = index"
+               [id]="_getTabContentId(i)"
+               [attr.aria-labelledby]="_getTabLabelId(i)"
+               [class.jam-slide-body-active]="selectedIndex == i"
+               [content]="slide.content"
+               [position]="slide.position"
+               [origin]="slide.origin"
+               [animationDuration]="animationDuration"
+               (_onCentered)="_removeTabBodyWrapperHeight()"
+               (_onCentering)="_setTabBodyWrapperHeight($event)">
+  </jam-slide-body>
+</div> -->
