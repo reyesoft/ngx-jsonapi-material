@@ -62,7 +62,7 @@ export interface JamSlidesConfig {
 }
 
 /** Injection token that can be used to provide the default options the slides module. */
-export const MAT_TABS_CONFIG = new InjectionToken('MAT_TABS_CONFIG');
+export const MAT_TABS_CONFIG: InjectionToken<any> = new InjectionToken('MAT_TABS_CONFIG');
 
 // Boilerplate for applying mixins to JamSlideGroup.
 /** @docs-private */
