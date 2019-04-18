@@ -11,7 +11,14 @@
         </mat-expansion-panel-header>
         <div fxLayout="column" class="text-center">
             <div *ngFor="let warn of topWarningService.warnings">
-                <jam-single-warning [message]="warn.attributes.message" [link]="warn.attributes.link"></jam-single-warning>
+                <jam-single-warning
+                    [message]="warn.attributes.message"
+                    [link]="warn.attributes.link"
+                    [linkQueryParams]="warn.attributes.linkQueryParams"
+                    [externalLink]="warn.attributes.externalLink"
+                    [linkText]="warn.attributes.linkText"
+                    >
+                </jam-single-warning>
                 <mat-divider></mat-divider>
             </div>
             <div [style.cursor]="'pointer'" class="action-button" fxLayout="column" fxLayoutAlign="center center"

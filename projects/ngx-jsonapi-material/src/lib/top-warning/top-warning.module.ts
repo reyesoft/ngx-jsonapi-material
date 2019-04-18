@@ -7,6 +7,7 @@
  */
 
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatExpansionModule, MatIconModule, MatButtonModule, MatDividerModule } from '@angular/material';
@@ -25,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatDividerModule,
         // ReactiveFormsModule,
         FormsModule,
+        RouterModule,
         CommonModule
     ],
     declarations: [TopWarningComponent, SingleWarningComponent],
