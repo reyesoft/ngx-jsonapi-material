@@ -13,11 +13,7 @@ export class AppComponent {
 
     public example_key = '213';
 
-    public constructor(
-        private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private jsonapiCore: JsonapiCore
-    ) {
+    public constructor(private router: Router, private activatedRoute: ActivatedRoute, private jsonapiCore: JsonapiCore) {
         jsonapiCore.loadingsStart = (): void => {
             this.loading = 'LOADING...';
         };
