@@ -1,0 +1,31 @@
+$transparent-black-10: rgba(0, 0, 0, 0.102);
+
+%pin-button-background {
+    background-color: $transparent-black-10 !important;
+}
+
+%pin-button-container {
+    padding: 0;
+}
+
+button.pin-button-round {
+    @extend %pin-button-background;
+    @extend %pin-button-container;
+    border-radius: 50px;
+}
+
+.pin-container {
+    width: 40px;
+}
+
+.pin-container button mat-icon {
+    margin: 0;
+}
+
+.mouseover * .mouseover-child {
+    display: none;
+}
+
+.mouseover:hover * .mouseover-child {
+    display: inherit;
+}

@@ -78,3 +78,6 @@ export { JamSlideElementWrapper } from './lib/slide/slide-element-wrapper';
 export { JamSlide } from './lib/slide/slide';
 export { JamSlideElement } from './lib/slide/slide-element';
 export * from './lib/slide/slide-animations';
+
+export * from './lib/pin-option-button/pin-option-button.component';
+export * from './lib/pin-option-button/pin-option-button.module';
