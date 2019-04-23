@@ -18,6 +18,9 @@ export interface IWarning {
     attributes: {
         message: string;
         link?: string;
+        linkQueryParams?: {[key: string]: string};
+        extenalLink?: string;
+        linkText?: string;
     };
 }
 

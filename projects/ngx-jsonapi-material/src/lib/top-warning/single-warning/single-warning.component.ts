@@ -15,5 +15,7 @@ import { Component, Input } from '@angular/core';
 export class SingleWarningComponent {
     @Input() public message: string;
     @Input() public link: string;
+    @Input() public linkQueryParams: {[key: string]: string};
+    @Input() public externalLink: string;
     @Input() public linkText: string;
 }
