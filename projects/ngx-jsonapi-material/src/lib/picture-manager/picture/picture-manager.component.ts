@@ -20,6 +20,7 @@ export class PictureManagerComponent implements OnInit {
     @Input() public deleteUrl: string;
     @Input() public uploadUrl: string;
     @Input() public showDeleteOption: boolean = true;
+    @Input() public jamHeaders: { [key: string]: any };
 
     /**
      * Outputs

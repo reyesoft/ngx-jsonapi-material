@@ -11,6 +11,7 @@ export class GalleryManagerComponent implements OnInit {
     @Input() public uploadUrl: string;
     @Input() public limit: number;
     @Input() public showDeleteOption: boolean = true;
+    @Input() public jamHeaders: { [key: string]: any };
 
     @Output() public addPicture = new EventEmitter<string>();
 
