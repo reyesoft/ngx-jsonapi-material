@@ -12,6 +12,7 @@ import { BooksService } from './books/books.service';
 import { PhotosService } from './photos/photos.service';
 import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from '../../projects/ngx-jsonapi-material/src/lib/material.module';
+import { JamPinOptionButtonModule } from 'ngx-jsonapi-material';
 
 const appRoutes: Routes = [
     {
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     declarations: [AppComponent],
     imports: [
         BrowserModule,
+        JamPinOptionButtonModule,
         BrowserAnimationsModule,
         HttpClientModule,
         SharedModule,
