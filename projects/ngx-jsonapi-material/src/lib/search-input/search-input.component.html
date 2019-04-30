@@ -4,11 +4,13 @@
         (click)="showInput()">
         <mat-icon class="mat-hint">search</mat-icon>
     </button>
-    <div class="reset-input-default" fxFlex="100" style="padding: 0 16px"
+    <div class="reset-input-default" fxFlex="100" style="padding: 0"
         *ngIf="showSearch"
         [ngClass]="showSearch ? 'opened' : ''"
         fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16">
-        <mat-icon class="mat-hint">search</mat-icon>
+        <button mat-icon-button (click)="textChange.emit(searchCtrl.value)">
+            <mat-icon class="mat-hint">search</mat-icon>
+        </button>
         <input class="jam-input" fxFlex id="search-input"
             [formControl]="searchCtrl" placeholder="Buscar...">
 

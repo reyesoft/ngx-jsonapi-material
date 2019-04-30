@@ -8,7 +8,7 @@
         [multiple]="multiple || false"
         >
 
-        <div class="mat-option-header">
+        <div class="mat-option-header" *ngIf="adaptiveArray.length >= 10">
             <jam-search-input
                 [text]="searchText"
                 [opened]="true"
