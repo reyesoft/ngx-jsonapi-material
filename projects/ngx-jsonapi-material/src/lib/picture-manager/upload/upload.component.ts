@@ -11,6 +11,7 @@ export class UploadComponent {
     @Input() public uploadUrl: string;
     @Input() public data: { [key: string]: string } = {};
     @Input() public redirect: boolean;
+    @Input() public jamHeaders: { [key: string]: any };
     public httpClient: HttpClient;
     public options: UploaderOptions;
     public formData: FormData;
@@ -21,7 +22,6 @@ export class UploadComponent {
     @Output() public dragAndDropChange: EventEmitter<boolean> = new EventEmitter();
     public humanizeBytesFunction: Function;
     public dragOver: boolean = false;
-    private token: string = localStorage.getItem('token');
 
     public constructor(public router: Router) {
         this.files = []; // local uploading files array
@@ -85,7 +85,7 @@ export class UploadComponent {
             url: this.uploadUrl,
             method: 'POST',
             data: this.data, // agergar datos
-            headers: { Authorization: 'Bearer ' + this.token }
+            headers: this.jamHeaders
         };
         this.uploadInput.emit(event);
     }
