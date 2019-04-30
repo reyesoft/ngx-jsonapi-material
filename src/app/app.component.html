@@ -7,6 +7,11 @@
   <nav>
       <a mat-button color="accent" routerLink="/authors">Authors</a>
       <a mat-button color="primary" routerLink="/books">Books</a>
+      <jam-pin-option-button
+        [options]="['authors', 'books']"
+        [specialKey]="example_key"
+        (selected)="optionSelected($event)"
+      ></jam-pin-option-button>
   </nav>
 
   <content>

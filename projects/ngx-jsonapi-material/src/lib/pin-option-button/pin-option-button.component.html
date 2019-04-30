@@ -1,0 +1,36 @@
+<button mat-flat-button class="pin-button-round"
+    [ngClass]="jamColor === 'default' ? 'mat-hint' : null"
+    [color]="jamColor"
+    (click)="selected.emit(selected_option)">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+        <button mat-icon-button class="mat-button">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+
+        <span>{{ selected_option?.label }}</span>
+
+        <button mat-icon-button matSuffix class="mat-button"
+            [matMenuTriggerFor]="jamPinOptionButton"
+            (click)="$event.stopPropagation()">
+            <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+    </div>
+</button>
+
+<mat-menu #jamPinOptionButton="matMenu">
+    <button mat-menu-item class="mouseover" *ngFor="let button of buttons; let item = index"
+        (click)="selected.emit(button)">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px">
+            <span>{{ button.label }}</span>
+            <div class="pin-container">
+                <button mat-icon-button
+                    [ngClass]="selected_option?.index !== item ? 'mouseover-child mat-button' : 'mat-button'"
+                    (click)="pinnedOption($event, button)">
+                    <mat-icon svgIcon="pin_rs" color="accent"
+                        [ngStyle]="{ color: selected_option.index !== item ? '#000000B3' : null }"
+                    ></mat-icon>
+                </button>
+            </div>
+        </div>
+    </button>
+</mat-menu>
