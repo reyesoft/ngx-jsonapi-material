@@ -1,30 +1,18 @@
-<button *ngIf="type === 'icon'"
-    [disableRipple]="true"
-    type="button"
-    mat-icon-button
-    [ngClass]="classed ? classed : 'mat-icon-button'"
-    (click)="showConfirm()"
-    [ngStyle]="styled"
-    [matTooltip]="tooltip || 'Eliminar'"
-    >
-    <mat-icon
-        [ngStyle]="styleIcon ? styleIcon : ''"
-        mat-menu-align-target
+<div>
+    <button mat-button
+        [ngClass]="appearance || 'mat-icon-button mat-button'"
+        (click)="showConfirm()"
+        [color]="smartColor[appearance]"
+        [ngStyle]="styled"
+        [matTooltip]="tooltip || text || 'Eliminar'"
         >
-        {{ icon ? icon : 'delete' }}
-    </mat-icon>
-</button>
-<button
-    *ngIf="type === 'button'"
-    [ngClass]="classed ? classed : 'mat-button'"
-    (click)="showConfirm()"
-    color="primary"
-    >
-    <mat-icon
-        [ngStyle]="styleIcon ? styleIcon : ''"
-        mat-menu-align-target
-        >
-        {{ icon ? icon : 'delete' }}
-    </mat-icon>
-    <span *ngIf="text" [innerHtml]="text"></span>
-</button>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+            <mat-icon
+                [ngStyle]="styleIcon ? styleIcon : ''"
+            >
+                {{ icon ? icon : 'delete' }}
+            </mat-icon>
+            <span *ngIf="text && appearance !== 'mat-icon-button'" [innerHtml]="text"></span>
+        </div>
+    </button>
+</div>
