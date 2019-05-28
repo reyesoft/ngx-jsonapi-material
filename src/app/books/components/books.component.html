@@ -42,7 +42,7 @@
             <td>{{ book.attributes.date_published | date }}</td>
             <td>{{ book.relationships.author.data.attributes.name }} #{{ book.relationships.author.data.id }}</td>
             <td><span *ngFor="let photo of book.relationships.photos.data">{{ photo.id }}, </span></td>
-            <td>
+            <td fxLayout="row" fxLayoutAlign="start center">
                 <button mat-icon-button matTooltip="Edit book" (click)="openDialog(book)">
                     <mat-icon>edit</mat-icon>
                 </button>

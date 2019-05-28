@@ -30,6 +30,7 @@ import { JsonapiFilterBooksComponent } from './components/jsonapi-filter-categor
         JamFloatingFiltersModule,
         JamSearchInputModule,
         JamDeleteConfirmationModule,
+        JamDeleteConfirmationModule,
         JamTopWarningModule,
         JamSubmitModule,
         MaterialModule,
