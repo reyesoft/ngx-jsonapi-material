@@ -21,4 +21,4 @@ import { RemembermeStateDirective } from './remember-state.directive';
     declarations: [RemembermeStateDirective],
     exports: [RemembermeStateDirective]
 })
-export class JamExpansionPanelModule {}
+export class JamRememberStateModule {}

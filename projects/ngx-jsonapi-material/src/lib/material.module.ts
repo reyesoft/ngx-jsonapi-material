@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { MatTableModule, MatButtonModule, MatPaginatorModule, MatCardModule, MatIconModule,
     MatMenuModule, MatTooltipModule, MatToolbarModule, MatDialogModule, MatFormFieldModule, MatTabsModule,
-    MatInputModule, MatDatepickerModule, MatNativeDateModule, MatOptionModule, MatSelectModule } from '@angular/material';
+    MatInputModule, MatDatepickerModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatExpansionModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [],
     imports: [
+        MatExpansionModule,
         MatSelectModule,
         MatOptionModule,
         MatNativeDateModule,
@@ -26,6 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatButtonModule
     ],
     exports: [
+        MatExpansionModule,
         MatSelectModule,
         MatOptionModule,
         MatNativeDateModule,

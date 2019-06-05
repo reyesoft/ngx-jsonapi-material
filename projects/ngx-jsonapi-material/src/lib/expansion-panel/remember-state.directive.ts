@@ -1,6 +1,7 @@
 import { Directive, AfterViewInit, ContentChild, ElementRef, HostListener } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Directive({
     selector: '[jamExpansionPanelStatus]'
@@ -10,23 +11,27 @@ export class RemembermeStateDirective implements AfterViewInit {
 
     private query_params: Params;
     private mat_expansion_pane_id: string;
-    private all_mat_expansion_ids: Array<string> = [];
 
     public constructor(
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private elementRef: ElementRef
     ) {
-        activatedRoute.queryParams.subscribe(query_params => {
-            this.query_params = query_params;
-        });
-
         this.mat_expansion_pane_id = elementRef.nativeElement.id;
     }
 
     public ngAfterViewInit() {
-        if (![null, undefined, ''].includes(this.query_params.expansion_panel)) {
-            this.all_mat_expansion_ids = this.query_params.expansion_panel.split(',');
+        this.activatedRoute.queryParams
+        .pipe(filter(query_params => query_params[this.mat_expansion_pane_id]))
+        .subscribe(query_params => {
+            this.query_params = query_params;
+            if (this.mat_expansion_panel) {
+                this.mat_expansion_panel.expanded = query_params[this.mat_expansion_pane_id];
+            }
+        });
+
+        if (localStorage.getItem(this.mat_expansion_pane_id)) {
+            this.mat_expansion_panel.expanded = localStorage.getItem(this.mat_expansion_pane_id);
         }
 
         this.changeExpandedExpansionPanel();
@@ -34,33 +39,21 @@ export class RemembermeStateDirective implements AfterViewInit {
 
     @HostListener('click', ['$event'])
     private onClick(event) {
-        if ((this.all_mat_expansion_ids.indexOf(this.mat_expansion_pane_id) === -1) && this.mat_expansion_panel.expanded) {
-            this.all_mat_expansion_ids.push(this.mat_expansion_pane_id);
-        } else if (!this.mat_expansion_panel.expanded && (this.all_mat_expansion_ids.indexOf(this.mat_expansion_pane_id) !== -1)) {
-            this.all_mat_expansion_ids.splice(this.all_mat_expansion_ids.indexOf((this.mat_expansion_pane_id)), 1);
-        }
         this.updateLocalStoreage();
     }
 
     private changeExpandedExpansionPanel(): void {
-        if ((this.all_mat_expansion_ids.indexOf(this.mat_expansion_pane_id) !== -1) && !this.mat_expansion_panel.expanded) {
-            this.mat_expansion_panel.open();
-        }
-
-        if ((this.all_mat_expansion_ids.indexOf(this.mat_expansion_pane_id) === -1) && this.mat_expansion_panel.expanded) {
-            this.all_mat_expansion_ids.push(this.mat_expansion_pane_id);
-            this.updateLocalStoreage();
-        }
+        this.updateLocalStoreage();
     }
 
     private updateLocalStoreage(): void {
-        localStorage.setItem('expansion_panel', this.all_mat_expansion_ids.toString());
+        localStorage.setItem(this.mat_expansion_pane_id, this.mat_expansion_panel.expanded);
         this.updateQueryParams();
     }
 
     private updateQueryParams(): void {
         this.router.navigate(['.'], {
-            queryParams: {...this.query_params, ...{ expansion_panel: this.all_mat_expansion_ids.toString() }},
+            queryParams: {...this.query_params, ...{ [this.mat_expansion_pane_id]: this.mat_expansion_panel.expanded }},
             relativeTo: this.activatedRoute
         });
     }
