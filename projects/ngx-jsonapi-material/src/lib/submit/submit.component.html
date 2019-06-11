@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="end center">
-    <button type="button" mat-button color="accent" *ngIf="!noCancel" (click)="changeState()" class="accent pull-right" rs-esc-key>Cancelar</button>
+    <button type="button" mat-button color="accent" *ngIf="!noCancel" (click)="changeState($event)" class="accent pull-right" rs-esc-key>Cancelar</button>
     <button mat-button  type="submit" aria-label="Guardar" class="pull-right"
         [color]="submitColor"
         [ngClass]="submitAppearance"
