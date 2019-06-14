@@ -21,9 +21,10 @@
 
                         <span>FILTROS</span>
 
-                        <button mat-icon-button matSuffix class="mat-button">
-                            <mat-icon [innerHtml]="open_expansion_panel ? 'arrow_drop_up' : 'arrow_drop_down'"></mat-icon>
-                        </button>
+                        <mat-icon matSuffix
+                            [style.width.px]="'40'"
+                            [innerHtml]="open_expansion_panel ? 'arrow_drop_up' : 'arrow_drop_down'"
+                        ></mat-icon>
                     </div>
                 </button>
             </div>
