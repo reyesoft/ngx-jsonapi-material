@@ -1,0 +1,40 @@
+/deep/ .filter-button {
+    padding: 0;
+    color: currentColor;
+    font-weight: 900 !important;
+    box-sizing: border-box;
+
+    mat-icon {
+        color: currentColor !important;
+    }
+}
+
+/deep/ .filter-button::before {
+    content: '';
+    background-color: currentColor;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit !important;
+    opacity: 0.08;
+}
+
+.filter-button-round {
+    @extend .filter-button;
+    border-radius: 100px !important;
+}
+
+.filter-button-square {
+    @extend .filter-button;
+    border-radius: 6px;
+
+    button {
+        border-radius: 6px !important;
+    }
+}
+
+mat-expansion-panel-header {
+    background: transparent !important;
+}
