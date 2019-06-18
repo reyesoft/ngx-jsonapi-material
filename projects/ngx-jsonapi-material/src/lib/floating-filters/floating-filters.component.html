@@ -5,13 +5,27 @@
     (closed)="toggleStateExpansionPanel(true)"
     [style.box-shadow]="'none'"
     class="width-100" [expanded]="open_expansion_panel" [style.background]="'transparent'">
-    <mat-expansion-panel-header jamAvoidDisabledStyle [style.padding-right]="'0'">
+    <mat-expansion-panel-header jamAvoidDisabledStyle [style.padding]="'0'">
         <mat-panel-description fxLayout="row" fxLayoutAlign="space-between center">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" (click)="$event.stopPropagation()">
-                <button *ngIf="hasAdvancedFilters" mat-button color="primary"
+                <button mat-button [ngClass]="'filter-button-' + appearance" color="accent"
+                    *ngIf="hasAdvancedFilters"
                     (click)="toggleStateExpansionPanel(open_expansion_panel)">
-                    <mat-icon [innerHtml]="!open_expansion_panel ? 'filter_list' : 'close'"></mat-icon>
-                    FILTROS
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+                        <button mat-icon-button class="mat-button" (click)="clearFilters(open_expansion_panel)">
+                            <mat-icon
+                                [innerHtml]="!open_expansion_panel ? 'filter_list' : 'close'"
+                                [matTooltip]="open_expansion_panel ? 'Borrar todo' : 'Ver filtros'"
+                            ></mat-icon>
+                        </button>
+
+                        <span>FILTROS</span>
+
+                        <mat-icon matSuffix
+                            [style.width.px]="'40'"
+                            [innerHtml]="open_expansion_panel ? 'arrow_drop_up' : 'arrow_drop_down'"
+                        ></mat-icon>
+                    </div>
                 </button>
             </div>
 
@@ -24,8 +38,5 @@
     <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="16px grid">
         <ng-content select="ng-container.jam-filter-content">
         </ng-content>
-        <div *ngIf="show_reset_button">
-            <button mat-icon-button (click)="resetFilters.emit()"><mat-icon>clear</mat-icon></button>
-        </div>
     </div>
 </mat-expansion-panel>

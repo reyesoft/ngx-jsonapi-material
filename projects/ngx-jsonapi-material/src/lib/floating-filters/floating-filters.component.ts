@@ -15,10 +15,12 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
     selector: 'jam-floating-filters',
+    styleUrls: ['./floating-filters.component.scss'],
     templateUrl: './floating-filters.component.html'
 })
 export class FloatingFiltersComponent implements OnInit {
     @Input() public hasAdvancedFilters: boolean = true;
+    @Input() public appearance: 'round' | 'square' = 'square';
     @Output() public resetFilters: EventEmitter<void> = new EventEmitter();
     public show_reset_button: boolean = false;
     public open_expansion_panel = false;
@@ -29,5 +31,12 @@ export class FloatingFiltersComponent implements OnInit {
 
     public toggleStateExpansionPanel(state: boolean): void {
         this.open_expansion_panel = !state;
+    }
+
+    public clearFilters(panel_state: boolean): void {
+        if (!panel_state) {
+            return;
+        }
+        this.resetFilters.emit();
     }
 }
