@@ -33,7 +33,10 @@ export class SelectComponent implements OnInit {
         } else {
             this.adaptiveArray = this.collection.data;
         }
-        this.toRelate = this.collection.find(this.toRelate.id);
+
+        if (this.toRelate) {
+            this.toRelate = this.collection.find(this.toRelate.id);
+        }
     }
 
     public updateFilter(search_text: string): void {
