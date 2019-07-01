@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ImageChange } from './image-change-interface';
+import { UploadOutput } from 'ngx-uploader';
 
 @Component({
     selector: 'jam-picture-manager',
@@ -27,6 +28,7 @@ export class PictureManagerComponent implements OnInit {
      * @param uploadChange: updates the image and returns the url for it.
      */
     @Output() public uploadChange = new EventEmitter<ImageChange>();
+    @Output() public response = new EventEmitter<UploadOutput>();
 
     public drag_and_drop: boolean = false;
 

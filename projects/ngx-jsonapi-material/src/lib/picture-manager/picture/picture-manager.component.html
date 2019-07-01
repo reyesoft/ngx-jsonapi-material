@@ -1,5 +1,7 @@
 <jam-upload [uploadUrl]="uploadUrl" (dragAndDropChange)="dragAndDropStyles($event)" (showPreview)="showPreview($event)" mat-icon-button matTooltip="Subir imagen" fxLayout="row" fxLayoutAlign="center center"
-    [jamHeaders]="jamHeaders">
+    [jamHeaders]="jamHeaders"
+    (response)="response.emit($event)"
+    >
     <div *ngIf="drag_and_drop" [ngClass]="type + '-drag-and-drop-styles'"></div>
     <div *ngIf="!drag_and_drop" id="picture-manager" class="mouseover">
         <div [ngClass]="type" [style.background-image]="'url(' + source + ')'">
