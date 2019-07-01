@@ -50,7 +50,9 @@ export class PictureManagerComponent implements OnInit {
 
     public delete() {
         let delete_url = this.creatDeleteUrl(this.source);
-        this.httpClient.delete(delete_url).subscribe(
+        this.httpClient.delete(delete_url, {
+            headers: this.jamHeaders
+        }).subscribe(
             (response): void => {
                 this.uploadChange.emit({ status_change: 'delete', source: this.source });
             }
