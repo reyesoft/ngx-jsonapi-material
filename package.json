@@ -141,7 +141,7 @@
     "chokidar-cli": "^1.2.0",
     "codelyzer": "^5.1.0",
     "conventional-changelog": "^1.1.4",
-    "core-js": "^2.5.4",
+    "core-js": "^2.5.7",
     "coveralls": "^2.13.0",
     "cpy-cli": "^1.0.1",
     "deep-freeze": "^0.0.1",
