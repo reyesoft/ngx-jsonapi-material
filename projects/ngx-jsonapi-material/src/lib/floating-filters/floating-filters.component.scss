@@ -1,4 +1,4 @@
-/deep/ .filter-button {
+::ng-deep .filter-button {
     padding: 0;
     color: currentColor;
     font-weight: 900 !important;
@@ -9,7 +9,7 @@
     }
 }
 
-/deep/ .filter-button::before {
+::ng-deep .filter-button::before {
     content: '';
     background-color: currentColor;
     position: absolute;

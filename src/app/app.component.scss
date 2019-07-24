@@ -10,6 +10,6 @@ mat-toolbar {
     top: 0;
 }
 
-:host /deep/ a.mat-button {
+:host ::ng-deep a.mat-button {
     text-decoration: none;
 }
