@@ -2,5 +2,5 @@ const baseConfig = require('./jest.base.config');
 
 module.exports = {
   ...baseConfig,
-  roots: ['<rootDir>/projects'],
+  roots: ['<rootDir>/projects/ngx-jsonapi-material'],
 };
