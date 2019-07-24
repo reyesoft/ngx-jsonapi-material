@@ -116,7 +116,7 @@
     "@ngx-translate/http-loader": "3.0.1",
     "core-js": "^2.5.7",
     "ngx-jsonapi": "^2.0.0",
-    "ngx-uploader": "6.0.4",
+    "ngx-uploader": "7.1.0",
     "rxjs": "6.5.2",
     "saturn-datepicker": "7.0.2",
     "zone.js": "~0.9.1"
