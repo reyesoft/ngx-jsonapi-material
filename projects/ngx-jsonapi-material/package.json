@@ -6,20 +6,20 @@
     ],
     "license": "MIT",
     "peerDependencies": {
-        "@angular/common": "^7.0.4",
-        "@angular/core": "^7.0.4",
-        "@angular/cdk": "^7.0.4",
-        "@angular/flex-layout": "7.0.0-beta.19",
-        "@angular/material": "^7.0.4",
-        "@ngx-formly/core": "5.0.0-beta.21",
-        "@ngx-formly/material": "5.0.0-beta.21",
+        "@angular/common": "^8.1.2",
+        "@angular/core": "^8.1.2",
+        "@angular/cdk": "^8.1.1",
+        "@angular/flex-layout": "8.0.0-beta.26",
+        "@angular/material": "^8.1.1",
+        "@ngx-formly/core": "^5.2.0",
+        "@ngx-formly/material": "^5.2.0",
         "@ngx-translate/core": "10.0.2",
         "@ngx-translate/http-loader": "3.0.1",
         "ngx-jsonapi": "^2.0.0",
-        "ngx-uploader": "6.0.4",
-        "saturn-datepicker": "7.0.2",
+        "ngx-uploader": "^7.1.0",
+        "saturn-datepicker": "^7.0.2",
         "localforage": "^1.5.2",
         "localforage-getitems": "^1.4.2",
-        "rxjs": "6.3.3"
+        "rxjs": "^6.5.2"
     }
 }
