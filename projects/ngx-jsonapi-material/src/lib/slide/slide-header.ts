@@ -113,10 +113,10 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
 
   @ContentChildren(JamSlideElementWrapper) public _elementWrappers: QueryList<JamSlideElementWrapper>;
   // @ViewChild(MatInkBar) _inkBar: MatInkBar;
-  @ViewChild('slideListContainer') public _slideListContainer: ElementRef;
-  @ViewChild('slideList') public _slideList: ElementRef;
-  @ViewChild('nextPaginator') public _nextPaginator: ElementRef<HTMLElement>;
-  @ViewChild('previousPaginator') public _previousPaginator: ElementRef<HTMLElement>;
+  @ViewChild('slideListContainer', { static: true }) public _slideListContainer: ElementRef;
+  @ViewChild('slideList', { static: true }) public _slideList: ElementRef;
+  @ViewChild('nextPaginator', { static: true }) public _nextPaginator: ElementRef<HTMLElement>;
+  @ViewChild('previousPaginator', { static: true }) public _previousPaginator: ElementRef<HTMLElement>;
 
   /** Event emitted when the option is selected. */
   @Output() public readonly selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();

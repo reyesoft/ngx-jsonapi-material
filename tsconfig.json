@@ -2,6 +2,8 @@
     "buildOnSave": false,
     "compileOnSave": false,
     "compilerOptions": {
+    "downlevelIteration": true,
+    "importHelpers": true,
         "sourceMap": true,
         "declaration": false,
         "moduleResolution": "node",
@@ -10,8 +12,8 @@
         "noStrictGenericChecks": true,
         "lib": ["es2017", "dom"],
         "outDir": "./dist/out-tsc",
-        "target": "es5",
-        "module": "commonjs",
+        "target": "es2015",
+        "module": "esnext",
         "baseUrl": "./",
         "rootDir": "./",
         "paths": {

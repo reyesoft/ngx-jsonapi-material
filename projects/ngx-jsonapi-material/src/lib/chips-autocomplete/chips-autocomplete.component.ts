@@ -12,7 +12,7 @@ import { IPage } from 'ngx-jsonapi/interfaces/page';
     templateUrl: './chips-autocomplete.component.html'
 })
 export class ChipsAutocompleteComponent implements OnInit {
-    @ViewChild('resourceInput') public resourceInput: ElementRef;
+    @ViewChild('resourceInput', { static: true }) public resourceInput: ElementRef;
     @Input() public placeholder: string;
     @Input() public resource: Resource;
     @Input() public remoteFilter: { [key: string]: any };

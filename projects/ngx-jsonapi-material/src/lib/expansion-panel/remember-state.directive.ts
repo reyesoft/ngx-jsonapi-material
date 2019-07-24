@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
     selector: '[jamExpansionPanelStatus]'
 })
 export class RemembermeStateDirective implements AfterViewInit {
-    @ContentChild(MatExpansionPanel) public mat_expansion_panel: MatExpansionPanel;
+    @ContentChild(MatExpansionPanel, /* TODO: add static flag */ {}) public mat_expansion_panel: MatExpansionPanel;
 
     private mat_expansion_pane_id: string;
 
