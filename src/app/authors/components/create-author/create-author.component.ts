@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { AuthorsService, Author } from '../../authors.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { DynamicInput } from 'ngx-jsonapi-material';
 import { author_form_model } from './author-form.model';

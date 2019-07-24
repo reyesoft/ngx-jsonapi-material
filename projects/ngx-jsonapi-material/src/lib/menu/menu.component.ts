@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnDestroy, OnChanges, OnInit } 
 import { Menu } from './menu-elements/menu';
 import { Section } from './menu-elements/section';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { filter } from 'rxjs/operators';
 import { Destroyer } from '../destroyer';
 import { Button } from './menu-elements/button';

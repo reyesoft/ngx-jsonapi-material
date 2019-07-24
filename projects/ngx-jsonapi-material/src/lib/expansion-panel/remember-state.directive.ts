@@ -1,5 +1,5 @@
 import { Directive, AfterViewInit, ContentChild, ElementRef, HostListener } from '@angular/core';
-import { MatExpansionPanel } from '@angular/material';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 
 @Directive({
