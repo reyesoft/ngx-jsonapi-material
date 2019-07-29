@@ -1,22 +1,23 @@
 import { ErrorHandler, Injector } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DialogLoggedStateComponent } from 'app/shared/services/logged-state/dialog-logged-state.component';
+import { DialogLoggedStateComponent } from '../logged-state/dialog-logged-state.component';
 import { TestBed, inject, async } from '@angular/core/testing';
 import { JamErrorHandler } from './error-handler.service';
-import { GlobalStateService } from 'app/shared/services/global-state.service';
-import { RequestStatusService } from 'app/shared/services/request-status.service';
 import { MatDialog } from '@angular/material/dialog';
 import { mock, instance, when, anything } from 'ts-mockito';
 import { Subject } from 'rxjs';
+import { ToasterService } from 'angular2-toaster';
 
 let super_handleError_called: boolean = false;
 
 const ErrorHandlerMock: ErrorHandler = mock(ErrorHandler);
 // tslint:disable: no-void-expression
 when(ErrorHandlerMock.handleError(anything)).thenCall((): boolean => super_handleError_called = true);
-const GlobalStateServiceMock: GlobalStateService = mock(GlobalStateService);
-const RequestStatusServiceMock: RequestStatusService = mock(RequestStatusService);
+class GlobalStateServiceMock {
+    public logout() { /**/ }
+}
 const MatDialogMock: MatDialog = mock(MatDialog);
+const ToasterServiceMock: ToasterService = mock(ToasterService);
 
 describe('JamErrorHandler', () => {
     let service_instance: JamErrorHandler;
@@ -26,8 +27,7 @@ describe('JamErrorHandler', () => {
             providers: [
                 JamErrorHandler,
                 { provide: ErrorHandler, useFactory: (): ErrorHandler => instance(ErrorHandlerMock) },
-                { provide: GlobalStateService, useFactory: (): GlobalStateService => instance(GlobalStateServiceMock) },
-                { provide: RequestStatusService, useFactory: (): RequestStatusService => instance(RequestStatusServiceMock) },
+                { provide: ToasterService, useFactory: (): ToasterService => instance(ToasterServiceMock) },
                 { provide: MatDialog, useFactory: (): MatDialog => instance(MatDialogMock) }
             ]
         });
@@ -35,18 +35,9 @@ describe('JamErrorHandler', () => {
 
     it('should be created', inject([JamErrorHandler], (service: JamErrorHandler) => {
         service_instance = service;
+        service_instance.globalStateService = new GlobalStateServiceMock();
         expect(service_instance).toBeTruthy();
     }));
-
-    it('handleError method should inject RequestStatusService and GlobalStateService', () => {
-        service_instance.handleError({
-            errors: [
-                {status: '403', title: 'Invalid data received', detail: 'The name field is required.'}
-            ]
-        });
-        expect((service_instance as any).requestStatusService).toBeDefined();
-        expect(service_instance.globalStateService).toBeDefined();
-    });
 
     it(`when recieving a jsonapi formatted error, handleError method should call handleJsonapiErrors method with the error as argument`, () => {
         let handleJsonapiErrors_spy = spyOn(service_instance, 'handleJsonapiErrors');
@@ -114,7 +105,7 @@ describe('JamErrorHandler', () => {
     });
 
     it('when recieving an error with statuc code 404, handleError method should show a special taster message', () => {
-        let notification_spy = spyOn((service_instance as any).requestStatusService, 'Notification');
+        let notification_spy = spyOn(service_instance as any, 'Notification');
         service_instance.handleError({ errors: [], status: 404 });
         expect(notification_spy).toHaveBeenCalledWith('Error al contactar con el servidor, intenta nuevamente más tarde.');
     });
@@ -126,7 +117,7 @@ describe('JamErrorHandler', () => {
     });
 
     it('handleJsonapiErrors method should call requestStatusService.error one time for each error in errors array', () => {
-        let rss_error_spy = spyOn((service_instance as any).requestStatusService, 'singleError');
+        let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({ errors: [
             {status: '403', title: 'Some new error', detail: 'Some new error.'},
             {status: '403', title: 'Some other new error', detail: 'Some other new error.'}
@@ -146,7 +137,7 @@ describe('JamErrorHandler', () => {
 
     it(`if the new error title matches the last error cached title and time elapsed is less than 2 seconds,
         handleJsonapiErrors should renturn without showing the message`, () => {
-        let rss_error_spy = spyOn((service_instance as any).requestStatusService, 'singleError');
+        let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({
             errors: [{ status: '403', title: 'Cached error title', detail: 'The name field is required.' }]
         });
@@ -156,23 +147,23 @@ describe('JamErrorHandler', () => {
         expect(rss_error_spy).toHaveBeenCalledTimes(1);
     });
 
-    it('if the error title matches "Token has expired" or "Token not provided", handleJsonapiErrors should call openDialog', () => {
-        let openDialog_spy = spyOn(service_instance, 'openDialog');
-        let rss_error_spy = spyOn((service_instance as any).requestStatusService, 'singleError');
+    it('if the error title matches "Token has expired" or "Token not provided", handleJsonapiErrors should call logOut', () => {
+        let logOut_spy = spyOn(service_instance, 'logOut');
+        let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({
             errors: [{ status: '403', title: 'Token has expired', detail: 'Token has expired.' }]
         });
-        expect(openDialog_spy).toHaveBeenCalled();
+        expect(logOut_spy).toHaveBeenCalled();
         service_instance.handleJsonapiErrors({
             errors: [{ status: '403', title: 'Token not provided', detail: 'Token not provided.' }]
         });
-        expect(openDialog_spy).toHaveBeenCalled();
+        expect(logOut_spy).toHaveBeenCalled();
         expect(rss_error_spy).not.toHaveBeenCalled();
     });
 
     it('if the error title is "Too many attempts", handleJsonapiErrors should show a spwcial error message', () => {
-        let notification_spy = spyOn((service_instance as any).requestStatusService, 'Notification');
-        let rss_error_spy = spyOn((service_instance as any).requestStatusService, 'singleError');
+        let notification_spy = spyOn(service_instance as any, 'Notification');
+        let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({
             errors: [{ status: '403', title: 'Too many attempts', detail: 'Too many attempts' }]
         });
@@ -185,7 +176,7 @@ describe('JamErrorHandler', () => {
         let open_dialog_spy = spyOn(service_instance.matDialog, 'open').and.returnValue(
             { afterClosed: (): Subject<boolean> => close_dialog }
         );
-        service_instance.openDialog();
+        service_instance.logOut();
         expect(open_dialog_spy).toHaveBeenCalledWith(DialogLoggedStateComponent, {
             width: '600px',
             disableClose: true
@@ -199,7 +190,7 @@ describe('JamErrorHandler', () => {
         let open_dialog_spy = spyOn(service_instance.matDialog, 'open').and.returnValue(
             { afterClosed: (): Subject<boolean> => close_dialog }
         );
-        service_instance.openDialog();
+        service_instance.logOut();
         close_dialog.next(true);
         expect(logout_spy).toHaveBeenCalled();
     });
