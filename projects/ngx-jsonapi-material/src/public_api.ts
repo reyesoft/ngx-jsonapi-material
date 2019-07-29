@@ -2,6 +2,11 @@
  * Public API Surface of ngx-jsonapi-material
  */
 
+export * from './lib/custom-validators';
+export * from './lib/trackById';
+export * from './lib/batch';
+export *from './lib/destroyer';
+
 export * from './lib/select/select.component';
 export * from './lib/select/option-footer.component';
 export * from './lib/select/select.module';
