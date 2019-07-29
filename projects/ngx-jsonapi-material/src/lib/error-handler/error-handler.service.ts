@@ -1,11 +1,8 @@
 import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-// import { GlobalStateService } from 'app/shared/services/global-state.service';
-// import { DialogLoggedStateComponent } from 'app/shared/services/logged-state/dialog-logged-state.component';
 import { MatDialog } from '@angular/material/dialog';
 import { JsonapiCore } from 'ngx-jsonapi';
-// import { RequestStatusService } from 'app/shared/services/request-status.service';
 import { ToasterService } from 'angular2-toaster';
 import { DialogLoggedStateComponent } from '../logged-state/dialog-logged-state.component';
 
@@ -15,8 +12,6 @@ export interface IGlobalStateService {
 
 @Injectable()
 export class JamErrorHandler extends ErrorHandler {
-    // public router: Router;
-    // public globalStateService: GlobalStateService;
     public lastErrorCached = { title: '', time: 0 };
     public token_dialog_is_open: boolean;
     public globalStateService: IGlobalStateService;
@@ -27,16 +22,11 @@ export class JamErrorHandler extends ErrorHandler {
         public ngZone: NgZone,
         public matDialog: MatDialog,
         public toasterService: ToasterService
-        // private requestStatusService: RequestStatusService,
-        // private injector: Injector
     ) {
         super();
     }
 
     public handleError(error) {
-        // if (!this.requestStatusService) this.requestStatusService = this.injector.get(RequestStatusService);
-        // if (!this.globalStateService) this.globalStateService = this.injector.get(GlobalStateService);
-        // if (!this.router) this.router = this.injector.get(Router);
         if (error.status === 404) {
             this.Notification('Error al contactar con el servidor, intenta nuevamente más tarde.');
 
@@ -90,9 +80,6 @@ export class JamErrorHandler extends ErrorHandler {
 
                         return;
                     }
-                    // if (actual_error.detail === 'Sin autorización para acceder a la empresa.') {
-                    //     this.ngZone.run(async () => this.router.navigate(['/companies']));
-                    // }
                     break;
                 case 'Invalid data received':
                     if (actual_error.detail === 'The refresh token must be at least 20 characters.') {
