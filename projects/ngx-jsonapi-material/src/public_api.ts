@@ -89,3 +89,6 @@ export * from './lib/slide/slide-animations';
 
 export * from './lib/pin-option-button/pin-option-button.component';
 export * from './lib/pin-option-button/pin-option-button.module';
+
+export * from './lib/autocomplete/autocomplete.component';
+export * from './lib/autocomplete/autocomplete.module';

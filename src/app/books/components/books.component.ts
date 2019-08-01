@@ -71,6 +71,10 @@ export class BooksComponent {
         });
     }
 
+    public selected(book: Book): void {
+        alert('Libro seleccionado' + book.attributes.title);
+    }
+
     public delete(book: Book) {
         this.booksService.delete(book.id);
         this.getAll(new Date(book.attributes.date_published));
