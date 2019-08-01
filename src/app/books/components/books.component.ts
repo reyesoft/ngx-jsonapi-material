@@ -20,10 +20,10 @@ export class BooksComponent {
     };
 
     public constructor(
+        public booksService: BooksService,
         private route: ActivatedRoute,
         private matDialog: MatDialog,
         protected authorsService: AuthorsService,
-        protected booksService: BooksService,
         protected photosService: PhotosService
     ) {
         route.queryParams.subscribe(({ page }) => {
