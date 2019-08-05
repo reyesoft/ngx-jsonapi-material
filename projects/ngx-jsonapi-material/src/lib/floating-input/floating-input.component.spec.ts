@@ -42,7 +42,7 @@ describe('FloatingInputComponent', () => {
         expect(component.searchParams).toBeDefined();
         expect(component.searchParams instanceof UrlTree).toBeTruthy();
     });
-    it('statusToggle should update status with the passed attribute and call focusInput method if status arg is truthy', async () => {
+    it('statusToggle should update status with the passed attribute and call focusInput method if status arg is truthy', () => {
         let focusInput_spy = spyOn(component as any, 'focusInput');
         component.status = true;
         component.lock = false;
@@ -55,7 +55,7 @@ describe('FloatingInputComponent', () => {
         expect(component.status).toBeTruthy();
         expect(focusInput_spy).toHaveBeenCalled();
     });
-    it('statusToggle should do nothing if component s lock property is truthy', async () => {
+    it('statusToggle should do nothing if component s lock property is truthy', () => {
         let focusInput_spy = spyOn(component as any, 'focusInput');
         component.status = false;
         component.lock = true;
@@ -108,7 +108,7 @@ describe('FloatingInputComponent', () => {
         component.status = true;
         component.entryValue = 10;
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(() => {
             let floating_input_element = fixture.debugElement.query(By.css('input[id=floatingInput]'));
             expect(floating_input_element.nativeElement.ngModel).toBe(10);
         });
@@ -119,7 +119,7 @@ describe('FloatingInputComponent', () => {
         component.status = true;
         component.entryValue = 10;
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(() => {
             let bindingEntryValue_spy = spyOn(component, 'bindingEntryValue');
             let floating_input_element = fixture.debugElement.query(By.css('input[id=floatingInput]'));
             floating_input_element.triggerEventHandler('ngModelChange', 15);
@@ -132,7 +132,7 @@ describe('FloatingInputComponent', () => {
         component.status = true;
         component.entryValue = 10;
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(() => {
             let event = new KeyboardEvent('keydown', { key: 'Enter' });
             let bindingEntryValue_spy = spyOn(component, 'keyPress');
             let floating_input_element = fixture.debugElement.query(By.css('input[id=floatingInput]'));

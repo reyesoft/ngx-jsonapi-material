@@ -90,9 +90,13 @@ export class RangeDatepickerComponent implements OnInit {
     private togglePreviewText(start_date: Date, end_date?: Date): string {
         if (start_date && end_date) {
             return this.createPreviewText(start_date, end_date).toUpperCase();
-        } else if (start_date) {
+        }
+
+        if (start_date) {
             return this.getDays(start_date).toUpperCase();
-        } else if (end_date) {
+        }
+
+        if (end_date) {
             return this.getDays(end_date).toUpperCase();
         }
     }
@@ -101,9 +105,9 @@ export class RangeDatepickerComponent implements OnInit {
         let today = new Date();
         if (date.getDate() === today.getDate()) {
             return 'hoy';
-        } else {
-            return this.datePipe.transform(date, 'dd MMM yyyy');
         }
+
+        return this.datePipe.transform(date, 'dd MMM yyyy');
     }
 
     private createPreviewText(start_date: Date, end_date: Date): string {
@@ -112,7 +116,9 @@ export class RangeDatepickerComponent implements OnInit {
                 this.datePipe.transform(start_date, 'dd MMM yyyy - ') +
                 this.datePipe.transform(end_date, 'dd MMM yyyy')
             );
-        } else if (start_date.getMonth() === end_date.getMonth()) {
+        }
+
+        if (start_date.getMonth() === end_date.getMonth()) {
             if (this.compareDaysOfTheSameMonth()) return this.getDays(start_date);
 
             return (
@@ -120,13 +126,13 @@ export class RangeDatepickerComponent implements OnInit {
                 this.datePipe.transform(end_date, 'dd') +
                 this.datePipe.transform(end_date, ' MMM yyyy')
             );
-        } else {
-            return (
-                this.datePipe.transform(start_date, 'dd MMM - ') +
-                this.datePipe.transform(end_date, 'dd MMM') +
-                this.datePipe.transform(end_date, ' yyyy')
-            );
         }
+
+        return (
+            this.datePipe.transform(start_date, 'dd MMM - ') +
+            this.datePipe.transform(end_date, 'dd MMM') +
+            this.datePipe.transform(end_date, ' yyyy')
+        );
     }
 
     private compareDaysOfTheSameMonth(): boolean {

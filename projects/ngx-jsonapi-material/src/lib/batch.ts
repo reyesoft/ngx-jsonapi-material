@@ -13,7 +13,7 @@ export function batchAll<T extends Service<R>, R extends Resource>(service: T, p
             return of(collection);
         }
 
-        params.page.number++;
+        params.page.number += 1;
 
         return batchAll(service, params).pipe(startWith(collection));
     }));

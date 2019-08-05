@@ -23,10 +23,6 @@ export class JamFilterChecksComponent implements OnInit {
     public searchText: string = '';
     public show_input_search: boolean = false;
 
-    public constructor() {
-        // code...
-    }
-
     public ngOnInit() {
         if (this.filterConfig.selected.length !== 0) {
             this.remoteFilter[this.filterConfig.attribute] = this.filterConfig.selected;
@@ -34,8 +30,13 @@ export class JamFilterChecksComponent implements OnInit {
         this.filterConfigOptionsUpdate();
 
         this.filter_config_options.sort((a, b) => {
-            if ((<IOption>a.text).name.toLowerCase() < (<IOption>b.text).name.toLowerCase()) { return -1; }
-            if ((<IOption>a.text).name.toLowerCase() > (<IOption>b.text).name.toLowerCase()) { return 1; }
+            if ((<IOption>a.text).name.toLowerCase() < (<IOption>b.text).name.toLowerCase()) {
+                return -1;
+            }
+
+            if ((<IOption>a.text).name.toLowerCase() > (<IOption>b.text).name.toLowerCase()) {
+                return 1;
+            }
 
             return 0;
         });
