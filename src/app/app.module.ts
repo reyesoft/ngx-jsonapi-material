@@ -22,11 +22,11 @@ const appRoutes: Routes = [
     },
     {
         path: 'authors',
-        loadChildren: () => import('./authors/authors.module').then(m => m.AuthorsModule)
+        loadChildren: async (): Promise<any> => import('./authors/authors.module').then(m => m.AuthorsModule)
     },
     {
         path: 'books',
-        loadChildren: () => import('./books/books.module').then(m => m.BooksModule)
+        loadChildren: async (): Promise<any> => import('./books/books.module').then(m => m.BooksModule)
     }
 ];
 
