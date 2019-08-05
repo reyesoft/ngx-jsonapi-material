@@ -29,17 +29,9 @@ export class JamFilterChecksComponent implements OnInit {
         }
         this.filterConfigOptionsUpdate();
 
-        this.filter_config_options.sort((a, b) => {
-            if ((<IOption>a.text).name.toLowerCase() < (<IOption>b.text).name.toLowerCase()) {
-                return -1;
-            }
-
-            if ((<IOption>a.text).name.toLowerCase() > (<IOption>b.text).name.toLowerCase()) {
-                return 1;
-            }
-
-            return 0;
-        });
+        this.filter_config_options = this.filter_config_options.sort(
+            (a, b) => (<IOption>a.text).name.localeCompare((<IOption>b.text).name)
+        );
 
         this.showInputSearch();
     }

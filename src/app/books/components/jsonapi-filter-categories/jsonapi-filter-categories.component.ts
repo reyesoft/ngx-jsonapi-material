@@ -46,7 +46,7 @@ export class JsonapiFilterBooksComponent {
                     text: category
                 };
 
-                count++;
+                count += 1;
             }
         });
     }
