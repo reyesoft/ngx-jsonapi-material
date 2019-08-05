@@ -3,7 +3,7 @@
  */
 
 export * from './lib/custom-validators';
-export * from './lib/trackById';
+export * from './lib/track-by-id';
 export * from './lib/batch';
 export *from './lib/destroyer';
 

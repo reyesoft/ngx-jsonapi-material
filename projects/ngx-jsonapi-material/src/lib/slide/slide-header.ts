@@ -239,17 +239,17 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
       return;
     }
 
-    switch (event.keyCode) {
-      case HOME:
+    switch (event.key) {
+      case 'Home':
         this._keyManager.setFirstItemActive();
         event.preventDefault();
         break;
-      case END:
+      case 'End':
         this._keyManager.setLastItemActive();
         event.preventDefault();
         break;
-      case ENTER:
-      case SPACE:
+      case 'Enter':
+      case ' ':
         this.selectFocusedIndex.emit(this.focusIndex);
         event.preventDefault();
         break;
