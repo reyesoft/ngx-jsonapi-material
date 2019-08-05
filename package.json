@@ -179,7 +179,7 @@
         "prettier": "^1.12.0",
         "protractor": "~5.3.0",
         "reflect-metadata": "^0.1.9",
-        "reyesoft-ci": "1.0.2",
+        "reyesoft-ci": "1.0.3",
         "rimraf": "^2.5.4",
         "rollup": "^0.50.0",
         "rxjs-tslint-rules": "4.7.2",
