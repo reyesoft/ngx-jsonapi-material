@@ -114,6 +114,7 @@
         "@ngx-formly/material": "5.0.0-beta.21",
         "@ngx-translate/core": "10.0.2",
         "@ngx-translate/http-loader": "3.0.1",
+        "angular2-toaster": "^8.0.0",
         "core-js": "^2.5.7",
         "ngx-jsonapi": "^2.0.0",
         "ngx-uploader": "6.0.4",

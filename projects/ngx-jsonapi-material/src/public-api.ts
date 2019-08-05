@@ -42,6 +42,9 @@ export * from './lib/top-warning/top-warning.service';
 export * from './lib/top-warning/single-warning/single-warning.component';
 export * from './lib/top-warning/top-warning.module';
 
+export * from './lib/error-handler/error-handler.service';
+export * from './lib/error-handler/error-handler.module';
+
 export * from './lib/range-datepicker/range-datepicker.component';
 export * from './lib/range-datepicker/range-datepicker.module';
 
