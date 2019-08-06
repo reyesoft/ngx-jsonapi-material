@@ -20,10 +20,10 @@ export class BooksComponent {
     };
 
     public constructor(
+        public booksService: BooksService,
         private route: ActivatedRoute,
         private matDialog: MatDialog,
         protected authorsService: AuthorsService,
-        protected booksService: BooksService,
         protected photosService: PhotosService
     ) {
         route.queryParams.subscribe(({ page }) => {
@@ -69,6 +69,10 @@ export class BooksComponent {
         this.matDialog.open(BookEditComponent, {
             data: book || null
         });
+    }
+
+    public selected(book: Book): void {
+        alert('Libro seleccionado' + book.attributes.title);
     }
 
     public delete(book: Book) {
