@@ -99,6 +99,15 @@ export class JamErrorHandler extends ErrorHandler {
                     return;
             }
 
+            switch (actual_error.detail) {
+                case 'Expired access token.':
+                case 'The refresh token is invalid. Cannot decrypt the refresh token':
+                case 'Invalid access token':
+                    this.ngZone.run(async () => this.logOut());
+
+                    return;
+            }
+
             this.singleError(actual_error);
         }
     }
