@@ -61,13 +61,16 @@ export class JamErrorHandler extends ErrorHandler {
         super.handleError(error);
     }
 
-    public handleJsonapiErrors(error) {
+    public handleJsonapiErrors(error, use_error_cache = true) {
         for (let actual_error of error.errors) {
-            // si es ultimo mensaje recibido y solo han pasado 2 segundos, no muestra error
-            if (this.lastErrorCached.title === actual_error.title && this.lastErrorCached.time > Date.now() - 2000) return;
 
-            this.lastErrorCached.title = actual_error.title;
-            this.lastErrorCached.time = Date.now();
+            if (use_error_cache) {
+                // si es ultimo mensaje recibido y solo han pasado 2 segundos, no muestra error
+                if (this.lastErrorCached.title === actual_error.title && this.lastErrorCached.time > Date.now() - 2000) return;
+
+                this.lastErrorCached.title = actual_error.title;
+                this.lastErrorCached.time = Date.now();
+            }
 
             switch (actual_error.title) {
                 case 'Internal server error':
@@ -97,6 +100,13 @@ export class JamErrorHandler extends ErrorHandler {
                     this.Notification('Has agotado el límite de intentos, espera un momento antes de continuar.', 'error');
 
                     return;
+            }
+
+            // cannot use special conditions to SWITCH statement without changing the data inside switch to "true"
+            if (actual_error.detail.includes('Token required')) {
+                this.ngZone.run(async () => this.logOut());
+
+                return;
             }
 
             switch (actual_error.detail) {
