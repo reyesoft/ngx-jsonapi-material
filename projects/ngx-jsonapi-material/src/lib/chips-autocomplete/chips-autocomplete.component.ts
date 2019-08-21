@@ -71,7 +71,10 @@ export class ChipsAutocompleteComponent implements OnInit {
         }
 
         return this.service
-            .all({ page: { number: 1, size: this.page.size } });
+            .all({
+                remotefilter: this.remoteFilter,
+                page: { number: 1, size: this.page.size }
+            });
     }
 
     public filterCollection(search_text: string | Resource): Array<Resource> {

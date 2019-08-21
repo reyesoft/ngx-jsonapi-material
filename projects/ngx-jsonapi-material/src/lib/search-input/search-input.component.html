@@ -9,7 +9,7 @@
         [ngClass]="showSearch ? 'opened' : ''"
         fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16">
         <mat-icon class="mat-hint">search</mat-icon>
-        <input class="jam-input" fxFlex id="search-input"
+        <input class="jam-input" fxFlex id="search-input" autocomplete="off"
             [formControl]="searchCtrl" placeholder="Buscar...">
 
         <button mat-icon-button class="mat-button" (click)="switch()">
