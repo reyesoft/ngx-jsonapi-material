@@ -123,7 +123,7 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
         const filterValue = typeof value === 'string' ? value.toLowerCase() : '';
         let count = 0;
 
-        this.showList = value !== null && filterValue.length > 0;
+        this.showList = !value && filterValue.length > 0;
 
         return this.resourceArray.filter((resource: Resource) => {
             if (
@@ -131,7 +131,7 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
                 (resource.attributes.name.toLowerCase().indexOf(filterValue) === 0 ||
                     resource.attributes.name.toLowerCase().indexOf(' ' + filterValue) > 0)
             ) {
-                return ++count;
+                return count += 1;
             }
         });
     }

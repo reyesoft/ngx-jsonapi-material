@@ -94,7 +94,7 @@ describe('NgxJsonapiMaterialComponent', () => {
             expect(mat_select_text).toBe('Seleccione una opción');
             component.placeholder = 'Otra cosa';
             fixture.detectChanges();
-            await fixture.whenStable().then(async () => {
+            await fixture.whenStable().then(() => {
                 mat_select = fixture.debugElement.query(By.css('mat-select'));
                 mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
                 expect(mat_select_text).toBe('Otra cosa');
@@ -124,7 +124,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
                 mat_options[0].nativeElement.click();
                 fixture.detectChanges();
-                await fixture.whenStable().then(async () => {
+                await fixture.whenStable().then(() => {
                     let updated_mat_select = fixture.debugElement.query(By.css('mat-select'));
                     // Need to query for spn twice because the update is inserted
                     let updated_mat_select_text = updated_mat_select.query(By.css('span')).query(By.css('span')).nativeElement.innerHTML;
@@ -134,7 +134,7 @@ describe('NgxJsonapiMaterialComponent', () => {
         });
     });
     it('updateRelationships should be called each time a new option is selected', async () => {
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(() => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             expect(mat_select).toBeTruthy();
             let updateRelationships_spy = spyOn(component, 'updateRelationships');
@@ -149,7 +149,7 @@ describe('NgxJsonapiMaterialComponent', () => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             mat_select.nativeElement.click();
             fixture.detectChanges();
-            await fixture.whenStable().then(async () => {
+            await fixture.whenStable().then(() => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
                 let none_option;
                 mat_options.map(option => {
@@ -178,7 +178,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                     }
                 });
                 fixture.detectChanges();
-                await fixture.whenStable().then(async () => {
+                await fixture.whenStable().then(() => {
                     expect(updateRelationships_spy).toHaveBeenCalledWith({});
                 });
             });
@@ -205,7 +205,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                 let updateRelationships_spy = spyOn(component, 'updateRelationships');
                 mat_select.triggerEventHandler('ngModelChange', mat_options[0].componentInstance.value);
                 fixture.detectChanges();
-                await fixture.whenStable().then(async () => {
+                await fixture.whenStable().then(() => {
                     expect(updateRelationships_spy).toHaveBeenCalledWith(resource);
                 });
             });

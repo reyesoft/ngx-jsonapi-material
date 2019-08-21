@@ -1,5 +1,6 @@
 {
     "name": "ngx-jsonapi-material-app",
+    "version": "0.21.42",
     "scripts": {
         "build_lib": "ng build --prod ngx-jsonapi-material",
         "npm_pack": "cd dist/ngx-jsonapi-material && npm pack",
@@ -150,8 +151,7 @@
         "chokidar-cli": "^1.2.0",
         "codelyzer": "~4.2.1",
         "conventional-changelog": "^1.1.4",
-        "core-js": "^2.5.4",
-        "coveralls": "^2.13.0",
+        "coveralls": "^3.0.5",
         "cpy-cli": "^1.0.1",
         "deep-freeze": "^0.0.1",
         "fs-extra": "^2.1.2",
@@ -165,7 +165,7 @@
         "jest": "^21.0.2",
         "jest-preset-angular": "^3.0.1",
         "jest-zone-patch": "^0.0.7",
-        "karma": "~1.7.1",
+        "karma": "~4.2.0",
         "karma-chrome-launcher": "~2.2.0",
         "karma-coverage-istanbul-reporter": "~2.0.0",
         "karma-jasmine": "~1.1.1",
@@ -179,7 +179,7 @@
         "prettier": "^1.12.0",
         "protractor": "~5.3.0",
         "reflect-metadata": "^0.1.9",
-        "reyesoft-ci": "1.0.2",
+        "reyesoft-ci": "1.0.3",
         "rimraf": "^2.5.4",
         "rollup": "^0.50.0",
         "rxjs-tslint-rules": "4.7.2",
@@ -188,10 +188,9 @@
         "ts-node": "~5.0.1",
         "tsickle": ">=0.25.5",
         "tslib": "^1.7.1",
-        "tslint": "~5.9.1",
+        "tslint": "~5.18.0",
         "typescript": "~3.1.6",
-        "uglify-js": "^3.1.9",
-        "zone.js": "^0.8.12"
+        "uglify-js": "^3.1.9"
     },
     "jest": {
         "setupTestFrameworkScriptFile": "<rootDir>/setup-jest.ts",
