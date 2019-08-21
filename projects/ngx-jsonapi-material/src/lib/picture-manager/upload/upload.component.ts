@@ -49,7 +49,7 @@ export class UploadComponent {
                 break;
             case 'removed':
                 // remove file from array when removed
-                this.files = this.files.filter((file: UploadFile) => file !== output.file);
+                this.files = this.files.filter((file: UploadFile) => JSON.stringify(file) !== JSON.stringify(output.file));
                 break;
             case 'dragOver':
                 this.dragOver = true;

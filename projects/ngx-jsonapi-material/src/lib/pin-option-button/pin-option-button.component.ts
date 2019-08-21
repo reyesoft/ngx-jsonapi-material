@@ -57,7 +57,7 @@ export class PinOptionButtonComponent implements OnInit {
 
         for (let option of this.options) {
             this.buttons.push({ index: count, label: option });
-            count++;
+            count += 1;
         }
     }
 

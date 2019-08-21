@@ -175,7 +175,7 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
       @Inject(MAT_TABS_CONFIG) @Optional() defaultConfig?: JamSlidesConfig
     ) {
     super(elementRef);
-    this._groupId = nextId++;
+    this._groupId = nextId += 1;
     this.animationDuration = defaultConfig && defaultConfig.animationDuration ?
         defaultConfig.animationDuration : '500ms';
   }
@@ -194,7 +194,7 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
     // If there is a change in selected index, emit a change event. Should not trigger if
     // the selected index has not yet been initialized.
     if (this._selectedIndex !== indexToSelect) {
-      const isFirstRun = this._selectedIndex == null;
+      const isFirstRun = !this._selectedIndex;
 
       if (!isFirstRun) {
         this.selectedTabChange.emit(this._createChangeEvent(indexToSelect));
@@ -217,7 +217,7 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
 
       // If there is already a selected slide, then set up an origin for the next selected slide
       // if it doesn't have one already.
-      if (this._selectedIndex != null && slide.position === 0 && !slide.origin) {
+      if (!this._selectedIndex && slide.position === 0 && !slide.origin) {
         slide.origin = indexToSelect - this._selectedIndex;
       }
     });
@@ -241,7 +241,7 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
       if (indexToSelect === this._selectedIndex) {
         const slides = this._slides.toArray();
 
-        for (let i = 0; i < slides.length; i++) {
+        for (let i = 0; i < slides.length; i += 1) {
           if (slides[i].isActive) {
             // Assign both to the `_indexToSelect` and `_selectedIndex` so we don't fire a changed
             // event, otherwise the consumer may end up in an infinite loop in some edge cases like

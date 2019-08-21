@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { filterOrRequest } from '../batch';
-import { trackById } from '../trackById';
+import { trackById } from '../track-by-id';
 import { IPage } from 'ngx-jsonapi/interfaces/page';
 
 @Component({
@@ -68,10 +68,10 @@ export class ChipsAutocompleteComponent implements OnInit {
                     remotefilter: this.remoteFilter,
                     page: { number: 1, size: this.page.size }
                 });
-        } else {
-            return this.service
-                .all({ page: { number: 1, size: this.page.size } });
         }
+
+        return this.service
+            .all({ page: { number: 1, size: this.page.size } });
     }
 
     public filterCollection(search_text: string | Resource): Array<Resource> {
