@@ -21,6 +21,12 @@
     </ng-container>
 </jam-floating-filters>
 
+<jam-autocomplete icon="book"
+    [services]="booksService"
+    [displayAttributes]="['title', 'date_published']"
+    (toggleResourceChange)="selected($event)"
+></jam-autocomplete>
+
 <div class="mat-elevation-z2">
     <table>
         <thead>

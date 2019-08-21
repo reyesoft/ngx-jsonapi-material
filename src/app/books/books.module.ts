@@ -13,6 +13,7 @@ import {
     JamSearchInputModule,
     JamFloatingFiltersModule,
     JamTopWarningModule,
+    JamAutocompleteModule,
     JamDeleteConfirmationModule
 } from 'ngx-jsonapi-material';
 import { JamFloatingButtonModule } from 'projects/ngx-jsonapi-material/src/public-api';
@@ -30,7 +31,7 @@ import { JsonapiFilterBooksComponent } from './components/jsonapi-filter-categor
         JamFloatingFiltersModule,
         JamSearchInputModule,
         JamDeleteConfirmationModule,
-        JamDeleteConfirmationModule,
+        JamAutocompleteModule,
         JamTopWarningModule,
         JamSubmitModule,
         MaterialModule,
