@@ -33,9 +33,8 @@ export const filterOrRequest = <T extends Resource>(params: {
         filter(filterValue => typeof filterValue === 'string'),
         switchMap((filterValue: string) => {
             if (filterValue.includes(params.last_filter_value) && params.collection.data.length < params.page_size) {
-                return of(params.resourcesArray.filter((resource: T) => (
-                    resource.attributes[params.attribute_to_search]
-                ).toLowerCase().indexOf(filterValue) >= 0));
+                return of(params.resourcesArray.filter((resource: T) =>
+                    resource.attributes[params.attribute_to_search].toLowerCase().indexOf(filterValue) >= 0));
             }
 
             return params
