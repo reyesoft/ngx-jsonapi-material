@@ -19,7 +19,7 @@ export interface IWarning {
         message: string;
         link?: string;
         linkQueryParams?: {[key: string]: string};
-        extenalLink?: string;
+        externalLink?: string;
         linkText?: string;
     };
 }

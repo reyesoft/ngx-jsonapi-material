@@ -1,6 +1,6 @@
 {
     "name": "ngx-jsonapi-material-app",
-    "version": "0.21.43",
+    "version": "0.21.44",
     "scripts": {
         "build_lib": "ng build --prod ngx-jsonapi-material",
         "npm_pack": "cd dist/ngx-jsonapi-material && npm pack",
