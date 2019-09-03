@@ -1,12 +1,12 @@
-<!-- <div style="width: 100%"> -->
-<mat-form-field style="width: 100%" appearance="outline" [formGroup]="myForm">
+<mat-form-field style="width: 100%" appearance="outline">
     <input matInput aria-label="Escribe algo que buscar" name="autocomplete-resource"
-    placeholder="Escribe algo que buscar"
-    [matAutocomplete]="auto"
-    formControlName="autocompleteCtrl"
-    (blur)="closeAutocomplete()"
-    id="autocompleteResource"
-    #autocompleteResource>
+        placeholder="Escribe algo que buscar"
+        type="text"
+        [matAutocomplete]="auto"
+        [formControl]="autocompleteCtrl"
+        (blur)="closeAutocomplete()"
+        id="autocompleteResource"
+        #autocompleteResource>
     <mat-autocomplete #auto="matAutocomplete"
     [displayWith]="displayFn"
     (optionSelected)="selectedResource($event.option.value)">
@@ -26,18 +26,17 @@
 </mat-autocomplete>
 
 <button mat-icon-button class="mat-button" matSuffix matTooltip="Actualizar lista"
-    [disabled]="!dataLoading || !dataLoading.closed" (click)="refresh()">
+    [disabled]="collection?.is_loading" (click)="refresh()">
     <mat-icon class="toast-shortcuts">refresh</mat-icon>
 </button>
 </mat-form-field>
 
 <mat-progress-bar class="progress-bar-autocomplete"
-    *ngIf="!dataLoading || !dataLoading.closed"
+    *ngIf="collection?.is_loading"
     color="accent"
     mode="indeterminate"
 ></mat-progress-bar>
-<small *ngIf="!dataLoading || !dataLoading.closed">
+<small *ngIf="collection?.is_loading">
     <span>Cargando recursos</span>
     <span [innerHTML]="resourceArray.length > 0 ? '(' + resourceArray.length + ')...' : ''"></span>
 </small>
-<!-- </div> -->

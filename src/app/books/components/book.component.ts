@@ -16,7 +16,7 @@ export class BookComponent {
 
     public constructor(
         protected authorsService: AuthorsService,
-        protected booksService: BooksService,
+        public booksService: BooksService,
         protected photosService: PhotosService,
         private route: ActivatedRoute
     ) {
