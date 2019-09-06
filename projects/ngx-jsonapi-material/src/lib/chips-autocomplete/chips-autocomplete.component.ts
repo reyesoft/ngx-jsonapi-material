@@ -60,8 +60,7 @@ export class ChipsAutocompleteComponent implements OnInit {
 
     public getAll(search_text: string): Observable<DocumentCollection> {
         if (search_text) {
-            this.attributesDisplay[0] = search_text;
-            this.remoteFilter = { ...this.remoteFilter, ...[this.attributesDisplay[0]]};
+            this.remoteFilter = { ...this.remoteFilter, ...{ [this.attributesDisplay[0]]: search_text }};
 
             return this.service
                 .all({
