@@ -45,11 +45,9 @@ export class BooksComponent implements OnDestroy {
                 );
         });
 
-        this.jamRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe(
-            () => {
-                this.getAll(this.remoteFilter);
-            }
-        );
+        this.jamRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe(() => {
+            this.getAll(this.remoteFilter);
+        });
     }
 
     public ngOnDestroy() {
