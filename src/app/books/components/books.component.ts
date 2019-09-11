@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Resource, DocumentCollection } from 'ngx-jsonapi';
 import { BooksService, Book } from './../books.service';
 import { AuthorsService } from './../../authors/authors.service';
 import { PhotosService } from '../../photos/photos.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { JamRefreshService, Destroyer } from 'ngx-jsonapi-material';
 import { BookEditComponent } from './book-edit.component';
+
 @Component({
     selector: 'demo-books',
     templateUrl: './books.component.html'
 })
-export class BooksComponent {
+export class BooksComponent implements OnDestroy {
     public books: DocumentCollection<Book>;
     public filter_text: string = '';
     public remoteFilter: {
@@ -18,11 +20,13 @@ export class BooksComponent {
     } = {
         category_name: ''
     };
+    public destroyer = new Destroyer();
 
     public constructor(
         public booksService: BooksService,
         private route: ActivatedRoute,
         private matDialog: MatDialog,
+        private jamRefreshService: JamRefreshService,
         protected authorsService: AuthorsService,
         protected photosService: PhotosService
     ) {
@@ -40,6 +44,16 @@ export class BooksComponent {
                     (error): void => console.info('error books controll', error)
                 );
         });
+
+        this.jamRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe(
+            () => {
+                this.getAll(this.remoteFilter);
+            }
+        );
+    }
+
+    public ngOnDestroy() {
+        this.destroyer.destroy();
     }
 
     public getAll(remotefilter) {
