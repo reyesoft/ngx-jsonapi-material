@@ -23,7 +23,7 @@ export class SelectComponent implements OnInit {
     @Output() public refresh = new EventEmitter<any>();
 
     public adaptiveArray: Array<Resource> = [];
-    public clear_relationships = {};
+    public clear_relationships = null;
 
     public searchText: string = '';
 
