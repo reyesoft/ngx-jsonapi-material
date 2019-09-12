@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   public async getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('demo-root h1')).getText();
   }
 }

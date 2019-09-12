@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
     JamSelectModule,
     JamSubmitModule,
+    JamRefreshModule,
     JamSearchInputModule,
     JamChipsAutocompleteModule,
     JamFloatingFiltersModule,
@@ -27,6 +28,7 @@ import { JsonapiFilterBooksComponent } from './components/jsonapi-filter-categor
         SharedModule,
         BooksRoutingModule,
         JamSelectModule,
+        JamRefreshModule,
         JamChipsAutocompleteModule,
         JamFilterModule,
         JamFloatingButtonModule,

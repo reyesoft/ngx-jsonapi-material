@@ -1,0 +1,24 @@
+<button
+    *ngIf="collectionToRefresh"
+    mat-icon-button
+    matTooltip="Actualizar"
+    mat-ink-ripple="false"
+    class="mat-icon-button mat-button"
+    (click)="refreshCollection()"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    >
+    <mat-icon
+        *ngIf="!collectionToRefresh.is_loading"
+        class="material-icons"
+        >
+        {{ icon || 'refresh' }}
+    </mat-icon>
+    <mat-spinner
+        class="material-icons elements-up padding-0 margin-0"
+        *ngIf="collectionToRefresh.is_loading"
+        color="accent"
+        diameter="24"
+        >
+    </mat-spinner>
+</button>

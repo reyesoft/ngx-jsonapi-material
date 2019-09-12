@@ -48,6 +48,9 @@ export * from './lib/error-handler/error-handler.module';
 export * from './lib/range-datepicker/range-datepicker.component';
 export * from './lib/range-datepicker/range-datepicker.module';
 
+export * from './lib/refresh/refresh.component';
+export * from './lib/refresh/refresh.module';
+
 export * from './lib/menu/menu-elements/menu';
 export * from './lib/menu/menu-elements/section';
 export * from './lib/menu/menu-elements/button';

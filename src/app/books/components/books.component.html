@@ -12,6 +12,11 @@
         <jam-search-input
             [(text)]="filter_text"
         ></jam-search-input>
+        <jam-refresh
+            [collectionToRefresh]="books"
+            [serviceToRefresh]="booksService"
+            >
+        </jam-refresh>
     </ng-container>
 
     <ng-container class="jam-filter-content">
