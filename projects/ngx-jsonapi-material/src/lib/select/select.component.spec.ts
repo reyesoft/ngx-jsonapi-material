@@ -157,7 +157,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                         none_option = option.componentInstance.value;
                     }
                 });
-                expect(none_option).toEqual({});
+                expect(none_option).toEqual(null);
             });
         });
     });
