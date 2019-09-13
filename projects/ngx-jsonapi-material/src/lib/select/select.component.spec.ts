@@ -157,7 +157,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                         none_option = option.componentInstance.value;
                     }
                 });
-                expect(none_option).toEqual({});
+                expect(none_option).toEqual(null);
             });
         });
     });
@@ -179,7 +179,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                 });
                 fixture.detectChanges();
                 await fixture.whenStable().then(() => {
-                    expect(updateRelationships_spy).toHaveBeenCalledWith({});
+                    expect(updateRelationships_spy).toHaveBeenCalledWith(null);
                 });
             });
         });
