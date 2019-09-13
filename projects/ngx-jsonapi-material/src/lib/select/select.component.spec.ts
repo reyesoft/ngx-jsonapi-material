@@ -179,7 +179,7 @@ describe('NgxJsonapiMaterialComponent', () => {
                 });
                 fixture.detectChanges();
                 await fixture.whenStable().then(() => {
-                    expect(updateRelationships_spy).toHaveBeenCalledWith({});
+                    expect(updateRelationships_spy).toHaveBeenCalledWith(null);
                 });
             });
         });
