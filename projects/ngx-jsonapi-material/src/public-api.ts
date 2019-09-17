@@ -95,3 +95,6 @@ export * from './lib/pin-option-button/pin-option-button.module';
 
 export * from './lib/autocomplete/autocomplete.component';
 export * from './lib/autocomplete/autocomplete.module';
+
+export { InfoButtonComponent } from './lib/info-button/info-button.component';
+export { JamInfoButtonModule } from './lib/info-button/info-button.module';

@@ -1,0 +1,10 @@
+<a class="mat-button" type="button" target="_blank"
+    mat-icon-button
+    [matTooltip]="matTooltip"
+    [href]="externalUrl"
+    (click)="$event.stopPropagation()"
+>
+    <mat-icon
+        [innerHtml]="icon"
+    ></mat-icon>
+</a>
