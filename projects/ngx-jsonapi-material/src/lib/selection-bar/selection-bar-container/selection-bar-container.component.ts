@@ -3,7 +3,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { SelectionBarService } from '../selection-bar.service';
 
 @Component({
-    selector: 'rs-selection-bar-container',
+    selector: 'jam-selection-bar-container',
     templateUrl: './selection-bar-container.component.html',
     styleUrls: ['./selection-bar-container.component.scss']
 })

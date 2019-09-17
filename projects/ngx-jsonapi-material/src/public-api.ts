@@ -95,3 +95,9 @@ export * from './lib/pin-option-button/pin-option-button.module';
 
 export * from './lib/autocomplete/autocomplete.component';
 export * from './lib/autocomplete/autocomplete.module';
+
+export { SelectionBarContainerComponent } from './lib/selection-bar/selection-bar-container/selection-bar-container.component';
+export { SelectionBarInfoComponent } from './lib/selection-bar/selection-bar-info/selection-bar-info.component';
+export { DomService } from './lib/selection-bar/dom.service';
+export { IMethodRef, SelectionBarService } from './lib/selection-bar/selection-bar.service';
+export { JamSelectionBarModule } from './lib/selection-bar/selection-bar.module';
