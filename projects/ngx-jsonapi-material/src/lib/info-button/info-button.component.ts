@@ -14,8 +14,8 @@ export class InfoButtonComponent implements OnInit {
      */
     @Input() public icon: 'info' | 'help' = 'info';
 
-    /** @param matTooltip optional property */
-    @Input() public matTooltip: string = 'Más información';
+    /** @param jamTooltip optional property */
+    @Input() public jamTooltip: string = 'Más información';
 
     public ngOnInit(): void {
         this.icon = this.checkIcon();
