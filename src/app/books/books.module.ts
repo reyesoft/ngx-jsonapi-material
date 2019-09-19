@@ -8,6 +8,7 @@ import { MaterialModule } from '../../../projects/ngx-jsonapi-material/src/lib/m
 import { BookEditComponent } from './components/book-edit.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
+    JamSelectionBarModule,
     JamSelectModule,
     JamSubmitModule,
     JamRefreshModule,
@@ -21,14 +22,18 @@ import {
 import { JamFloatingButtonModule } from 'projects/ngx-jsonapi-material/src/public-api';
 import { JamFilterModule } from 'projects/ngx-jsonapi-material/src/lib/filters/filters.module';
 import { JsonapiFilterBooksComponent } from './components/jsonapi-filter-categories/jsonapi-filter-categories.component';
+import { BooksSelectionBarComponent } from './components/books-selection-bar/books-selection-bar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
+        FlexLayoutModule,
         BooksRoutingModule,
         JamSelectModule,
         JamRefreshModule,
+        JamSelectionBarModule,
         JamChipsAutocompleteModule,
         JamFilterModule,
         JamFloatingButtonModule,
@@ -42,7 +47,7 @@ import { JsonapiFilterBooksComponent } from './components/jsonapi-filter-categor
         ReactiveFormsModule,
         FormsModule
     ],
-    entryComponents: [BookEditComponent],
-    declarations: [BookComponent, BookEditComponent, BooksComponent, JsonapiFilterBooksComponent]
+    entryComponents: [BookEditComponent, BooksSelectionBarComponent],
+    declarations: [BooksSelectionBarComponent, BookComponent, BookEditComponent, BooksComponent, JsonapiFilterBooksComponent]
 })
 export class BooksModule {}
