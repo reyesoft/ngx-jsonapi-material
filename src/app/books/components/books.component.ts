@@ -5,8 +5,10 @@ import { AuthorsService } from './../../authors/authors.service';
 import { PhotosService } from '../../photos/photos.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { JamRefreshService, Destroyer } from 'ngx-jsonapi-material';
+import { JamRefreshService, Destroyer, SelectionBarService } from 'ngx-jsonapi-material';
 import { BookEditComponent } from './book-edit.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { BooksSelectionBarComponent } from './books-selection-bar/books-selection-bar.component';
 
 @Component({
     selector: 'demo-books',
@@ -20,10 +22,19 @@ export class BooksComponent implements OnDestroy {
     } = {
         category_name: ''
     };
+
+    // Select Rows
+    public initialSelection = [];
+    public allowMultiSelect = true;
+    public selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
+    public selection_bar_component;
+    public selection_bar_inputs: { [key: string]: any } = { selected: this.selection };
+
     public destroyer = new Destroyer();
 
     public constructor(
         public booksService: BooksService,
+        public selectionBarService: SelectionBarService,
         private route: ActivatedRoute,
         private matDialog: MatDialog,
         private jamRefreshService: JamRefreshService,
@@ -90,5 +101,40 @@ export class BooksComponent implements OnDestroy {
     public delete(book: Book) {
         this.booksService.delete(book.id);
         this.getAll(new Date(book.attributes.date_published));
+    }
+
+    public callCheckboxEvents(event, row?): void {
+        if (event.checked) this.openSelection();
+        if (event && row) {
+            this.selection.toggle(row);
+        } else if (event) {
+            this.masterToggle();
+        }
+        this.selectionBarService.selected(this.selection);
+    }
+
+    /** Selects all rows if they are not all selected; otherwise clear selection. */
+    public masterToggle(): void {
+        if (this.isAllSelected()) {
+            this.selection.clear();
+        } else {
+            this.books.data.forEach(row => {
+                this.selection.select(row);
+            });
+        }
+    }
+
+    /** Checks if the number of selected rows matches the total number of rows */
+    public isAllSelected(): boolean {
+        const numSelected = this.selection.selected.length;
+        const numRows = this.books.data.length;
+
+        return numSelected === numRows;
+    }
+
+    public openSelection() {
+        let inputs = this.selection_bar_inputs;
+        inputs.selection = this.selection;
+        this.selectionBarService.init(BooksSelectionBarComponent, inputs, {});
     }
 }

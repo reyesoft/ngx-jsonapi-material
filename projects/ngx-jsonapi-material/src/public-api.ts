@@ -98,3 +98,9 @@ export * from './lib/autocomplete/autocomplete.module';
 
 export { InfoButtonComponent } from './lib/info-button/info-button.component';
 export { JamInfoButtonModule } from './lib/info-button/info-button.module';
+
+export { SelectionBarContainerComponent } from './lib/selection-bar/selection-bar-container/selection-bar-container.component';
+export { SelectionBarInfoComponent } from './lib/selection-bar/selection-bar-info/selection-bar-info.component';
+export { DomService } from './lib/selection-bar/dom.service';
+export { IMethodRef, SelectionBarService } from './lib/selection-bar/selection-bar.service';
+export { JamSelectionBarModule } from './lib/selection-bar/selection-bar.module';

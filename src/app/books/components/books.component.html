@@ -37,6 +37,14 @@
     <table>
         <thead>
             <tr>
+                <th>
+                    <mat-checkbox
+                        name="master"
+                        (change)="callCheckboxEvents($event)"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    ></mat-checkbox>
+                </th>
                 <th>ID</th>
                 <th>Title</th>
                 <th>Date Published</th>
@@ -47,6 +55,13 @@
         </thead>
         <!-- Use authors example. @deprected since version 2.0.0 -->
         <tr *ngFor="let book of books.data | filter: filter_text">
+            <td>
+                <mat-checkbox
+                    (dblclick)="$event.stopPropagation()"
+                    (change)="callCheckboxEvents($event, book)"
+                    [checked]="selection.isSelected(book)"
+                ></mat-checkbox>
+            </td>
             <td>{{ book.id }}</td>
             <td>
                 <a mat-button color="primary" [routerLink]="['/books', book.id]">{{ book.attributes.title }}</a>
