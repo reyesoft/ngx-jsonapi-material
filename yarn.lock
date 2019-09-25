@@ -3427,6 +3427,11 @@ detect-node@^2.0.4:
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
 
+dexie@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/dexie/-/dexie-2.0.4.tgz#6027a5e05879424e8f9979d8c14e7420f27e3a11"
+  integrity sha512-aQ/s1U2wHxwBKRrt2Z/mwFNHMQWhESerFsMYzE+5P5OsIe5o1kgpFMWkzKTtkvkyyEni6mWr/T4HUJuY9xIHLA==
+
 di@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/di/-/di-0.0.1.tgz#806649326ceaa7caa3306d75d985ea2748ba913c"
@@ -7262,13 +7267,6 @@ license-webpack-plugin@^1.3.1:
   dependencies:
     ejs "^2.5.7"
 
-lie@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/lie/-/lie-3.1.1.tgz#9a436b2cc7746ca59de7a41fa469b3efb76bd87e"
-  integrity sha1-mkNrLMd0bKWd56QfpGmz77dr2H4=
-  dependencies:
-    immediate "~3.0.5"
-
 lie@~3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/lie/-/lie-3.3.0.tgz#dcf82dee545f46074daf200c7c1c5a08e0f40f6a"
@@ -7421,20 +7419,6 @@ loader-utils@^1.0.1, loader-utils@^1.0.2, loader-utils@^1.1.0:
     big.js "^5.2.2"
     emojis-list "^2.0.0"
     json5 "^1.0.1"
-
-localforage-getitems@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/localforage-getitems/-/localforage-getitems-1.4.2.tgz#bddd3e716e7df339dc5a5cc26e2dd1decec76606"
-  integrity sha512-3Y1DAAlRjGlhWAXoD1DR8M+7WF9DC6t8CvYZ7YKVnIJBpima8j4RsWUv1ryJKB+fTPozfDxeqrN7ooqzBPyB4g==
-  dependencies:
-    localforage ">=1.4.0"
-
-localforage@>=1.4.0, localforage@^1.5.2:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.7.3.tgz#0082b3ca9734679e1bd534995bdd3b24cf10f204"
-  integrity sha512-1TulyYfc4udS7ECSBT2vwJksWbkwwTX8BzeUIiq8Y07Riy7bDAAnxDaPU/tWyOVmQAcWJIEIFP9lPfBGqVoPgQ==
-  dependencies:
-    lie "3.1.1"
 
 locate-path@^2.0.0:
   version "2.0.0"
@@ -8142,13 +8126,12 @@ ng-packagr@^3.0.0-rc.2:
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
-ngx-jsonapi@^2.0.0:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/ngx-jsonapi/-/ngx-jsonapi-2.0.5.tgz#7ce434b197a5a564af8a71866c02c3de3aa6eb9c"
-  integrity sha512-2skuK3bpWhi+Iqe6Qak3eAlTXei6S+bwr7NnLV0NGU0N7jfuyk8yLrwBneJ9yOZhBgQLr9enoAe12TG913uKSA==
+ngx-jsonapi@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/ngx-jsonapi/-/ngx-jsonapi-2.1.6.tgz#fa4fb3a008a2f1f20dc0aafbcaa22aff4c2cc854"
+  integrity sha512-rtnJJNP5tLJr795Ogz6NdgU9EBbBKpEjEaa+8XoAyUBLEA7Xp4uyAQ0NuhEIKKRgpLthuLIgmNUz9lCneKW9jQ==
   dependencies:
-    localforage "^1.5.2"
-    localforage-getitems "^1.4.2"
+    dexie "^2.0.4"
 
 ngx-uploader@6.0.4:
   version "6.0.4"
