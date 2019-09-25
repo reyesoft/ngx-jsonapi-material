@@ -1,5 +1,39 @@
-<div class="layout-padding yellow-bg-400 width-100">
+<div class="layout-padding yellow-bg-400 width-100" [ngStyle]="custom_styles">
     <span>{{ message }}</span>
-    <a [routerLink]="link" [queryParams]="linkQueryParams || {}" *ngIf="link">{{ linkText || 'Más información' }}</a>
-    <a [href]="externalLink" target="_blank" *ngIf="externalLink">{{ linkText || 'Más información' }}</a>
+    <a
+        [routerLink]="link"
+        [queryParams]="linkQueryParams || {}"
+        *ngIf="link"
+        >
+        {{ linkText || 'Más información' }}
+    </a>
+    <a
+        [href]="externalLink"
+        target="_blank"
+        *ngIf="externalLink"
+        >
+        {{ linkText || 'Más información' }}
+    </a>
+
+    <button
+        *ngIf="actionButtonText"
+        mat-button
+        type="button"
+        name="button"
+        (click)="actionButtonClick.emit()"
+        >
+        {{ actionButtonText }}
+    </button>
+    <button
+        *ngIf="actionIconButton"
+        mat-icon-button
+        [matTooltip]="actionIconButtonTooltip"
+        type="button"
+        name="button"
+        (click)="actionIconButtonClick.emit()"
+        >
+        <mat-icon>
+            {{ actionIconButton }}
+        </mat-icon>
+    </button>
 </div>
