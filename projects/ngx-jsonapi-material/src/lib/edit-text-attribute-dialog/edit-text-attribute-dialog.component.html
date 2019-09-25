@@ -1,0 +1,26 @@
+<h2 *ngIf="data.title" mat-dialog-title [innerHtml]="data.title"></h2>
+<mat-dialog-content>
+    <p *ngIf="data.message">{{ data.message }}</p>
+    <!-- @NOTE: FE-132 jam-submit fails to trigger method when pressing Enter key -->
+    <form name="myForm" novalidate (keyup.enter)="updateAttributeAndClose(data.attribute, textarea.value)">
+        <mat-form-field
+            appearance="outline"
+            class="width-100"
+            >
+            <mat-label>{{ data.textarea_label }}</mat-label>
+            <textarea
+                name="text_attribute"
+                #textarea
+                matInput
+            ></textarea>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <jam-submit
+        (accept)="updateAttributeAndClose(data.attribute, textarea.value)"
+        (cancel)="dialogRef.close()"
+        [submitLabel]="data.accept"
+        >
+    </jam-submit>
+</mat-dialog-actions>
