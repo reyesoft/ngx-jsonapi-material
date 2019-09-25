@@ -2,9 +2,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SatDatepickerRangeValue, SatDatepickerInputEvent } from 'saturn-datepicker';
 import { DatePipe } from '@angular/common';
 
+const start_time = [0, 0, 0];
+const end_time = [23, 59, 59];
+
 @Component({
     selector: 'jam-range-datepicker',
     templateUrl: './range-datepicker.component.html',
+    providers: [DatePipe],
     styleUrls: ['./range-datepicker.component.scss']
 })
 export class RangeDatepickerComponent implements OnInit {
@@ -82,8 +86,8 @@ export class RangeDatepickerComponent implements OnInit {
         this.startDate = start_date;
         this.endDate = end_date;
         this.label = this.togglePreviewText(start_date, end_date);
-        this.startDateChange.emit(start_date);
-        this.endDateChange.emit(end_date);
+        this.startDateChange.emit(this.formatDateAndAddTime(start_date, start_time));
+        this.endDateChange.emit(this.formatDateAndAddTime(end_date, end_time));
         this.updateDate.emit();
     }
 
@@ -137,5 +141,11 @@ export class RangeDatepickerComponent implements OnInit {
 
     private compareDaysOfTheSameMonth(): boolean {
         if (this.startDate.getDate() === this.endDate.getDate()) return true;
+    }
+
+    private formatDateAndAddTime(date: Date, time: Array<number>): Date {
+        date.setHours(time[0], time[1], time[2]);
+
+        return date;
     }
 }

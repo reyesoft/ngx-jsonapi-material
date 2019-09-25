@@ -11,11 +11,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule, MatFormFieldModule, MatOptionModule, MatButtonModule, MatIconModule, MatTooltipModule } from '@angular/material';
 import { RangeDatepickerComponent } from './range-datepicker.component';
-import { SatDatepickerModule } from 'saturn-datepicker';
+import { SatDatepickerModule, SatNativeDateModule } from 'saturn-datepicker';
 
 @NgModule({
     imports: [
         FormsModule,
+        SatNativeDateModule,
         SatDatepickerModule,
         ReactiveFormsModule,
         MatFormFieldModule,

@@ -1,6 +1,6 @@
 {
     "name": "ngx-jsonapi-material-app",
-    "version": "0.22.47",
+    "version": "0.22.48",
     "scripts": {
         "build_lib": "ng build --prod ngx-jsonapi-material",
         "npm_pack": "cd dist/ngx-jsonapi-material && npm pack",
@@ -116,7 +116,7 @@
         "@ngx-translate/http-loader": "3.0.1",
         "angular2-toaster": "^8.0.0",
         "core-js": "^2.5.7",
-        "ngx-jsonapi": "^2.0.0",
+        "ngx-jsonapi": "^2.1.6",
         "ngx-uploader": "6.0.4",
         "rxjs": "6.3.3",
         "saturn-datepicker": "7.0.2",
