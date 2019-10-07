@@ -1,4 +1,4 @@
-<jam-upload [uploadUrl]="uploadUrl" (dragAndDropChange)="dragAndDropStyles($event)" (showPreview)="showPreview($event)" mat-icon-button matTooltip="Subir imagen" fxLayout="row" fxLayoutAlign="center center"
+<jam-upload [uploadUrl]="uploadUrl" (dragAndDropChange)="dragAndDropStyles($event)" (showPreview)="showPreview($event)" mat-icon-button fxLayout="row" fxLayoutAlign="center center"
     [jamHeaders]="jamHeaders"
     (response)="response.emit($event)"
     >
@@ -10,7 +10,7 @@
                 <div class="overlay"></div>
                 <div class="menu">
                     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
-                        <mat-icon>add_a_photo</mat-icon>
+                        <mat-icon matTooltip="Subir imagen">add_a_photo</mat-icon>
                         <mat-divider *ngIf="showDeleteOption"></mat-divider>
                         <jam-delete-confirmation *ngIf="showDeleteOption"
                             [styled]="{ color: 'white' }"

@@ -11,3 +11,28 @@ jam-upload #gallery-manager {
     @include setSizes(auto, auto);
     font-size: 8rem;
 }
+
+.container-gallery-manager {
+    position: relative;
+    border-radius: inherit;
+}
+
+.highlighted-image-container {
+    @extend .mat-icon !optional;
+    @extend .mat-accent !optional;
+    height: auto !important;
+    width: auto !important;
+    --color: currentColor;
+    border: 2px solid var(--color);
+}
+
+.highlighted-image {
+    padding: 2px;
+    box-sizing: content-box;
+    background: inherit;
+    border-radius: 10%;
+    position: absolute;
+    top: -10px;
+    left: calc(100% - 14px);
+    z-index: 2;
+}

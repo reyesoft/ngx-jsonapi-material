@@ -8126,10 +8126,10 @@ ng-packagr@^3.0.0-rc.2:
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
-ngx-jsonapi@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/ngx-jsonapi/-/ngx-jsonapi-2.1.6.tgz#fa4fb3a008a2f1f20dc0aafbcaa22aff4c2cc854"
-  integrity sha512-rtnJJNP5tLJr795Ogz6NdgU9EBbBKpEjEaa+8XoAyUBLEA7Xp4uyAQ0NuhEIKKRgpLthuLIgmNUz9lCneKW9jQ==
+ngx-jsonapi@^2.1.9:
+  version "2.1.9"
+  resolved "https://registry.yarnpkg.com/ngx-jsonapi/-/ngx-jsonapi-2.1.9.tgz#cb10e1da665ebeb2f6407185a148bc37227725cc"
+  integrity sha512-uYosKUqwpfMChoojCpeCL3vwnntd4P7D9tSMiKubJY846A3qfVGbk4BuReSI5qZ9yuK/8LGk+LOs8xX9FUtpGw==
   dependencies:
     dexie "^2.0.4"
 
