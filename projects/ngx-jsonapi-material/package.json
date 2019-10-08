@@ -15,7 +15,7 @@
         "@ngx-formly/material": "5.0.0-beta.21",
         "@ngx-translate/core": "10.0.2",
         "@ngx-translate/http-loader": "3.0.1",
-        "ngx-jsonapi": "^2.0.0",
+        "ngx-jsonapi": "^2.1.9",
         "ngx-uploader": "6.0.4",
         "saturn-datepicker": "7.0.2",
         "localforage": "^1.5.2",
