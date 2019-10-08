@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatProgressBarModule,
     MatFormFieldModule,
+    MatTooltipModule,
     MatInputModule,
     MatIconModule,
     MatOptionModule,
@@ -25,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     imports: [
         FormsModule,
         FlexLayoutModule,
+        MatTooltipModule,
         ReactiveFormsModule,
         MatAutocompleteModule,
         MatFormFieldModule,

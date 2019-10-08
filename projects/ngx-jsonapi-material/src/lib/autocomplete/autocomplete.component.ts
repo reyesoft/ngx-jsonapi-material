@@ -12,6 +12,19 @@ import { Destroyer } from '../../lib/destroyer';
   templateUrl: 'autocomplete.component.html'
 })
 export class JamAutocompleteComponent implements OnInit, OnDestroy {
+    /**
+     * @param  {boolean} previewSelected
+     * @usageNotes By default it is `false`.
+     * In case it is `true`, the autocomplete,
+     * shows in the placeholder or matLabel a preview of the selected item.
+     */
+    @Input() public previewSelected: boolean = false;
+    /**
+     * @param {string} displayText
+     * @usageNotes Text of the selected item.
+     */
+    @Input() public displayText: string = '';
+    @Input() public placeholder: string = 'Escribe algo que buscar';
     @Input() public services: Service;
     @Input() public displayAttributes: Array<string> = [];
     @Input() public useBatchAll = false;
@@ -73,6 +86,12 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
 
     public selectedResource(resource: Resource) {
         this.toggleResourceChange.emit(resource);
+
+        this.displayText = this.displayPreview(resource.attributes[this.displayAttributes[0]]);
+    }
+
+    public displayPreview(display_text: string): string {
+        return this.previewSelected ? display_text : this.placeholder;
     }
 
     public displayFn(resource?: Resource): string {
@@ -94,7 +113,7 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
             include: this.include
         };
         if (search_text) {
-            params.remotefilter = { name: search_text };
+            params.remotefilter = { [this.displayAttributes[0]]: search_text };
         }
 
         return this.services.all(params).pipe(
@@ -106,6 +125,11 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
         );
     }
 
+    public clearDisplayText(): void {
+        this.displayText = '';
+        this.autocompleteCtrl.setValue('');
+    }
+
     private filterResourceByName(value: string | Resource): Array<Resource> {
         const filterValue = typeof value === 'string' ? value.toLowerCase() : '';
         let count = 0;
@@ -115,8 +139,8 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
         return this.resourceArray.filter((resource: Resource) => {
             if (
                 count < this.resource_max_on_list &&
-                (resource.attributes.name.toLowerCase().indexOf(filterValue) === 0 ||
-                    resource.attributes.name.toLowerCase().indexOf(' ' + filterValue) > 0)
+                (resource.attributes[this.displayAttributes[0]].toLowerCase().indexOf(filterValue) === 0 ||
+                    resource.attributes[this.displayAttributes[0]].toLowerCase().indexOf(' ' + filterValue) > 0)
             ) {
                 return count += 1;
             }
