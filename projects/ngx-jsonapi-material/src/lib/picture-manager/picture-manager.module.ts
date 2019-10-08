@@ -9,7 +9,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxUploaderModule } from 'ngx-uploader';
-import { MatProgressSpinnerModule, MatDividerModule, MatIconModule, MatTooltipModule, MatButtonModule } from '@angular/material';
+import { MatProgressSpinnerModule, MatDividerModule, MatIconModule, MatTooltipModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UploadComponent } from './upload/upload.component';
 import { PictureManagerComponent } from './picture/picture-manager.component';
@@ -19,6 +19,7 @@ import { JamDeleteConfirmationModule } from '../delete-confirmation/delete-confi
 @NgModule({
     imports: [
         JamDeleteConfirmationModule,
+        MatCardModule,
         MatProgressSpinnerModule,
         MatTooltipModule,
         MatButtonModule,

@@ -1,9 +1,19 @@
-<div *ngFor="let picture of pictures">
-    <jam-picture-manager [showDeleteOption]="showDeleteOption" [source]="picture.attributes.url" [uploadUrl]="uploadUrl"
-        [jamHeaders]="jamHeaders"
-    ></jam-picture-manager>
+<div *ngFor="let picture of pictures; let position = index">
+    <mat-card class="mat-card-flat padding-0 container-gallery-manager"
+        [matTooltip]="highlightedImage == position ? 'Imagen principal' : null"
+        [ngClass]="highlightedImage == position ? 'mat-icon mat-accent highlighted-image-container' : null"
+    >
+        <mat-icon color="accent" *ngIf="highlightedImage == position"
+            class="highlighted-image"
+        >collections_bookmark</mat-icon>
+        <jam-picture-manager [showDeleteOption]="showDeleteOption" [source]="picture.attributes.url" [uploadUrl]="uploadUrl"
+            [jamHeaders]="jamHeaders"
+        ></jam-picture-manager>
+    </mat-card>
 </div>
-<jam-upload id="gallery-manager" [uploadUrl]="uploadUrl" (showPreview)="showPreview($event)" *ngIf="!pictures || (pictures && pictures.length < limit)" mat-icon-button matTooltip="Subir imagen"
+<jam-upload id="gallery-manager" [uploadUrl]="uploadUrl" (showPreview)="showPreview($event)"
+    *ngIf="!pictures || (pictures && pictures.length < limit)"
+    mat-icon-button matTooltip="Subir imagen"
     [jamHeaders]="jamHeaders">
     <mat-icon id="base-icon">add_a_photo</mat-icon>
 </jam-upload>
