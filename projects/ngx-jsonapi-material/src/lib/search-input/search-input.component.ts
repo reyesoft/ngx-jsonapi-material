@@ -5,16 +5,17 @@
  * distributed without the express permission of Reyesoft
  */
 
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, map } from 'rxjs/operators';
+import { Destroyer } from '../destroyer';
 
 @Component({
     selector: 'jam-search-input',
     styleUrls: ['./search-input.component.scss'],
     templateUrl: './search-input.component.html'
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent implements OnInit, OnDestroy {
     @Input() public text: string;
     @Input() public opened: boolean = false;
     @Output() public textChange: EventEmitter<string> = new EventEmitter();
@@ -23,14 +24,21 @@ export class SearchInputComponent implements OnInit {
 
     public showSearch = false;
 
+    private destroyer = new Destroyer();
+
     public ngOnInit() {
         this.showSearch = this.opened || this.showSearch;
 
         this.searchCtrl.valueChanges
             .pipe(
+                this.destroyer.pipe(),
                 map(x => x),
                 debounceTime(400)
             ).subscribe(newValue => this.textChange.emit(newValue));
+    }
+
+    public ngOnDestroy() {
+        this.destroyer.destroy();
     }
 
     public showInput() {
