@@ -1,34 +1,49 @@
-<mat-form-field style="width: 100%" appearance="outline">
+<mat-form-field style="width: 100%"
+    appearance="outline" floatLabel="never" color="accent"
+>
     <input matInput aria-label="Escribe algo que buscar" name="autocomplete-resource"
-        placeholder="Escribe algo que buscar"
+        [placeholder]="displayText || placeholder"
         type="text"
         [matAutocomplete]="auto"
         [formControl]="autocompleteCtrl"
         (blur)="closeAutocomplete()"
         id="autocompleteResource"
-        #autocompleteResource>
-    <mat-autocomplete #auto="matAutocomplete"
-    [displayWith]="displayFn"
-    (optionSelected)="selectedResource($event.option.value)">
-    <div *ngFor="let resource of filtered_resource | async; trackBy: trackByFn" >
-        <mat-option [value]="resource" *ngIf="showList">
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-                <mat-icon>{{ icon }}</mat-icon>
-                <strong
-                    [innerHTML]="resource.attributes[displayAttributes[0]]"
-                ></strong>
-                <ng-container *ngFor="let attribute of displayAttributes; let item = index">
-                    <small *ngIf="item >= 1"> | {{ resource.attributes[attribute] }}</small>
-                </ng-container>
-            </div>
-        </mat-option>
-    </div>
-</mat-autocomplete>
+        #autocompleteResource
+    >
 
-<button mat-icon-button class="mat-button" matSuffix matTooltip="Actualizar lista"
-    [disabled]="collection?.is_loading" (click)="refresh()">
-    <mat-icon class="toast-shortcuts">refresh</mat-icon>
-</button>
+    <mat-autocomplete #auto="matAutocomplete"
+        [displayWith]="displayFn"
+        (optionSelected)="selectedResource($event.option.value)">
+        <mat-option [value]="null" (click)="clearDisplayText()">-- Ninguna --</mat-option>
+        <div *ngFor="let resource of filtered_resource | async; trackBy: trackByFn" >
+            <mat-option [value]="resource" *ngIf="showList">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+                    <mat-icon>{{ icon }}</mat-icon>
+                    <strong
+                        [innerHTML]="resource.attributes[displayAttributes[0]]"
+                    ></strong>
+                    <ng-container *ngFor="let attribute of displayAttributes; let item = index">
+                        <small *ngIf="item >= 1"> | {{ resource.attributes[attribute] }}</small>
+                    </ng-container>
+                </div>
+            </mat-option>
+        </div>
+    </mat-autocomplete>
+
+    <div fxLayout="row" matSuffix fxLayoutAlign="end center">
+        <button mat-icon-button class="mat-button" matSuffix matTooltip="Limpiar selección"
+            *ngIf="autocompleteCtrl.value || displayText"
+            [disabled]="!collection?.loaded"
+            (click)="clearDisplayText()"
+        >
+            <mat-icon class="toast-shortcuts">close</mat-icon>
+        </button>
+
+        <button mat-icon-button class="mat-button" matSuffix matTooltip="Actualizar lista"
+            [disabled]="collection?.is_loading" (click)="refresh()">
+            <mat-icon class="toast-shortcuts">refresh</mat-icon>
+        </button>
+    </div>
 </mat-form-field>
 
 <mat-progress-bar class="progress-bar-autocomplete"
@@ -36,6 +51,7 @@
     color="accent"
     mode="indeterminate"
 ></mat-progress-bar>
+
 <small *ngIf="collection?.is_loading">
     <span>Cargando recursos</span>
     <span [innerHTML]="resourceArray.length > 0 ? '(' + resourceArray.length + ')...' : ''"></span>

@@ -27,7 +27,11 @@
     </ng-container>
 </jam-floating-filters>
 
+<pre>meModifico?{{ books?.data[0]?.attributes.title | json }}</pre>
+
 <jam-autocomplete icon="book"
+    [previewSelected]="true"
+    [displayText]="books?.data[0]?.attributes.title"
     [services]="booksService"
     [displayAttributes]="['title', 'date_published']"
     (toggleResourceChange)="selected($event)"
