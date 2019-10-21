@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatExpansionModule, MatIconModule, MatButtonModule, MatDividerModule } from '@angular/material';
+import { MatFormFieldModule, MatExpansionModule, MatIconModule, MatButtonModule, MatDividerModule, MatCardModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TopWarningComponent } from './top-warning.component';
 import { SingleWarningComponent } from './single-warning/single-warning.component';
@@ -21,6 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     imports: [
         MatFormFieldModule,
         MatExpansionModule,
+        MatCardModule,
         MatIconModule,
         FlexLayoutModule,
         MatButtonModule,

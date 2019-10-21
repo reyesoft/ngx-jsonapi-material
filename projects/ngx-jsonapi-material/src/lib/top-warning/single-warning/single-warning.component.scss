@@ -1,12 +1,7 @@
 @import '~@angular/material/theming';
 
-.layout-padding {
-    padding: 16px;
-    display: block;
-    box-sizing: border-box;
-}
-
 .yellow-bg-400 {
+    box-sizing: border-box;
     background: mat-color($mat-yellow, 400);
     color: mat-color($mat-grey, 900);
 }
