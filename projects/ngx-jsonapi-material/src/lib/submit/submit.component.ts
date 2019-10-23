@@ -12,10 +12,11 @@ import { Location } from '@angular/common';
 
 @Component({
     selector: 'jam-submit',
+    styleUrls: ['./submit.component.scss'],
     templateUrl: './submit.component.html'
 })
 export class SubmitComponent {
-    @Input() public submitAppearance: 'mat-flat-button' | 'mat-stroked-button' | 'mat-raised-button' | 'mat-button' = 'mat-raised-button';
+    @Input() public submitAppearance: 'mat-flat-button' | 'mat-stroked-button' | 'mat-raised-button' | 'mat-button' = 'mat-flat-button';
     @Input() public submitColor: 'primary' | 'warn' = 'primary';
     @Input() public disabled: boolean;
     @Input() public noCancel: boolean;

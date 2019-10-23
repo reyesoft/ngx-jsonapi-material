@@ -1,0 +1,12 @@
+%width {
+    width: inherit;
+}
+
+div {
+    @extend %width;
+}
+
+div button[type="submit"] {
+    @extend %width;
+    min-height: 36px;
+}
