@@ -1,4 +1,7 @@
-<mat-form-field appearance="outline">
+<mat-form-field
+    [floatLabel]="floatLabel"
+    [appearance]="appareance"
+>
     <mat-label>
         {{ label || 'Seleccione una opción' }}
         <i *ngIf="!toRelate">(Ninguna)</i>

@@ -7,6 +7,8 @@ import { Resource, DocumentCollection } from 'ngx-jsonapi';
     templateUrl: './select.component.html'
 })
 export class SelectComponent implements OnInit {
+    @Input() public appareance: 'fill' | 'outline' | 'legacy' | 'standard' = 'outline';
+    @Input() public floatLabel: 'never' | 'always' = 'always';
     @Input() public multiple: boolean;
     @Input() public parentId: string;
     @Input() public toRelate: Resource;
