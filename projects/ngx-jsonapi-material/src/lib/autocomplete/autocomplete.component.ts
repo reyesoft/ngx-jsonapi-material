@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy, Input, ElementRef, ViewChild, EventEmitter, Output, ChangeDetectorRef, TrackByFunction } from '@angular/core';
-import { Observable, merge, Subject, Subscription } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Resource, DocumentCollection, Service, IParamsCollection } from 'ngx-jsonapi';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime, startWith, map, timeout, filter, finalize, tap } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
+import { timeout, filter, tap } from 'rxjs/operators';
 import { MatAutocompleteTrigger } from '@angular/material';
 import { filterOrRequest } from '../../lib/batch';
 import { Destroyer } from '../../lib/destroyer';
 
 @Component({
   selector: 'jam-autocomplete',
+  styleUrls: ['./autocomplete.component.scss'],
   templateUrl: 'autocomplete.component.html'
 })
 export class JamAutocompleteComponent implements OnInit, OnDestroy {
@@ -23,11 +24,11 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
      * @param {string} displayText
      * @usageNotes Text of the selected item.
      */
-    @Input() public displayText: string = '';
+    @Input() public toggleResource: Resource;
     @Input() public placeholder: string = 'Escribe algo que buscar';
     @Input() public services: Service;
     @Input() public displayAttributes: Array<string> = [];
-    @Input() public useBatchAll = false;
+    @Input() public remoteFilter = {};
     @Input() public include: Array<string> = [];
     @Input() public sort: Array<string> = [];
     @Input() public icon: string;
@@ -59,6 +60,7 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
+        this.clearDisplay();
         this.collection = this.services.newCollection();
         this.filtered_resource = this.autocompleteCtrl.valueChanges.pipe(
             this.destroyer.pipe(),
@@ -85,13 +87,15 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
     }
 
     public selectedResource(resource: Resource) {
+        if (!resource) {
+            return;
+        }
+
+        if (this.previewSelected) {
+            this.toggleResource = resource;
+        }
+
         this.toggleResourceChange.emit(resource);
-
-        this.displayText = this.displayPreview(resource.attributes[this.displayAttributes[0]]);
-    }
-
-    public displayPreview(display_text: string): string {
-        return this.previewSelected ? display_text : this.placeholder;
     }
 
     public displayFn(resource?: Resource): string {
@@ -109,7 +113,7 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
                 number: 1,
                 size: this.collectionPerPage
             },
-            remotefilter: {},
+            remotefilter: this.remoteFilter,
             include: this.include
         };
         if (search_text) {
@@ -119,14 +123,13 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
         return this.services.all(params).pipe(
             filter(collection => collection.builded),
             tap(collection => {
-                // if (!this.currentEntity) this.setCurrentEntityOrLoad();
                 this.collection = collection;
             })
         );
     }
 
-    public clearDisplayText(): void {
-        this.displayText = '';
+    public clearDisplay(): void {
+        this.toggleResource = null;
         this.autocompleteCtrl.setValue('');
     }
 

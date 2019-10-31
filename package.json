@@ -116,7 +116,7 @@
         "@ngx-translate/http-loader": "3.0.1",
         "angular2-toaster": "^8.0.0",
         "core-js": "^2.5.7",
-        "ngx-jsonapi": "^2.1.9",
+        "ngx-jsonapi": "^2.1.13",
         "ngx-uploader": "6.0.4",
         "rxjs": "6.3.3",
         "saturn-datepicker": "7.0.2",
