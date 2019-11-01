@@ -3,7 +3,7 @@ import { Output, EventEmitter, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { IPage } from 'ngx-jsonapi/interfaces/page';
+import { filterOrRequest } from './batch';
 
 export class ParentAutocomplete {
     @Input() public toRelate: Resource;
@@ -24,30 +24,41 @@ export class ParentAutocomplete {
     public filteredCollection: Observable<Array<Resource>>;
     protected collectionArrayLastFilterValue: string;
     protected collectionArray: Array<Resource> = [];
-    protected readonly collectionPerPage = 100; // 500
-
-    // public constructor() {
-    // }
+    protected readonly collectionPerPage = 100;
 
     public selectedResource(resource: Resource) {
         if (!resource) {
             return;
         }
 
-        // lo definel hijo?
-        // if (this.previewSelected) {
-        //     this.toRelate = resource;
-        // }
-
+        this.toRelate = resource;
         this.toRelateChange.emit(resource);
     }
 
     public refresh() {
         this.service.clearCacheMemory();
-        // this.use_is_loading = false; // Esto no se para q es...
+        this.reload();
     }
 
-    public getAll(search_text: string): Observable<DocumentCollection> {
+    public clearDisplay(): void {
+        this.toRelate = null;
+        this.autocompleteCtrl.setValue('');
+    }
+
+    protected reload(): void {
+        this.filteredCollection = this.autocompleteCtrl.valueChanges.pipe(
+            filterOrRequest({
+                attribute_to_search: this.displayAttributes[0],
+                resourcesArray: this.collectionArray,
+                getAllFc: this.getAll.bind(this),
+                last_filter_value: this.collectionArrayLastFilterValue,
+                collection: this.collection,
+                page_size: this.collectionPerPage
+            })
+        );
+    }
+
+    private getAll(search_text: string): Observable<DocumentCollection> {
         let params: IParamsCollection = {
             page: { number: 1, size: this.collectionPerPage },
             remotefilter: this.remoteFilter,
@@ -65,10 +76,5 @@ export class ParentAutocomplete {
                 this.collection = collection;
             })
         );
-    }
-
-    public clearDisplay(): void {
-        this.toRelate = null;
-        this.autocompleteCtrl.setValue('');
     }
 }

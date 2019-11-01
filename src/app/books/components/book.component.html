@@ -24,6 +24,7 @@
 
         <jam-select [displayAttributes]="['name']"
             [service]="authorsService"
+            [removeRelationships]="true"
             [hasRefresh]="true"
             [(toRelate)]="book.relationships.author.data"
         >

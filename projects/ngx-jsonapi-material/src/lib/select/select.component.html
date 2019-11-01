@@ -24,7 +24,11 @@
 
         <mat-divider></mat-divider>
 
-        <mat-option *ngIf="removeRelationships" [value]="clear_relationships">-- Ninguna --</mat-option>
+        <mat-option *ngIf="removeRelationships"
+            (click)="clearDisplay()"
+        >
+            -- Ninguna --
+        </mat-option>
 
         <ng-container *ngFor="let resource of filteredCollection | async | filter: searchText">
             <mat-option [value]="resource" *ngIf="parentId && resource.id !== parentId">

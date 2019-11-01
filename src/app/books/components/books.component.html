@@ -31,10 +31,10 @@
 
 <jam-autocomplete icon="book"
     [previewSelected]="true"
-    [toggleResource]="books?.data[0]"
-    [services]="booksService"
+    [toRelate]="books?.data[0]"
+    [service]="booksService"
     [displayAttributes]="['title', 'date_published']"
-    (toggleResourceChange)="selected($event)"
+    (toRelateChange)="selected($event)"
 ></jam-autocomplete>
 
 <div class="mat-elevation-z2">

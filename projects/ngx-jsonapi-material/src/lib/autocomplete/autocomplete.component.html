@@ -2,9 +2,9 @@
     appearance="outline" floatLabel="never" color="accent"
 >
     <input matInput aria-label="Escribe algo que buscar" name="autocomplete-resource"
-        [placeholder]="toggleResource?.attributes[displayAttributes[0]] || placeholder"
+        [placeholder]="toRelate?.attributes[displayAttributes[0]] || placeholder"
         type="text"
-        [ngClass]="toggleResource?.attributes[displayAttributes[0]] ? 'custom-placeholder' : null"
+        [ngClass]="toRelate?.attributes[displayAttributes[0]] ? 'custom-placeholder' : null"
         [matAutocomplete]="auto"
         [formControl]="autocompleteCtrl"
         (blur)="closeAutocomplete()"
@@ -17,9 +17,9 @@
         (optionSelected)="selectedResource($event.option.value)">
         <div *ngIf="showList">
             <mat-option [value]="null" (click)="clearDisplay()">-- Ninguna --</mat-option>
-            <mat-option [ngClass]="toggleResource?.id === resource.id ? 'mat-selected mat-active' : null"
+            <mat-option [ngClass]="toRelate?.id === resource.id ? 'mat-selected mat-active' : null"
                 [value]="resource"
-                *ngFor="let resource of filtered_resource | async; trackBy: trackByFn"
+                *ngFor="let resource of filteredCollection | async; trackBy: trackByFn"
             >
                 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
                     <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
@@ -36,7 +36,7 @@
 
     <div fxLayout="row" matSuffix fxLayoutAlign="end center">
         <button mat-icon-button type="button" class="mat-button" matSuffix matTooltip="Limpiar selección"
-            *ngIf="toggleResource?.attributes[displayAttributes[0]] || autocompleteCtrl.value"
+            *ngIf="toRelate?.attributes[displayAttributes[0]] || autocompleteCtrl.value"
             [disabled]="!collection?.loaded"
             (click)="clearDisplay()"
         >
