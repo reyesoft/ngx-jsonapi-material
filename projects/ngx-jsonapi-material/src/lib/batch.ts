@@ -40,8 +40,7 @@ export const filterOrRequest = <T extends Resource>(params: {
             return params
                 .getAllFc(filterValue)
                 .pipe(
-                    catchError(() => []),
-                    skip(1)
+                    catchError(() => [])
                 ).pipe(
                 map((collection: DocumentCollection<T>) => {
                     params.collection = collection;

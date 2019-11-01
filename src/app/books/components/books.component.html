@@ -31,7 +31,7 @@
 
 <jam-autocomplete icon="book"
     [previewSelected]="true"
-    [displayText]="books?.data[0]?.attributes.title"
+    [toggleResource]="books?.data[0]"
     [services]="booksService"
     [displayAttributes]="['title', 'date_published']"
     (toggleResourceChange)="selected($event)"
