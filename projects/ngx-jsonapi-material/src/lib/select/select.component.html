@@ -3,18 +3,18 @@
     [appearance]="appareance"
 >
     <mat-label>
-        {{ label || 'Seleccione una opción' }}
+        {{ matLabel || 'Seleccione una opción' }}
         <i *ngIf="!toRelate">(Ninguna)</i>
     </mat-label>
     <mat-select
         [ngModel]="toRelate"
-        (ngModelChange)="updateRelationships($event)"
+        (ngModelChange)="selectedResource($event)"
         [disabled]="disabled || false"
         [placeholder]="placeholder || 'Seleccione una opción'"
         [multiple]="multiple || false"
         >
 
-        <div class="mat-option-header" *ngIf="adaptiveArray.length >= 10">
+        <div class="mat-option-header">
             <jam-search-input
                 [text]="searchText"
                 [opened]="true"
@@ -24,14 +24,18 @@
 
         <mat-divider></mat-divider>
 
-        <mat-option *ngIf="removeRelationships" [value]="clear_relationships">-- Ninguna --</mat-option>
+        <mat-option *ngIf="removeRelationships"
+            (click)="clearDisplay()"
+        >
+            -- Ninguna --
+        </mat-option>
 
-        <ng-container *ngFor="let resource of adaptiveArray | filter: searchText">
+        <ng-container *ngFor="let resource of filteredCollection | async | filter: searchText">
             <mat-option [value]="resource" *ngIf="parentId && resource.id !== parentId">
-                {{ resource.attributes[displayAttribute] }}
+                {{ resource.attributes[displayAttributes[0]] }}
             </mat-option>
             <mat-option [value]="resource" *ngIf="!parentId">
-                {{ resource.attributes[displayAttribute] }}
+                {{ resource.attributes[displayAttributes[0]] }}
             </mat-option>
         </ng-container>
 
@@ -41,7 +45,7 @@
     </mat-select>
 
     <button matSuffix mat-icon-button class="mat-button" *ngIf="hasRefresh"
-        (click)="refresh.emit()">
+        (click)="refresh()">
         <div fxLayout="row" fxLayoutAlign="center center">
             <mat-icon class="mat-hint">refresh</mat-icon>
         </div>

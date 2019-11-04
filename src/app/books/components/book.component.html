@@ -16,26 +16,26 @@
 
         <h4>Photos (many)</h4>
         <p><small>This a relationship with <i>hasMany:true</i></small></p>
-        <ul *ngIf="book.relationships.photos.builded">
+        <ul *ngIf="book?.relationships.photos?.builded">
             <li *ngFor="let photo of book.relationships.photos.data">
                 URI: <a href="{{ photo.attributes.uri }}">{{ photo.attributes.uri }}</a>
             </li>
         </ul>
 
-        <jam-select
-            [collection]="authors"
+        <jam-select [displayAttributes]="['name']"
+            [service]="authorsService"
+            [removeRelationships]="true"
             [hasRefresh]="true"
             [(toRelate)]="book.relationships.author.data"
-            displayAttribute="name"
-            [removeRelationships]="true">
+        >
             <jam-option-footer url="//multinexo.com" [openNewTab]="true"></jam-option-footer>
         </jam-select>
 
-        <jam-chips-autocomplete relationAlias="author" appearance="outline"
+        <!-- <jam-chips-autocomplete relationAlias="author" appearance="outline"
             [resource]="book"
             [service]="booksService"
             [attributesDisplay]="['title']"
-        ></jam-chips-autocomplete>
+        ></jam-chips-autocomplete> -->
     </mat-card-content>
     <mat-card-actions align="start">
         <a mat-button color="accent" routerLink="/books">Volver</a>

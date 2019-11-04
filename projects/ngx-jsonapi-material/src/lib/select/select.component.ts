@@ -1,51 +1,30 @@
-import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { Resource, DocumentCollection } from 'ngx-jsonapi';
+import { Component, Input, OnInit } from '@angular/core';
+import { ParentAutocomplete } from '../parent-autocomplete';
 
 @Component({
     selector: 'jam-select',
     styleUrls: ['./select.component.scss'],
     templateUrl: './select.component.html'
 })
-export class SelectComponent implements OnInit {
-    @Input() public appareance: 'fill' | 'outline' | 'legacy' | 'standard' = 'outline';
+export class SelectComponent extends ParentAutocomplete implements OnInit {
     @Input() public floatLabel: 'never' | 'always' = 'always';
     @Input() public multiple: boolean;
     @Input() public parentId: string;
-    @Input() public toRelate: Resource;
-    @Input() public placeholder: string;
-    @Input() public label: string;
-    @Input() public displayAttribute: string;
-    @Input() public collection: DocumentCollection;
     @Input() public removeRelationships: boolean;
-    @Input() public disabled: boolean;
-    @Input() public limit: number;
-    @Input() public hasRefresh: boolean = false;
 
-    @Output() public toRelateChange = new EventEmitter<Resource>();
-    @Output() public refresh = new EventEmitter<any>();
-
-    public adaptiveArray: Array<Resource> = [];
     public clear_relationships = null;
-
     public searchText: string = '';
 
-    public ngOnInit() {
-        if (this.limit) {
-            this.adaptiveArray = this.collection.data.slice(0, Number(this.limit));
-        } else {
-            this.adaptiveArray = this.collection.data;
-        }
+    public constructor() {
+        super();
+    }
 
-        if (this.toRelate) {
-            this.toRelate = this.collection.find(this.toRelate.id);
-        }
+    public ngOnInit() {
+        this.reload();
     }
 
     public updateFilter(search_text: string): void {
         this.searchText = search_text;
-    }
-
-    public updateRelationships(resource: Resource) {
-        this.toRelateChange.emit(resource);
+        this.autocompleteCtrl.setValue(this.searchText);
     }
 }
