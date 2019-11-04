@@ -18,10 +18,8 @@ export class JamAutocompleteComponent extends ParentAutocomplete implements OnIn
      * shows in the placeholder or matLabel a preview of the selected item.
      */
     @Input() public previewSelected: boolean = false;
-    @Input() public toggleResource: Resource;
     @Input() public icon: string;
     @Input() public showList: boolean = true;
-    @Output() public toggleResourceChange = new EventEmitter<Resource>();
     @ViewChild(MatAutocompleteTrigger) public autocompleteResource: MatAutocompleteTrigger;
     @ViewChild('autocompleteResource') public autocompleteResourceInput: ElementRef;
 
