@@ -32,6 +32,11 @@ export class JamErrorHandler extends ErrorHandler {
 
             return;
         }
+        if (error.status === 500 || error.message && error.message === 'Server Error') {
+            this.unhandledError(error.status);
+
+            return;
+        }
         if (error.errors) {
             this.handleJsonapiErrors(error);
 
@@ -47,13 +52,9 @@ export class JamErrorHandler extends ErrorHandler {
         }
 
         if (error.status) {
-            this.Notification(
-                'Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com',
-                'error',
-                `Código de error: ${error.status}`
-            );
+            this.unhandledError(error.status);
         } else if (error.message) {
-            this.Notification('Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com', 'error', error.message);
+            this.unhandledError(error.message);
         }
 
         super.handleError(error);
@@ -167,5 +168,13 @@ export class JamErrorHandler extends ErrorHandler {
         } else {
             this.Notification(error.detail || error.title);
         }
+    }
+
+    public unhandledError(message: string) {
+        this.Notification(
+            'Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com',
+            'error',
+            `Código de error: ${message}`
+        );
     }
 }

@@ -177,7 +177,7 @@ describe('JamErrorHandler', () => {
         expect(notification_spy).toHaveBeenCalledWith(
             'error',
             'Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com',
-            'Some error message'
+            'Código de error: Some error message'
         );
     });
 
