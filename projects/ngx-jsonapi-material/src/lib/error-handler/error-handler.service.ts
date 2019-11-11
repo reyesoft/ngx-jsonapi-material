@@ -15,6 +15,7 @@ export class JamErrorHandler extends ErrorHandler {
     public lastErrorCached = { title: '', time: 0 };
     public token_dialog_is_open: boolean;
     public globalStateService: IGlobalStateService;
+    public show_angular_errors = true;
 
     private form: FormGroup;
 
@@ -53,7 +54,7 @@ export class JamErrorHandler extends ErrorHandler {
 
         if (error.status) {
             this.unhandledError(error.status);
-        } else if (error.message) {
+        } else if (error.message && this.show_angular_errors) {
             this.unhandledError(error.message);
         }
 
