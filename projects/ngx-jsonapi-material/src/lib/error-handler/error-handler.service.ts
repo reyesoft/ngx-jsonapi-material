@@ -32,12 +32,6 @@ export class JamErrorHandler extends ErrorHandler {
 
             return;
         }
-        // Así envía el back los unhandled
-        if (error.status === 500 || error.message && error.message === 'Server Error') {
-            this.Notification('Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com');
-
-            return;
-        }
         if (error.errors) {
             this.handleJsonapiErrors(error);
 
@@ -52,10 +46,14 @@ export class JamErrorHandler extends ErrorHandler {
             return;
         }
 
-        // no lo largo en los errores del front porque hay una issue abierta en el repositorio de Angular que muestra erroers en los DF
-        // https://github.com/angular/angular/issues/23657
         if (error.status) {
-            this.Notification('Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com');
+            this.Notification(
+                'Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com',
+                'error',
+                `Código de error: ${error.status}`
+            );
+        } else if (error.message) {
+            this.Notification('Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com', 'error', error.message);
         }
 
         super.handleError(error);
@@ -142,11 +140,11 @@ export class JamErrorHandler extends ErrorHandler {
         this.form = form;
     }
 
-    public Notification(message: string, type?: 'success' | 'error' | 'info' | 'warning') {
-        let messages = message.split('|');
+    public Notification(title: string, type?: 'success' | 'error' | 'info' | 'warning', body?: string) {
+        let messages = title.split('|');
         type = type || 'error';
         if (messages.length === 1) {
-            this.toasterService.pop(type, message);
+            this.toasterService.pop(type, title, body);
 
             return;
         }
