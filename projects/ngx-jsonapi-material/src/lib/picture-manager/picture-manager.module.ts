@@ -23,6 +23,7 @@ import { JamDeleteConfirmationModule } from '../delete-confirmation/delete-confi
         MatProgressSpinnerModule,
         MatTooltipModule,
         MatButtonModule,
+        MatProgressSpinnerModule,
         MatDividerModule,
         MatIconModule,
         NgxUploaderModule,

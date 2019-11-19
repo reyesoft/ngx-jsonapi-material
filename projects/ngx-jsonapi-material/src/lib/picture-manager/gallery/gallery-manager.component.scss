@@ -36,3 +36,7 @@ jam-upload #gallery-manager {
     left: calc(100% - 14px);
     z-index: 2;
 }
+
+.disabled-update {
+    opacity: 0.3;
+}

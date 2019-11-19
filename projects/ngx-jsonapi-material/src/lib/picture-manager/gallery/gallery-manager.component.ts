@@ -19,12 +19,11 @@ export class GalleryManagerComponent implements OnInit {
     @Input() public highlightedImage: number = 0;
 
     @Output() public addPicture = new EventEmitter<string>();
+    @Output() public responsePicture = new EventEmitter<Resource>();
 
-    public hide_if_have_limit: boolean;
+    public image_loading: boolean = false;
 
     public ngOnInit() {
-        // TODO: arreglar y descomentar en COL-1500
-        // this.hide_if_have_limit = this.validateIfHaveLimit();
         this.highlightedImage = this.highlightedImage || 0;
     }
 
@@ -32,7 +31,13 @@ export class GalleryManagerComponent implements OnInit {
         this.addPicture.emit(img);
     }
 
-    public validateIfHaveLimit() {
-        return this.limit ? this.pictures.length > this.limit : false;
+    public response(event): void {
+        if (event.type !== 'done') {
+            this.image_loading = true;
+
+            return;
+        }
+        this.image_loading = false;
+        this.responsePicture.emit(event.file.response.data);
     }
 }

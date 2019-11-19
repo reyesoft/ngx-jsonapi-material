@@ -1,19 +1,30 @@
 <div *ngFor="let picture of pictures; let position = index">
     <mat-card class="mat-card-flat padding-0 container-gallery-manager"
+        *ngIf="limit ? position <= limit : true"
         [matTooltip]="highlightedImage == position ? 'Imagen principal' : null"
         [ngClass]="highlightedImage == position ? 'mat-icon mat-accent highlighted-image-container' : null"
     >
         <mat-icon color="accent" *ngIf="highlightedImage == position"
             class="highlighted-image"
         >collections_bookmark</mat-icon>
-        <jam-picture-manager [showDeleteOption]="showDeleteOption" [source]="picture.attributes.url" [uploadUrl]="uploadUrl"
+        <jam-picture-manager [showDeleteOption]="showDeleteOption" [source]="picture.attributes.url" [uploadUrl]="uploadUrl + '/photos/' + picture.id"
             [jamHeaders]="jamHeaders"
         ></jam-picture-manager>
     </mat-card>
 </div>
 <jam-upload id="gallery-manager" [uploadUrl]="uploadUrl" (showPreview)="showPreview($event)"
-    *ngIf="!pictures || (pictures && pictures.length < limit)"
+    *ngIf="pictures && pictures.length < limit" class="container-gallery-manager"
+    [disabled]="image_loading"
+    (response)="response($event)"
     mat-icon-button matTooltip="Subir imagen"
     [jamHeaders]="jamHeaders">
-    <mat-icon id="base-icon">add_a_photo</mat-icon>
+    <mat-icon id="base-icon" ng-class="image_loading ? 'disabled-update' : null">add_a_photo</mat-icon>
+    <mat-progress-spinner class="elements-up default"
+        style="position: absolute; top: 35%; left: 33%;"
+        *ngIf="image_loading"
+        mode="indeterminate"
+        value="value"
+        diameter="45"
+        aria-label="Cargando Espere">
+    </mat-progress-spinner>
 </jam-upload>
