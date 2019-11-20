@@ -9,6 +9,7 @@ import { Resource } from 'ngx-jsonapi';
 export class GalleryManagerComponent implements OnInit {
     @Input() public pictures: Array<Resource | any>;
     @Input() public uploadUrl: string;
+    @Input() public updatePicture: string = '/photos/';
     @Input() public limit: number;
     @Input() public showDeleteOption: boolean = true;
     @Input() public jamHeaders: { [key: string]: any };

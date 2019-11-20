@@ -7,7 +7,10 @@
         <mat-icon color="accent" *ngIf="highlightedImage == position"
             class="highlighted-image"
         >collections_bookmark</mat-icon>
-        <jam-picture-manager [showDeleteOption]="showDeleteOption" [source]="picture.attributes.url" [uploadUrl]="uploadUrl + '/photos/' + picture.id"
+        <jam-picture-manager
+            [showDeleteOption]="showDeleteOption"
+            [source]="picture.attributes.url"
+            [uploadUrl]="uploadUrl + updatePicture + picture.id"
             [jamHeaders]="jamHeaders"
         ></jam-picture-manager>
     </mat-card>
