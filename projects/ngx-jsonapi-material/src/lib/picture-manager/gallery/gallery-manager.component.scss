@@ -37,6 +37,12 @@ jam-upload #gallery-manager {
     z-index: 2;
 }
 
+.loading-position {
+    position: absolute;
+    top: 35%;
+    left: 32%;
+}
+
 .disabled-update {
     opacity: 0.3;
 }

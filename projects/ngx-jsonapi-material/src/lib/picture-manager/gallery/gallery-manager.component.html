@@ -18,9 +18,9 @@
     (response)="response($event)"
     mat-icon-button matTooltip="Subir imagen"
     [jamHeaders]="jamHeaders">
-    <mat-icon id="base-icon" ng-class="image_loading ? 'disabled-update' : null">add_a_photo</mat-icon>
+    <mat-icon id="base-icon" [ngClass]="image_loading ? 'disabled-update' : null">add_a_photo</mat-icon>
     <mat-progress-spinner class="elements-up default"
-        style="position: absolute; top: 35%; left: 33%;"
+        class="loading-position"
         *ngIf="image_loading"
         mode="indeterminate"
         value="value"
