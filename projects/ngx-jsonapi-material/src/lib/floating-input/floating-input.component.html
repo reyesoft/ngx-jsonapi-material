@@ -1,7 +1,7 @@
 <div class="floating-input" [ngClass]="status ? 'mat-elevation-z1' : ''">
     <mat-expansion-panel
         hideToggle="true"
-        style="width: 200px; box-shadow: none !important; background: inherit !important; border: 0 !important;"
+        style="width: auto; box-shadow: none !important; background: inherit !important; border: 0 !important;"
         [disabled]="lock"
         [expanded]="status"
         (closed)="statusToggle(false)"
