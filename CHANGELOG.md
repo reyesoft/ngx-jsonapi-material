@@ -1,6 +1,6 @@
 # Changelog
 
-** 0.0.56
+## 0.0.56
 #### Added
 * Now when a new photo is uploaded to the gallery, it shows a loading animation.
 #### Changed
