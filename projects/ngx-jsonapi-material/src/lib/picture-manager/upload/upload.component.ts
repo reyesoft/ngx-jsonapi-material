@@ -12,6 +12,7 @@ export class UploadComponent {
     @Input() public data: { [key: string]: string } = {};
     @Input() public redirect: boolean;
     @Input() public jamHeaders: { [key: string]: any };
+    @Input() public disabled: boolean = false;
     public httpClient: HttpClient;
     public options: UploaderOptions;
     public formData: FormData;
