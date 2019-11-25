@@ -17,7 +17,8 @@ import {
     JamFloatingFiltersModule,
     JamTopWarningModule,
     JamAutocompleteModule,
-    JamDeleteConfirmationModule
+    JamDeleteConfirmationModule,
+    JamEditTextAttributeModule
 } from 'ngx-jsonapi-material';
 import { JamFloatingButtonModule, JamInfoButtonModule, JamRangeDatepickerModule } from 'projects/ngx-jsonapi-material/src/public-api';
 import { JamFilterModule } from 'projects/ngx-jsonapi-material/src/lib/filters/filters.module';
@@ -43,6 +44,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         JamDeleteConfirmationModule,
         JamAutocompleteModule,
         JamRangeDatepickerModule,
+        JamEditTextAttributeModule,
         JamTopWarningModule,
         JamSubmitModule,
         MaterialModule,

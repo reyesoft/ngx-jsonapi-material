@@ -19,9 +19,12 @@ import { JamSubmitModule } from '../submit/submit.module';
 import {
     EditTextAttributeDialogComponent
 } from './edit-text-attribute-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
+        FormsModule,
+        ReactiveFormsModule,
         MatTooltipModule,
         MatDialogModule,
         MatButtonModule,

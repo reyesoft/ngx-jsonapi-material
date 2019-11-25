@@ -5,7 +5,7 @@
  * distributed without the express permission of Reyesoft
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, HostListener } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Resource } from 'ngx-jsonapi';
 
@@ -23,11 +23,19 @@ export interface IEditTextAttributeData {
     templateUrl: 'edit-text-attribute-dialog.component.html'
 })
 export class EditTextAttributeDialogComponent {
+    public text_value = '';
+
     public constructor(
         public dialogRef: MatDialogRef<EditTextAttributeDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: IEditTextAttributeData) {
         if (!data.accept) {
             data.accept = 'Aceptar';
+        }
+    }
+
+    @HostListener('window: keyup', ['$event']) public onKeyUp(event: KeyboardEvent) {
+        if (event.key === 'Enter' && !event.shiftKey)   {
+            this.updateAttributeAndClose(this.data.attribute, this.text_value);
         }
     }
 
