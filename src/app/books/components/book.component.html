@@ -24,20 +24,20 @@
 
         <button mat-button (click)="openDialog()">editar titulo</button>
 
-        <!-- <jam-select
+        <jam-select
             [collection]="authors"
             [hasRefresh]="true"
             [(toRelate)]="book.relationships.author.data"
             displayAttribute="name"
             [removeRelationships]="true">
             <jam-option-footer url="//multinexo.com" [openNewTab]="true"></jam-option-footer>
-        </jam-select> -->
+        </jam-select>
 
-        <!-- <jam-chips-autocomplete relationAlias="author" appearance="outline"
+        <jam-chips-autocomplete relationAlias="author" appearance="outline"
             [resource]="book"
             [service]="booksService"
             [attributesDisplay]="['title']"
-        ></jam-chips-autocomplete> -->
+        ></jam-chips-autocomplete>
     </mat-card-content>
     <mat-card-actions align="start">
         <a mat-button color="accent" routerLink="/books">Volver</a>
