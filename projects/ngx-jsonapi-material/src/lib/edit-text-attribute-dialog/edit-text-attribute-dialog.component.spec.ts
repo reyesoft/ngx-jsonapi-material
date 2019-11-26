@@ -68,11 +68,24 @@ describe('EditTextAttributeDialogComponent', () => {
         expect(component.data.resource.attributes.observation).toEqual('Esto es una observación');
     });
 
-    it('should do something on window scroll', () => {
-        let event = window.dispatchEvent(new Event('keyup'));
-        expect(event).toHaveBeenCalled();
-        // fixture.whenStable().then(() => {
-            // expect(component.updateAttributeAndClose).toHaveBeenCalledWith(component.data.attribute, component.text_value);
-        // });
+    it('When you click on it, call the updateAttributeAndClose method.', () => {
+        let updateAttributeAndClose_spy = spyOn(component, 'updateAttributeAndClose');
+        let event = new KeyboardEvent('Enter', {
+            key: 'Enter',
+            bubbles: true
+        });
+        component.onKeyUp(event);
+        expect(updateAttributeAndClose_spy).toHaveBeenCalled();
+    });
+
+    it('If you press the shift combination but enter you should not call the method, updateAttributeAndClose', () => {
+        let updateAttributeAndClose_spy = spyOn(component, 'updateAttributeAndClose');
+        let event = new KeyboardEvent('Enter', {
+            key: 'Enter',
+            shiftKey: true,
+            bubbles: true
+        });
+        component.onKeyUp(event);
+        expect(updateAttributeAndClose_spy).not.toHaveBeenCalled();
     });
 });
