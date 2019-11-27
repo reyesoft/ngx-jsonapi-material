@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.57
+
+#### Added
+
+-   EditTextAttributeDialog supports Textarea. Now, pressing enter saves/accepts the changes.
+
 ## 0.0.56
 
 #### Added
