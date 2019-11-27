@@ -4,7 +4,7 @@
 
 #### Added
 
--   Support to the textarea of the dialogue EditTextAttributeDialog. Now pressing enter saves/accepts the changes.
+-   Textarea support for EditTextAttributeDialog. Now pressing enter saves/accepts the changes.
 
 ## 0.0.56
 
