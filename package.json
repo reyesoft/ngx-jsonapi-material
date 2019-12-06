@@ -110,6 +110,7 @@
         "@angular/platform-browser": "^7.0.4",
         "@angular/platform-browser-dynamic": "^7.0.4",
         "@angular/router": "^7.0.4",
+        "@ecodev/fab-speed-dial": "3.1.0",
         "@ngx-formly/core": "5.0.0-beta.21",
         "@ngx-formly/material": "5.0.0-beta.21",
         "@ngx-translate/core": "10.0.2",
