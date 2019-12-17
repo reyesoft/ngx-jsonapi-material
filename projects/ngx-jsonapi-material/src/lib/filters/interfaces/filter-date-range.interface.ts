@@ -1,8 +1,9 @@
 import { Filter, FilterConfig } from './filter.interface';
+import { DateRangeFilterInterface } from './filter-types/date-range-filter.interface';
 
 export interface FilterDateRange extends Filter {
     type: 'range_date';
-    selected: { since: string; until: string };
+    selected: DateRangeFilterInterface;
 }
 
 export class JsonapiFilterRangedateConfig extends FilterConfig implements FilterDateRange {
