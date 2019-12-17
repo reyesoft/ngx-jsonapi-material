@@ -9,8 +9,10 @@ import { FilterOption } from './filter-option.interface';
 import { RangeFilterInterface } from './filter-types/range-filter.interface';
 import { StringFilterInterface } from './filter-types/string-filter.interface';
 import { NumberFilterInterface } from './filter-types/number-filter.interface';
+import { DateRangeFilterInterface } from './filter-types/date-range-filter.interface';
 
-export type ResourceFilter = string|number|Array<string>|object|RangeFilterInterface|StringFilterInterface|NumberFilterInterface;
+export type ResourceFilter =
+    string|number|Array<string>|object|RangeFilterInterface|StringFilterInterface|NumberFilterInterface|DateRangeFilterInterface;
 
 export interface Filter {
     type: 'options' | 'checks' | 'range_date';
