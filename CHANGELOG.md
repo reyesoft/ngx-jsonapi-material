@@ -3,10 +3,12 @@
 ## [New release]
 
 #### Added
+
 -   Test for the JamSingleWarning component.
 -   FabSpeedDialComponent
 
 #### Changed
+
 -   Now, the JamSingleWarning component, is shown if you get the message attribute.
 
 ## 0.0.57
