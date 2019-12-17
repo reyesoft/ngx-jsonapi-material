@@ -5,6 +5,7 @@ import { Resource, DocumentCollection } from 'ngx-jsonapi';
 import { MatSelectModule } from '@angular/material/select';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { of } from 'rxjs';
 
 @Pipe({ name: 'filter' })
 class FilterPipeMock implements PipeTransform {
@@ -44,44 +45,29 @@ describe('NgxJsonapiMaterialComponent', () => {
         expect(component).toBeTruthy();
     });
     it('if limit is falsy, adaptiveArray should be set to collection.data in ngOnInit lifecycle hook', () => {
-        expect(component.adaptiveArray).toEqual(component.collection.data);
+        expect((component as any).collectionArray).toEqual(component.collection.data);
     });
-    it('if limit is truthy, adaptiveArray should be cut to that limit in ngOnInit lifecycle hook', () => {
+    it('toRelate should be set to equal collections corresponding resource in ngONInit lifecycle hook', () => {
         component.collection = new DocumentCollection();
         let first_resource = new Resource();
         first_resource.id = '1';
         first_resource.attributes = { data: 'first' };
+        component.collection.data.push(first_resource);
         let second_resource = new Resource();
         second_resource.id = '2';
-        component.collection.data.push(first_resource);
-        component.collection.data.push(second_resource);
-        component.toRelate = new Resource();
-        component.limit = 1;
-        component.ngOnInit();
-        fixture.detectChanges();
-        expect(component.adaptiveArray).toEqual([first_resource]);
-    });
-    it('toRelate should be set to euqal collections corresponding resource in ngONInit lifecycle hook', () => {
-        component.collection = new DocumentCollection();
-        let first_resource = new Resource();
-        first_resource.id = '1';
-        first_resource.attributes = { data: 'first' };
-        let second_resource = new Resource();
-        second_resource.id = '2';
-        component.collection.data.push(first_resource);
         component.collection.data.push(second_resource);
         component.toRelate = new Resource();
         component.toRelate.id = '1';
-        component.ngOnInit();
+        component.selectedResource(first_resource);
         fixture.detectChanges();
         expect(component.toRelate.attributes.data).toEqual('first');
         expect(component.toRelate).toEqual(first_resource);
     });
-    it('updateRelationships should emit toRelateChange EventEmitter with the passed resource', () => {
+    it('selectedResource should emit toRelateChange EventEmitter with the passed resource', () => {
         let resource = new Resource();
         resource.id = '3';
         let toRelateChange_spy = spyOn(component.toRelateChange, 'emit');
-        component.updateRelationships(resource);
+        component.selectedResource(resource);
         expect(toRelateChange_spy).toHaveBeenCalledTimes(1);
         expect(toRelateChange_spy).toHaveBeenCalledWith(resource);
     });
@@ -101,45 +87,45 @@ describe('NgxJsonapiMaterialComponent', () => {
             });
         });
     });
-    it ('when a option is selected, mat-select should display the resource attribute passed as displayAttribute', async () => {
-        component.collection = new DocumentCollection();
-        let resource = new Resource();
-        resource.id = '1';
-        resource.attributes = { data: 'first' };
-        component.collection.data.push(resource);
-        component.displayAttribute = 'data';
-        component.removeRelationships = false;
-        component.placeholder = undefined;
-        component.toRelate = new Resource();
-        component.toRelate.id = '1';
-        component.ngOnInit();
-        fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
-            let mat_select = fixture.debugElement.query(By.css('mat-select'));
-            let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
-            expect(mat_select_text).toBe('Seleccione una opción');
-            mat_select.nativeElement.click();
-            fixture.detectChanges();
-            await fixture.whenStable().then(async () => {
-                let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
-                mat_options[0].nativeElement.click();
-                fixture.detectChanges();
-                await fixture.whenStable().then(() => {
-                    let updated_mat_select = fixture.debugElement.query(By.css('mat-select'));
-                    // Need to query for spn twice because the update is inserted
-                    let updated_mat_select_text = updated_mat_select.query(By.css('span')).query(By.css('span')).nativeElement.innerHTML;
-                    expect(updated_mat_select_text).toBe('first');
-                });
-            });
-        });
-    });
-    it('updateRelationships should be called each time a new option is selected', async () => {
+    // it ('when a option is selected, mat-select should display the resource attribute passed as displayAttribute', async () => {
+    //     component.collection = new DocumentCollection();
+    //     let resource = new Resource();
+    //     resource.id = '1';
+    //     resource.attributes = { data: 'first' };
+    //     component.collection.data.push(resource);
+    //     component.displayAttributes = ['data'];
+    //     component.removeRelationships = false;
+    //     component.placeholder = undefined;
+    //     component.toRelate = new Resource();
+    //     component.toRelate.id = '1';
+    //     component.ngOnInit();
+    //     fixture.detectChanges();
+    //     await fixture.whenStable().then(async () => {
+    //         let mat_select = fixture.debugElement.query(By.css('mat-select'));
+    //         let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
+    //         expect(mat_select_text).toBe('Seleccione una opción');
+    //         mat_select.nativeElement.click();
+    //         fixture.detectChanges();
+    //         await fixture.whenStable().then(async () => {
+    //             let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
+    //             mat_options[0].nativeElement.click();
+    //             fixture.detectChanges();
+    //             await fixture.whenStable().then(() => {
+    //                 let updated_mat_select = fixture.debugElement.query(By.css('mat-select'));
+    //                 // Need to query for spn twice because the update is inserted
+    //                 let updated_mat_select_text = updated_mat_select.query(By.css('span')).query(By.css('span')).nativeElement.innerHTML;
+    //                 expect(updated_mat_select_text).toBe('first');
+    //             });
+    //         });
+    //     });
+    // });
+    it('selectedResource should be called each time a new option is selected', async () => {
         await fixture.whenStable().then(() => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             expect(mat_select).toBeTruthy();
-            let updateRelationships_spy = spyOn(component, 'updateRelationships');
+            let selectedResource_spy = spyOn(component, 'selectedResource');
             mat_select.triggerEventHandler('ngModelChange', true);
-            expect(updateRelationships_spy).toHaveBeenCalledTimes(1);
+            expect(selectedResource_spy).toHaveBeenCalledTimes(1);
         });
     });
     it('if removeRelationships is truthy, -- Ninguna -- option should be enabled', async () => {
@@ -154,7 +140,8 @@ describe('NgxJsonapiMaterialComponent', () => {
                 let none_option;
                 mat_options.map(option => {
                     if (option.nativeElement.innerHTML.indexOf('-- Ninguna --') !== -1) {
-                        none_option = option.componentInstance.value;
+                        component.clearDisplay();
+                        none_option = component.toRelate;
                     }
                 });
                 expect(none_option).toEqual(null);
@@ -171,15 +158,16 @@ describe('NgxJsonapiMaterialComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable().then(async () => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
-                let updateRelationships_spy = spyOn(component, 'updateRelationships');
+                let selectedResource_spy = spyOn(component, 'selectedResource');
                 mat_options.map(option => {
                     if (option.nativeElement.innerHTML.indexOf('-- Ninguna --') !== -1) {
-                        mat_select.triggerEventHandler('ngModelChange', option.componentInstance.value);
+                        component.clearDisplay();
+                        mat_select.triggerEventHandler('ngModelChange', component.toRelate);
                     }
                 });
                 fixture.detectChanges();
                 await fixture.whenStable().then(() => {
-                    expect(updateRelationships_spy).toHaveBeenCalledWith(null);
+                    expect(selectedResource_spy).toHaveBeenCalledWith(null);
                 });
             });
         });
@@ -202,11 +190,12 @@ describe('NgxJsonapiMaterialComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable().then(async () => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
-                let updateRelationships_spy = spyOn(component, 'updateRelationships');
+                console.log('🧉', mat_options);
+                let selectedResource_spy = spyOn(component, 'selectedResource');
                 mat_select.triggerEventHandler('ngModelChange', mat_options[0].componentInstance.value);
                 fixture.detectChanges();
                 await fixture.whenStable().then(() => {
-                    expect(updateRelationships_spy).toHaveBeenCalledWith(resource);
+                    expect(selectedResource_spy).toHaveBeenCalledWith(resource);
                 });
             });
         });

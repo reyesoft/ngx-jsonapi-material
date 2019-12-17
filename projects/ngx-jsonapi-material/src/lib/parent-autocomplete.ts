@@ -46,6 +46,7 @@ export class ParentAutocomplete {
     }
 
     protected reload(): void {
+        console.log('😈 entro aca', this.filteredCollection);
         this.filteredCollection = this.autocompleteCtrl.valueChanges.pipe(
             filterOrRequest({
                 attribute_to_search: this.displayAttributes[0],
