@@ -171,6 +171,16 @@ describe('JamErrorHandler', () => {
         expect(rss_error_spy).not.toHaveBeenCalled();
     });
 
+    it('non jsonapi errors that contain a messge should be shown in a toast', () => {
+        let notification_spy = spyOn(service_instance.toasterService, 'pop');
+        service_instance.handleError(new Error('Some error message'));
+        expect(notification_spy).toHaveBeenCalledWith(
+            'error',
+            'Ups, ha ocurrido un error. Contáctanos por correo a soporte@multinexo.com',
+            'Código de error: Some error message'
+        );
+    });
+
     it('openDialog method should open DialogLoggedStateComponent dialog', () => {
         let close_dialog: Subject<boolean> = new Subject();
         let open_dialog_spy = spyOn(service_instance.matDialog, 'open').and.returnValue(
