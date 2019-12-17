@@ -1,4 +1,5 @@
 import 'jest-preset-angular';
+import 'hammerjs';
 global['CSS'] = null;
 
 /**

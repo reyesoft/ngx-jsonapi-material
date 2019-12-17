@@ -1,0 +1,36 @@
+<eco-fab-speed-dial
+    class="rs-speed-dial--position"
+    [animationMode]="animationMode"
+    (mouseover)="toggleFabStatus('open')"
+    (mouseleave)="toggleFabStatus('close')"
+    [(open)]="fab_status.opened"
+    [fixed]="true"
+    >
+    <eco-fab-speed-dial-trigger [spin]="spin">
+        <button
+            mat-fab
+            matTooltipPosition="before"
+            [matTooltip]="tooltip"
+            (click)="fabSpeedDialClick.emit()"
+            [routerLink]="routerLink || []"
+            [queryParams]="queryParams"
+            >
+            <mat-icon>{{ fab_status.opened ? icon : 'add' }}</mat-icon>
+        </button>
+    </eco-fab-speed-dial-trigger>
+
+    <eco-fab-speed-dial-actions [hidden]="!fab_status.opened">
+        <button
+            *ngFor="let fabSpeedDialMiniButton of fabSpeedDialMiniButtons"
+            mat-mini-fab
+            matTooltipPosition="before"
+            [matTooltip]="fabSpeedDialMiniButton.tooltip"
+            (click)="actionsClick.emit(fabSpeedDialMiniButton.key)"
+            [routerLink]="fabSpeedDialMiniButton.router_link || []"
+            [queryParams]="fabSpeedDialMiniButton.query_params || queryParams"
+            >
+            <mat-icon *ngIf="fabSpeedDialMiniButton.icon.type === 'svg-icon'" [svgIcon]="fabSpeedDialMiniButton.icon.name"></mat-icon>
+            <mat-icon *ngIf="fabSpeedDialMiniButton.icon.type === 'mat-icon'">{{ fabSpeedDialMiniButton.icon.name }}</mat-icon>
+        </button>
+    </eco-fab-speed-dial-actions>
+</eco-fab-speed-dial>
