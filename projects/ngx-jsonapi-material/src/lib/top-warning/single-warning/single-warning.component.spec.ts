@@ -20,23 +20,22 @@ describe('NgxJsonapiMaterialComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SingleWarningComponent);
         component = fixture.componentInstance;
-        // component.collection = new DocumentCollection();
-        // component.toRelate = new Resource();
         fixture.detectChanges();
     });
 
-    // it('if message is defined, then the component should be shown.', () => {
-    //     component.message = 'Esto es un mensaje';
-    //     expect(component.message).toBeDefined();
-    //     fixture.detectChanges();
-    //     let single_warning_component = fixture.debugElement.query(By.css('mat-card'));
-    //     expect(single_warning_component).toBeDefined();
-    // });
+    it('if message is defined, then the component should be shown.', () => {
+        component.message = 'Esto es un mensaje';
+        expect(component.message).toBeDefined();
+        fixture.detectChanges();
+        let single_warning_component = fixture.debugElement.query(By.css('mat-card'));
+        expect(single_warning_component).toBeDefined();
+    });
 
     it('if message is not defined, then the component should not be shown.', () => {
-        // expect(component.message).toBeUndefined();
-        // fixture.detectChanges();
+        component.message = null;
+        expect(component.message).toBeNull();
+        fixture.detectChanges();
         let single_warning_component = fixture.debugElement.query(By.css('mat-card'));
-        expect(single_warning_component).toBeUndefined();
+        expect(single_warning_component).toBeNull();
     });
 });
