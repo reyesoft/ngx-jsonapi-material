@@ -1,5 +1,11 @@
 # Changelog
 
+## [New release]
+
+### Added
+
+-   FabSpeedDialComponent
+
 ## 0.0.57
 
 #### Added
