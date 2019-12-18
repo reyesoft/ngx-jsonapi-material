@@ -60,7 +60,6 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.clearDisplay();
         this.collection = this.services.newCollection();
         this.filtered_resource = this.autocompleteCtrl.valueChanges.pipe(
             this.destroyer.pipe(),

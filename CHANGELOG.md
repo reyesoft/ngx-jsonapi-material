@@ -6,6 +6,10 @@
 
 -   FabSpeedDialComponent
 
+### Fixed
+
+-   Deleted the initial toogleResource deletion in JamAutocomplete.
+
 ## 0.0.57
 
 #### Added
