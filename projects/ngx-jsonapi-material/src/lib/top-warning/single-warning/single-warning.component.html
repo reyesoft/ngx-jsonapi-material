@@ -1,4 +1,7 @@
-<mat-card class="mat-card-flat yellow-bg-400 width-100" [ngStyle]="custom_styles">
+<mat-card class="mat-card-flat yellow-bg-400 width-100"
+    *ngIf="message"
+    [ngStyle]="custom_styles"
+>
     <span>{{ message }}</span>
     <a
         [routerLink]="link"
