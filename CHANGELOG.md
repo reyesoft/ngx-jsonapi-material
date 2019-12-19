@@ -7,6 +7,10 @@
 -   Test for the JamSingleWarning component.
 -   FabSpeedDialComponent
 
+### Fixed
+
+-   Deleted the initial toogleResource deletion in JamAutocomplete.
+
 #### Changed
 
 -   Now, the JamSingleWarning component, is shown if you get the message attribute.
