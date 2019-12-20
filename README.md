@@ -7,15 +7,14 @@
 [![CircleCI](https://circleci.com/gh/reyesoft/ngx-jsonapi-material.svg?style=svg)](https://circleci.com/gh/reyesoft/ngx-jsonapi-material) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b097196f7f544412a79a99080a41bbc1)](https://www.codacy.com/app/Swimlane/ngx-charts?utm_source=github.com&utm_medium=referral&utm_content=swimlane/ngx-charts&utm_campaign=Badge_Grade) [![npm version](https://badge.fury.io/js/ngx-jsonapi-material.png)](https://badge.fury.io/js/ngx-jsonapi-material) [![Coverage Status](https://coveralls.io/repos/github/reyesoft/ngx-jsonapi-material/badge.svg?branch=master)](https://coveralls.io/github/reyesoft/ngx-jsonapi-material?branch=master)
 
 </div>
-This is a JSON API library for Angular 6+. Please use [ts-angular-jsonapi](https://github.com/reyesoft/ts-angular-jsonapi) for AngularJS.
-
+This is a library (Angular 6+) of components based on Angular material, which makes use of jsonapi to work.
 ## Online demo
 
-You can test library on this online example 👌 <http://ngx-jsonapi-material.reyesoft.com/>.
+You can test library on this online example 👌 [ngx-jsonapi-material](https://reyesoft.github.io/ngx-jsonapi-material/)
 
 <div align="center">
 
-[![demo app](https://user-images.githubusercontent.com/938894/39630783-c6f55ed4-4f86-11e8-9376-9acb587fe4c4.gif)](http://ngx-jsonapi-material.reyesoft.com/)
+[![demo](https://user-images.githubusercontent.com/9059596/71280333-aa91a080-2339-11ea-8f2e-b344b9bd7caa.jpg)](https://reyesoft.github.io/ngx-jsonapi-material/)
 
 </div>
 
@@ -32,22 +31,6 @@ First of all, it's advisable to read [Jsonapi specification](http://jsonapi.org/
 ```bash
 yarn add ngx-jsonapi-material --save
 # or npm if you wish...
-```
-
-### Dependecies and customization
-
-1.  Add Jsonapi dependency.
-2.  Configure your url and other paramemeters.
-3.  Inject JsonapiCore somewhere before you extend any class from `Jsonapi.Resource`.
-
-```typescript
-import { NgModule } from '@angular/core';
-import { NgxJsonapiMaterialModule } from 'ngx-jsonapi-material';
-
-@NgModule({
-    imports: [NgxJsonapiMaterialModule]
-})
-export class AppModule {}
 ```
 
 ## Directives
@@ -76,7 +59,7 @@ You can run [JsonApi Demo App](http://ngx-jsonapi-material.reyesoft.com/) locall
 git clone git@github.com:reyesoft/ngx-jsonapi-material.git
 cd ngx-jsonapi-material
 yarn
-yarn start
+yarn serve
 ```
 
 We use as backend [Json Api Playground](http://jsonapiplayground.reyesoft.com/).
