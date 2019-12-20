@@ -1,0 +1,31 @@
+import { OnInit, EventEmitter } from '@angular/core';
+import { SatDatepickerRangeValue, SatDatepickerInputEvent } from 'saturn-datepicker';
+import { DatePipe } from '@angular/common';
+export declare class RangeDatepickerComponent implements OnInit {
+    protected datePipe: DatePipe;
+    date: SatDatepickerRangeValue<Date>;
+    lastDateInput: SatDatepickerRangeValue<Date> | null;
+    lastDateChange: SatDatepickerRangeValue<Date> | null;
+    label: string;
+    startDate: Date;
+    endDate: Date;
+    startDateChange: EventEmitter<Date>;
+    endDateChange: EventEmitter<Date>;
+    updateDate: EventEmitter<any>;
+    constructor(datePipe: DatePipe);
+    ngOnInit(): void;
+    onDateInput(event: SatDatepickerInputEvent<Date>): void;
+    onDateChange(event: SatDatepickerInputEvent<Date>): void;
+    applyCustomRange(event: any, picker: any): void;
+    applyLastWeek(): void;
+    applyToday(): void;
+    applyCurrentMonth(): void;
+    clearRange(event: any): void;
+    applylastMonth(): void;
+    private updateDateChange;
+    private togglePreviewText;
+    private getDays;
+    private createPreviewText;
+    private compareDaysOfTheSameMonth;
+    private formatDateAndAddTime;
+}
