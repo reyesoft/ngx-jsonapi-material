@@ -14,7 +14,7 @@ You can test library on this online example 👌 [ngx-jsonapi-material](https://
 
 <div align="center">
 
-[![demo app](https://user-images.githubusercontent.com/938894/39630783-c6f55ed4-4f86-11e8-9376-9acb587fe4c4.gif)](http://ngx-jsonapi-material.reyesoft.com/)
+[![demo](https://user-images.githubusercontent.com/9059596/71280333-aa91a080-2339-11ea-8f2e-b344b9bd7caa.jpg)](https://reyesoft.github.io/ngx-jsonapi-material/)
 
 </div>
 
