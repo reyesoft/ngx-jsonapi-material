@@ -1215,17 +1215,17 @@
     tree-kill "1.2.1"
     webpack-sources "1.4.3"
 
-"@ngx-formly/core@5.0.0-beta.21":
-  version "5.0.0-beta.21"
-  resolved "https://registry.yarnpkg.com/@ngx-formly/core/-/core-5.0.0-beta.21.tgz#6f01f569374642312eb02315b46274481170a0ea"
-  integrity sha512-D8iix4fxw0nNWAweigRt91SJDkozEGuw8FBD7LDraQH9y74b8iBWi6gf+VctqbhfqRnFBMa/JOckn3RO8G77xw==
+"@ngx-formly/core@5.5.8":
+  version "5.5.8"
+  resolved "https://registry.yarnpkg.com/@ngx-formly/core/-/core-5.5.8.tgz#78748b0ffc3b62a4c258e6974ae10d9cacf511df"
+  integrity sha512-BkzElMPYeN363drleV2yz94le3k7YmOtaoAS/vw+ueZPZBO7ihQumz43WCfmQHkd+4hD6mx2HxOZBo1NKZ955g==
   dependencies:
     tslib "^1.7.1"
 
-"@ngx-formly/material@5.0.0-beta.21":
-  version "5.0.0-beta.21"
-  resolved "https://registry.yarnpkg.com/@ngx-formly/material/-/material-5.0.0-beta.21.tgz#cc139939942d2d5304020ad1a20dcf68cb4fdb6a"
-  integrity sha512-yHhghwE4FogDBrSrkAOyDpHnGJY2zMgSQ/bVrWgt+Yjz5bauJ7qUpFxr9tNkoXx/nPO/u7Y6s6gew5ROZBT5pg==
+"@ngx-formly/material@5.5.8":
+  version "5.5.8"
+  resolved "https://registry.yarnpkg.com/@ngx-formly/material/-/material-5.5.8.tgz#c95fb1e1b666f8e96ef0673d3e905d4634ccc038"
+  integrity sha512-NK1NeexjuvGOpgEfwO9MB1qZ4mzRn43w+meywKG7TyQe6AqMTyDPYLYVTQ7RiqeRw403QjI9gElZcfNXXinuPQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -9015,10 +9015,10 @@ ngx-jsonapi@^2.1.9:
   dependencies:
     dexie "^2.0.4"
 
-ngx-uploader@6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/ngx-uploader/-/ngx-uploader-6.0.4.tgz#0cb479c34fb3d00a9fbd124323ef8af35782ed2b"
-  integrity sha512-DVs5wxEJ4Mi1c05G7+6m3Nrx/Ilmo6NfQZIgM1lehC1ucsO1JksaFOYkPtmRmgSbK0fitD6b3OMFrqft+zoCvA==
+ngx-uploader@8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-uploader/-/ngx-uploader-8.0.0.tgz#6707b4bc6840e0a11ae5d1cb0aa5bba530440e26"
+  integrity sha512-9e0ADPvAn8fS11kxy/JEJdukiVnh9QRlKLu82BBiI1LD9DHpftFxENTGf2U4ewbGSnm+F/ewU3eFpKITR8Kq5Q==
   dependencies:
     tslib "^1.9.0"
 
@@ -11230,10 +11230,10 @@ sass@1.22.9:
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
-saturn-datepicker@7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/saturn-datepicker/-/saturn-datepicker-7.0.2.tgz#80975aa63a76b6ced9805a0105313c8dbc00c69d"
-  integrity sha512-1LjdVndz2f4DfYN6V5JP7YIR8JYZQlWeYKJzxXeT88Pz2fwVHqs+MCDRSuAj7HHivap9pfYFuXW/VlN2RUC2PQ==
+saturn-datepicker@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/saturn-datepicker/-/saturn-datepicker-8.0.1.tgz#8842dfd10eec7fa6529f059246170c29fee14367"
+  integrity sha512-kUmf8xg5oeGAZtgwqfkNY8Dro6EzX0zGIWnAcQ9cfQ+w3xBq4TbjdBUWuEA19rJlvLLP/uH3PAoXG/SHVLYncQ==
   dependencies:
     tslib "^1.9.0"
 
