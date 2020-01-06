@@ -16,7 +16,7 @@ mat-expansion-panel-header {
     height: 15px !important;
 }
 
-:host /deep/ .mat-expansion-panel-body {
+:host ::ng-deep .mat-expansion-panel-body {
     padding-bottom: 0;
 }
 

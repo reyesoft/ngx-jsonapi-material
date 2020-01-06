@@ -44,7 +44,7 @@ export const _JamSlideMixinBase: CanDisableCtor & typeof JamSlideBase =
 })
 export class JamSlide extends _JamSlideMixinBase implements OnInit, CanDisable, OnChanges, OnDestroy {
   /** Content for the slide element given by `<ng-template jam-slide-element>`. */
-  @ContentChild(JamSlideElement) public templateLabel: JamSlideElement;
+  @ContentChild(JamSlideElement, { static: false }) public templateLabel: JamSlideElement;
 
   /**
    * Template provided in the slide content that will be used if present, used to enable lazy-loading
@@ -93,7 +93,7 @@ export class JamSlide extends _JamSlideMixinBase implements OnInit, CanDisable, 
   protected _explicitContent: TemplateRef<any>;
 
   /** Template inside the JamSlide view that contains an `<ng-content>`. */
-  @ViewChild(TemplateRef) protected _implicitContent: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: false }) protected _implicitContent: TemplateRef<any>;
 
   public constructor(private _viewContainerRef: ViewContainerRef) {
     super();
