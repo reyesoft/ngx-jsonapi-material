@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { Resource, DocumentCollection, Service, IParamsCollection } from 'ngx-jsonapi';
 import { FormControl, FormGroup } from '@angular/forms';
 import { timeout, filter, tap } from 'rxjs/operators';
-import { MatAutocompleteTrigger } from '@angular/material';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { filterOrRequest } from '../../lib/batch';
 import { Destroyer } from '../../lib/destroyer';
 

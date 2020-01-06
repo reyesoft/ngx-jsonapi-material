@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { SelectionBarService, Destroyer } from 'ngx-jsonapi-material';
 import { BooksService } from '../../books.service';
 
