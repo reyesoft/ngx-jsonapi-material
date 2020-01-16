@@ -1,12 +1,12 @@
 import { Directive, AfterViewInit, ContentChild, ElementRef, HostListener } from '@angular/core';
-import { MatExpansionPanel } from '@angular/material';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 
 @Directive({
     selector: '[jamExpansionPanelStatus]'
 })
 export class RemembermeStateDirective implements AfterViewInit {
-    @ContentChild(MatExpansionPanel) public mat_expansion_panel: MatExpansionPanel;
+    @ContentChild(MatExpansionPanel, { static: false }) public mat_expansion_panel: MatExpansionPanel;
 
     private mat_expansion_pane_id: string;
 

@@ -1,10 +1,10 @@
 $selection_bar_bg: #fff;
 
-:host /deep/ .hidden {
+:host ::ng-deep .hidden {
     display: none !important;
 }
 
-:host /deep/ .show {
+:host ::ng-deep .show {
     display: flex !important;
 }
 
@@ -22,7 +22,7 @@ $selection_bar_bg: #fff;
     background: $selection_bar_bg;
 }
 
-:host /deep/ #selection-bar-container #current-selection-bar:first-child {
+:host ::ng-deep #selection-bar-container #current-selection-bar:first-child {
     padding: 0 20px;
     width: 100%;
 }

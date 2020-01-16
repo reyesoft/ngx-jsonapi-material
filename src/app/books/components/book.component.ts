@@ -4,7 +4,7 @@ import { Resource, DocumentCollection } from 'ngx-jsonapi';
 import { AuthorsService, Author } from '../../authors/authors.service';
 import { BooksService, Book } from './../books.service';
 import { PhotosService } from '../../photos/photos.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { EditTextAttributeDialogComponent } from 'ngx-jsonapi-material';
 
 @Component({

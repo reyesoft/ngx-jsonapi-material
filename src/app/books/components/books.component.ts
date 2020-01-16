@@ -4,7 +4,7 @@ import { BooksService, Book } from './../books.service';
 import { AuthorsService } from './../../authors/authors.service';
 import { PhotosService } from '../../photos/photos.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { JamRefreshService, Destroyer, SelectionBarService } from 'ngx-jsonapi-material';
 import { BookEditComponent } from './book-edit.component';
 import { SelectionModel } from '@angular/cdk/collections';

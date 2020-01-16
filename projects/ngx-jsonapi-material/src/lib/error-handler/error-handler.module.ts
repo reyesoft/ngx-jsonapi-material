@@ -11,7 +11,8 @@ import { JamSubmitModule } from '../submit/submit.module';
 import { JamErrorHandler } from './error-handler.service';
 import { DialogLoggedStateComponent } from '../logged-state/dialog-logged-state.component';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({

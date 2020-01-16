@@ -13,7 +13,7 @@ export class Button extends MenuElement {
         attribute: 'label' | 'icon' | 'class' | 'hidden' | 'disabled' | 'svg_icon' | 'icon_font', // TODO: improve typing
         value: string | boolean
     ): this {
-        this.attributes[attribute] = value;
+        (<string|boolean>this.attributes[attribute]) = value;
 
         return this;
     }

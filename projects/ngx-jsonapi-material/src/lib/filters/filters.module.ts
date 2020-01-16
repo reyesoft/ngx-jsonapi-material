@@ -8,7 +8,12 @@
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatSelectModule, MatIconModule, MatInputModule, MatDividerModule, MatOptionModule } from '@angular/material';
+import { MatOptionModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JamFilterChecksComponent } from './basics/filter-checks.component';
 import { JamFilterOptionsComponent } from './basics/filter-options.component';

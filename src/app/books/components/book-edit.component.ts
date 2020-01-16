@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { BooksService, Book } from '../books.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     selector: 'demo-book-edit.component',

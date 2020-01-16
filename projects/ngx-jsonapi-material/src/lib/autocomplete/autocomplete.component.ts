@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { Resource, DocumentCollection, Service, IParamsCollection } from 'ngx-jsonapi';
 import { FormControl, FormGroup } from '@angular/forms';
 import { timeout, filter, tap } from 'rxjs/operators';
-import { MatAutocompleteTrigger } from '@angular/material';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { filterOrRequest } from '../../lib/batch';
 import { Destroyer } from '../../lib/destroyer';
 
@@ -34,8 +34,8 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
     @Input() public icon: string;
     @Input() public showList: boolean = true;
     @Output() public toggleResourceChange = new EventEmitter<Resource>();
-    @ViewChild(MatAutocompleteTrigger) public autocompleteResource: MatAutocompleteTrigger;
-    @ViewChild('autocompleteResource') public autocompleteResourceInput: ElementRef;
+    @ViewChild(MatAutocompleteTrigger, { static: false }) public autocompleteResource: MatAutocompleteTrigger;
+    @ViewChild('autocompleteResource', { static: false }) public autocompleteResourceInput: ElementRef;
 
     public collection: DocumentCollection;
     public filtered_resource: Observable<Array<Resource>>;
