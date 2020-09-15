@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.59
+
+### Added
+
+-   Support angular and material >= 8
+
 ## 0.0.58
 
 ### Added
