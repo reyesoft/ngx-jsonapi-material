@@ -1,11 +1,10 @@
-<jam-upload [uploadUrl]="uploadUrl" (dragAndDropChange)="dragAndDropStyles($event)" (showPreview)="showPreview($event)" mat-icon-button fxLayout="row" fxLayoutAlign="center center"
-    [jamHeaders]="jamHeaders"
+<jam-upload [uploadUrl]="uploadUrl" (dragAndDropChange)="dragAndDropStyles($event)" (showPreview)="showPreview($event)" mat-icon-button [jamHeaders]="jamHeaders"
     (response)="response.emit($event)"
     >
     <div *ngIf="drag_and_drop" [ngClass]="type + '-drag-and-drop-styles'"></div>
     <div *ngIf="!drag_and_drop" id="picture-manager" class="mouseover">
         <div [ngClass]="type" [style.background-image]="'url(' + source + ')'">
-            <div class="mouseover-child">
+            <div class="mouseover-child" [ngClass]="{'add-hover-mouseover-child': source}">
                 <div class="blur" [style.background-image]="'url(' + source + ')'"></div>
                 <div class="overlay"></div>
                 <div class="menu">

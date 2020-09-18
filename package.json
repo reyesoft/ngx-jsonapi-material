@@ -119,6 +119,7 @@
     "angular2-toaster": "^8.0.0",
     "core-js": "^2.5.7",
     "ngx-jsonapi": "^2.1.9",
+    "ngx-jsonapi-material": "^0.22.59",
     "ngx-uploader": "8.0.0",
     "rxjs": "6.5.4",
     "saturn-datepicker": "8.0.1",

@@ -73,9 +73,16 @@ jam-upload #picture-manager.mouseover:hover {
 }
 
 jam-upload #picture-manager.mouseover div > .mouseover-child {
-    display: none;
     -webkit-transition: 0.3s display;
     transition: 0.3s display;
+}
+
+.add-hover-mouseover-child {
+    opacity: 0;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 jam-upload #picture-manager.mouseover:hover div > .mouseover-child {
