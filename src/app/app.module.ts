@@ -13,7 +13,7 @@ import { PhotosService } from './photos/photos.service';
 import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from '../../projects/ngx-jsonapi-material/src/lib/material.module';
 import { JamPinOptionButtonModule } from 'ngx-jsonapi-material';
-import { JamSelectionBarModule } from 'projects/ngx-jsonapi-material/src/public-api';
+import { JamSelectionBarModule, JamPictureManagerModule } from 'projects/ngx-jsonapi-material/src/public-api';
 
 const appRoutes: Routes = [
     {
@@ -38,6 +38,7 @@ const appRoutes: Routes = [
         JamPinOptionButtonModule,
         BrowserAnimationsModule,
         JamSelectionBarModule,
+        JamPictureManagerModule,
         HttpClientModule,
         SharedModule,
         RouterModule.forRoot(appRoutes, { useHash: true }),

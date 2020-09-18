@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.60
+
+### Added
+
+-   Hover depending on whether or not there is image in component jam picture manager
+
 ## 0.22.59
 
 ### Added
