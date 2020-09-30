@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.22.61
+
+### Removed
+
+-   From peerDependencies :
+
+```
+"@angular/flex-layout": ">= 8.0.0",
+"@ngx-formly/core": "^5.5.8",
+"@ngx-formly/material": "^5.5.8",
+"@ngx-translate/core": "^10.0.2",
+"@ngx-translate/http-loader": "^3.0.1",
+"ngx-jsonapi": "^2.1.9",
+"ngx-uploader": "^8.0.0",
+"saturn-datepicker": "^8.0.1",
+"localforage": "^1.7.3",
+"localforage-getitems": "^1.4.2",
+"rxjs": "^6.5.4"
+```
+
 ## 0.22.60
 
 ### Added
