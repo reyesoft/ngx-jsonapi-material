@@ -4,7 +4,7 @@
 
 ### Removed
 
-- Remove range date picker module
+-   Remove range date picker module
 
 ## 0.22.61
 
