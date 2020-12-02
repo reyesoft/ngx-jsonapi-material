@@ -20,7 +20,7 @@ import {
     JamDeleteConfirmationModule,
     JamEditTextAttributeModule
 } from 'ngx-jsonapi-material';
-import { JamFloatingButtonModule, JamInfoButtonModule, JamRangeDatepickerModule } from 'projects/ngx-jsonapi-material/src/public-api';
+import { JamFloatingButtonModule, JamInfoButtonModule } from 'projects/ngx-jsonapi-material/src/public-api';
 import { JamFilterModule } from 'projects/ngx-jsonapi-material/src/lib/filters/filters.module';
 import { JsonapiFilterBooksComponent } from './components/jsonapi-filter-categories/jsonapi-filter-categories.component';
 import { BooksSelectionBarComponent } from './components/books-selection-bar/books-selection-bar.component';
@@ -43,7 +43,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         JamSearchInputModule,
         JamDeleteConfirmationModule,
         JamAutocompleteModule,
-        JamRangeDatepickerModule,
         JamEditTextAttributeModule,
         JamTopWarningModule,
         JamSubmitModule,
