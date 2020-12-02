@@ -48,9 +48,6 @@ export * from './lib/top-warning/top-warning.module';
 export * from './lib/error-handler/error-handler.service';
 export * from './lib/error-handler/error-handler.module';
 
-export * from './lib/range-datepicker/range-datepicker.component';
-export * from './lib/range-datepicker/range-datepicker.module';
-
 export * from './lib/fab-speed-dial/fab-speed-dial.component';
 export * from './lib/fab-speed-dial/fab-speed-dial-mini-button';
 export * from './lib/fab-speed-dial/fab-speed-dial.module';

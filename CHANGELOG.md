@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.62
+
+### Removed
+
+- Remove range date picker module
+
 ## 0.22.61
 
 ### Removed
