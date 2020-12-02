@@ -2,6 +2,10 @@
 
 ## 0.22.62
 
+### Fixed
+
+-   yarn:release fix problem with "Package marked as private, not publishing."
+
 ### Removed
 
 -   Remove range date picker module
