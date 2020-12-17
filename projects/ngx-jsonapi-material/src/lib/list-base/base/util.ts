@@ -10,7 +10,7 @@ export function isFunction(arg: any): boolean {
 }
 
 export function isUndefined(arg: any): boolean {
-    return arg === void 0;
+    return !arg;
 }
 
 export function getToday(): Date {

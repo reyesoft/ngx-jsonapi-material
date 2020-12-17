@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DocumentCollection } from 'ngx-jsonapi';
 
 @Component({
-    selector: 'app-table-loader',
+    selector: 'jam-table-loader',
     templateUrl: './table-loader.component.html',
     styleUrls: ['./table-loader.component.scss']
 })

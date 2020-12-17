@@ -1,12 +1,12 @@
-<rs-nothing-here
+<jam-nothing-here
     *ngIf="!showSpinner && (showNothingHere || dataSource && dataSource.length === 0 && collection && collection.builded && !collection.is_loading)"
     [classed]="nothingHereClasses"
     [text]="nothingHereText"
     [icon]="nothingHereIcon"
     >
     <ng-content></ng-content>
-</rs-nothing-here>
-<rs-table-spinner
+</jam-nothing-here>
+<jam-table-spinner
     *ngIf="showSpinner || dataSource && dataSource.length === 0 && (!collection || !collection.builded || collection.is_loading)"
     [color]="spinnerColor"
     [mode]="spinnerMode"
@@ -14,4 +14,4 @@
     [diameter]="spinnerDiameter"
     [spinnerClasses]="spinnerClasses"
     >
-</rs-table-spinner>
+</jam-table-spinner>

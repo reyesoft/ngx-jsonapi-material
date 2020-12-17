@@ -98,24 +98,24 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
     // Recives a cell element and return the corresponding column sytles
     @Input() public columnHeaderClasses: (column: string, element: any) => { [key: string]: string } = (): any => {
         return null;
-    };
+    }
     @Input() public columnHeaderStyles: (column: string, element: any) => { [key: string]: string } = (): any => {
         return null;
-    };
+    }
     @Input() public cellClasses: (column: string, element: any) => { [key: string]: string } = (): any => {
         return null;
-    };
+    }
     @Input() public cellStyles: (column: string, element: any) => { [key: string]: string } = (): any => {
         return null;
-    };
+    }
     @Input() public cellDataClasses: (column: string, element: any) => { [key: string]: string } = (): any => {
         return null;
-    };
+    }
     @Input() public cellDataStyles: (column: string, element: any) => { [key: string]: string } | null = (): {
         [key: string]: string;
     } | null => {
         return null;
-    };
+    }
 
     public ngOnInit() {
         super.ngOnInit();

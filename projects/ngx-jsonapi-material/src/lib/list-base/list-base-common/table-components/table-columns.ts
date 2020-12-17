@@ -118,7 +118,7 @@ export class Column {
         return this;
     }
 
-    public setIcon(icon: Column['icon']): Column | any {
+    public setIcon(icon: Column['icon'] | undefined): Column | any {
         if (icon === undefined) {
             return undefined;
         }

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'rs-nothing-here',
+    selector: 'jam-nothing-here',
     templateUrl: './nothing-here.component.html'
 })
 export class NothingHereComponent {

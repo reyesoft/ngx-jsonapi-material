@@ -39,7 +39,7 @@ import { JamRefreshModule } from '../refresh/refresh.module';
         AppCapitalizePipe,
         AppDatePipe,
         AppDateTimePipe,
-        AppCurrencyPipe,
+        AppCurrencyPipe
     ],
     exports: [
         ListBaseCommonComponent,

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'rs-table-spinner',
+    selector: 'jam-table-spinner',
     templateUrl: './table-spinner.component.html'
 })
 export class TableSpinnerComponent {
