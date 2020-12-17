@@ -1,0 +1,7 @@
+<div class="{{ classed ? classed : '' }}">
+    <div class="flex-column-center-center" [style.opacity]="'0.4'">
+        <span><mat-icon style="font-size: 10em; width: 100%;">{{ icon ? icon : 'sentiment_neutral' }}</mat-icon></span>
+        <h2>{{ text ? text : 'Todavía no tienes nada por aquí' }}</h2>
+        <ng-content></ng-content>
+    </div>
+</div>
