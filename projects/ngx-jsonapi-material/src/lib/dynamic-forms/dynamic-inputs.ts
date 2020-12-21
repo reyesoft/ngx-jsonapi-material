@@ -92,9 +92,9 @@ export class DynamicInput implements FormlyFieldConfig {
     }
 
     public load(fieldConfig: FormlyFieldConfig) {
-        for (let key in fieldConfig) {
+        Object.keys(fieldConfig).forEach((key): void => {
             this[key] = fieldConfig[key];
-        }
+        });
 
         return this;
     }

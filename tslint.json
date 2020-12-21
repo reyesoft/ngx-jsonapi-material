@@ -5,6 +5,7 @@
     ],
     "rules": {
         "prefer-for-of": false,
+        "invalid-void": false,
         "member-ordering": [false,
             { "order": "fields-first" }
         ],
