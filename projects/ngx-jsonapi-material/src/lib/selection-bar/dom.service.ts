@@ -49,11 +49,11 @@ export class DomService {
     private attachConfig(config, componentRef) {
         let inputs = config.inputs;
         let outputs = config.outputs;
-        for (let key in inputs) {
+        Object.keys(inputs).forEach((key): void => {
             componentRef.instance[key] = inputs[key];
-        }
-        for (let key in outputs) {
+        });
+        Object.keys(outputs).forEach((key): void => {
             componentRef.instance[key] = outputs[key];
-        }
+        });
     }
 }

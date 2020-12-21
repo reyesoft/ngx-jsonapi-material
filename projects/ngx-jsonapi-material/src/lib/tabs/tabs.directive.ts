@@ -28,10 +28,10 @@ export class JamTabsDirective implements AfterViewInit {
 
     public onTabChange(new_index: number): void {
         let tab_selected;
-        for (let each in this.tabNames) {
-            if (this.tabNames[each] !== new_index) continue;
+        Object.keys(this.tabNames).forEach((each): void => {
+            if (this.tabNames[each] !== new_index) return;
             tab_selected = each;
-        }
+        });
         this.router.navigate([], { queryParams: { ...this.query_params, ...{tab_selected: tab_selected} } });
     }
 

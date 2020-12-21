@@ -13,6 +13,7 @@ export class FilterPipe implements PipeTransform {
      */
     public static filter(items: Array<any>, term: string): Array<any> {
         const toCompare = term.toLowerCase();
+        /* tslint:disable:no-for-in */
 
         return items.filter((item: any) => {
             for (let property in item) {
@@ -38,6 +39,7 @@ export class FilterPipe implements PipeTransform {
 
             return false;
         });
+        /* tslint:enable:no-for-in */
     }
 
     /**

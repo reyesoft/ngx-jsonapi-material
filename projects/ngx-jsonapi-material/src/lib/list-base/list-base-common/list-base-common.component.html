@@ -1,0 +1,207 @@
+<div class="loader-container">
+    <jam-table-loader
+        nothingHereClasses="layout-padding"
+        [showSpinner]="dataTableSource.data.length === 0 && !collection.builded"
+        [showNothingHere]="dataTableSource.data.length === 0 && collection.builded"
+    ></jam-table-loader>
+</div>
+
+<mat-card
+    *ngIf="dataTableSource.data.length !== 0"
+    class="padding-0"
+    >
+    <table mat-table
+        #table
+        multiTemplateDataRows
+        [dataSource]="dataTableSource"
+        [trackBy]="trackById"
+        matSort
+        (matSortChange)="sortByColumn($event)"
+        [ngClass]="checkbox ? (selection.selected.length > 0 ? 'selected-enabled' : 'selected-disabled') : 'none-checkbox'"
+        >
+        <!-- Columns -->
+        <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.key">
+            <mat-header-cell
+                *matHeaderCellDef="let element"
+                [mat-sort-header]="column.sort_key"
+                [disabled]="!column.sort_key"
+                [ngClass]="columnHeaderClasses(column.key, element) || column.classes.header"
+                [ngStyle]="columnHeaderStyles(column.key, element) || column.styles.header"
+                >
+                <ng-container [ngSwitch]="column.key"
+                    >
+                    <mat-checkbox
+                        *ngSwitchCase="'select'"
+                        name="master"
+                        (change)="callCheckboxEvents($event)"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [(ngModel)]="masterCheckbox">
+                    </mat-checkbox>
+                    <ng-container
+                        *ngSwitchDefault
+                        >
+                        {{ column.title || (column.key | translate) | capitalize }}
+                    </ng-container>
+                </ng-container>
+            </mat-header-cell>
+            <mat-cell
+                *matCellDef="let element"
+                [ngClass]="cellClasses(column.key, element) || column.classes.cell"
+                [ngStyle]="cellStyles(column.key, element) || column.styles.cell"
+                [ngSwitch]="true"
+                >
+                <div
+                    *ngSwitchCase="['actions', 'select', 'mobile'].indexOf(column.key) === -1"
+                    [ngClass]="cellDataClasses(column.key, element) || column.classes.cell_data"
+                    [ngStyle]="cellDataStyles(column.key, element) || column.styles.cell_data"
+                    >
+                    <ng-container
+                        [ngTemplateOutlet]="contentTemplate"
+                        [ngTemplateOutletContext]="{element: element, column: column}"
+                        >
+                    </ng-container>
+                </div>
+                <mat-checkbox
+                    *ngSwitchCase="column.key === 'select'"
+                    (dblclick)="$event.stopPropagation()"
+                    (change)="callCheckboxEvents($event, element)"
+                    [checked]="selection.isSelected(element)"
+                    >
+                </mat-checkbox>
+                <!-- <ng-content *ngIf="ngContentColumns.indexof(column) !== -1" select="[column-content-receipt_number]"></ng-content> -->
+                <div
+                    class="spanlabels width-100"
+                    style="padding: 8px"
+                    *ngSwitchCase="observableMedia.isActive('xs') && column.key === 'mobile'"
+                    fxLayout="column"
+                    fxLayoutGap="8px"
+                    >
+                    <div
+                        *ngFor="let mobile_column of tableColumns"
+                        fxLayout="row wrap"
+                        fxLayoutGap="8px"
+                        >
+                        <ng-container
+                            *ngIf="['actions', 'select', 'mobile'].indexOf(mobile_column.key) === -1"
+                            [ngTemplateOutlet]="contentTemplate"
+                            [ngTemplateOutletContext]="{element: element, column: mobile_column}"
+                            >
+                        </ng-container>
+                    </div>
+                    <mat-divider horizontal></mat-divider>
+                </div>
+                <div
+                    *ngSwitchCase="column.key === 'actions' && showActionsMenu && actions_menu == null"
+                    class="mouseover-child"
+                    [ngClass]="cellDataClasses(column.key, element) || column.classes.cell_data"
+                    [ngStyle]="cellDataStyles(column.key, element) || column.styles.cell_data"
+                    >
+                    <button
+                        *ngFor="let action of actions"
+                        mat-icon-button
+                        class="mat-button"
+                        (click)="$event.stopPropagation(); actionClick(element, action.key)"
+                        >
+                        <mat-icon *ngIf="action.icon?.svg" [svgIcon]="action.icon?.svg"></mat-icon>
+                        <mat-icon *ngIf="action.icon?.material">{{ action.icon?.material }}</mat-icon>
+                    </button>
+                </div>
+                <!-- used double "=" instead of triple on purpose -->
+                <ng-container
+                    *ngSwitchCase="column.key === 'actions' && showActionsMenu && actions_menu != null"
+                    >
+                    <jam-menu
+                        [menu]="actions_menu"
+                        (click)="$event.stopPropagation(); openedActionsMenu.emit(element)"
+                        (selected)="actionClick(element, $event.key)"
+                        [ngClass]="cellDataClasses(column.key, element) || column.classes.cell_data"
+                        [ngStyle]="cellDataStyles(column.key, element) || column.styles.cell_data"
+                        >
+                    </jam-menu>
+                </ng-container>
+            </mat-cell>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail" *ngIf="expandableRow">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="getDisplayedColumns(tableColumns, displayedColumns).length">
+                <div
+                    class="element-detail"
+                    [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'"
+                    >
+                    <div class="element-description">
+                        <ng-container
+                            [ngTemplateOutlet]="expandableRow"
+                            [ngTemplateOutletContext]="{ element: element }"
+                            >
+                        </ng-container>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <!-- Rows -->
+        <mat-header-row *matHeaderRowDef="getDisplayedColumns(tableColumns, displayedColumns)"></mat-header-row>
+        <mat-row
+            rsMoveBetweenRows
+            *matRowDef="let row; columns: getDisplayedColumns(tableColumns, displayedColumns); let rIndex = index"
+            class="mouseover element-row"
+            [ngClass]="row.attributes?.__selected ? 'custom-selected-row' : null"
+            (dblclick)="rowDoubleClick.emit(row)"
+            [class.expanded-row]="expandedElement === row"
+            [class.expandable-row]="expandableRow"
+            (click)="mainRowClick(row)"
+        ></mat-row>
+        <ng-container *ngIf="expandableRow">
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        </ng-container>
+    </table>
+    <mat-paginator
+        #paginator
+        [pageIndex]="page.pageIndex"
+        [pageSize]="page.pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [length]="page.length"
+        (page)="realReload($event, {}, false)">
+    </mat-paginator>
+</mat-card>
+
+<ng-template #contentTemplate let-element="element" let-column="column">
+    <div *ngIf="!observableMedia.isActive('xs') || !column.hide_mobile_cell" [ngClass]="observableMedia.isActive('xs') && !column.hide_mobile_cell ? 'flex-row-spacebetween-center' : ''">
+        <span class="row-name" *ngIf="observableMedia.isActive('xs') && column.show_mobile_title" style="padding-right: 8px">{{ column.mobile_title || column.title || (column.key | translate) | titlecase }}:</span>
+        <ng-container
+            *ngIf="column?.template"
+            [ngTemplateOutlet]="column.template"
+            [ngTemplateOutletContext]="{element: element}"
+            >
+        </ng-container>
+        <ng-container *ngIf="!column?.template_only">
+            <ng-container *ngIf="column.pipe && column.pipe.pipe">
+                {{ (column.getValueFromRelationshipAttribute(element) || element.attributes[column.key] || column.default_value) | dynamic: column.pipe.pipe : (column.pipe.arg || element.attributes[column.pipe.attribute_key_arg]) }}
+            </ng-container>
+            <ng-container *ngIf="column && !column.pipe">
+                {{ column.getValueFromRelationshipAttribute(element) || element.attributes[column.key] || column.default_value }}
+            </ng-container>
+            <!-- tengo que poner los dos íconos porque material falla aleatoriamente al agregar íconos con SVG y nombre juntos (aunque solo le llegue uno) -->
+            <mat-icon
+                *ngIf="column.icon?.type === 'material'"
+                [matTooltip]="column.icon.getIconTooltipFromResource(element)"
+                [ngClass]="column.icon.classes"
+                [ngStyle]="column.icon.style"
+                >
+                {{
+                    column.icon.name || column.icon.getIconNameFromResource(element)
+                }}
+            </mat-icon>
+            <mat-icon
+                *ngIf="column.icon?.type === 'svg'"
+                [matTooltip]="column.icon.getIconTooltipFromResource(element)"
+                [ngStyle]="column.icon.style"
+                [ngClass]="column.icon.classes"
+                [svgIcon]="column.icon.name || column.icon.getIconNameFromResource(element)"
+                >
+            </mat-icon>
+        </ng-container>
+    </div>
+</ng-template>

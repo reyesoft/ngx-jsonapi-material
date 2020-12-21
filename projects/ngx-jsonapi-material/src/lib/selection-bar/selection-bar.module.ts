@@ -17,6 +17,7 @@ import { SelectionBarService } from './selection-bar.service';
 import { DomService } from './dom.service';
 import { SelectionBarContainerComponent } from './selection-bar-container/selection-bar-container.component';
 import { SelectionBarInfoComponent } from './selection-bar-info/selection-bar-info.component';
+import { ResourceSelectionBarService } from './resource-selection-bar.service';
 
 @NgModule({
     imports: [
@@ -26,7 +27,7 @@ import { SelectionBarInfoComponent } from './selection-bar-info/selection-bar-in
         MatIconModule,
         CommonModule
     ],
-    providers: [FilterPipe, SelectionBarService, DomService],
+    providers: [ResourceSelectionBarService, FilterPipe, SelectionBarService, DomService],
     declarations: [SelectionBarContainerComponent, SelectionBarInfoComponent],
     exports: [ SelectionBarContainerComponent, SelectionBarInfoComponent]
 })

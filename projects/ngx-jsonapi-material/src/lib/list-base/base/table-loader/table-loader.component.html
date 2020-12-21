@@ -1,0 +1,17 @@
+<jam-nothing-here
+    *ngIf="!showSpinner && (showNothingHere || dataSource && dataSource.length === 0 && collection && collection.builded && !collection.is_loading)"
+    [classed]="nothingHereClasses"
+    [text]="nothingHereText"
+    [icon]="nothingHereIcon"
+    >
+    <ng-content></ng-content>
+</jam-nothing-here>
+<jam-table-spinner
+    *ngIf="showSpinner || dataSource && dataSource.length === 0 && (!collection || !collection.builded || collection.is_loading)"
+    [color]="spinnerColor"
+    [mode]="spinnerMode"
+    [value]="spinnerValue"
+    [diameter]="spinnerDiameter"
+    [spinnerClasses]="spinnerClasses"
+    >
+</jam-table-spinner>
