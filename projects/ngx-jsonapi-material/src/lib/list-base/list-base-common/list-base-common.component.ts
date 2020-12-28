@@ -22,7 +22,6 @@ import { Column, Action } from './table-components/table-columns';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DocumentCollection, Service, Resource, IParamsCollection } from 'ngx-jsonapi';
 import { PageEvent } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
 import { ListBase, IPage } from '../list-base';
 import { MediaObserver } from '@angular/flex-layout';
 import { Sort } from '@angular/material/sort';
@@ -86,7 +85,6 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
         public selectionBarService: SelectionBarService,
         protected rsRefreshService: JamRefreshService,
         protected changeDetectorRef: ChangeDetectorRef,
-        protected matDialog: MatDialog
     ) {
         super(router, selectionBarService, updateFiltersService, activatedRoute);
 

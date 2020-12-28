@@ -1,0 +1,20 @@
+<input
+    *ngIf="column.form_field.input"
+    [name]="'document_number_' + element.id"
+    class="rs-card-flat"
+    [type]="column.form_field.input.type"
+    [ngModel]="element.attributes.receipt_number"
+    (ngModelChange)="updateLocalValue($event)"
+    />
+<button
+    mat-icon-button
+    (click)="saveChanges(); $event.stopPropagation()"
+    >
+    <mat-icon>save</mat-icon>
+</button>
+<button
+    mat-icon-button
+    (click)="$event.stopPropagation()"
+    >
+    <mat-icon>cancel</mat-icon>
+</button>
