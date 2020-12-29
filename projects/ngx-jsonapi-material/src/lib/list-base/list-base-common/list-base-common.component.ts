@@ -50,6 +50,8 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
     @Input() public displayedColumns: Array<string>;
     @Input() public expandableRow: TemplateRef<any>;
     @Input() public expandedElement: Resource;
+    @Input() public editElement: Resource;
+    @Input() public overrideEditableCellsSave: boolean = false;
     @Input() public ngContentColumns: Array<string> = [];
     @Input() public columnPipes: { [key: string]: any };
     @Input() public service: Service;
@@ -68,6 +70,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
     @Input() public page: IPage;
     @Input() public sort: Array<string>;
     @Input() public disableQueryParamsUpdate: boolean = false;
+    @Output() public saveEditableCell: EventEmitter<Resource> = new EventEmitter<Resource>();
     @Output() public collectionChange: EventEmitter<DocumentCollection> = new EventEmitter();
     @Output() public actionsClick: EventEmitter<any> = new EventEmitter();
     @Output() public rowClick: EventEmitter<any> = new EventEmitter();
@@ -145,6 +148,38 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
         this.expandedElement = this.expandedElement === row ? null : row;
         this.rowClick.emit(row);
         /* tslint:enable:strict-comparisons */
+    }
+
+    public editTableElement(element: Resource) {
+        if (this.editElement) {
+            return;
+        }
+        this.editElement = element;
+    }
+
+    public clearEditElement() {
+        this.editElement = null;
+    }
+
+    public saveTableElement(element: Resource, column: Column, value: any) {
+        let last_value = element.attributes[column.key];
+        element.attributes[column.key] = value;
+        if (this.overrideEditableCellsSave) {
+            this.saveEditableCell.emit(element);
+
+            return;
+        }
+        element.save().subscribe(
+            () => {
+                this.changeDetectorRef.detectChanges();
+            },
+            error => {
+                element.attributes[column.key] = last_value;
+                this.changeDetectorRef.detectChanges();
+                throw new Error(error);
+            }
+        );
+        this.editElement = null;
     }
 
     public actionClick(element: any, key: string) {
