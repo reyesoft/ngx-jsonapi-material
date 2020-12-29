@@ -3,7 +3,7 @@ import { Resource } from 'ngx-jsonapi';
 import { Column } from '../table-columns';
 
 @Component({
-    selector: 'app-editable-cell-content',
+    selector: 'jam-editable-cell-content',
     templateUrl: './editable-cell-content.component.html',
     styleUrls: ['./editable-cell-content.component.scss']
 })

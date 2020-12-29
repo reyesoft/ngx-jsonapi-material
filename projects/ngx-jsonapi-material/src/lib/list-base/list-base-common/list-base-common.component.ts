@@ -84,7 +84,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
         public updateFiltersService: UpdateFiltersService,
         public selectionBarService: SelectionBarService,
         protected rsRefreshService: JamRefreshService,
-        protected changeDetectorRef: ChangeDetectorRef,
+        protected changeDetectorRef: ChangeDetectorRef
     ) {
         super(router, selectionBarService, updateFiltersService, activatedRoute);
 

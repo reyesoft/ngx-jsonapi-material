@@ -170,6 +170,31 @@
 <ng-template #contentTemplate let-element="element" let-column="column">
     <div *ngIf="!observableMedia.isActive('xs') || !column.hide_mobile_cell" [ngClass]="observableMedia.isActive('xs') && !column.hide_mobile_cell ? 'flex-row-spacebetween-center' : ''">
         <span class="row-name" *ngIf="observableMedia.isActive('xs') && column.show_mobile_title" style="padding-right: 8px">{{ column.mobile_title || column.title || (column.key | translate) | titlecase }}:</span>
+
+        <!-- NOTE: custom template -->
+        <ng-container
+        *ngIf="column?.template && !(column?.form_field && editElement === element)"
+        [ngTemplateOutlet]="column.template"
+        [ngTemplateOutletContext]="{element: element}"
+        >
+        </ng-container>
+
+        <!-- NOTE: editale tables -->
+        <div
+            *ngIf="column?.form_field && editElement === element"
+            class="editable-cell"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            >
+            <jam-editable-cell-content
+                [element]="element"
+                [column]="column"
+                (save)="saveTableElement(element, column, $event)"
+                (cancel)="clearEditElement()"
+                >
+            </jam-editable-cell-content>
+        </div>
+
         <ng-container
             *ngIf="column?.template"
             [ngTemplateOutlet]="column.template"
