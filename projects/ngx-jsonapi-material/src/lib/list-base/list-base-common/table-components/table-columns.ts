@@ -24,6 +24,11 @@ export class Column {
     public show_mobile_title = true;
     public hide_mobile_cell = false;
     public sort_key: string;
+    public form_field: {
+        input?: { type: string };
+        select?: { options: Array<any> };
+        checkbox?: { text: string };
+    };
 
     public constructor(
         public key: string,
@@ -112,16 +117,20 @@ export class Column {
         return this;
     }
 
+    public setFormField(type: 'text'|'number'): Column {
+        // TODO: COL-2387 estos datos deberían generarse diánimcamente, crear factory para diferentes tipos de campos
+        this.form_field = { input: { type: type }};
+
+        return this;
+    }
+
     public setDefault(default_value: any): Column {
         this.default_value = default_value;
 
         return this;
     }
 
-    public setIcon(icon: Column['icon'] | undefined): Column | any {
-        if (icon === undefined) {
-            return undefined;
-        }
+    public setIcon(icon: Column['icon']): Column | any {
         if (!icon.name && !icon.getIconNameFromResource) {
             console.error(`You should set the icon's name inside the Column.icon.getIconNameFromResource function`);
         }

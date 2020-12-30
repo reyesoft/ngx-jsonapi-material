@@ -28,6 +28,7 @@ import { JamMenuModule } from '../menu/menu.module';
 import { UpdateFiltersService } from './base/update-filters/update-filters.component';
 import { JamRefreshService } from '../refresh/refresh.component';
 import { JamRefreshModule } from '../refresh/refresh.module';
+import { EditableCellContent } from './list-base-common/table-components/editable-cell-content/editable-cell-content.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { JamRefreshModule } from '../refresh/refresh.module';
         DynamicPipe,
         AppCapitalizePipe,
         AppDatePipe,
+        EditableCellContent,
         AppDateTimePipe,
         AppCurrencyPipe
     ],
