@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.65
+
+### Fixed
+
+-   It was fixed that the templates that were created to use in the common base list were duplicated
+
 ## 0.22.64
 
 ### Added
