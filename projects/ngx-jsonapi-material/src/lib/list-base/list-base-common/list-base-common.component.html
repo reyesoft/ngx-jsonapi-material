@@ -172,12 +172,12 @@
         <span class="row-name" *ngIf="observableMedia.isActive('xs') && column.show_mobile_title" style="padding-right: 8px">{{ column.mobile_title || column.title || (column.key | translate) | titlecase }}:</span>
 
         <!-- NOTE: custom template -->
-        <ng-container
+        <!-- <ng-container
         *ngIf="column?.template && !(column?.form_field && editElement === element)"
         [ngTemplateOutlet]="column.template"
         [ngTemplateOutletContext]="{element: element}"
         >
-        </ng-container>
+        </ng-container> -->
 
         <!-- NOTE: editale tables -->
         <div
