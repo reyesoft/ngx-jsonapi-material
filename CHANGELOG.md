@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.66
+
+### Added
+
+-   It was added to give it a secondary class
+
 ## 0.22.65
 
 ### Fixed

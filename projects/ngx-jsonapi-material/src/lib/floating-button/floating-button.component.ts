@@ -16,4 +16,5 @@ export class FloatingButtonComponent {
     @Input() public target: string;
     @Input() public rsRouterLink: string;
     @Input() public rsQueryParams: object;
+    @Input() public classPrimary: string;
 }
