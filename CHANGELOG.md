@@ -1,12 +1,16 @@
 # Changelog
 
-## 0.22.66
+## 0.22.67
 
 ### Fixed
 
 -   Filter for route in list base common corrected
 
-## 0.22.64
+## 0.22.66
+
+### Added
+
+-   It was added to give it a secondary class
 
 ## 0.22.65
 
