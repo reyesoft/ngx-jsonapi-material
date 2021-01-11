@@ -26,6 +26,9 @@
         "**/*/node_modules",
         "src/schematics/src/*/files/**/*"
     ],
+    "include": [
+        "cypress"
+    ],
     "atom": {
         "rewriteTsconfig": false
     }

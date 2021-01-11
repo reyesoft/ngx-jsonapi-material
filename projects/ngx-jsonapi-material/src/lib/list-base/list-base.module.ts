@@ -14,7 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSortModule } from '@angular/material/sort';
 import { AppCapitalizePipe } from './capitalize-pipe/capitalize.pipe';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { DynamicPipe } from './dynamic-pipe/dynamic.pipe';
 import { AppDatePipe, AppDateTimePipe } from './date-pipe/app-date.pipe';
 import { AppCurrencyPipe } from './currency-pipe/app-currency.pipe';
@@ -29,6 +29,12 @@ import { UpdateFiltersService } from './base/update-filters/update-filters.compo
 import { JamRefreshService } from '../refresh/refresh.component';
 import { JamRefreshModule } from '../refresh/refresh.module';
 import { EditableCellContent } from './list-base-common/table-components/editable-cell-content/editable-cell-content.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, location.origin + '/assets/i18n/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -66,7 +72,14 @@ import { EditableCellContent } from './list-base-common/table-components/editabl
         MatPaginatorModule,
         MatDividerModule,
         TranslateModule,
-        CommonModule
+        CommonModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
     ],
     providers: [
         ResourceSelectionBarService,
