@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.67
+
+### Fixed
+
+-   Filter for route in list base common corrected
+
 ## 0.22.66
 
 ### Added
