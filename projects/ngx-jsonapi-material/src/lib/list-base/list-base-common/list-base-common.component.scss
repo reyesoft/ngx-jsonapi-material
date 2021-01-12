@@ -56,4 +56,11 @@ mat-row.custom-selected-row {
     }
 }
 
+.flex-row-spacebetween-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* stylelint-enable selector-no-qualifying-type */

@@ -13,3 +13,7 @@ mat-toolbar {
 :host ::ng-deep a.mat-button {
     text-decoration: none;
 }
+
+:host ::ng-deep .paragraph-authors {
+    margin: 0;
+}
