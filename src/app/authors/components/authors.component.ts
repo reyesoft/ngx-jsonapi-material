@@ -12,7 +12,7 @@ import { ResponsiveColumns } from 'projects/ngx-jsonapi-material/src/lib/list-ba
     templateUrl: './authors.component.html'
 })
 export class AuthorsComponent implements AfterViewInit {
-    @ViewChild('default_id', {static: true}) public default_id: TemplateRef<any>;
+    @ViewChild('default_id', { static: true }) public default_id: TemplateRef<any>;
     public page: IPage = {
         pageIndex: 0,
         pageSize: 10
@@ -20,15 +20,13 @@ export class AuthorsComponent implements AfterViewInit {
     public responsiveColumns: ResponsiveColumns = new ResponsiveColumns();
     public stylesCell = {
         'font-weight': 'bold'
-    }
+    };
     public tableColumns = [
         new Column('id', 'ID', 'ID')
             .setHeaderStyles(this.stylesCell)
             .hideOnMobile()
             .templateOnly(true),
-        new Column('name', 'Name', 'Name')
-            .setHeaderStyles(this.stylesCell)
-            .hideOnMobile(),
+        new Column('name', 'Name', 'Name').setHeaderStyles(this.stylesCell).hideOnMobile(),
         new Column('date_of_birth', 'Date of birth', 'Date of birth')
             .setHeaderStyles(this.stylesCell)
             .setPipe({ pipe: AppDatePipe })
@@ -39,9 +37,7 @@ export class AuthorsComponent implements AfterViewInit {
             .hideOnMobile()
     ];
 
-    public constructor(
-        public authorsService: AuthorsService,
-    ) {
+    public constructor(public authorsService: AuthorsService) {
         this.responsiveColumns
             .setXs(['mobile'])
             .setSm(['name', 'date_of_birth', 'date_of_death'])
