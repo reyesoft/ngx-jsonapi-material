@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.68
+
+### Added
+
+-   Styles added to list base common
+
 ## 0.22.67
 
 ### Fixed
