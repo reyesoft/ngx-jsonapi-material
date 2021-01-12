@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.68
+
+### Fixed
+
+-   Fix in pagination
+
 ## 0.22.67
 
 ### Fixed
