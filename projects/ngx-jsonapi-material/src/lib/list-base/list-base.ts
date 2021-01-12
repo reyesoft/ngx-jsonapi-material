@@ -157,10 +157,18 @@ export class ListBase implements OnInit, OnDestroy {
             delete queryParamsCopy[key];
         });
 
+        let queryParams = { pageSize: page.pageSize, pageIndex: page.pageIndex };
+
+        if (Object.keys(this.remoteFilter).length !== 0) {
+            Object.keys(this.remoteFilter).forEach((key): void => {
+                queryParams[key] = this.remoteFilter[key];
+            });
+        }
+
         if (this.disableQueryParamsUpdate) {
             this.realReload(page);
         } else {
-            this.updateFiltersService.applyFilters({ ...queryParamsCopy, ...{ pageSize: page.pageSize, pageIndex: page.pageIndex } });
+            this.updateFiltersService.applyFilters({ ...queryParams });
         }
     }
 
