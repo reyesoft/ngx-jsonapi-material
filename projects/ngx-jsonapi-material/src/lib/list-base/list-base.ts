@@ -159,7 +159,7 @@ export class ListBase implements OnInit, OnDestroy {
 
         let queryParams = { pageSize: page.pageSize, pageIndex: page.pageIndex };
 
-        if (Object.keys(this.remoteFilter).length !== 0) {
+        if (this.remoteFilter && Object.keys(this.remoteFilter).length !== 0) {
             Object.keys(this.remoteFilter).forEach((key): void => {
                 queryParams[key] = this.remoteFilter[key];
             });

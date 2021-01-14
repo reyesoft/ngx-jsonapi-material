@@ -2,9 +2,9 @@
 
 ## 0.22.68
 
-### Added
+### Fixed
 
--   Styles added to list base common
+-   Fix in pagination and style of list common base
 
 ## 0.22.67
 
