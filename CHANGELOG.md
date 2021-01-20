@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.68
+
+### Fixed
+
+-   Fix in pagination and style of list common base
+
 ## 0.22.67
 
 ### Fixed

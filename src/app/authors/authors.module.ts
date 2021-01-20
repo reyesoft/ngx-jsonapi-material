@@ -13,6 +13,7 @@ import {
     JamFloatingInputModule
 } from 'ngx-jsonapi-material';
 import { CreateAuthorComponent } from './components/create-author/create-author.component';
+import { ListBaseModule } from 'projects/ngx-jsonapi-material/src/public-api';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { CreateAuthorComponent } from './components/create-author/create-author.
         SharedModule,
         AuthorsRoutingModule,
         MaterialModule,
+        ListBaseModule,
         JamDynamicFormsModule,
         JamSubmitModule,
         JamMenuModule,

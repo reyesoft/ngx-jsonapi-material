@@ -1,0 +1,7 @@
+{
+    "baseUrl": "http://localhost:4200/",
+    "video": false,
+    "pageLoadTimeout": 10000,
+    "responseTimeout": 10000,
+    "chromeWebSecurity": false
+}
