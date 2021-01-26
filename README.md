@@ -64,6 +64,80 @@ yarn serve
 
 We use as backend [Json Api Playground](http://jsonapiplayground.reyesoft.com/).
 
+## Running cypress test in console
+
+```bash
+yarn cy:run
+```
+
+## Running cypress test in browser
+
+```bash
+yarn cy:open
+```
+
+## Creating a test
+
+Go to the following location cypress -> integration, and create a file with the extension .spec.ts. The file contains the following structure:
+
+```
+describe('ListBase', () => {
+    before(() => {
+        cy.disableScreenshot();
+    });
+    it('ListBase integrity test', () => {
+        cy.spyAuthors();
+        cy.visit('/#/authors?pageSize=10');
+    })
+});
+```
+
+## Simulate backend response in cypress
+
+Go to the following location cypress -> fixtures, and create a file with the extension .json. In it we will have the supposed response from the backend.
+
+```
+{
+    "meta": {
+        "page": 1,
+        "resources_per_page": 10,
+        "total_resources": 11
+    },
+    "data": [
+        {
+            "type": "authors",
+            "id": "14",
+            "attributes": {
+                "name": "Anais Carroll",
+                "birthplace": "Taiwan",
+                "date_of_birth": "1986-08-12",
+                "date_of_death": "2000-10-05"
+            },
+            "relationships": {
+                "photos": {
+                    "data": []
+                },
+                "books": {
+                    "data": [
+                        {
+                            "type": "books",
+                            "id": "23"
+                        },
+                        {
+                            "type": "books",
+                            "id": "49"
+                        }
+                    ]
+                }
+            },
+            "links": {
+                "self": "/authors/14"
+            }
+        }
+    ]
+}
+```
+
 ## Colaborate
 
 Check [Environment development file](DEV_ENVIRONMENT.md) 😉.

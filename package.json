@@ -2,7 +2,8 @@
   "name": "ngx-jsonapi-material-app",
   "scripts": {
     "build_lib": "ng build --prod ngx-jsonapi-material",
-    "cy:open": "cypress open",
+    "cy:run": "start-server-and-test start :4200 'cypress run'",
+    "cy:open": "start-server-and-test start :4200 'cypress open'",
     "npm_pack": "cd dist/ngx-jsonapi-material && npm pack",
     "copy-license": "copy .\\LICENSE .\\dist\\ngx-jsonapi-material",
     "copy-readme": "copy .\\README.md .\\dist\\ngx-jsonapi-material",
@@ -181,6 +182,7 @@
     "rollup": "^0.50.0",
     "rxjs-tslint-rules": "4.7.2",
     "sorcery": "^0.10.0",
+    "start-server-and-test": "^1.11.7",
     "ts-mockito": "^2.3.1",
     "ts-node": "~5.0.1",
     "tsickle": ">=0.25.5",
