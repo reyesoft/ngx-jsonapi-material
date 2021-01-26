@@ -13,3 +13,13 @@ Cypress.Commands.add('spyAuthors', () => {
         status: 200
     }).as('authors');
 });
+
+Cypress.Commands.add('spyBooks', (fixture: string) => {
+    cy.server();
+    cy.route({
+        method: 'GET',
+        url: /\/v2\/books*/,
+        response: 'fixture:' + fixture,
+        status: 200
+    }).as('books');
+});
