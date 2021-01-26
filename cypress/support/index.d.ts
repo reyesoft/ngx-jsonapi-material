@@ -3,6 +3,7 @@ declare namespace Cypress {
     // tslint:disable-next-line:interface-name
     interface Chainable {
         disableScreenshot(): void;
-        spyAuthors(): void
+        spyAuthors(): void;
+        spyBooks(fixture: string): void
     }
 }

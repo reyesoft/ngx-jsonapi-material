@@ -1,0 +1,148 @@
+{
+    "meta": {
+        "page": 1,
+        "resources_per_page": 10,
+        "total_resources": 11
+    },
+    "data": [
+        {
+            "type": "books",
+            "id": "1",
+            "attributes": {
+                "title": "Pacocha-Hammes",
+                "date_published": "1970-07-06",
+                "isbn": 76976925
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "authors",
+                        "id": "20"
+                    }
+                },
+                "chapters": {
+                    "data": []
+                },
+                "photos": {
+                    "data": [
+                        {
+                            "type": "photos",
+                            "id": "151"
+                        },
+                        {
+                            "type": "photos",
+                            "id": "152"
+                        }
+                    ]
+                },
+                "series": {
+                    "data": {
+                        "type": "series",
+                        "id": "28"
+                    }
+                },
+                "stores": {
+                    "data": [
+                        {
+                            "type": "stores",
+                            "id": "10"
+                        }
+                    ]
+                }
+            },
+            "links": {
+                "self": "/books/1"
+            }
+        },
+        {
+            "type": "books",
+            "id": "2",
+            "attributes": {
+                "title": "Runte and Sons",
+                "date_published": "2017-04-20",
+                "isbn": 4294967295
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "authors",
+                        "id": "31"
+                    }
+                },
+                "chapters": {
+                    "data": []
+                },
+                "photos": {
+                    "data": []
+                },
+                "series": {
+                    "data": {
+                        "type": "series",
+                        "id": "36"
+                    }
+                },
+                "stores": {
+                    "data": [
+                        {
+                            "type": "stores",
+                            "id": "17"
+                        }
+                    ]
+                }
+            },
+            "links": {
+                "self": "/books/2"
+            }
+        }
+    ],
+    "included": [
+        {
+            "type": "authors",
+            "id": "20",
+            "attributes": {
+                "name": "Mrs. Tressa Yost III",
+                "birthplace": "Tuvalu",
+                "date_of_birth": "2013-01-23",
+                "date_of_death": "1975-07-30"
+            },
+            "links": {
+                "self": "/authors/20"
+            }
+        },
+        {
+            "type": "photos",
+            "id": "151",
+            "attributes": {
+                "title": "Photo 228",
+                "uri": "https://picsum.photos/id/715/400/300.jpg"
+            },
+            "links": {
+                "self": "/photos/151"
+            }
+        },
+        {
+            "type": "photos",
+            "id": "152",
+            "attributes": {
+                "title": "Photo 293",
+                "uri": "https://picsum.photos/id/515/400/300.jpg"
+            },
+            "links": {
+                "self": "/photos/152"
+            }
+        },
+        {
+            "type": "authors",
+            "id": "31",
+            "attributes": {
+                "name": "Dr. Ashtyn Kilback",
+                "birthplace": "South Africa",
+                "date_of_birth": "2002-05-23",
+                "date_of_death": "2012-07-03"
+            },
+            "links": {
+                "self": "/authors/31"
+            }
+        }
+    ]
+}
