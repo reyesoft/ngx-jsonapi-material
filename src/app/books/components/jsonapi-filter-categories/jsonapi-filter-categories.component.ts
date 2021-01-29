@@ -39,17 +39,17 @@ export class JsonapiFilterBooksComponent {
         });
     }
 
-    // public updateFilter(remoteFilter) {
-    //     if (remoteFilter.date_published === '') {
-    //         this.remoteFilterChange.emit(remoteFilter);
+    public updateFilter(remoteFilter) {
+        if (remoteFilter.date_published === '') {
+            this.remoteFilterChange.emit(remoteFilter);
 
-    //         return;
-    //     }
+            return;
+        }
 
-    //     let date = remoteFilter.date_published.split('-');
-    //     this.remoteFilter = {
-    //         date_published: { since: date[0] + '-01-01', until: date[1] + '-01-01' }
-    //     };
-    //     this.remoteFilterChange.emit(this.remoteFilter);
-    // }
+        let date = remoteFilter.date_published.split('-');
+        this.remoteFilter = {
+            date_published: { since: date[0] + '-01-01', until: date[1] + '-01-01' }
+        };
+        this.remoteFilterChange.emit(this.remoteFilter);
+    }
 }
