@@ -17,11 +17,7 @@ import { BooksSelectionBarComponent } from './books-selection-bar/books-selectio
 export class BooksComponent implements OnDestroy {
     public books: DocumentCollection<Book>;
     public filter_text: string = '';
-    public remoteFilter: {
-        category_name?: string;
-    } = {
-        category_name: ''
-    };
+    public remoteFilter: {};
 
     // Select Rows
     public initialSelection = [];
@@ -66,15 +62,8 @@ export class BooksComponent implements OnDestroy {
     }
 
     public getAll(remotefilter) {
-        // we add some remote filter
-        remotefilter.date_published = {
-            since: '1983-01-01',
-            until: '2010-01-01'
-        };
-
         let books$ = this.booksService.all({
             remotefilter: remotefilter,
-            page: { number: 1 },
             include: ['author', 'photos']
         });
         books$.subscribe(

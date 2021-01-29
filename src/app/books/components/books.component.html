@@ -22,7 +22,7 @@
 
     <ng-container class="jam-filter-content">
         <demo-jsonapi-filter-categories
-            [remoteFilter]="remoteFilter"
+            (remoteFilterChange)="getAll($event)"
         ></demo-jsonapi-filter-categories>
     </ng-container>
 </jam-floating-filters>

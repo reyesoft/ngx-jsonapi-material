@@ -15,43 +15,41 @@ import { Filter } from 'ngx-jsonapi-material';
     templateUrl: './jsonapi-filter-categories.component.html'
 })
 export class JsonapiFilterBooksComponent {
-    @Input() public remoteFilter;
     @Output() public remoteFilterChange = new EventEmitter<any>();
 
+    public remoteFilter = {};
     public books: DocumentCollection<Book>;
     public filter_config_books: Filter = {
         type: 'checks',
-        attribute: 'category_id',
+        attribute: 'date_published',
         options: {},
         selected: [],
-        title: 'Categorias'
+        title: 'Fecha de publicación'
     };
 
     public constructor(protected booksService: BooksService) {
+        let pairDates = ['1900-1950', '1951-2000', '2001-2020'];
         this.booksService.all().subscribe(books => {
             this.books = books;
-            let count = 0;
-            // example...
-            for (let category of [
-                'Arts & Music',
-                'Biographies',
-                'Business',
-                'Kids',
-                'Comics',
-                'Computers & Tech',
-                'Cooking',
-                'Hobbies & Crafts'
-            ]) {
-                this.filter_config_books.options[count] = {
-                    text: category
+            for (let dates of pairDates) {
+                this.filter_config_books.options[dates] = {
+                    text: dates
                 };
-
-                count += 1;
             }
         });
     }
 
-    public updateFilter(remoteFilter) {
-        this.remoteFilterChange.emit(remoteFilter);
-    }
+    // public updateFilter(remoteFilter) {
+    //     if (remoteFilter.date_published === '') {
+    //         this.remoteFilterChange.emit(remoteFilter);
+
+    //         return;
+    //     }
+
+    //     let date = remoteFilter.date_published.split('-');
+    //     this.remoteFilter = {
+    //         date_published: { since: date[0] + '-01-01', until: date[1] + '-01-01' }
+    //     };
+    //     this.remoteFilterChange.emit(this.remoteFilter);
+    // }
 }
