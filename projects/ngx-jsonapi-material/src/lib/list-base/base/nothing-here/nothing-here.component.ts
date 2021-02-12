@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'jam-nothing-here',
-    templateUrl: './nothing-here.component.html',
-    styleUrls: ['./nothing-here.component.scss']
+    styleUrls: ['./nothing-here.component.scss'],
+    templateUrl: './nothing-here.component.html'
 })
 export class NothingHereComponent {
     @Input() public classed: string;
