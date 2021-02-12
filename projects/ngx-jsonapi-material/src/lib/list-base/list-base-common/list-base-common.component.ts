@@ -70,6 +70,11 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
     @Input() public page: IPage;
     @Input() public sort: Array<string>;
     @Input() public disableQueryParamsUpdate: boolean = false;
+    @Input() public nothingHereClasses: string;
+    @Input() public nothingHereText: string = 'Todavía no tienes nada por aquí';
+    @Input() public imageOrIcon: 'image' | 'icon' = 'icon';
+    @Input() public nothingHereIcon: string = 'sentiment_neutral';
+    @Input() public nothingHereImageUrl: string;
     @Output() public saveEditableCell: EventEmitter<Resource> = new EventEmitter<Resource>();
     @Output() public collectionChange: EventEmitter<DocumentCollection> = new EventEmitter();
     @Output() public actionsClick: EventEmitter<any> = new EventEmitter();
