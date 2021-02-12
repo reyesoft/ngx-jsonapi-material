@@ -1,6 +1,6 @@
 <jam-nothing-here
-    *ngIf="!showSpinner && (showNothingHere || dataSource && dataSource.length === 0 && collection && collection.builded && !collection.is_loading)"
     [classed]="nothingHereClasses"
+    [imageOrIcon]="imageOrIcon"
     [text]="nothingHereText"
     [icon]="nothingHereIcon"
     >
