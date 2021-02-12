@@ -2,7 +2,7 @@
     <div fxLayout="column" fxLayoutAlign="center center">
         <ng-container [ngSwitch]="imageOrIcon">
             <div *ngSwitchCase="'image'" class="nothing-image-container">
-                <img [src]="nothingHereImageUrl" alt="Imagen {{text}}">
+                <img [src]="imageUrl" alt="Imagen {{text}}">
             </div>
             <span [style.opacity]="'0.4'" *ngSwitchCase="'icon'"><mat-icon style="font-size: 10em; width: 100%;">{{ icon }}</mat-icon></span>
         </ng-container>

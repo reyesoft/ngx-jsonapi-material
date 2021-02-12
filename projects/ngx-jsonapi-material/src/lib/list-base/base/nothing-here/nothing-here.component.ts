@@ -10,5 +10,5 @@ export class NothingHereComponent {
     @Input() public text: string;
     @Input() public icon: string;
     @Input() public imageOrIcon: 'image' | 'icon';
-    @Input() public nothingHereImageUrl: string;
+    @Input() public imageUrl: string;
 }
