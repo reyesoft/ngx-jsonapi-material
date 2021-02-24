@@ -1,7 +1,9 @@
 <jam-nothing-here
     *ngIf="!showSpinner && (showNothingHere || dataSource && dataSource.length === 0 && collection && collection.builded && !collection.is_loading)"
     [classed]="nothingHereClasses"
+    [imageOrIcon]="imageOrIcon"
     [text]="nothingHereText"
+    [imageUrl]="nothingHereImageUrl"
     [icon]="nothingHereIcon"
     >
     <ng-content></ng-content>

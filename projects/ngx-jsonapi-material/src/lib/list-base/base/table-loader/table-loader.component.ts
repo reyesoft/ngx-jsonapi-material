@@ -10,7 +10,9 @@ export class TableLoaderComponent {
     @Input() public showNothingHere: boolean;
     @Input() public nothingHereClasses: string;
     @Input() public nothingHereText: string;
+    @Input() public imageOrIcon: 'image' | 'icon';
     @Input() public nothingHereIcon: string;
+    @Input() public nothingHereImageUrl: string;
 
     @Input() public showSpinner: boolean;
     @Input() public spinnerColor: 'primary' | 'accent' = 'primary';

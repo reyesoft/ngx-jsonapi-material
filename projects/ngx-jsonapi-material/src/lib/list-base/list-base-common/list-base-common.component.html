@@ -1,6 +1,11 @@
 <div class="loader-container">
     <jam-table-loader
         nothingHereClasses="layout-padding"
+        [nothingHereClasses]="nothingHereClasses"
+        [imageOrIcon]="imageOrIcon"
+        [nothingHereText]="nothingHereText"
+        [nothingHereImageUrl]="nothingHereImageUrl"
+        [nothingHereIcon]="nothingHereIcon"
         [showSpinner]="dataTableSource.data.length === 0 && !collection.builded"
         [showNothingHere]="dataTableSource.data.length === 0 && collection.builded"
     ></jam-table-loader>
