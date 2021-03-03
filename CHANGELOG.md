@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.69
+
+### Added
+
+-   Added images customized list base common
+
 ## 0.22.68
 
 ### Fixed
