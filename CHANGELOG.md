@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.70
+
+### Added
+
+-   Added three dot to p in mobile
+
 ## 0.22.69
 
 ### Added
