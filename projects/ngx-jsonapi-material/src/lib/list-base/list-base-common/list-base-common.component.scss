@@ -3,6 +3,7 @@ $color-black-alpha-30: rgba(0, 0, 0, 0.3);
 
 table {
     width: 100%;
+    table-layout: fixed;
 }
 
 .detail-row {
@@ -51,9 +52,22 @@ mat-row.custom-selected-row {
 }
 
 .spanlabels {
+    > * {
+        > * {
+            width: 100%;
+        }
+    }
+
     mat-divider {
         position: relative !important;
     }
+}
+
+:host ::ng-deep table mat-cell p {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 16px;
 }
 
 .flex-row-spacebetween-center {
