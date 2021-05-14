@@ -1,12 +1,12 @@
 <h3>Authors</h3>
-<jam-list-base-common
+<jam-list-base-common-infinite-scroll
     *ngIf="authorsService"
     [tableColumns]="tableColumns"
     [service]="authorsService"
     [page]="page"
     [responsiveColumns]="responsiveColumns"
     [sort]="['name']">
-</jam-list-base-common>
+</jam-list-base-common-infinite-scroll>
 
 <ng-template #default_id let-element="element">
     <p class="paragraph-authors">{{element.id}}</p>

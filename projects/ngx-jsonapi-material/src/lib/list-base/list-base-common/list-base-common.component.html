@@ -162,14 +162,7 @@
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
         </ng-container>
     </table>
-    <mat-paginator
-        #paginator
-        [pageIndex]="page.pageIndex"
-        [pageSize]="page.pageSize"
-        [pageSizeOptions]="pageSizeOptions"
-        [length]="page.length"
-        (page)="realReload($event, {}, false)">
-    </mat-paginator>
+    <ng-content></ng-content>
 </mat-card>
 
 <ng-template #contentTemplate let-element="element" let-column="column">

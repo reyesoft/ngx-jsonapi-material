@@ -223,6 +223,7 @@ export class ListBase implements OnInit, OnDestroy {
                         this.fillPageData(request_options.page);
                     }
                     if (!this.disableQueryParamsUpdate) {
+                        console.log('entro acaaa')
                         this.updatePagination(this.page);
                     }
                 }),
