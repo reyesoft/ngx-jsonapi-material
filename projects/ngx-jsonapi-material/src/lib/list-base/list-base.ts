@@ -192,10 +192,8 @@ export class ListBase implements OnInit, OnDestroy {
         this.deprecate_collection_subscription.next();
         let pageIndex = 0;
 
-        if (!this.page.pageSize) {
-            pageIndex = 0;
-        } else {
-            pageIndex = this.page.pageSize;
+        if (this.page.pageIndex) {
+            pageIndex = this.page.pageIndex;
         }
 
         return request_options.service
@@ -223,7 +221,6 @@ export class ListBase implements OnInit, OnDestroy {
                         this.fillPageData(request_options.page);
                     }
                     if (!this.disableQueryParamsUpdate) {
-                        console.log('entro acaaa')
                         this.updatePagination(this.page);
                     }
                 }),

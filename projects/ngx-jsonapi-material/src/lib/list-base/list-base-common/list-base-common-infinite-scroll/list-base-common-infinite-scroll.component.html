@@ -47,7 +47,7 @@
     (pageLengthChange)="pageLengthChange($event)"
     (openedActionsMenu)="openedActionsMenu.emit($event)"
     >
-    <div class="button-more-container">
-        <button mat-button type="button" (click)="reloadPage()">Ver mas</button>
+    <div *ngIf="!disabledButton" class="button-more-container">
+        <button mat-stroked-button type="button" (click)="reloadPage()">Ver mas</button>
     </div>
 </jam-list-base-common>

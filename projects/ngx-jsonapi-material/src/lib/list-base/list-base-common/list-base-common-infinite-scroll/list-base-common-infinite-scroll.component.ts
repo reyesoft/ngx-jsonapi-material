@@ -31,8 +31,10 @@ import { Menu } from '../../../menu/menu-elements/menu';
 })
 export class ListBaseCommonInfiniteScrollComponent {
     public reloadPageData: IPage;
-    public pageSizeOptions: Array<number> = [];
     public collection: Array<Resource> = [];
+    public disableQueryParamsUpdate: boolean = true;
+    public disabledButton: boolean = false;
+    private isEmpty: boolean = false;
     @Input() public tableColumns: Array<Column>;
     @Input() public displayedColumns: Array<string>;
     @Input() public expandableRow: TemplateRef<any>;
@@ -56,7 +58,6 @@ export class ListBaseCommonInfiniteScrollComponent {
     @Input() public resizeContent: boolean = true;
     @Input() public page: IPage;
     @Input() public sort: Array<string>;
-    @Input() public disableQueryParamsUpdate: boolean = true;
     @Input() public nothingHereClasses: string;
     @Input() public nothingHereText: string = 'Todavía no tienes nada por aquí';
     @Input() public imageOrIcon: 'image' | 'icon' = 'icon';
@@ -106,5 +107,10 @@ export class ListBaseCommonInfiniteScrollComponent {
     public setCollection(collection: any): void {
         this.collectionChange.emit(collection);
         this.collection = this.collection.concat(collection.data);
+        if (collection.page.total_resources === this.collection.length && this.isEmpty) {
+            this.disabledButton = true;
+            this.changeDetectorRef.detectChanges();
+        }
+        this.isEmpty = true;
     }
 }

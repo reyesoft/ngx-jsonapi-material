@@ -55,7 +55,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppCurrencyPipe
     ],
     exports: [
-        ListBaseCommonComponent,
         ListBaseCommonPaginatorComponent,
         ListBaseCommonInfiniteScrollComponent,
         AppCapitalizePipe,
