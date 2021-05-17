@@ -100,7 +100,7 @@ export class ListBaseCommonInfiniteScrollComponent {
 
     public reloadPage(): void {
         this.page.pageIndex = this.page.pageIndex + 1;
-        this.reloadPageData = Object.assign({}, this.page);
+        this.reloadPageData = {...this.page};
         this.changeDetectorRef.detectChanges();
     }
 

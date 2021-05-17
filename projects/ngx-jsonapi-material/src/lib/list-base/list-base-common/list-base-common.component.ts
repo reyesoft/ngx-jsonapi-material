@@ -135,7 +135,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
         if (!this.tableColumns.find((column): boolean => column.key === 'mobile')) {
             this.tableColumns.splice(1, 0, new Column('mobile', ' ', ' '));
         }
-        this.pageSizeOptionsEmit.emit(this.pageSizeOptions)
+        this.pageSizeOptionsEmit.emit(this.pageSizeOptions);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -145,7 +145,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
 
     private changeReloadPageData(changes: SimpleChanges): void {
         if (changes.reloadPageData && changes.reloadPageData.currentValue !== undefined) {
-            this.realReload(changes.reloadPageData.currentValue, {}, false)
+            this.realReload(changes.reloadPageData.currentValue, {}, false);
         }
     }
 
