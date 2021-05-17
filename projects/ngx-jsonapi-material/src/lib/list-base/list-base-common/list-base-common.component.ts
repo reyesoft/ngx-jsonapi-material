@@ -16,7 +16,9 @@ import {
     ComponentRef,
     ChangeDetectionStrategy,
     TemplateRef,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    SimpleChanges,
+    OnChanges
 } from '@angular/core';
 import { Column, Action } from './table-components/table-columns';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -45,7 +47,7 @@ import { JamRefreshService } from '../../refresh/refresh.component';
         ])
     ]
 })
-export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestroy {
+export class ListBaseCommonComponent extends ListBase implements OnInit, OnChanges, OnDestroy {
     @Input() public tableColumns: Array<Column>;
     @Input() public displayedColumns: Array<string>;
     @Input() public expandableRow: TemplateRef<any>;
@@ -75,7 +77,11 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
     @Input() public imageOrIcon: 'image' | 'icon' = 'icon';
     @Input() public nothingHereIcon: string = 'sentiment_neutral';
     @Input() public nothingHereImageUrl: string;
+    @Input() public reloadPageData: IPage = {};
+    @Input() public collectionInfiniteScroll: DocumentCollection;
     @Output() public saveEditableCell: EventEmitter<Resource> = new EventEmitter<Resource>();
+    @Output() public pageLengthChange: EventEmitter<number> = new EventEmitter<number>();
+    @Output() public pageSizeOptionsEmit: EventEmitter<Array<number>> = new EventEmitter<Array<number>>();
     @Output() public collectionChange: EventEmitter<DocumentCollection> = new EventEmitter();
     @Output() public actionsClick: EventEmitter<any> = new EventEmitter();
     @Output() public rowClick: EventEmitter<any> = new EventEmitter();
@@ -129,6 +135,24 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
         if (!this.tableColumns.find((column): boolean => column.key === 'mobile')) {
             this.tableColumns.splice(1, 0, new Column('mobile', ' ', ' '));
         }
+        this.pageSizeOptionsEmit.emit(this.pageSizeOptions);
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        this.changeReloadPageData(changes);
+        this.changeCollectionInfiniteScroll(changes);
+    }
+
+    private changeReloadPageData(changes: SimpleChanges): void {
+        if (changes.reloadPageData && changes.reloadPageData.currentValue !== undefined) {
+            this.realReload(changes.reloadPageData.currentValue, {}, false);
+        }
+    }
+
+    private changeCollectionInfiniteScroll(changes: SimpleChanges): void {
+        if (changes.collectionInfiniteScroll && changes.collectionInfiniteScroll.currentValue.length !== 0) {
+            this.dataTableSource.data = changes.collectionInfiniteScroll.currentValue;
+        }
     }
 
     public realReload(page?: PageEvent | IPage, options: IParamsCollection = {}, clear_data = true) {
@@ -143,6 +167,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnDestr
             sort: this.sort,
             ttl: options.ttl
         }).subscribe((): void => {
+            this.pageLengthChange.emit(this.page.length);
             this.collectionChange.emit(this.collection);
             this.changeDetectorRef.detectChanges();
         });

@@ -31,6 +31,9 @@ import { JamRefreshModule } from '../refresh/refresh.module';
 import { EditableCellContent } from './list-base-common/table-components/editable-cell-content/editable-cell-content.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { ListBaseCommonPaginatorComponent } from './list-base-common/list-base-common-paginator/list-base-common-paginator.component';
+import { ListBaseCommonInfiniteScrollComponent } from './list-base-common/list-base-common-infinite-scroll/list-base-common-infinite-scroll.component';
+import { MatButtonModule } from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, location.origin + '/assets/i18n/', '.json');
@@ -39,6 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     declarations: [
         ListBaseCommonComponent,
+        ListBaseCommonPaginatorComponent,
+        ListBaseCommonInfiniteScrollComponent,
         TableLoaderComponent,
         TableSpinnerComponent,
         NothingHereComponent,
@@ -50,7 +55,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppCurrencyPipe
     ],
     exports: [
-        ListBaseCommonComponent,
+        ListBaseCommonPaginatorComponent,
+        ListBaseCommonInfiniteScrollComponent,
         AppCapitalizePipe,
         AppDatePipe,
         AppDateTimePipe,
@@ -71,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         JamMenuModule,
         MatPaginatorModule,
         MatDividerModule,
+        MatButtonModule,
         TranslateModule,
         CommonModule,
         TranslateModule.forRoot({

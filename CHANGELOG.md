@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.71
+
+### Added
+
+-   Added infinite scroll
+
 ## 0.22.70
 
 ### Added
