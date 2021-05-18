@@ -22,6 +22,8 @@ import { Column, Action } from '../table-components/table-columns';
 import { DocumentCollection, Service, Resource, IParamsCollection } from 'ngx-jsonapi';
 import { IPage } from '../../list-base';
 import { Menu } from '../../../menu/menu-elements/menu';
+import { JamRefreshService } from '../../../refresh/refresh.component';
+import { Destroyer } from '../../../destroyer';
 
 @Component({
     selector: 'jam-list-base-common-infinite-scroll',
@@ -34,7 +36,8 @@ export class ListBaseCommonInfiniteScrollComponent {
     public collection: Array<Resource> = [];
     public disableQueryParamsUpdate: boolean = true;
     public disabledButton: boolean = false;
-    private isEmpty: boolean = false;
+    public pageIndex: number = 0;
+    private destroyer = new Destroyer();
     @Input() public tableColumns: Array<Column>;
     @Input() public displayedColumns: Array<string>;
     @Input() public expandableRow: TemplateRef<any>;
@@ -56,7 +59,10 @@ export class ListBaseCommonInfiniteScrollComponent {
     @Input() public checkbox: boolean;
     @Input() public responsiveColumns: ResponsiveColumns = new ResponsiveColumns();
     @Input() public resizeContent: boolean = true;
-    @Input() public page: IPage;
+    @Input() public page: IPage = {
+        pageIndex: 0,
+        pageSize: 25
+    };
     @Input() public sort: Array<string>;
     @Input() public nothingHereClasses: string;
     @Input() public nothingHereText: string = 'Todavía no tienes nada por aquí';
@@ -92,25 +98,71 @@ export class ListBaseCommonInfiniteScrollComponent {
         return null;
     }
 
-    public constructor(private changeDetectorRef: ChangeDetectorRef) { }
+    public constructor(
+        private changeDetectorRef: ChangeDetectorRef,
+        private rsRefreshService: JamRefreshService
+    ) {
+        this.observerAutoRefresh();
+        this.observerRefresh();
+    }
+
+    private observerAutoRefresh(): void {
+        this.rsRefreshService.autoRefreshSubject.pipe(this.destroyer.pipe()).subscribe((): void => {
+            this.pageIndex = this.page && this.page.pageIndex ? this.page.pageIndex : 0;
+            this.reloadPageData = {...this.page};
+            this.changeDetectorRef.detectChanges();
+        });
+    }
+
+    private observerRefresh(): void {
+        this.rsRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe((): void => {
+            this.page.pageIndex = 0;
+            this.pageIndex = 0;
+            this.reloadPageData = {...this.page};
+            this.changeDetectorRef.detectChanges();
+        });
+    }
 
     public pageLengthChange(length: number): void {
+        if (!this.page || !this.page.length) {
+            return;
+        }
         this.page.length = length;
     }
 
     public reloadPage(): void {
         this.page.pageIndex = this.page.pageIndex + 1;
+        this.pageIndex = this.page.pageIndex;
         this.reloadPageData = {...this.page};
         this.changeDetectorRef.detectChanges();
     }
 
     public setCollection(collection: any): void {
         this.collectionChange.emit(collection);
-        this.collection = this.collection.concat(collection.data);
-        if (collection.page.total_resources === this.collection.length && this.isEmpty) {
-            this.disabledButton = true;
-            this.changeDetectorRef.detectChanges();
+        this.collection = this.cutAndReload(this.pageIndex, collection.data);
+        this.disabledButton = this.disableButton(collection);
+        this.changeDetectorRef.detectChanges();
+    }
+
+    private disableButton(collection: DocumentCollection): boolean {
+        if (collection.page.total_resources === 0) {
+            return false;
         }
-        this.isEmpty = true;
+        if (collection.page.total_resources <= collection.page.resources_per_page) {
+            return true;
+        }
+        if (collection.page.total_resources === this.collection.length) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private cutAndReload(pageIndex: number, collection: any): any {
+        if (this.collection[pageIndex * (this.page && this.page.pageSize ? this.page.pageSize : 10)] === undefined) {
+            return this.collection.concat(collection);
+        }
+
+        return this.collection.slice(0, pageIndex * this.page.pageSize).concat(collection);
     }
 }

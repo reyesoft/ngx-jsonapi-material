@@ -33,7 +33,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { ListBaseCommonPaginatorComponent } from './list-base-common/list-base-common-paginator/list-base-common-paginator.component';
 import { ListBaseCommonInfiniteScrollComponent } from './list-base-common/list-base-common-infinite-scroll/list-base-common-infinite-scroll.component';
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, location.origin + '/assets/i18n/', '.json');

@@ -22,6 +22,8 @@ import { Column, Action } from '../table-components/table-columns';
 import { DocumentCollection, Service, Resource, IParamsCollection } from 'ngx-jsonapi';
 import { IPage } from '../../list-base';
 import { Menu } from '../../../menu/menu-elements/menu';
+import { JamRefreshService } from '../../../refresh/refresh.component';
+import { Destroyer } from '../../../destroyer';
 
 @Component({
     selector: 'jam-list-base-common-paginator',
@@ -32,6 +34,7 @@ import { Menu } from '../../../menu/menu-elements/menu';
 export class ListBaseCommonPaginatorComponent {
     public reloadPageData: IPage;
     public pageSizeOptions: Array<number> = [];
+    private destroyer = new Destroyer();
     @Input() public tableColumns: Array<Column>;
     @Input() public displayedColumns: Array<string>;
     @Input() public expandableRow: TemplateRef<any>;
@@ -53,7 +56,10 @@ export class ListBaseCommonPaginatorComponent {
     @Input() public checkbox: boolean;
     @Input() public responsiveColumns: ResponsiveColumns = new ResponsiveColumns();
     @Input() public resizeContent: boolean = true;
-    @Input() public page: IPage;
+    @Input() public page: IPage = {
+        pageIndex: 0,
+        pageSize: 25
+    };
     @Input() public sort: Array<string>;
     @Input() public disableQueryParamsUpdate: boolean = false;
     @Input() public nothingHereClasses: string;
@@ -90,15 +96,28 @@ export class ListBaseCommonPaginatorComponent {
         return null;
     }
 
+    public constructor(
+        private changeDetectorRef: ChangeDetectorRef,
+        private rsRefreshService: JamRefreshService
+    ) {
+        this.rsRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe((): void => {
+            this.reloadPageData = {...this.page};
+            this.changeDetectorRef.detectChanges();
+        });
+    }
+
     public pageLengthChange(length: number): void {
         this.page.length = length;
+        this.changeDetectorRef.detectChanges();
     }
 
     public pageSizeOptionsEmit(pageSizeOptions: Array<number>): void {
         this.pageSizeOptions = pageSizeOptions;
+        this.changeDetectorRef.detectChanges();
     }
 
     public reloadPage(page: IPage): void {
         this.reloadPageData = page;
+        this.changeDetectorRef.detectChanges();
     }
 }
