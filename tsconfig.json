@@ -10,7 +10,7 @@
         "noStrictGenericChecks": true,
         "lib": ["es2017", "dom"],
         "outDir": "./dist/out-tsc",
-        "target": "es5",
+        "target": "es2015",
         "module": "commonjs",
         "baseUrl": "./",
         "rootDir": "./",

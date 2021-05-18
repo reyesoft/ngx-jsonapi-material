@@ -14,6 +14,8 @@ import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from '../../projects/ngx-jsonapi-material/src/lib/material.module';
 import { JamPinOptionButtonModule } from 'ngx-jsonapi-material';
 import { JamSelectionBarModule, JamPictureManagerModule } from 'projects/ngx-jsonapi-material/src/public-api';
+import { AuthorsModule } from './authors/authors.module';
+import { BooksModule } from './books/books.module';
 
 const appRoutes: Routes = [
     {
@@ -23,11 +25,11 @@ const appRoutes: Routes = [
     },
     {
         path: 'authors',
-        loadChildren: './authors/authors.module#AuthorsModule'
+        loadChildren: (): Promise<AuthorsModule> => import('./authors/authors.module').then((m): AuthorsModule => m.AuthorsModule)
     },
     {
         path: 'books',
-        loadChildren: './books/books.module#BooksModule'
+        loadChildren: (): Promise<BooksModule> => import('./books/books.module').then((m): BooksModule => m.BooksModule)
     }
 ];
 
