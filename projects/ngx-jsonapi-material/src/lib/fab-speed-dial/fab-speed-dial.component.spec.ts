@@ -68,6 +68,8 @@ describe('FabSpeedDialComponent', () => {
 
     it('should emit actionsClick', () => {
         let actionsClickSpy = spyOn(component.actionsClick, 'emit');
+        component.fab_status.opened = true;
+        fixture.detectChanges();
         let smaller_button = fixture.debugElement.query(By.css('eco-fab-speed-dial-actions > button'));
         smaller_button.nativeElement.click();
         expect(actionsClickSpy).toHaveBeenCalledWith('smallButtonKey');
@@ -75,12 +77,16 @@ describe('FabSpeedDialComponent', () => {
 
     it('tooltips should be passed to the view', () => {
         let fab_button = fixture.debugElement.query(By.css('eco-fab-speed-dial-trigger > button'));
+        component.fab_status.opened = true;
+        fixture.detectChanges();
         let smaller_button = fixture.debugElement.query(By.css('eco-fab-speed-dial-actions > button'));
         expect(fab_button.attributes['ng-reflect-message']).toBe('Fab button tooltip');
         expect(smaller_button.attributes['ng-reflect-message']).toBe('Small button');
     });
 
     it('should display smaller buttons mat-icon or svg-icon', async(() => {
+        component.fab_status.opened = true;
+        fixture.detectChanges();
         let smaller_button_icon = fixture.debugElement.query(By.css('eco-fab-speed-dial-actions > button mat-icon'));
         expect(smaller_button_icon.attributes['ng-reflect-svg-icon']).toBeFalsy();
         component.fabSpeedDialMiniButtons[0].icon.type = 'svg-icon';

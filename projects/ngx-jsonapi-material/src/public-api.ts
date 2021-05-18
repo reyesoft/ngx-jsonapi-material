@@ -100,6 +100,8 @@ export * from './lib/pin-option-button/pin-option-button.module';
 export * from './lib/autocomplete/autocomplete.component';
 export * from './lib/autocomplete/autocomplete.module';
 
+export { DialogLoggedStateComponent } from './lib/logged-state/dialog-logged-state.component';
+
 export { ResponsiveColumns } from './lib/list-base/list-base-common/table-components/responsive-columns';
 export * from './lib/list-base/list-base-common/table-components/table-columns';
 export { AppDatePipe } from './lib/list-base/date-pipe/app-date.pipe';
@@ -109,6 +111,8 @@ export { AppCurrencyPipe } from './lib/list-base/currency-pipe/app-currency.pipe
 export { ListBaseCommonComponent } from './lib/list-base/list-base-common/list-base-common.component';
 export * from './lib/list-base/list-base';
 export { ListBaseModule } from './lib/list-base/list-base.module';
+export { ListBaseCommonPaginatorComponent } from './lib/list-base/list-base-common/list-base-common-paginator/list-base-common-paginator.component';
+export { ListBaseCommonInfiniteScrollComponent } from './lib/list-base/list-base-common/list-base-common-infinite-scroll/list-base-common-infinite-scroll.component';
 
 export { InfoButtonComponent } from './lib/info-button/info-button.component';
 export { JamInfoButtonModule } from './lib/info-button/info-button.module';

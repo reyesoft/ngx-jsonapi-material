@@ -34,7 +34,6 @@ import { Destroyer } from '../../../destroyer';
 export class ListBaseCommonPaginatorComponent {
     public reloadPageData: IPage;
     public pageSizeOptions: Array<number> = [];
-    private destroyer = new Destroyer();
     @Input() public tableColumns: Array<Column>;
     @Input() public displayedColumns: Array<string>;
     @Input() public expandableRow: TemplateRef<any>;
@@ -95,6 +94,8 @@ export class ListBaseCommonPaginatorComponent {
     } | null => {
         return null;
     }
+
+    private destroyer = new Destroyer();
 
     public constructor(
         private changeDetectorRef: ChangeDetectorRef,

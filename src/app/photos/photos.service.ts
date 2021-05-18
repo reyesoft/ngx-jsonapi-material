@@ -3,6 +3,8 @@ import { Service, Resource, Autoregister } from 'ngx-jsonapi';
 
 @Injectable()
 export class PhotosService extends Service {
+    // TODO: add explicit constructor
+
     // public resource = Photo;
     public type = 'photos';
 }
