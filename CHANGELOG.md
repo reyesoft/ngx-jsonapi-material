@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.72
+
+### Added
+
+-   Added angular 10 to demo
+
 ## 0.22.71
 
 ### Added
