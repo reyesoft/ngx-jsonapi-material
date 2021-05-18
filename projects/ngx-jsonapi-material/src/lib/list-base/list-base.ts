@@ -10,7 +10,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Resource, Service, DocumentCollection } from 'ngx-jsonapi';
-import { OnInit, OnDestroy, ChangeDetectorRef, ComponentRef, Component } from '@angular/core';
+import { OnInit, OnDestroy, ChangeDetectorRef, ComponentRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { tap, filter, takeUntil } from 'rxjs/operators';
 import { isFunction } from './base/util';
@@ -36,6 +36,10 @@ export interface IRequestCollectionOptions {
     ttl?: number;
 }
 
+@Component({
+    template: '',
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
 export class ListBase implements OnInit, OnDestroy {
     public collection: DocumentCollection;
     public collectionInfiniteScroll: Array<Resource> = [];

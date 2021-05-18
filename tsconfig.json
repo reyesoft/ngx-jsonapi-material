@@ -8,10 +8,10 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "noStrictGenericChecks": true,
-        "lib": ["es2017", "dom"],
+        "lib": ["es2018", "dom"],
         "outDir": "./dist/out-tsc",
         "target": "es2015",
-        "module": "esnext",
+        "module": "es2020",
         "baseUrl": "./",
         "rootDir": "./",
         "paths": {
@@ -24,6 +24,7 @@
     "exclude": [
         "node_modules",
         "**/*/node_modules",
+        "dist",
         "src/schematics/src/*/files/**/*"
     ],
     "atom": {
