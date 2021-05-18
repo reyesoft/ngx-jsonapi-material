@@ -162,7 +162,7 @@
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "26.6.3",
     "jest-cli": "26.6.3",
-    "jest-preset-angular": "8.0.0",
+    "jest-preset-angular": "^8.4.0",
     "jest-zone-patch": "^0.0.7",
     "karma": "~4.2.0",
     "karma-chrome-launcher": "~2.2.0",
@@ -178,7 +178,7 @@
     "prettier": "^1.12.0",
     "protractor": "~5.3.0",
     "reflect-metadata": "^0.1.9",
-    "reyesoft-ci": "1.0.3",
+    "reyesoft-ci": "^1.1.2",
     "rimraf": "^2.5.4",
     "rollup": "^0.50.0",
     "rxjs-tslint-rules": "4.7.2",
@@ -191,7 +191,9 @@
     "uglify-js": "^3.1.9"
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-jest.ts"
+    ],
     "globals": {
       "ts-jest": {
         "tsConfig": "tsconfig.spec.json"
