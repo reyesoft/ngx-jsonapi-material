@@ -78,7 +78,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
     @Input() public nothingHereIcon: string = 'sentiment_neutral';
     @Input() public nothingHereImageUrl: string;
     @Input() public reloadPageData: IPage = {};
-    @Input() public collectionInfiniteScroll: DocumentCollection;
+    @Input() public collectionInfiniteScroll: Array<any>;
     @Output() public saveEditableCell: EventEmitter<Resource> = new EventEmitter<Resource>();
     @Output() public pageLengthChange: EventEmitter<number> = new EventEmitter<number>();
     @Output() public pageSizeOptionsEmit: EventEmitter<Array<number>> = new EventEmitter<Array<number>>();
@@ -97,14 +97,9 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
         public activatedRoute: ActivatedRoute,
         public updateFiltersService: UpdateFiltersService,
         public selectionBarService: SelectionBarService,
-        protected rsRefreshService: JamRefreshService,
         protected changeDetectorRef: ChangeDetectorRef
     ) {
         super(router, selectionBarService, updateFiltersService, activatedRoute);
-
-        rsRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe((): void => {
-            this.realReload(this.page, { ttl: 0 });
-        });
     }
 
     // Recives a cell element and return the corresponding column sytles
@@ -145,7 +140,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
 
     private changeReloadPageData(changes: SimpleChanges): void {
         if (changes.reloadPageData && changes.reloadPageData.currentValue !== undefined) {
-            this.realReload(changes.reloadPageData.currentValue, {}, false);
+            this.realReload(changes.reloadPageData.currentValue, { ttl: 0 }, false);
         }
     }
 
@@ -167,7 +162,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
             sort: this.sort,
             ttl: options.ttl
         }).subscribe((): void => {
-            this.pageLengthChange.emit(this.page.length);
+            this.pageLengthChange.emit(this.page && this.page.length ? this.page.length : 0);
             this.collectionChange.emit(this.collection);
             this.changeDetectorRef.detectChanges();
         });

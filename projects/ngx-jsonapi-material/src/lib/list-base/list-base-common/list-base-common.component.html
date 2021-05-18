@@ -6,8 +6,8 @@
         [nothingHereText]="nothingHereText"
         [nothingHereImageUrl]="nothingHereImageUrl"
         [nothingHereIcon]="nothingHereIcon"
-        [showSpinner]="dataTableSource.data.length === 0 && !collection.builded"
-        [showNothingHere]="dataTableSource.data.length === 0 && collection.builded"
+        [showSpinner]="dataTableSource.data.length === 0 && (collection && !collection.builded)"
+        [showNothingHere]="dataTableSource.data.length === 0 && (collection && collection.builded)"
     ></jam-table-loader>
 </div>
 

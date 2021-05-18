@@ -14,9 +14,14 @@ import { Observable , Subject } from 'rxjs';
 export class JamRefreshService {
     public collection_to_refresh = new Subject<DocumentCollection>();
     public refreshSubject = new Subject<boolean>();
+    public autoRefreshSubject = new Subject<boolean>();
 
     public refresh(): void {
         this.refreshSubject.next(true);
+    }
+
+    public autoRefresh(): void {
+        this.autoRefreshSubject.next(true);
     }
 }
 

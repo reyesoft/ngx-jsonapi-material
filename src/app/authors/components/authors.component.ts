@@ -6,6 +6,9 @@ import { Column } from 'projects/ngx-jsonapi-material/src/lib/list-base/list-bas
 import { IPage } from 'projects/ngx-jsonapi-material/src/lib/list-base/list-base';
 import { AppDatePipe } from 'projects/ngx-jsonapi-material/src/lib/list-base/date-pipe/app-date.pipe';
 import { ResponsiveColumns } from 'projects/ngx-jsonapi-material/src/lib/list-base/list-base-common/table-components/responsive-columns';
+import { interval } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+import { JamRefreshService } from 'projects/ngx-jsonapi-material/src/public-api';
 
 @Component({
     selector: 'demo-authors',

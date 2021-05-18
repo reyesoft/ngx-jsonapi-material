@@ -38,6 +38,7 @@ export interface IRequestCollectionOptions {
 
 export class ListBase implements OnInit, OnDestroy {
     public collection: DocumentCollection;
+    public collectionInfiniteScroll: Array<Resource> = [];
     // Pagination attributes...
     public page: IPage = {
         pageSize: 25,
@@ -74,7 +75,7 @@ export class ListBase implements OnInit, OnDestroy {
         public updateFiltersService: UpdateFiltersService,
         public activatedRoute: ActivatedRoute,
         protected changeDetectorRef?: ChangeDetectorRef
-    ) {}
+    ) { }
 
     // WARNING: Used ngOnInit instead of constructor because it can be overriden by children if needed, don't override without intention
     public ngOnInit() {
@@ -150,6 +151,9 @@ export class ListBase implements OnInit, OnDestroy {
      * and then merges in the new pagination params
      */
     public updatePagination(page: any) {
+        if (!page) {
+            return;
+        }
         // Have to copy queryParams property because it can't be edited (it's a reference to the original angular's queryParams)
         let queryParamsCopy = { ...this.queryParams };
 
@@ -157,7 +161,11 @@ export class ListBase implements OnInit, OnDestroy {
             delete queryParamsCopy[key];
         });
 
-        let queryParams = { pageSize: page.pageSize, pageIndex: page.pageIndex };
+        let queryParams: any = {};
+
+        if (!this.disableQueryParamsUpdate) {
+            queryParams = { pageSize: page.pageSize, pageIndex: page.pageIndex };
+        }
 
         if (this.remoteFilter && Object.keys(this.remoteFilter).length !== 0) {
             Object.keys(this.remoteFilter).forEach((key): void => {
@@ -165,11 +173,7 @@ export class ListBase implements OnInit, OnDestroy {
             });
         }
 
-        if (this.disableQueryParamsUpdate) {
-            this.realReload(page);
-        } else {
-            this.updateFiltersService.applyFilters({ ...queryParams });
-        }
+        this.updateFiltersService.applyFilters({ ...queryParams });
     }
 
     public resetFilters() {
@@ -192,7 +196,7 @@ export class ListBase implements OnInit, OnDestroy {
         this.deprecate_collection_subscription.next();
         let pageIndex = 0;
 
-        if (this.page.pageIndex) {
+        if (this.page && this.page.pageIndex) {
             pageIndex = this.page.pageIndex;
         }
 
@@ -215,14 +219,16 @@ export class ListBase implements OnInit, OnDestroy {
                 filter((collection): boolean => collection.builded || this.dataTableSource.data.length === 0),
                 tap((collection): void => {
                     this.collection = collection;
-                    this.dataTableSource.data = collection.data;
+                    if (this.page && this.page.pageSize !== undefined && this.page.pageIndex !== undefined) {
+                        this.dataTableSource.data = this.collectionInfiniteScroll
+                            .slice(0, this.page.pageIndex * this.page.pageSize)
+                            .concat(collection.data);
+                    }
                     if (request_options.page) {
                         request_options.page.length = collection.page.total_resources;
                         this.fillPageData(request_options.page);
                     }
-                    if (!this.disableQueryParamsUpdate) {
-                        this.updatePagination(this.page);
-                    }
+                    this.updatePagination(this.page);
                 }),
                 takeUntil(this.deprecate_collection_subscription)
             );
