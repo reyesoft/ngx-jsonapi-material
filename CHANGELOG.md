@@ -2,9 +2,9 @@
 
 ## 0.22.72
 
-### Added
+### Changed
 
--   Added angular 10 to demo
+-   Angular version upgraded 10
 
 ## 0.22.71
 
