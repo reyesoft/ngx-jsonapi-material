@@ -1,10 +1,13 @@
 {
     "name": "ngx-jsonapi-material",
-    "version": "0.22.71",
+    "version": "0.23.0",
     "authors": [
         "Reyesoft"
     ],
     "license": "MIT",
+    "dependencies": {
+      "tslib": "^2.0.0"
+    },
     "peerDependencies": {
         "@angular/common": ">= 8.0.0",
         "@angular/core": ">= 8.0.0",

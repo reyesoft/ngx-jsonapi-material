@@ -96,9 +96,9 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
 
   @ContentChildren(JamSlide) public _slides: QueryList<JamSlide>;
 
-  @ViewChild('slideBodyWrapper', { static: false }) public _slideBodyWrapper: ElementRef;
+  @ViewChild('slideBodyWrapper') public _slideBodyWrapper: ElementRef;
 
-  @ViewChild('slideHeader', { static: false }) public _slideHeader: JamSlideHeader;
+  @ViewChild('slideHeader') public _slideHeader: JamSlideHeader;
 
   /** Output to enable support for two-way binding on `[(selectedIndex)]` */
   @Output() public readonly selectedIndexChange: EventEmitter<number> = new EventEmitter<number>();

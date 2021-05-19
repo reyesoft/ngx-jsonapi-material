@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23.0
+
+### Changed
+
+-   Angular version upgraded to 10
+
 ## 0.22.71
 
 ### Added

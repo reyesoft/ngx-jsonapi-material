@@ -19,6 +19,8 @@ export class Book extends Resource {
 
 @Injectable()
 export class BooksService extends Service<Book> {
+    // TODO: add explicit constructor
+
     public resource = Book;
     public type = 'books';
     public ttl = 1;

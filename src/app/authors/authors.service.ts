@@ -20,6 +20,8 @@ export class Author extends Resource {
 
 @Injectable()
 export class AuthorsService extends Service<Author> {
+    // TODO: add explicit constructor
+
     public resource = Author;
     public type = 'authors';
 }
