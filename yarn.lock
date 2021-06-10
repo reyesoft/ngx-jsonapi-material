@@ -1615,19 +1615,19 @@
   dependencies:
     tslib "^1.9.0"
 
-"@ngx-translate/core@10.0.2":
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-10.0.2.tgz#5eeb78f47845b476a1e892fb2fb153dbbaf72850"
-  integrity sha512-7nM3DrJaqKswwtJlbu2kuKNl+hE8Isr18sKsKvGGpSxQk+G0gO0reDlx2PhUNus7TJTkA1C59vU/JoN8hIvZ4g==
+"@ngx-translate/core@13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-13.0.0.tgz#60547cb8a0845a2a0abfde6b0bf5ec6516a63fd6"
+  integrity sha512-+tzEp8wlqEnw0Gc7jtVRAJ6RteUjXw6JJR4O65KlnxOmJrCGPI0xjV/lKRnQeU0w4i96PQs/jtpL921Wrb7PWg==
   dependencies:
-    tslib "^1.9.0"
+    tslib "^2.0.0"
 
-"@ngx-translate/http-loader@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-3.0.1.tgz#20b0f98bc6c25321129d3e3302ab3cc489c0a42a"
-  integrity sha1-ILD5i8bCUyESnT4zAqs8xInApCo=
+"@ngx-translate/http-loader@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-6.0.0.tgz#041393ab5753f50ecf64262d624703046b8c7570"
+  integrity sha512-LCekn6qCbeXWlhESCxU1rAbZz33WzDG0lI7Ig0pYC1o5YxJWrkU9y3Y4tNi+jakQ7R6YhTR2D3ox6APxDtA0wA==
   dependencies:
-    tslib "^1.9.0"
+    tslib "^2.0.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -2383,10 +2383,12 @@ angular-cli-ghpages@^0.6.0:
     fs-extra "^8.1.0"
     gh-pages "^2.1.0"
 
-angular2-toaster@8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/angular2-toaster/-/angular2-toaster-8.0.0.tgz#9f5df2c9df00b96475cd179c4b4e4fad5a6dc7ac"
-  integrity sha512-MRDswCmhqFLBiot7C7SIq96NyU5aT9pwIVdYgmYJtXHp7N6fXk6QzuMSMhVvK12edUJntgmUft+SZfh45Oq0Wg==
+angular2-toaster@11.0.1:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/angular2-toaster/-/angular2-toaster-11.0.1.tgz#3484277d8cc7c5ceb6035f50c874094660a1e64b"
+  integrity sha512-IRXE5zujPMNOhckcp+Hk2n+UrKSrlAviz55wGvSd9ECrqsSRjgh148UEtgsqkcYQ8leKcybZ4d0lrueDuQofNA==
+  dependencies:
+    tslib "^2.0.0"
 
 ansi-colors@4.1.1, ansi-colors@^4.1.1:
   version "4.1.1"
@@ -9478,6 +9480,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-es@^4.17:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -10230,12 +10237,13 @@ ng-packagr@^10.1.0:
     stylus "^0.54.7"
     terser "^5.0.0"
 
-ngx-jsonapi@2.1.9:
-  version "2.1.9"
-  resolved "https://registry.yarnpkg.com/ngx-jsonapi/-/ngx-jsonapi-2.1.9.tgz#cb10e1da665ebeb2f6407185a148bc37227725cc"
-  integrity sha512-uYosKUqwpfMChoojCpeCL3vwnntd4P7D9tSMiKubJY846A3qfVGbk4BuReSI5qZ9yuK/8LGk+LOs8xX9FUtpGw==
+ngx-jsonapi@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/ngx-jsonapi/-/ngx-jsonapi-2.2.1.tgz#b412afe493a6998dc00e1126d2d4ba090e515e9b"
+  integrity sha512-X+HgVMP1KepfOeXxVy4hxNKgOwFQbwutNqJ3JAc649Y/pP6aZZMCwxBeeAGX5t5wH4jqHmeEe/OZFXOijrslUQ==
   dependencies:
     dexie "^2.0.4"
+    lodash-es "^4.17"
 
 ngx-uploader@8.0.0:
   version "8.0.0"

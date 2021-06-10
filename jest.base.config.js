@@ -13,4 +13,7 @@ module.exports = {
     testMatch: [
         "<rootDir>/**/*.spec.ts"
     ],
+    moduleNameMapper: {
+        "^lodash-es$": "lodash"
+    }
 };
