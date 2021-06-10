@@ -3,9 +3,9 @@ import { AppComponent } from './app.component';
 import { MatToolbar } from '@angular/material/toolbar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('AppComponent', () => {
+describe('AppComponent', (): void => {
     beforeEach(
-        waitForAsync(() => {
+        waitForAsync((): void => {
             TestBed.configureTestingModule({
                 schemas: [NO_ERRORS_SCHEMA],
                 declarations: [AppComponent, MatToolbar]
@@ -13,19 +13,19 @@ describe('AppComponent', () => {
         })
     );
     // prettier-ignore
-    it('should create the app', waitForAsync(() => {
+    it('should create the app', waitForAsync((): void => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
     // prettier-ignore
-    it(`should have as title 'app'`, waitForAsync(() => {
+    it(`should have as title 'app'`, waitForAsync((): void => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app.title).toEqual('app');
     }));
     // prettier-ignore
-    it('should render title inside mat-toolbar', waitForAsync(() => {
+    it('should render title inside mat-toolbar', waitForAsync((): void => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
