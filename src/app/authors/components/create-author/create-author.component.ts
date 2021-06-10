@@ -37,7 +37,7 @@ export class CreateAuthorComponent {
         Object.keys(this.model).forEach((key): void => {
             this.author[key] = this.model[key];
         });
-        this.author.save().subscribe((): voi => this.matDialogRef.close(true));
+        this.author.save().subscribe((): void => this.matDialogRef.close(true));
     }
 
     public cancel(): void {
