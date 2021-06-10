@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { FabSpeedDialComponent } from './fab-speed-dial.component';
@@ -7,11 +7,11 @@ import { FabSpeedDialModule } from './fab-speed-dial.module';
 import { FabSpeedDialMiniButton } from './fab-speed-dial-mini-button';
 
 // @todo FE-158: test FabSpeedDialComponent and move to ngx-jsonapi-material
-describe('FabSpeedDialComponent', () => {
+describe('FabSpeedDialComponent', (): void => {
     let component: FabSpeedDialComponent;
     let fixture: ComponentFixture<FabSpeedDialComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync((): void => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule.withRoutes([{path: 'fab', component: FabSpeedDialComponent}]),
@@ -21,7 +21,7 @@ describe('FabSpeedDialComponent', () => {
             .compileComponents();
     }));
 
-    beforeEach(() => {
+    beforeEach((): void => {
         fixture = TestBed.createComponent(FabSpeedDialComponent);
         component = fixture.componentInstance;
         component.tooltip = 'Fab button tooltip';
@@ -33,11 +33,11 @@ describe('FabSpeedDialComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it('should create', (): void => {
         expect(component).toBeTruthy();
     });
 
-    it('should show smaller buttons on mouse hover', async(() => {
+    it('should show smaller buttons on mouse hover', waitForAsync((): void => {
         let mouseover = new Event('mouseover');
         let fab_button_container = fixture.debugElement.query(By.css('eco-fab-speed-dial'));
         fab_button_container.nativeElement.dispatchEvent(mouseover);
@@ -48,7 +48,7 @@ describe('FabSpeedDialComponent', () => {
         expect(smaller_button.properties.hidden).toBeFalsy();
     }));
 
-    it('should hide smaller buttons on mouse leave', async(() => {
+    it('should hide smaller buttons on mouse leave', waitForAsync((): void => {
         let mouseleave = new Event('mouseleave');
         let fab_button = fixture.debugElement.query(By.css('eco-fab-speed-dial'));
         fab_button.nativeElement.dispatchEvent(mouseleave);
@@ -59,14 +59,14 @@ describe('FabSpeedDialComponent', () => {
         expect(smaller_button_container.properties.hidden).toBeTruthy();
     }));
 
-    it('should emit fabSpeedDialClick', () => {
+    it('should emit fabSpeedDialClick', (): void => {
         let fabSpeedDialClickSpy = spyOn(component.fabSpeedDialClick, 'emit');
         let fab_button = fixture.debugElement.query(By.css('eco-fab-speed-dial-trigger > button'));
         fab_button.nativeElement.click();
         expect(fabSpeedDialClickSpy).toHaveBeenCalled();
     });
 
-    it('should emit actionsClick', () => {
+    it('should emit actionsClick', (): void => {
         let actionsClickSpy = spyOn(component.actionsClick, 'emit');
         component.fab_status.opened = true;
         fixture.detectChanges();
@@ -75,7 +75,7 @@ describe('FabSpeedDialComponent', () => {
         expect(actionsClickSpy).toHaveBeenCalledWith('smallButtonKey');
     });
 
-    it('tooltips should be passed to the view', () => {
+    it('tooltips should be passed to the view', (): void => {
         let fab_button = fixture.debugElement.query(By.css('eco-fab-speed-dial-trigger > button'));
         component.fab_status.opened = true;
         fixture.detectChanges();
@@ -84,7 +84,7 @@ describe('FabSpeedDialComponent', () => {
         expect(smaller_button.attributes['ng-reflect-message']).toBe('Small button');
     });
 
-    it('should display smaller buttons mat-icon or svg-icon', async(() => {
+    it('should display smaller buttons mat-icon or svg-icon', waitForAsync((): void => {
         component.fab_status.opened = true;
         fixture.detectChanges();
         let smaller_button_icon = fixture.debugElement.query(By.css('eco-fab-speed-dial-actions > button mat-icon'));

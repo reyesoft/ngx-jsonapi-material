@@ -8,7 +8,7 @@ import { Resource } from 'ngx-jsonapi/resource';
 import { DocumentCollection, IParamsCollection } from 'ngx-jsonapi';
 
 export function batchAll<T extends Service<R>, R extends Resource>(service: T, params: IParamsCollection): Observable<DocumentCollection<R>> {
-    return <Observable<DocumentCollection<R>>>service.all(params).pipe(concatMap(collection => {
+    return <Observable<DocumentCollection<R>>>service.all(params).pipe(concatMap((collection): Observable<any> => {
         if (collection.data.length < params.page.size) {
             return of(collection);
         }
@@ -30,19 +30,19 @@ export const filterOrRequest = <T extends Resource>(params: {
     pipe(
         startWith(''),
         debounceTime(400),
-        filter(filterValue => typeof filterValue === 'string'),
-        switchMap((filterValue: string) => {
+        filter((filterValue): boolean => typeof filterValue === 'string'),
+        switchMap((filterValue: string): Observable<any> => {
             if (filterValue.includes(params.last_filter_value) && params.collection.data.length < params.page_size) {
-                return of(params.resourcesArray.filter((resource: T) =>
+                return of(params.resourcesArray.filter((resource: T): boolean =>
                     resource.attributes[params.attribute_to_search].toLowerCase().indexOf(filterValue) >= 0));
             }
 
             return params
                 .getAllFc(filterValue)
                 .pipe(
-                    catchError(() => [])
+                    catchError((): Array<any> => [])
                 ).pipe(
-                map((collection: DocumentCollection<T>) => {
+                map((collection: DocumentCollection<T>): Array<T> => {
                     params.collection = collection;
                     params.resourcesArray = collection.data;
                     params.last_filter_value = filterValue;

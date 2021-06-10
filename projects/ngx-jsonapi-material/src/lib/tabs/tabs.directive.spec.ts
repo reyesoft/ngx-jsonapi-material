@@ -11,20 +11,20 @@ let queryParams: {} = { tab_selected: 'first' };
 let queryParams_second: {} = {};
 when(ActivatedRouteMock.queryParams).thenReturn(observableOf(queryParams), observableOf(queryParams_second));
 
-describe('JamTabsDirective', () => {
+describe('JamTabsDirective', (): void => {
     let directive: JamTabsDirective;
-    it('should create an instance', () => {
+    it('should create an instance', (): void => {
         directive = new JamTabsDirective(instance(RouterMock), instance(ActivatedRouteMock));
         expect(directive).toBeTruthy();
     });
-    it('should update the selected tab in MatTabGroup when the view loads in AfterViewInit', () => {
+    it('should update the selected tab in MatTabGroup when the view loads in AfterViewInit', (): void => {
         directive.tabNames = { 'first': 0, 'second': 1 };
         directive.defaultTabIndex = 1;
         (directive.tabGroup as any) = { selectedIndex: null, selectedIndexChange: selectedIndexChangeEmitter };
         directive.ngAfterViewInit();
         expect(directive.tabGroup.selectedIndex).toBe(0);
     });
-    it('if tab_selected query param is not present, defaultTabIndex should be used', () => {
+    it('if tab_selected query param is not present, defaultTabIndex should be used', (): void => {
         directive = new JamTabsDirective(instance(RouterMock), instance(ActivatedRouteMock));
         directive.tabNames = { 'first': 0, 'second': 1 };
         directive.defaultTabIndex = 1;
@@ -32,7 +32,7 @@ describe('JamTabsDirective', () => {
         directive.ngAfterViewInit();
         expect(directive.tabGroup.selectedIndex).toBe(1);
     });
-    it('onTabChange should call router naveigate with the new query params', () => {
+    it('onTabChange should call router naveigate with the new query params', (): void => {
         let navigate_spy = spyOn((directive as any).router, 'navigate');
         directive.onTabChange(0);
         expect(navigate_spy).toHaveBeenCalledWith([], { queryParams: { tab_selected: 'first' }});

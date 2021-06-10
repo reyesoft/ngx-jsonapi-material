@@ -77,7 +77,7 @@ export class MenuElementsCollection <T extends MenuElement | MenuElementsCollect
     }
 
     public find(id: string): MenuElementsCollection<T> | T | undefined {
-        return this.data.find(element => {
+        return this.data.find((element): boolean => {
             if (this.data.length === 0) {
                 console.log('--------------- no data! ---------------');
 

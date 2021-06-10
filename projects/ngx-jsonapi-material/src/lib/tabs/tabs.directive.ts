@@ -17,13 +17,13 @@ export class JamTabsDirective implements AfterViewInit {
         protected router: Router,
         protected activatedRoute: ActivatedRoute
     ) {
-        activatedRoute.queryParams.subscribe(queryParams => this.query_params = queryParams);
+        activatedRoute.queryParams.subscribe((queryParams): Params => this.query_params = queryParams);
     }
 
     public ngAfterViewInit() {
         this.selected_tab = this.tabNames[this.query_params.tab_selected || Object.keys(this.tabNames)[this.defaultTabIndex]];
         this.tabGroup.selectedIndex = this.selected_tab;
-        this.tabGroup.selectedIndexChange.subscribe(index => this.onTabChange(index));
+        this.tabGroup.selectedIndexChange.subscribe((index: number): void => this.onTabChange(index));
     }
 
     public onTabChange(new_index: number): void {

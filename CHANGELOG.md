@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+-   Lint on circleci added
+
 ## 0.23.0
 
 ### Changed

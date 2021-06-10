@@ -42,7 +42,7 @@ export class RefreshComponent implements OnInit, OnDestroy {
 
     public ngOnInit() {
         if (!this.collectionToRefresh) {
-            this.jamRefreshService.collection_to_refresh.pipe(this.destroyer.pipe()).subscribe((collection: DocumentCollection) => {
+            this.jamRefreshService.collection_to_refresh.pipe(this.destroyer.pipe()).subscribe((collection: DocumentCollection): void => {
                 this.collectionToRefresh = collection;
                 this.changeDetectorRef.detectChanges();
             });

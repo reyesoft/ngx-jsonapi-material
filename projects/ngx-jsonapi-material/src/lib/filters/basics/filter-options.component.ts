@@ -21,7 +21,7 @@ export class JamFilterOptionsComponent implements OnInit {
     public filterConfigArray: Array<FilterOption>;
 
     public ngOnInit() {
-        this.filterConfigArray = Object.keys(this.filterConfig.options).map(key => {
+        this.filterConfigArray = Object.keys(this.filterConfig.options).map((key): FilterOption => {
             this.filterConfig.options[key].text = { key: key, name: this.filterConfig.options[key].text };
 
             return this.filterConfig.options[key];

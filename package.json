@@ -9,7 +9,7 @@
     "copy-readme": "copy .\\README.md .\\dist\\ngx-jsonapi-material",
     "copy-files": "npm run copy-license && npm run copy-readme",
     "package": "npm run build_lib && npm run npm_pack",
-    "build": "ng build ngx-jsonapi-material",
+    "build": "ng build ngx-jsonapi-material --prod",
     "build-ghpages": "yarn ng build --prod --base-href \"//reyesoft.github.io/ngx-jsonapi-material/\"",
     "publish-ghpages": "yarn ngh --no-silent --dir=dist/ngx-jsonapi-material-app",
     "postbuild": "rimraf **/dist/**/*.ngsummary.json",

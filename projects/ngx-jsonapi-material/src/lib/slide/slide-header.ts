@@ -47,7 +47,7 @@ type ModifierKey = 'altKey' | 'shiftKey' | 'ctrlKey' | 'metaKey';
  */
 export function hasModifierKey(event: KeyboardEvent, ...modifiers: Array<ModifierKey>): boolean {
     if (modifiers.length) {
-       return modifiers.some(modifier => event[modifier]);
+       return modifiers.some((modifier): boolean => event[modifier]);
     }
 
     return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
@@ -189,7 +189,7 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
     const bindEvent = (): void => {
       fromEvent(element, 'mouseleave')
         .pipe(takeUntil(this._destroyed))
-        .subscribe(() => {
+        .subscribe((): void => {
           this._stopInterval();
         });
     };
@@ -286,7 +286,7 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
 
     // On dir change or window resize, realign the ink bar and update the orientation of
     // the key manager if the direction has changed.
-    merge(dirChange, resize).pipe(takeUntil(this._destroyed)).subscribe(() => {
+    merge(dirChange, resize).pipe(takeUntil(this._destroyed)).subscribe((): void => {
       realign();
       this._keyManager.withHorizontalOrientation(this._getLayoutDirection());
     });
@@ -294,7 +294,7 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
     // If there is a change in the focus key manager we need to emit the `indexFocused`
     // event in order to provide a public event that notifies about focus changes. Also we realign
     // the slides container by scrolling the new focused slide into the visible section.
-    this._keyManager.change.pipe(takeUntil(this._destroyed)).subscribe(newFocusIndex => {
+    this._keyManager.change.pipe(takeUntil(this._destroyed)).subscribe((newFocusIndex): void => {
       this.indexFocused.emit(newFocusIndex);
       this._setTabFocus(newFocusIndex);
     });
@@ -304,13 +304,13 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
     // We need to handle these events manually, because we want to bind passive event listeners.
     fromEvent(this._previousPaginator.nativeElement, 'touchstart', passiveEventListenerOptions)
       .pipe(takeUntil(this._destroyed))
-      .subscribe(() => {
+      .subscribe((): void => {
         this._handlePaginatorPress('before');
       });
 
     fromEvent(this._nextPaginator.nativeElement, 'touchstart', passiveEventListenerOptions)
       .pipe(takeUntil(this._destroyed))
-      .subscribe(() => {
+      .subscribe((): void => {
         this._handlePaginatorPress('after');
       });
   }
@@ -591,7 +591,7 @@ export class JamSlideHeader extends _JamSlideHeaderMixinBase
     timer(HEADER_SCROLL_DELAY, HEADER_SCROLL_INTERVAL)
       // Keep the timer going until something tells it to stop or the component is destroyed.
       .pipe(takeUntil(merge(this._stopScrolling, this._destroyed)))
-      .subscribe(() => {
+      .subscribe((): void => {
         const {maxScrollDistance, distance}: any = this._scrollHeader(direction);
 
         // Stop the timer if we've reached the start or the end.

@@ -12,7 +12,7 @@ export class SelectionBarContainerComponent {
         protected selectionBarService: SelectionBarService,
         protected router: Router
     ) {
-        this.router.events.subscribe(event => {
+        this.router.events.subscribe((event): void => {
             if (event instanceof NavigationStart) {
                 this.selectionBarService.destroy();
             }

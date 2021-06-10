@@ -23,17 +23,17 @@ export class BookComponent {
         protected photosService: PhotosService,
         private route: ActivatedRoute
     ) {
-        route.params.subscribe(({ id }) => {
+        route.params.subscribe(({ id }): void => {
             let book$ = booksService.get(id, { include: ['author', 'photos'] }).subscribe(
-                book => {
+                (book): void => {
                     this.book = book;
                     console.log('success book', this.book);
                 },
-                error => console.log('error books controll', error)
+                (error): void => console.log('error books controll', error)
             );
         });
 
-        authorsService.all({ page: { number: 0, size: 100 }, sort: ['name'] }).subscribe(authors => {
+        authorsService.all({ page: { number: 0, size: 100 }, sort: ['name'] }).subscribe((authors): void => {
             this.authors = authors;
         });
     }

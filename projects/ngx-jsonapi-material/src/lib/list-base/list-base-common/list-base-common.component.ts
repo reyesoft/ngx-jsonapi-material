@@ -195,10 +195,10 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
             return;
         }
         element.save().subscribe(
-            () => {
+            (): void => {
                 this.changeDetectorRef.detectChanges();
             },
-            error => {
+            (error): void => {
                 element.attributes[column.key] = last_value;
                 this.changeDetectorRef.detectChanges();
                 throw new Error(error);

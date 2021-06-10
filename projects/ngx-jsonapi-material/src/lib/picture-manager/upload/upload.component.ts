@@ -44,13 +44,13 @@ export class UploadComponent {
             case 'uploading':
                 if (typeof output.file !== 'undefined') {
                     // update current data in files array for uploading file
-                    const index = this.files.findIndex(file => typeof output.file !== 'undefined' && file.id === output.file.id);
+                    const index = this.files.findIndex((file): boolean => typeof output.file !== 'undefined' && file.id === output.file.id);
                     this.files[index] = output.file;
                 }
                 break;
             case 'removed':
                 // remove file from array when removed
-                this.files = this.files.filter((file: UploadFile) => JSON.stringify(file) !== JSON.stringify(output.file));
+                this.files = this.files.filter((file: UploadFile): boolean => JSON.stringify(file) !== JSON.stringify(output.file));
                 break;
             case 'dragOver':
                 this.dragOver = true;

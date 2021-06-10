@@ -49,7 +49,7 @@ export class DeleteConfirmationComponent {
             data: { title: this.title, msg: this.msg, accept: this.accept }
         });
 
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe((result): void => {
             if (result) {
                 this.delete.emit();
             }

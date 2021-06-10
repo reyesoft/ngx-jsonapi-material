@@ -17,7 +17,7 @@ export class SelectionBarInfoComponent implements OnDestroy {
     ) {
         this.selectionBarService.selected$
             .pipe(this.destroyer.pipe())
-            .subscribe(selection => {
+            .subscribe((selection): void => {
                 this.selection = selection;
                 this.label = selection.selected.length + (selection.selected.length >= 1 ? ' seleccionados' : ' seleccionado');
                 if (selection.selected.length <= 0) this.selectionBarService.destroy();

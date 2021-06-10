@@ -20,7 +20,7 @@ export class BookEditComponent {
     }
 
     public accept(): void {
-        this.book.save().subscribe(() => this.matDialogRef.close());
+        this.book.save().subscribe((): void => this.matDialogRef.close());
     }
 
     public cancel(): void {

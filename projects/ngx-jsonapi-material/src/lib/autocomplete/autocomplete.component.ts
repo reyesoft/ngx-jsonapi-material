@@ -76,10 +76,10 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
 
     public closeAutocomplete() {
         this.autocompleteResource.optionSelections.pipe(timeout(150)).subscribe(
-            selection => {
+            (): void => {
                 this.autocompleteResource.closePanel();
             },
-            err => {
+            (): void => {
                 this.autocompleteResource.closePanel();
             }
         );
@@ -120,8 +120,8 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
         }
 
         return this.services.all(params).pipe(
-            filter(collection => collection.builded),
-            tap(collection => {
+            filter((collection): boolean => collection.builded),
+            tap((collection): void => {
                 this.collection = collection;
             })
         );
@@ -138,7 +138,7 @@ export class JamAutocompleteComponent implements OnInit, OnDestroy {
 
         this.showList = !value && filterValue.length > 0;
 
-        return this.resourceArray.filter((resource: Resource) => {
+        return this.resourceArray.filter((resource: Resource): number => {
             if (
                 count < this.resource_max_on_list &&
                 (resource.attributes[this.displayAttributes[0]].toLowerCase().indexOf(filterValue) === 0 ||

@@ -32,9 +32,9 @@ export class SearchInputComponent implements OnInit, OnDestroy {
         this.searchCtrl.valueChanges
             .pipe(
                 this.destroyer.pipe(),
-                map(x => x),
+                map((x): any => x),
                 debounceTime(400)
-            ).subscribe(newValue => this.textChange.emit(newValue));
+            ).subscribe((newValue): void => this.textChange.emit(newValue));
     }
 
     public ngOnDestroy() {
@@ -46,7 +46,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
             this.showSearch = this.opened;
         } else {
             this.showSearch = !this.showSearch;
-            setTimeout(() => { if (this.showSearch) document.getElementById('search-input').focus(); }, 0);
+            setTimeout((): void => { if (this.showSearch) document.getElementById('search-input').focus(); }, 0);
         }
 
     }
