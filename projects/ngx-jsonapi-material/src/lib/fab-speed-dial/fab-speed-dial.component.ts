@@ -39,7 +39,7 @@ export class FabSpeedDialComponent implements OnInit {
             this.fab_status.opened = true;
         } else {
             this.fab_status.status = 'closed';
-            setTimeout(() => {
+            setTimeout((): void => {
                 if (this.fab_status.status === 'closed') {
                     this.fab_status.opened = false;
                 }

@@ -29,7 +29,7 @@ export class JsonapiFilterBooksComponent {
 
     public constructor(protected booksService: BooksService) {
         let pairDates = ['1900-1950', '1951-2000', '2001-2020'];
-        this.booksService.all().subscribe(books => {
+        this.booksService.all().subscribe((books): void => {
             this.books = books;
             for (let dates of pairDates) {
                 this.filter_config_books.options[dates] = {

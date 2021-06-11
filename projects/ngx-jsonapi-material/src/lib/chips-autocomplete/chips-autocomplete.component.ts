@@ -79,7 +79,7 @@ export class ChipsAutocompleteComponent implements OnInit {
     public filterCollection(search_text: string | Resource): Array<Resource> {
         const filterValue = typeof search_text === 'string' ? search_text.toLowerCase() : '';
 
-        return this.collection.data.filter((resource: Resource) => resource.attributes[this.attributesDisplay[0]]
+        return this.collection.data.filter((resource: Resource): boolean => resource.attributes[this.attributesDisplay[0]]
                 .toLowerCase()
                 .indexOf(filterValue) >= 0);
     }

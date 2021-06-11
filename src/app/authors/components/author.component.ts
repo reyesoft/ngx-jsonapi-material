@@ -31,12 +31,12 @@ export class AuthorComponent {
         protected matDialog: MatDialog,
         private route: ActivatedRoute
     ) {
-        route.params.subscribe(({ id }) => {
+        route.params.subscribe(({ id }): void => {
             authorsService.get(id, { include: ['books', 'photos'], ttl: 100 }).subscribe(
-                author => {
+                (author): void => {
                     this.author = author;
                 },
-                error => console.error('Could not load author.', error)
+                (error): void => console.error('Could not load author.', error)
             );
         });
     }
@@ -47,7 +47,7 @@ export class AuthorComponent {
     public newAuthor() {
         let author = this.authorsService.new();
         let create_author_dialog = this.matDialog.open(CreateAuthorComponent);
-        create_author_dialog.afterClosed().subscribe(response => {
+        create_author_dialog.afterClosed().subscribe((response): void => {
             if (response) {
                 console.log('author saved', author.toObject());
             }
@@ -74,7 +74,7 @@ export class AuthorComponent {
         this.author.attributes.name = prompt('Author name:', this.author.attributes.name);
         console.log('author data for save with book include', this.author.toObject({ include: ['books'] }));
         console.log('author data for save without any include', this.author.toObject());
-        this.author.save(/* { include: ['book'] } */).subscribe(success => {
+        this.author.save(/* { include: ['book'] } */).subscribe((): void => {
             console.log('author saved', this.author.toObject());
         });
     }

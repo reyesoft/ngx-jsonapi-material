@@ -26,7 +26,7 @@ export class BooksSelectionBarComponent implements OnInit, OnDestroy {
         protected matDialog: MatDialog,
         protected selectionBarService: SelectionBarService
     ) {
-        activatedRoute.queryParams.subscribe(query_params => (this.query_params = query_params));
+        activatedRoute.queryParams.subscribe((query_params): Params => (this.query_params = query_params));
     }
 
     public ngOnDestroy() {
@@ -34,14 +34,14 @@ export class BooksSelectionBarComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.selectionBarService.selected$.pipe(this.destroyer.pipe()).subscribe(() => {
+        this.selectionBarService.selected$.pipe(this.destroyer.pipe()).subscribe((): void => {
             this.button_showed = this.selection.selected.length > 1;
         });
     }
 
     public delete(): void {
         for (let book of this.selection.selected) {
-            this.booksService.delete(book.id).subscribe(() => {
+            this.booksService.delete(book.id).subscribe((): void => {
                 book.attributes = {};
                 this.reload.emit();
                 this.clearSelection.emit();

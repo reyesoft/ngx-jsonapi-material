@@ -16,7 +16,7 @@ const resourceMock: any = {
     attributes: { observation: '' }
 };
 
-describe('EditTextAttributeDialogComponent', () => {
+describe('EditTextAttributeDialogComponent', (): void => {
     let component: EditTextAttributeDialogComponent;
     let fixture: ComponentFixture<EditTextAttributeDialogComponent>;
     let submit_button: IEditTextAttributeData = {
@@ -28,7 +28,7 @@ describe('EditTextAttributeDialogComponent', () => {
 
     jest.useFakeTimers();
 
-    beforeEach(() => {
+    beforeEach((): void => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
             imports: [RouterTestingModule],
@@ -41,26 +41,26 @@ describe('EditTextAttributeDialogComponent', () => {
         }).compileComponents();
     });
 
-    it('should be created', () => {
+    it('should be created', (): void => {
         fixture = TestBed.createComponent(EditTextAttributeDialogComponent);
         component = fixture.debugElement.componentInstance;
         expect(component).toBeTruthy();
     });
 
-    it('If data.accept has nothing, then you must fill in the default value "Accept".', () => {
+    it('If data.accept has nothing, then you must fill in the default value "Accept".', (): void => {
         fixture = TestBed.createComponent(EditTextAttributeDialogComponent);
         component = fixture.debugElement.componentInstance;
         expect(component.data.accept).toEqual('Aceptar');
     });
 
-    it('If data.accept receives a value, it shows that value.', () => {
+    it('If data.accept receives a value, it shows that value.', (): void => {
         submit_button.accept = 'Enviar';
         fixture = TestBed.createComponent(EditTextAttributeDialogComponent);
         component = fixture.debugElement.componentInstance;
         expect(component.data.accept).toEqual('Enviar');
     });
 
-    it('The attribute of the resource is filled by calling updateAttributeAndClose, using the values of its arguments', () => {
+    it('The attribute of the resource is filled by calling updateAttributeAndClose, using the values of its arguments', (): void => {
         fixture = TestBed.createComponent(EditTextAttributeDialogComponent);
         component = fixture.debugElement.componentInstance;
 
@@ -68,7 +68,7 @@ describe('EditTextAttributeDialogComponent', () => {
         expect(component.data.resource.attributes.observation).toEqual('Esto es una observación');
     });
 
-    it('When you click on it, call the updateAttributeAndClose method.', () => {
+    it('When you click on it, call the updateAttributeAndClose method.', (): void => {
         let updateAttributeAndClose_spy = spyOn(component, 'updateAttributeAndClose');
         let event = new KeyboardEvent('Enter', {
             key: 'Enter',
@@ -78,7 +78,7 @@ describe('EditTextAttributeDialogComponent', () => {
         expect(updateAttributeAndClose_spy).toHaveBeenCalled();
     });
 
-    it('If you press the shift combination but enter you should not call the method, updateAttributeAndClose', () => {
+    it('If you press the shift combination but enter you should not call the method, updateAttributeAndClose', (): void => {
         let updateAttributeAndClose_spy = spyOn(component, 'updateAttributeAndClose');
         let event = new KeyboardEvent('Enter', {
             key: 'Enter',

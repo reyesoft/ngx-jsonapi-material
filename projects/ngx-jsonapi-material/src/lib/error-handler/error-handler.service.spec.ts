@@ -19,9 +19,9 @@ class GlobalStateServiceMock {
 const MatDialogMock: MatDialog = mock(MatDialog);
 const ToasterServiceMock: ToasterService = mock(ToasterService);
 
-describe('JamErrorHandler', () => {
+describe('JamErrorHandler', (): void => {
     let service_instance: JamErrorHandler;
-    beforeEach(() => {
+    beforeEach((): void => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule],
             providers: [
@@ -33,13 +33,13 @@ describe('JamErrorHandler', () => {
         });
     });
 
-    it('should be created', inject([JamErrorHandler], (service: JamErrorHandler) => {
+    it('should be created', inject([JamErrorHandler], (service: JamErrorHandler): void => {
         service_instance = service;
         service_instance.globalStateService = new GlobalStateServiceMock();
         expect(service_instance).toBeTruthy();
     }));
 
-    it(`when recieving a jsonapi formatted error, handleError method should call handleJsonapiErrors method with the error as argument`, () => {
+    it(`when recieving a jsonapi formatted error, handleError method should call handleJsonapiErrors method with the error as argument`, (): void => {
         let handleJsonapiErrors_spy = spyOn(service_instance, 'handleJsonapiErrors');
         service_instance.handleError({
             errors: [
@@ -66,7 +66,7 @@ describe('JamErrorHandler', () => {
     });
 
     it(`when recieving a jsonapi formatted rejection, handleError method should call handleJsonapiErrors method
-        with error.rejection.error or error.rejection as argument`, () => {
+        with error.rejection.error or error.rejection as argument`, (): void => {
         let handleJsonapiErrors_spy = spyOn(service_instance, 'handleJsonapiErrors');
         service_instance.handleError({ rejection: {
             errors: [
@@ -104,19 +104,19 @@ describe('JamErrorHandler', () => {
         });
     });
 
-    it('when recieving an error with statuc code 404, handleError method should show a special taster message', () => {
+    it('when recieving an error with statuc code 404, handleError method should show a special taster message', (): void => {
         let notification_spy = spyOn(service_instance as any, 'Notification');
         service_instance.handleError({ errors: [], status: 404 });
         expect(notification_spy).toHaveBeenCalledWith('Error al contactar con el servidor, intenta nuevamente más tarde.');
     });
 
-    it('when recieving a non jsonapi error, handleError should pass the error to Angular erorr handler', () => {
+    it('when recieving a non jsonapi error, handleError should pass the error to Angular erorr handler', (): void => {
         let super_handleError_spy = spyOn(ErrorHandler.prototype, 'handleError');
         service_instance.handleError({ error: 'Some non jsonapi format error.' });
         expect(super_handleError_spy).toHaveBeenCalledWith({ error: 'Some non jsonapi format error.' });
     });
 
-    it('handleJsonapiErrors method should call requestStatusService.error one time for each error in errors array', () => {
+    it('handleJsonapiErrors method should call requestStatusService.error one time for each error in errors array', (): void => {
         let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({ errors: [
             {status: '403', title: 'Some new error', detail: 'Some new error.'},
@@ -125,7 +125,7 @@ describe('JamErrorHandler', () => {
         expect(rss_error_spy).toHaveBeenCalledTimes(2);
     });
 
-    it('handleJsonapiErrors method should store last error title and time displayed in lastErrorCached object', () => {
+    it('handleJsonapiErrors method should store last error title and time displayed in lastErrorCached object', (): void => {
         service_instance.handleJsonapiErrors({
             errors: [
                 {status: '403', title: 'Last error title', detail: 'The name field is required.'}
@@ -136,7 +136,7 @@ describe('JamErrorHandler', () => {
     });
 
     it(`if the new error title matches the last error cached title and time elapsed is less than 2 seconds,
-        handleJsonapiErrors should renturn without showing the message`, () => {
+        handleJsonapiErrors should renturn without showing the message`, (): void => {
         let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({
             errors: [{ status: '403', title: 'Cached error title', detail: 'The name field is required.' }]
@@ -147,7 +147,7 @@ describe('JamErrorHandler', () => {
         expect(rss_error_spy).toHaveBeenCalledTimes(1);
     });
 
-    it('if the error title matches "Token has expired" or "Token not provided", handleJsonapiErrors should call logOut', () => {
+    it('if the error title matches "Token has expired" or "Token not provided", handleJsonapiErrors should call logOut', (): void => {
         let logOut_spy = spyOn(service_instance, 'logOut');
         let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({
@@ -161,7 +161,7 @@ describe('JamErrorHandler', () => {
         expect(rss_error_spy).not.toHaveBeenCalled();
     });
 
-    it('if the error title is "Too many attempts", handleJsonapiErrors should show a spwcial error message', () => {
+    it('if the error title is "Too many attempts", handleJsonapiErrors should show a spwcial error message', (): void => {
         let notification_spy = spyOn(service_instance as any, 'Notification');
         let rss_error_spy = spyOn(service_instance as any, 'singleError');
         service_instance.handleJsonapiErrors({
@@ -171,7 +171,7 @@ describe('JamErrorHandler', () => {
         expect(rss_error_spy).not.toHaveBeenCalled();
     });
 
-    it('non jsonapi errors that contain a messge should be shown in a toast', () => {
+    it('non jsonapi errors that contain a messge should be shown in a toast', (): void => {
         let notification_spy = spyOn(service_instance.toasterService, 'pop');
         service_instance.handleError(new Error('Some error message'));
         expect(notification_spy).toHaveBeenCalledWith(
@@ -181,7 +181,7 @@ describe('JamErrorHandler', () => {
         );
     });
 
-    it('openDialog method should open DialogLoggedStateComponent dialog', () => {
+    it('openDialog method should open DialogLoggedStateComponent dialog', (): void => {
         let close_dialog: Subject<boolean> = new Subject();
         let open_dialog_spy = spyOn(service_instance.matDialog, 'open').and.returnValue(
             { afterClosed: (): Subject<boolean> => close_dialog }
@@ -193,7 +193,7 @@ describe('JamErrorHandler', () => {
         });
     });
 
-    it('openDialog should call logout method when the dialog is clased', () => {
+    it('openDialog should call logout method when the dialog is clased', (): void => {
         let close_dialog: Subject<boolean> = new Subject();
         service_instance.token_dialog_is_open = false;
         let logout_spy = spyOn(service_instance.globalStateService, 'logout');

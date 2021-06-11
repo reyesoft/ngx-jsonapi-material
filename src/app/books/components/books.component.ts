@@ -37,14 +37,14 @@ export class BooksComponent implements OnDestroy {
         protected authorsService: AuthorsService,
         protected photosService: PhotosService
     ) {
-        route.queryParams.subscribe(({ page }) => {
+        route.queryParams.subscribe(({ page }): void => {
             booksService
                 .all({
                     page: { number: page || 1 },
                     include: ['author', 'photos']
                 })
                 .subscribe(
-                    books => {
+                    (books): void => {
                         this.books = books;
                         console.info('success books controll', this.books);
                     },
@@ -52,7 +52,7 @@ export class BooksComponent implements OnDestroy {
                 );
         });
 
-        this.jamRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe(() => {
+        this.jamRefreshService.refreshSubject.pipe(this.destroyer.pipe()).subscribe((): void => {
             this.getAll(this.remoteFilter);
         });
     }
@@ -67,14 +67,14 @@ export class BooksComponent implements OnDestroy {
             include: ['author', 'photos']
         });
         books$.subscribe(
-            books => {
+            (books): void => {
                 this.books = books;
 
                 console.log('success books controller', this.books);
             },
-            error => console.info('error books controller', error)
+            (error): void => console.info('error books controller', error)
         );
-        books$.toPromise().then(success => console.log('books loaded PROMISE'));
+        books$.toPromise().then((): void => console.log('books loaded PROMISE'));
     }
 
     public openDialog(book?: Book): void {
@@ -107,7 +107,7 @@ export class BooksComponent implements OnDestroy {
         if (this.isAllSelected()) {
             this.selection.clear();
         } else {
-            this.books.data.forEach(row => {
+            this.books.data.forEach((row): void => {
                 this.selection.select(row);
             });
         }

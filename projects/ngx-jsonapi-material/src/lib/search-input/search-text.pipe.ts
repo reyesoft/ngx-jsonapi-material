@@ -15,7 +15,7 @@ export class FilterPipe implements PipeTransform {
         const toCompare = term.toLowerCase();
         /* tslint:disable:no-for-in */
 
-        return items.filter((item: any) => {
+        return items.filter((item: any): boolean => {
             for (let property in item) {
                 if (property !== 'attributes') {
                     continue;

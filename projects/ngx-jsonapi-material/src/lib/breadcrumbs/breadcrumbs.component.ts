@@ -43,7 +43,7 @@ export class BreadcrumbsComponent implements OnDestroy {
     ) {
         this.getRouteData(router, activatedRoute)
         .takeUntil(this.unsubscribe)
-        .subscribe((event) => {
+        .subscribe((event): void => {
             if (event.title) {
                 titleService.setTitle(translateService.instant(event.title) + ' | Multinexo');
                 this.title = event.title;
@@ -75,8 +75,8 @@ export class BreadcrumbsComponent implements OnDestroy {
         this.rsRouterLink = this.custom_route_data.parents ? this.custom_route_data.parents.slice(0) : [];
         this.rsRouterLink.push(this.title);
         let filteredRouterLink = [];
-        this.breadcrumbs = this.breadcrumbs.filter(value => this.rsRouterLink.indexOf(value[0]) > -1);
-        filteredRouterLink = this.rsRouterLink.filter(value => {
+        this.breadcrumbs = this.breadcrumbs.filter((value): boolean => this.rsRouterLink.indexOf(value[0]) > -1);
+        filteredRouterLink = this.rsRouterLink.filter((value): boolean => {
             let flatBreadcrumbsList = [];
             for (let breadcrumb of this.breadcrumbs) {
                 flatBreadcrumbsList.push(breadcrumb[0]);
@@ -97,14 +97,14 @@ export class BreadcrumbsComponent implements OnDestroy {
 
     public getRouteData(router: Router, activatedRoute: ActivatedRoute): Observable<Data> {
         return router.events
-            .filter((event) => event instanceof NavigationEnd)
-            .map(() => activatedRoute)
-            .map((route) => {
+            .filter((event): boolean => event instanceof NavigationEnd)
+            .map((): ActivatedRoute => activatedRoute)
+            .map((route): any => {
                 while (route.firstChild) route = route.firstChild;
 
                 return route;
             })
-            .filter((route) => route.outlet === 'primary')
-            .mergeMap((route) => route.data);
+            .filter((route): boolean => route.outlet === 'primary')
+            .mergeMap((route): any => route.data);
     }
 }

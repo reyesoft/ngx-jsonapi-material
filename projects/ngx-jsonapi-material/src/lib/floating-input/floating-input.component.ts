@@ -27,7 +27,7 @@ export class FloatingInputComponent {
     public statusToggle(status: boolean): void {
         if (!this.lock) {
             this.status = status;
-            setTimeout(() => {
+            setTimeout((): void => {
                 if (!status) {
                     return;
                 }

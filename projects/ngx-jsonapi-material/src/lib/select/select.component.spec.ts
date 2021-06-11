@@ -1,5 +1,5 @@
 import { NO_ERRORS_SCHEMA, Pipe, PipeTransform } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SelectComponent } from './select.component';
 import { Resource, DocumentCollection } from 'ngx-jsonapi';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,11 +19,11 @@ class FilterPipeMock implements PipeTransform {
     }
 }
 
-describe('NgxJsonapiMaterialComponent', () => {
+describe('NgxJsonapiMaterialComponent', (): void => {
     let component: SelectComponent;
     let fixture: ComponentFixture<SelectComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync((): void => {
         TestBed.configureTestingModule({
             schemas: [NO_ERRORS_SCHEMA],
             declarations: [ SelectComponent, FilterPipeMock ],
@@ -32,7 +32,7 @@ describe('NgxJsonapiMaterialComponent', () => {
         .compileComponents();
     }));
 
-    beforeEach(() => {
+    beforeEach((): void => {
         fixture = TestBed.createComponent(SelectComponent);
         component = fixture.componentInstance;
         component.collection = new DocumentCollection();
@@ -40,13 +40,13 @@ describe('NgxJsonapiMaterialComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it('should create', (): void => {
         expect(component).toBeTruthy();
     });
-    it('if limit is falsy, adaptiveArray should be set to collection.data in ngOnInit lifecycle hook', () => {
+    it('if limit is falsy, adaptiveArray should be set to collection.data in ngOnInit lifecycle hook', (): void => {
         expect(component.adaptiveArray).toEqual(component.collection.data);
     });
-    it('if limit is truthy, adaptiveArray should be cut to that limit in ngOnInit lifecycle hook', () => {
+    it('if limit is truthy, adaptiveArray should be cut to that limit in ngOnInit lifecycle hook', (): void => {
         component.collection = new DocumentCollection();
         let first_resource = new Resource();
         first_resource.id = '1';
@@ -61,7 +61,7 @@ describe('NgxJsonapiMaterialComponent', () => {
         fixture.detectChanges();
         expect(component.adaptiveArray).toEqual([first_resource]);
     });
-    it('toRelate should be set to euqal collections corresponding resource in ngONInit lifecycle hook', () => {
+    it('toRelate should be set to euqal collections corresponding resource in ngONInit lifecycle hook', (): void => {
         component.collection = new DocumentCollection();
         let first_resource = new Resource();
         first_resource.id = '1';
@@ -77,7 +77,7 @@ describe('NgxJsonapiMaterialComponent', () => {
         expect(component.toRelate.attributes.data).toEqual('first');
         expect(component.toRelate).toEqual(first_resource);
     });
-    it('updateRelationships should emit toRelateChange EventEmitter with the passed resource', () => {
+    it('updateRelationships should emit toRelateChange EventEmitter with the passed resource', (): void => {
         let resource = new Resource();
         resource.id = '3';
         let toRelateChange_spy = spyOn(component.toRelateChange, 'emit');
@@ -85,23 +85,23 @@ describe('NgxJsonapiMaterialComponent', () => {
         expect(toRelateChange_spy).toHaveBeenCalledTimes(1);
         expect(toRelateChange_spy).toHaveBeenCalledWith(resource);
     });
-    it('when no option is selected, placeholder should be shown in mat-select', async () => {
+    it('when no option is selected, placeholder should be shown in mat-select', async (): Promise<void> => {
         component.placeholder = undefined;
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(async (): Promise<void> => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
             expect(mat_select_text).toBe('Seleccione una opción');
             component.placeholder = 'Otra cosa';
             fixture.detectChanges();
-            await fixture.whenStable().then(() => {
+            await fixture.whenStable().then((): void => {
                 mat_select = fixture.debugElement.query(By.css('mat-select'));
                 mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
                 expect(mat_select_text).toBe('Otra cosa');
             });
         });
     });
-    it ('when a option is selected, mat-select should display the resource attribute passed as displayAttribute', async () => {
+    it ('when a option is selected, mat-select should display the resource attribute passed as displayAttribute', async (): Promise<void> => {
         component.collection = new DocumentCollection();
         let resource = new Resource();
         resource.id = '1';
@@ -114,17 +114,17 @@ describe('NgxJsonapiMaterialComponent', () => {
         component.toRelate.id = '1';
         component.ngOnInit();
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(async (): Promise<void> => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             let mat_select_text = mat_select.query(By.css('span')).nativeElement.innerHTML;
             expect(mat_select_text).toBe('Seleccione una opción');
             mat_select.nativeElement.click();
             fixture.detectChanges();
-            await fixture.whenStable().then(async () => {
+            await fixture.whenStable().then(async (): Promise<void> => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
                 mat_options[0].nativeElement.click();
                 fixture.detectChanges();
-                await fixture.whenStable().then(() => {
+                await fixture.whenStable().then((): void => {
                     let updated_mat_select = fixture.debugElement.query(By.css('mat-select'));
                     // Need to query for spn twice because the update is inserted
                     let updated_mat_select_text = updated_mat_select.query(By.css('span')).query(By.css('span')).nativeElement.innerHTML;
@@ -133,8 +133,8 @@ describe('NgxJsonapiMaterialComponent', () => {
             });
         });
     });
-    it('updateRelationships should be called each time a new option is selected', async () => {
-        await fixture.whenStable().then(() => {
+    it('updateRelationships should be called each time a new option is selected', async (): Promise<void> => {
+        await fixture.whenStable().then((): void => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             expect(mat_select).toBeTruthy();
             let updateRelationships_spy = spyOn(component, 'updateRelationships');
@@ -142,17 +142,17 @@ describe('NgxJsonapiMaterialComponent', () => {
             expect(updateRelationships_spy).toHaveBeenCalledTimes(1);
         });
     });
-    it('if removeRelationships is truthy, -- Ninguna -- option should be enabled', async () => {
+    it('if removeRelationships is truthy, -- Ninguna -- option should be enabled', async (): Promise<void> => {
         component.removeRelationships = true;
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(async (): Promise<void> => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             mat_select.nativeElement.click();
             fixture.detectChanges();
-            await fixture.whenStable().then(() => {
+            await fixture.whenStable().then((): void => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
                 let none_option;
-                mat_options.map(option => {
+                mat_options.map((option): void => {
                     if (option.nativeElement.innerHTML.indexOf('-- Ninguna --') !== -1) {
                         none_option = option.componentInstance.value;
                     }
@@ -161,30 +161,30 @@ describe('NgxJsonapiMaterialComponent', () => {
             });
         });
     });
-    it('if  -- Ninguna -- option is selected, update relationships should be called with clear_relationships value', async () => {
+    it('if  -- Ninguna -- option is selected, update relationships should be called with clear_relationships value', async (): Promise<void> => {
         // Si se mejora la implementación en el componente se puede mejorar est test para probar el click, en lugar del ngModelChange
         component.removeRelationships = true;
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(async (): Promise<void> => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             mat_select.nativeElement.click();
             fixture.detectChanges();
-            await fixture.whenStable().then(async () => {
+            await fixture.whenStable().then(async (): Promise<void> => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
                 let updateRelationships_spy = spyOn(component, 'updateRelationships');
-                mat_options.map(option => {
+                mat_options.map((option): void => {
                     if (option.nativeElement.innerHTML.indexOf('-- Ninguna --') !== -1) {
                         mat_select.triggerEventHandler('ngModelChange', option.componentInstance.value);
                     }
                 });
                 fixture.detectChanges();
-                await fixture.whenStable().then(() => {
+                await fixture.whenStable().then((): void => {
                     expect(updateRelationships_spy).toHaveBeenCalledWith(null);
                 });
             });
         });
     });
-    it('when a option is selected, update relationships should be called with the corresponding option value', async () => {
+    it('when a option is selected, update relationships should be called with the corresponding option value', async (): Promise<void> => {
         // Si se mejora la implementación en el componente se puede mejorar est test para probar el click, en lugar del ngModelChange
         component.collection = new DocumentCollection();
         let resource = new Resource();
@@ -196,16 +196,16 @@ describe('NgxJsonapiMaterialComponent', () => {
         component.removeRelationships = false;
         component.ngOnInit();
         fixture.detectChanges();
-        await fixture.whenStable().then(async () => {
+        await fixture.whenStable().then(async (): Promise<void> => {
             let mat_select = fixture.debugElement.query(By.css('mat-select'));
             mat_select.nativeElement.click();
             fixture.detectChanges();
-            await fixture.whenStable().then(async () => {
+            await fixture.whenStable().then(async (): Promise<void> => {
                 let mat_options = fixture.debugElement.queryAll(By.css('mat-option'));
                 let updateRelationships_spy = spyOn(component, 'updateRelationships');
                 mat_select.triggerEventHandler('ngModelChange', mat_options[0].componentInstance.value);
                 fixture.detectChanges();
-                await fixture.whenStable().then(() => {
+                await fixture.whenStable().then((): void => {
                     expect(updateRelationships_spy).toHaveBeenCalledWith(resource);
                 });
             });

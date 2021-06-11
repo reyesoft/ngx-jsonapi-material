@@ -79,21 +79,21 @@ export class JamErrorHandler extends ErrorHandler {
                     return;
                 case 'Bad request':
                     if (actual_error.detail.includes('Token required')) {
-                        this.ngZone.run(async () => this.logOut());
+                        this.ngZone.run(async (): Promise<any> => this.logOut());
 
                         return;
                     }
                     break;
                 case 'Invalid data received':
                     if (actual_error.detail === 'The refresh token must be at least 20 characters.') {
-                        this.ngZone.run(async () => this.logOut());
+                        this.ngZone.run(async (): Promise<any> => this.logOut());
 
                         return;
                     }
                     break;
                 case 'Token has expired':
                 case 'Token not provided':
-                    this.ngZone.run(async () => this.logOut());
+                    this.ngZone.run(async (): Promise<any> => this.logOut());
 
                     return;
                 case 'Too many attempts':
@@ -104,7 +104,7 @@ export class JamErrorHandler extends ErrorHandler {
 
             // cannot use special conditions to SWITCH statement without changing the data inside switch to "true"
             if (actual_error.detail.includes('Token required')) {
-                this.ngZone.run(async () => this.logOut());
+                this.ngZone.run(async (): Promise<any> => this.logOut());
 
                 return;
             }
@@ -113,7 +113,7 @@ export class JamErrorHandler extends ErrorHandler {
                 case 'Expired access token.':
                 case 'The refresh token is invalid. Cannot decrypt the refresh token':
                 case 'Invalid access token':
-                    this.ngZone.run(async () => this.logOut());
+                    this.ngZone.run(async (): Promise<any> => this.logOut());
 
                     return;
             }
@@ -132,7 +132,7 @@ export class JamErrorHandler extends ErrorHandler {
             disableClose: true
         });
 
-        dialog_ref.afterClosed().subscribe(success => {
+        dialog_ref.afterClosed().subscribe((): void => {
             this.token_dialog_is_open = false;
             this.globalStateService.logout();
         });

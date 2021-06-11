@@ -40,7 +40,7 @@ export class TopWarningService {
             this.warnings.push(warning);
         }
 
-        let search_warning = this.warnings.find(msj_warning => msj_warning.id === warning.id);
+        let search_warning = this.warnings.find((msj_warning): boolean => msj_warning.id === warning.id);
         if (!search_warning || search_warning.id !== warning.id) {
             this.warnings.push(warning);
         }

@@ -41,9 +41,9 @@ export class MenuComponent implements OnInit, OnDestroy {
         .afterDismissed()
         .pipe(
             this.destroyer.pipe(),
-            filter(response => ![null, undefined, ''].includes(response))
+            filter((response): boolean => ![null, undefined, ''].includes(response))
         )
-        .subscribe(response => this.selected.emit(this.formatEmission(response)));
+        .subscribe((response): void => this.selected.emit(this.formatEmission(response)));
     }
 
     public selectedOption(selected: string): void {

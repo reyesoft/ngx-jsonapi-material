@@ -30,7 +30,7 @@ export class JamFilterChecksComponent implements OnInit {
         this.filterConfigOptionsUpdate();
 
         this.filter_config_options = this.filter_config_options.sort(
-            (a, b) => (<IOption>a.text).name.localeCompare((<IOption>b.text).name)
+            (a, b): number => (<IOption>a.text).name.localeCompare((<IOption>b.text).name)
         );
 
         this.showInputSearch();
@@ -43,7 +43,7 @@ export class JamFilterChecksComponent implements OnInit {
     }
 
     public filterConfigOptionsUpdate() {
-        this.filter_config_options = Object.keys(this.filterConfig.options).map(key => {
+        this.filter_config_options = Object.keys(this.filterConfig.options).map((key): FilterOption => {
             if (typeof this.filterConfig.options[key].text === 'string') {
                 this.filterConfig.options[key].text = { key: key, name: this.filterConfig.options[key].text };
             }

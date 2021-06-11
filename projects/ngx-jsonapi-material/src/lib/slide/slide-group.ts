@@ -35,7 +35,7 @@ import {
   mixinDisableRipple,
   ThemePalette
 } from '@angular/material/core';
-import { merge, Subscription } from 'rxjs';
+import { merge, Subject, Subscription } from 'rxjs';
 import { JamSlide } from './slide';
 import { JamSlideHeader } from './slide-header';
 
@@ -202,8 +202,8 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
 
       // Changing these values after change detection has run
       // since the checked content may contain references to them.
-      Promise.resolve().then(() => {
-        this._slides.forEach((slide, index) => slide.isActive = index === indexToSelect);
+      Promise.resolve().then((): void => {
+        this._slides.forEach((slide, index): boolean => slide.isActive = index === indexToSelect);
 
         if (!isFirstRun) {
           this.selectedIndexChange.emit(indexToSelect);
@@ -212,7 +212,7 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
     }
 
     // Setup the position for each slide and optionally setup an origin on the next selected slide.
-    this._slides.forEach((slide: JamSlide, index: number) => {
+    this._slides.forEach((slide: JamSlide, index: number): void => {
       slide.position = index - indexToSelect;
 
       // If there is already a selected slide, then set up an origin for the next selected slide
@@ -233,7 +233,7 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
 
     // Subscribe to changes in the amount of slides, in order to be
     // able to re-render the content as new slides are added or removed.
-    this._slidesSubscription = this._slides.changes.subscribe(() => {
+    this._slidesSubscription = this._slides.changes.subscribe((): void => {
       const indexToSelect = this._clampTabIndex(this._indexToSelect);
 
       // Maintain the previously-selected slide if a new slide is added or removed and there is no
@@ -346,8 +346,8 @@ export class JamSlideGroup extends _JamSlideGroupMixinBase implements AfterConte
       this._slideElementSubscription.unsubscribe();
     }
 
-    this._slideElementSubscription = merge(...this._slides.map(slide => slide._stateChanges))
-      .subscribe(() => this._changeDetectorRef.markForCheck());
+    this._slideElementSubscription = merge(...this._slides.map((slide): Subject<any> => slide._stateChanges))
+      .subscribe((): void => this._changeDetectorRef.markForCheck());
   }
 
   /** Clamps the given index to the bounds of 0 and the slides length. */

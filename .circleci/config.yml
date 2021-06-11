@@ -14,8 +14,7 @@ jobs:
       - run: yarn prettier-ts:show --list-different
       - run: yarn prettier-md:show --list-different
       - run: yarn prettier-scss:show --list-different
-    # Descomentar en la tarea  FE-263
-    #   - run: yarn run ng lint
+      - run: yarn run ng lint
       - save_cache:
           key: *cache_key
           paths:

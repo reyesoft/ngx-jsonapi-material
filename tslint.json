@@ -17,7 +17,9 @@
             "allow-snake-case",
             "allow-pascal-case"
         ],
-
+        "file-name-casing": [true, "kebab-case"],
+        "no-inputs-metadata-property": false,
+        "no-host-metadata-property": false,
         "interface-name" : [false, "never"],
 
         "no-console": [true,
