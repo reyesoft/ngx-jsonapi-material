@@ -16,7 +16,8 @@ import {
     ComponentRef,
     ChangeDetectionStrategy,
     TemplateRef,
-    ChangeDetectorRef
+    ChangeDetectorRef,
+    ViewChild
 } from '@angular/core';
 import { Column, Action } from '../table-components/table-columns';
 import { DocumentCollection, Service, Resource, IParamsCollection } from 'ngx-jsonapi';
@@ -24,6 +25,9 @@ import { IPage } from '../../list-base';
 import { Menu } from '../../../menu/menu-elements/menu';
 import { JamRefreshService } from '../../../refresh/refresh.component';
 import { Destroyer } from '../../../destroyer';
+import { PageEvent } from '@angular/material/paginator';
+import { ListBaseCommonComponent } from '../list-base-common.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'jam-list-base-common-infinite-scroll',
@@ -37,7 +41,9 @@ export class ListBaseCommonInfiniteScrollComponent {
     public disableQueryParamsUpdate: boolean = true;
     public disabledButton: boolean = false;
     public pageIndex: number = 0;
+    public dataTableSource = new MatTableDataSource<Resource>();
     private destroyer = new Destroyer();
+    @ViewChild('table') public table: ListBaseCommonComponent;
     @Input() public tableColumns: Array<Column>;
     @Input() public displayedColumns: Array<string>;
     @Input() public expandableRow: TemplateRef<any>;
@@ -104,6 +110,15 @@ export class ListBaseCommonInfiniteScrollComponent {
     ) {
         this.observerAutoRefresh();
         this.observerRefresh();
+
+    }
+
+    public realReload(page?: PageEvent | IPage, options: IParamsCollection = {}, clear_data = true) {
+        this.table.realReload(page, options, clear_data)
+    }
+
+    public updateFilter(current_filter: any) {
+        this.table.updateFilter(current_filter);
     }
 
     private observerAutoRefresh(): void {
