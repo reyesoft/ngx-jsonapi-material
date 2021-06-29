@@ -33,6 +33,7 @@ import { SelectionBarService } from '../../selection-bar/selection-bar.service';
 import { UpdateFiltersService } from '../base/update-filters/update-filters.component';
 import { Menu } from '../../menu/menu-elements/menu';
 import { JamRefreshService } from '../../refresh/refresh.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'jam-list-base-common',
@@ -79,6 +80,7 @@ export class ListBaseCommonComponent extends ListBase implements OnInit, OnChang
     @Input() public nothingHereImageUrl: string;
     @Input() public reloadPageData: IPage = {};
     @Input() public collectionInfiniteScroll: Array<any>;
+    @Input() public dataTableSource = new MatTableDataSource<Resource>();
     @Output() public saveEditableCell: EventEmitter<Resource> = new EventEmitter<Resource>();
     @Output() public pageLengthChange: EventEmitter<number> = new EventEmitter<number>();
     @Output() public pageSizeOptionsEmit: EventEmitter<Array<number>> = new EventEmitter<Array<number>>();
