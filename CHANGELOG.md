@@ -6,7 +6,7 @@
 
 ### Fixed
 
--   List base disable query params and removed params fixed
+-   List base disable query params and removed params fixed ([#130](https://github.com/reyesoft/ngx-jsonapi-material/pull/130))
 
 ## 0.23.1
 
