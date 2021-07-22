@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## 0.23.2
+
+### Fixed
+
+-   List base disable query params and removed params fixed
+
 ## 0.23.1
 
 ### Fixed
