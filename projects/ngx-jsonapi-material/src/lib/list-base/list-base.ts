@@ -171,13 +171,11 @@ export class ListBase implements OnInit, OnDestroy {
             queryParams = { pageSize: page.pageSize, pageIndex: page.pageIndex };
         }
 
-        if (this.remoteFilter && Object.keys(this.remoteFilter).length !== 0) {
-            Object.keys(this.remoteFilter).forEach((key): void => {
-                queryParams[key] = this.remoteFilter[key];
-            });
+        if (this.disableQueryParamsUpdate) {
+            return;
         }
 
-        this.updateFiltersService.applyFilters({ ...queryParams });
+        this.updateFiltersService.applyFilters({ ...queryParamsCopy, ...queryParams });
     }
 
     public resetFilters() {
@@ -232,7 +230,9 @@ export class ListBase implements OnInit, OnDestroy {
                         request_options.page.length = collection.page.total_resources;
                         this.fillPageData(request_options.page);
                     }
-                    this.updatePagination(this.page);
+                    if (!this.disableQueryParamsUpdate) {
+                        this.updatePagination(this.page);
+                    }
                 }),
                 takeUntil(this.deprecate_collection_subscription)
             );
