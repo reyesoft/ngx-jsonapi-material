@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## 0.23.3
+
+### Fixed
+
+-   Fixed the functionality of the rowDoubleClick of the list base, and it was added that the remoteFilterDefault are the attributes of the resource ([#130](https://github.com/reyesoft/ngx-jsonapi-material/pull/130))
+
 ## 0.23.2
 
 ### Fixed

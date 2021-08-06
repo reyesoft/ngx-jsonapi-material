@@ -49,6 +49,7 @@ export class ListBase implements OnInit, OnDestroy {
         pageIndex: 0,
         length: undefined
     };
+    public service: Service;
     public limit: number;
     public pageSize = 50;
     public pagIndex = 0;
@@ -96,9 +97,10 @@ export class ListBase implements OnInit, OnDestroy {
                 // improve if updates on query params are thrown to the filters
                 // NOTE: if queryParams is falsy, list should be reloaded because it's the first time that passes through this code
                 let should_reload = !this.queryParams || this.disableQueryParamsUpdate;
+                let remoteFilterDefault = (new this.service.resource()).attributes;
                 if (this.remoteFilter && !this.disableQueryParamsUpdate) {
-                    this.remoteFilter = this.updateFiltersService.getRemoteFilter(queryParams, this.remoteFilter);
-                    should_reload = should_reload || !isEqual(this.last_remote_filter, this.remoteFilter);
+                    this.remoteFilter = this.updateFiltersService.getRemoteFilter(queryParams, remoteFilterDefault);
+                    should_reload = should_reload || !isEqual(this.last_remote_filter, remoteFilterDefault);
                     this.last_remote_filter = cloneDeep(this.remoteFilter);
                 }
                 if (this.page && !this.disableQueryParamsUpdate) {

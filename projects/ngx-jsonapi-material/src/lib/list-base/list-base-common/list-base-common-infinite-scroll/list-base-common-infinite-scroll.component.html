@@ -43,7 +43,7 @@
     (collectionChange)="setCollection($event)"
     (actionsClick)="actionsClick.emit($event)"
     (rowClick)="rowClick.emit($event)"
-    (rowDoubleClick)="actionsClick.emit({element: $event, key: 'doubleClick'})"
+    (rowDoubleClick)="rowDoubleClick.emit($event)"
     (selectionBarComponentCreated)="selectionBarComponentCreated.emit($event)"
     (pageLengthChange)="pageLengthChange($event)"
     (openedActionsMenu)="openedActionsMenu.emit($event)"

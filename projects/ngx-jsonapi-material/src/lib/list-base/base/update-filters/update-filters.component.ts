@@ -13,7 +13,6 @@ export class UpdateFiltersService {
          */
 
         let remoteFilter = this.parseQueryParams({ ...queryParams });
-
         Object.keys(queryParams).forEach((key): void => {
             if (!remoteFilterObject.hasOwnProperty(key)) {
                 delete remoteFilter[key];

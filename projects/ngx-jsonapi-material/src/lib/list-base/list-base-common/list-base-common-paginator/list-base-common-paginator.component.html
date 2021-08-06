@@ -42,7 +42,7 @@
     (collectionChange)="collectionChange.emit($event)"
     (actionsClick)="actionsClick.emit($event)"
     (rowClick)="rowClick.emit($event)"
-    (rowDoubleClick)="actionsClick.emit({element: $event, key: 'doubleClick'})"
+    (rowDoubleClick)="rowDoubleClick.emit($event)"
     (selectionBarComponentCreated)="selectionBarComponentCreated.emit($event)"
     (pageLengthChange)="pageLengthChange($event)"
     (pageSizeOptionsEmit)="pageSizeOptionsEmit($event)"
