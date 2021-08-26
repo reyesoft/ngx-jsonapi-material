@@ -6,7 +6,7 @@
 
 ### Fixed
 
--  Pipe app date fixed due to an invalid format in Safari Browser ([#132](https://github.com/reyesoft/ngx-jsonapi-material/pull/132))
+-  Pipe app date fixed due to an invalid format in Safari Browser ([#133](https://github.com/reyesoft/ngx-jsonapi-material/pull/133))
 
 
 ## 0.23.3
