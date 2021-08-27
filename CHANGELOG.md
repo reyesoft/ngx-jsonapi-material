@@ -2,12 +2,17 @@
 
 ## [Unreleased]
 
+## 0.23.5
+
+### Fixed
+
+-   Pipe app date fixed due to an invalid format in Safari Browser ([#133](https://github.com/reyesoft/ngx-jsonapi-material/pull/133))
+
 ## 0.23.4
 
 ### Fixed
 
--  Pipe app date fixed due to an invalid format in Safari Browser ([#133](https://github.com/reyesoft/ngx-jsonapi-material/pull/133))
-
+-   Fix the upload files component was throwing the error "failed to execute readAsDataUrl on FileReader parameter 1 not of type Blob ([#134](https://github.com/reyesoft/ngx-jsonapi-material/pull/134))
 
 ## 0.23.3
 
