@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## 0.23.4
+
+### Fixed
+
+-   Fix the upload files component was throwing the error "failed to execute readAsDataUrl on FileReader parameter 1 not of type Blob ([#132](https://github.com/reyesoft/ngx-jsonapi-material/pull/132))
+
 ## 0.23.3
 
 ### Fixed
