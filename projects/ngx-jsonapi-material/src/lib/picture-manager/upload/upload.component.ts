@@ -72,6 +72,10 @@ export class UploadComponent {
 
     // The preview function
     public previewImage(file: any) {
+        if (file.target === undefined || file.target.files[0] === undefined) {
+            return;
+        }
+
         const fileReader = new FileReader();
 
         fileReader.readAsDataURL(file.nativeFile || file.target.files[0]);
